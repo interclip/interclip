@@ -1,0 +1,111 @@
+@import "compass/css3";
+
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:600,400,300);
+
+$silver: #bdc3c7;
+$concrete: #95a5a6;
+$river: #3498db;
+$asbestos: #7f8c8d;
+
+
+#sv {
+  position: absolute;
+  top: 55%;
+  text-align: center;
+}
+
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  width: 250px;
+  height: 50px;
+  
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+
+input[type=text] {
+  position: absolute;
+  bottom: 0;
+ 
+  width: 100%;
+  height: 20px;
+  
+  background-color: transparent;
+  
+  color: $asbestos;
+  font-weight: 600;
+  
+  outline: none;
+  border: none;
+  border-bottom: 1px solid $silver;
+
+}
+
+.placeholder {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  
+  margin: 0;
+  
+  font-size: 13px;
+  color: $concrete;
+
+  transition: .2s all ease-out;
+}
+
+.lb {
+  position: absolute;
+  top: 10px;
+  left: -30px;
+  z-index: 40;
+  
+  margin: 0;
+  
+  font-size: 10px;
+  color: $river;
+  
+  opacity: 0;
+  transition: .2s all ease-out; 
+}
+
+.lb--animate {
+  opacity: 1;
+  left: 0;
+}
+
+
+.placeholder--animate {
+  left: 20px;
+  opacity: 0;
+}
+
+.border {
+  position: absolute;
+  bottom: 0px;
+
+  display: inline-block;
+  width: 0;
+  height: 2px;
+  padding: 0;
+  margin: 0;
+  
+  background-color: $river;
+ 
+  transition: .2s width ease-out;
+}
+
+.border--animate {
+ width: 100%; 
+}
