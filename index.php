@@ -50,7 +50,7 @@
     <script  src="js/index.js"></script>
 
 
-
+<div class="hidden"> <endora> </endora> </div>
 
 </body>
 <?php 
@@ -63,5 +63,5 @@ fclose($myfile);
 }
 
 
-?>
-</html>
+
+
