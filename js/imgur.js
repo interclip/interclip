@@ -19,9 +19,7 @@
             options = {};
         }
 
-        if (!options.clientid) {
-            throw 'Provide a valid Client Id here: https://api.imgur.com/';
-        }
+     
 
         this.clientid = options.clientid;
         this.endpoint = 'https://api.imgur.com/3/image';

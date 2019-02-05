@@ -18,3 +18,8 @@
       $('.placeholder').css('display', 'visible');
     }
  }
+ var url_string = location.href; //window.location.href
+var url = new URL(url_string);
+var ccc = url.searchParams.get("url");
+
+

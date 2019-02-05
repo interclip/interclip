@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./css/style.css" rel="stylesheet" media="screen">
     <link href="./css/mobile-style.css" rel="stylesheet" media="screen">
-    <link rel="shortcut icon" href="">
+    <link rel="shortcut icon" href="./img/favicon.ico">
 </head>
 
 <body>
@@ -50,8 +50,9 @@
     readFiles();
   </script>
   <p id="clipboard">
-Your clipboard:
+<span> Your clipboard:<span>
 <br />
+<div id="clip-content"></div>
 </p>
   <form action="" method="GET">
 <div class="container">
@@ -93,6 +94,7 @@ if(filter_var($text, FILTER_VALIDATE_URL))
   $txt = $short_url;
   fwrite($myfile, $txt);
   fclose($myfile);
+ // echo '<img id="currentPhoto" onmouseover="showImg()" onmouseout="hideImg()" src="'.$short_url.'" onerror="this.src = \'\'" alt=""></img>';
   /*
 }
 else
