@@ -3,8 +3,7 @@ var feedback = function(res) {
         var get_link = res.data.link.replace(/^http:\/\//i, 'https://');
         document.querySelector('.status').classList.add('bg-success');
         document.getElementById("dropzone").style.display = "none"; 
-        document.querySelector(".status").innerHTML +=
-            'Your image : ' + '<br><input class="image-url" value=\"' + get_link + '\"/>' + '<img class="img" alt="Imgur-Upload" src=\"' + get_link + '\"/>';
+       location.href = 'index.php?url=' + get_link;
     }
 };
 

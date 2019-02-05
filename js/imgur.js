@@ -74,16 +74,18 @@
         createDragZone: function () {
             var p1, p2, input;
 
-                p1 = this.createEls('p', {}, 'Drop Image File Here');
-                p2 = this.createEls('p', {}, 'Or click here to select image');
-            input = this.createEls('input', {type: 'file', className: 'input', accept: 'image/*, video/*'});
-
+             //   p1 = this.createEls('p', {}, 'Drop Image File Here');
+           //     p2 = this.createEls('p', {}, 'Or click here to select image');
+           input = this.createEls('input', {type: 'file', className: 'input', accept: 'image/*'});
+           document.getElementById("dropzone").addEventListener("click", function(event){
+            event.preventDefault()
+          });
             Array.prototype.forEach.call(this.info, function (zone) {
-                zone.appendChild(p1);
-                zone.appendChild(p2);
+              //  zone.appendChild(p1);
+            // zone.appendChild(p2);
             }.bind(this));
             Array.prototype.forEach.call(this.dropzone, function (zone) {
-                zone.appendChild(input);
+               zone.appendChild(input);
                 this.status(zone);
                 this.upload(zone);
             }.bind(this));
@@ -93,7 +95,7 @@
 
             div = this.createEls('div', {className: 'loading-modal'});
             table = this.createEls('table', {className: 'loading-table'});
-            img = this.createEls('img', {className: 'loading-image', src: './css/loading-spin.svg'});
+            img = this.createEls('img', {className: 'loading-image', src: './css/pacman-loading.svg'});
 
             div.appendChild(table);
             table.appendChild(img);

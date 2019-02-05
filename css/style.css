@@ -178,10 +178,13 @@ html, body {
 	
 }
 
-
 #clipboard {
     font-size: 150%;
 position: absolute;
-left: 44%;
-bottom: 25%;
+text-align: center;
+left: 42%;
+bottom: 22%;
+}
+.hidden{
+    display: none;
 }
