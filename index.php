@@ -7,6 +7,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
     
 <script type="text/javascript">
+
   function readFiles()
 {
     $.get('clip.txt', function(data) {
@@ -14,6 +15,7 @@
         document.getElementById("clipboard").innerHTML += data;
     }, "text");
 }
+
 </script>
 <head>
   <meta charset="UTF-8">
@@ -47,6 +49,7 @@
 </div>
 <body>
   <script type="text/javascript">
+
     readFiles();
   </script>
   <p id="clipboard">
@@ -94,6 +97,16 @@ if(filter_var($text, FILTER_VALIDATE_URL))
   $txt = $short_url;
   fwrite($myfile, $txt);
   fclose($myfile);
+
+  $request = file_get_contents("https://api.sunrise-sunset.org/json?lat=50.0800654&lng=14.4120956&date=today");
+$data = json_decode($request, true);
+$sunset = $data['results']['sunset'];
+$sunrise = $data['results']['sunrise'];
+/*echo($sunset);
+echo ($sunrise);
+*/
+echo    '<script type="text/javascript"> DarkMode("'.$sunrise.'"," '.$sunset.'");   </script>'; 
+echo '<script>Check();</script> ';
  // echo '<img id="currentPhoto" onmouseover="showImg()" onmouseout="hideImg()" src="'.$short_url.'" onerror="this.src = \'\'" alt=""></img>';
   /*
 }

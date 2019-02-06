@@ -144,7 +144,7 @@ body.loading .loading-modal {
 }
 
 .loading-modal {
-	background-color: rgba(255, 255, 255, .8);
+	background-color: rgba(71, 68, 68, 0.8);
 	display: none;
 	position: fixed;
 	z-index: 1000;
@@ -202,17 +202,21 @@ body.day {
 h1.day,
 h2.day {
 	color: black;
+	transition-duration: 300ms;
 }
 
 /* Dark mode */
 body.night {
 	background: black;
+	transition-duration: 300ms;
 }
 
 h1.night,
 h2.night {
 	color: white;
+	transition-duration: 300ms;
 }
 .night #clipboard {
 	color: white;
+	transition-duration: 300ms;
 }
