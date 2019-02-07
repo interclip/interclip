@@ -26,7 +26,7 @@ function DarkMode(sunrise, sunset) {
 	var resset = sunset.split(':');
 	var resrise = sunrise.split(':');
 	var sunrisenum = Number(resrise[0]) + 1;
-	var sunsetnum = Number(resset[0]) + 1;
+	var sunsetnum = Number(resset[0]) + 13;
 
 	// DOM
 	var body = document.querySelector('body');
@@ -44,17 +44,12 @@ function DarkMode(sunrise, sunset) {
 		}
 	}
 
-	// Update every second
-	setInterval(updateClock, 1000);
-	setInterval(check, 1000);
-
 	// Check for date or night
 	function check() {
 		// Get date
 		var date = new Date();
 		// Get hours
 		var hours = date.getHours();
-
 		if (hours >= sunrisenum && hours <= sunsetnum) {
 			// Day Time
 			console.log('Day time');
@@ -77,5 +72,7 @@ function DarkMode(sunrise, sunset) {
 			});
 		}
 	}
+	// Update every second
+	setInterval(updateClock, 1000);
+	setInterval(check, 1000);
 }
-

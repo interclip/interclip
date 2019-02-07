@@ -1,0 +1,55 @@
+<div id="drop_file_zone" ondrop="upload_file(event)" ondragover="return false">
+    <div id="drag_upload_file">
+
+  </div>
+  <style>
+      #drop_file_zone {
+    background-color: #EEE; 
+    border: #999 5px dashed;
+    width: 290px; 
+    height: 200px;
+    padding: 8px;
+    font-size: 18px;
+}
+#drag_upload_file {
+  width:50%;
+  margin:0 auto;
+}
+#drag_upload_file p {
+  text-align: center;
+}
+#drag_upload_file #selectfile {
+  display: none;
+}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var fileobj;
+  function upload_file(e) {
+e.preventDefault();
+for (i = 0; i < e.dataTransfer.files.length; i++) {
+fileobj = e.dataTransfer.files[i];
+ajax_file_upload(fileobj);
+}
+}
+ 
+
+ 
+  function ajax_file_upload(file_obj) {
+    if(file_obj != undefined) {
+        var form_data = new FormData();                  
+        form_data.append('file', file_obj);
+      $.ajax({
+        type: 'POST',
+        url: 'ajax.php',
+        contentType: false,
+        processData: false,
+        data: form_data,
+        success:function(response) {
+          alert(response);
+          $('#selectfile').val('');
+        }
+      });
+    }
+  }
+</script>

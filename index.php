@@ -11,7 +11,8 @@
   function readFiles()
 {
     $.get('clip.txt', function(data) {
-
+   //  var dataarray = split(data.split("."));
+    // var datatype = dataarray[dataarray.length - 1];
         document.getElementById("clipboard").innerHTML += data;
     }, "text");
 }
@@ -32,7 +33,7 @@
     <div class="title">
       
     </div>
-    <div class="dropzone" id="dropzone">
+    <div class="dropzone" id="dropzone" ondrop="upload_file(event)" ondragover="return false">
         <div class="info"></div>
     </div>
     <script type="text/javascript" src="./js/imgur.js"></script>
@@ -86,6 +87,7 @@ if(isset($_GET['url'])) {
 if(filter_var($text, FILTER_VALIDATE_URL))
 {
   */
+
   $long_url = $_GET['url'];
   $bitly_login = 'filiptronicek';
   $bitly_apikey = 'R_e8b7b028a203498f96129cbcda9f15e6';
@@ -98,15 +100,11 @@ if(filter_var($text, FILTER_VALIDATE_URL))
   fwrite($myfile, $txt);
   fclose($myfile);
 
-  $request = file_get_contents("https://api.sunrise-sunset.org/json?lat=50.0800654&lng=14.4120956&date=today");
-$data = json_decode($request, true);
-$sunset = $data['results']['sunset'];
-$sunrise = $data['results']['sunrise'];
+
+die("fug");
 /*echo($sunset);
 echo ($sunrise);
 */
-echo    '<script type="text/javascript"> DarkMode("'.$sunrise.'"," '.$sunset.'");   </script>'; 
-echo '<script>Check();</script> ';
  // echo '<img id="currentPhoto" onmouseover="showImg()" onmouseout="hideImg()" src="'.$short_url.'" onerror="this.src = \'\'" alt=""></img>';
   /*
 }
@@ -119,7 +117,11 @@ else
 }
 */
 }
-
+$request = file_get_contents("https://api.sunrise-sunset.org/json?lat=50.0800654&lng=14.4120956&date=today");
+$data = json_decode($request, true);
+$sunset = $data['results']['sunset'];
+$sunrise = $data['results']['sunrise'];
+echo    '<script type="text/javascript"> DarkMode("'.$sunrise.'"," '.$sunset.'");   </script>'; 
 
 
 echo "</body>";
