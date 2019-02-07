@@ -179,11 +179,10 @@ body {
 }
 
 #clipboard {
-	font-size: 150%;
-	position: absolute;
+	font-size: 200%;
 	text-align: center;
-	left: 42%;
-	bottom: 22%;
+	line-height: 1.5;
+	font-weight: 900;
 }
 .hidden {
 	display: none;
