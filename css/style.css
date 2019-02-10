@@ -183,6 +183,8 @@ body {
 	text-align: center;
 	line-height: 1.5;
 	font-weight: 900;
+	position: relative;
+	bottom: 200px;
 }
 .hidden {
 	display: none;

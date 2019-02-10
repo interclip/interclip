@@ -1,3 +1,25 @@
+/*Mobile shit */
+var isMobile = {
+	Android: function() {
+		return navigator.userAgent.match(/Android/i);
+	},
+	BlackBerry: function() {
+		return navigator.userAgent.match(/BlackBerry/i);
+	},
+	iOS: function() {
+		return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+	},
+	Opera: function() {
+		return navigator.userAgent.match(/Opera Mini/i);
+	},
+	Windows: function() {
+		return navigator.userAgent.match(/IEMobile/i);
+	},
+	any: function() {
+		return isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows();
+	}
+};
+
 /* Imgur Upload Script */
 (function(root, factory) {
 	'use strict';
@@ -74,9 +96,12 @@
 			//   p1 = this.createEls('p', {}, 'Drop Image File Here');
 			//     p2 = this.createEls('p', {}, 'Or click here to select image');
 			input = this.createEls('input', { type: 'file', className: 'input' });
-			document.getElementById('dropzone').addEventListener('click', function(event) {
-				event.preventDefault();
-			});
+
+			if (!isMobile.any()) {
+				document.getElementById('dropzone').addEventListener('click', function(event) {
+					event.preventDefault();
+				});
+			}
 			Array.prototype.forEach.call(
 				this.info,
 				function(zone) {

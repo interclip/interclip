@@ -33,10 +33,8 @@
   
 </head>
 <center>
-<div id="hidden">
-  <endora></endora>
-</div>
-<body onload="readFiles()">
+
+<body>
  
   <p class="text-center" id="clipboard">
 <span> Your clipboard:<span>
@@ -52,7 +50,9 @@
 
   
 </div>
-
+<div id="hidden">
+  <endora></endora>
+</div>
   <button id="sv" class="btn btn-primary" onclick="form.submit();">
   Save
 </button>
@@ -73,11 +73,9 @@
 var clip = document.getElementById("clipboard");
 //The real shit
 
-  function readFiles()
-{
     $.get('clip.txt', function(data) {
     
-    /*  var dataarray = data.split(".");
+      var dataarray = data.split(".");
       var ext = dataarray[dataarray.length - 1];
       var actextn = ext.split("&");
       var ext = actextn[0];
@@ -86,47 +84,17 @@ var clip = document.getElementById("clipboard");
         console.log("An image ("+ext+")");
        //document.getElementById("body").innerHTML += '  <img class="img-responsive" src="'+data+'" alt="Chania" width="460" height="345"> ';
       }
-      */
+      
         document.getElementById("clipboard").innerHTML += data;
     }, "text");
-}
-
 </script>
 <?php 
 if(isset($_GET['url'])) {
-/*
-if(filter_var($text, FILTER_VALIDATE_URL))
-{
-  */
-/*
-  $long_url = $_GET['url'];
-  $bitly_login = 'filiptronicek';
-  $bitly_apikey = 'R_e8b7b028a203498f96129cbcda9f15e6';
-  $uniqid = uniqid();
-  $bitly_response = json_decode(file_get_contents("http://api.bit.ly/v3/shorten?login={$bitly_login}&apiKey={$bitly_apikey}&longUrl={$long_url}&format=json"));
-  $short_url = $bitly_response->data->url;
-  */
 
   $myfile = fopen("clip.txt", "w") or die("A fucking error has occured. Either fuck yourself or submit an issue on GitHub");
   $txt = urldecode($_GET['url']);
   fwrite($myfile, $txt);
   fclose($myfile);
-
-
-/*echo($sunset);
-echo ($sunrise);
-*/
- // echo '<img id="currentPhoto" onmouseover="showImg()" onmouseout="hideImg()" src="'.$short_url.'" onerror="this.src = \'\'" alt=""></img>';
-  /*
-}
-else
-{
-  $myfile = fopen("clip.txt", "w") or die("A fucking error has occured. Either fuck yourself or submit an issue on GitHub");
-  $txt = $_GET['url'];
-  fwrite($myfile, $txt);
-  fclose($myfile);
-}
-*/
 }
 $request = file_get_contents("https://api.sunrise-sunset.org/json?lat=50.0800654&lng=14.4120956&date=today");
 $data = json_decode($request, true);
