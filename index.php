@@ -50,9 +50,12 @@
 
   
 </div>
+
 <div id="hidden">
   <endora></endora>
 </div>
+<br>
+<input type="text">
   <button id="sv" class="btn btn-primary" onclick="form.submit();">
   Save
 </button>
@@ -89,6 +92,7 @@ var clip = document.getElementById("clipboard");
     }, "text");
 </script>
 <?php 
+include_once("db.php");
 if(isset($_GET['url'])) {
 
   $myfile = fopen("clip.txt", "w") or die("A fucking error has occured. Either fuck yourself or submit an issue on GitHub");
