@@ -92,7 +92,7 @@ var clip = document.getElementById("clipboard");
     }, "text");
 </script>
 <?php 
-include_once("db.php");
+include("db.php");
 if(isset($_GET['url'])) {
 
   $myfile = fopen("clip.txt", "w") or die("A fucking error has occured. Either fuck yourself or submit an issue on GitHub");

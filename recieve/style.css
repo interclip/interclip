@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+html, body {
+  width: 100%;
+  height: 100%;
+  
+}
+
+.wrapper {
+  font-size: 36px;
+  font-weight: bold;
+  
+}
+
+
+
+p {
+  color: #fff;
+}
+
+input[type="text"] {
+  border: none;
+  border-bottom: 1px solid #555;
+  width: 200px;
+  font-size: 36px;
+  background-color: #3b3f45;
+}
+
+.input-wrap{
+  width: 500px;
+  margin: 180px auto;
+}
+
+
+.form-container {
+  position: relative;
+ }
+ 
+ .full-screen {
+   width: 100%;
+   height: 1000px;
+   padding: 20px;
+   background-color: #3b3f45;
+   transition: display 0.5s;
+   border: 1px solid black;
+ }
+ 
+ .full-screen {
+   position: absolute;
+   display: none;
+ }
+ 
+button {
+  border: 1px solid #000;
+  border-radius: 30px;
+  text-align: center;
+  padding: 10px 20px;
+  margin-top: 50px;
+  width: 100px;
+  font-size: 16px;
+  position: absolute;
+
+  font-size: 24px;
+}
+
+ .form-container input:checked:nth-of-type(1) ~ #inputform .full-screen:nth-of-type(1),
+ .form-container input:checked:nth-of-type(2) ~ #inputform .full-screen:nth-of-type(2),
+ .form-container input:checked:nth-of-type(3) ~ #inputform .full-screen:nth-of-type(3),
+ .form-container input:checked:nth-of-type(4) ~ #inputform .full-screen:nth-of-type(4),
+ .form-container input:checked:nth-of-type(5) ~ #inputform .full-screen:nth-of-type(5),
+ .form-container input:checked:nth-of-type(6) ~ #inputform .full-screen:nth-of-type(6) {
+   display: block;
+ }
+
+ .form-container input:checked:nth-of-type(1) ~ #inputform .full-screen:nth-of-type(1) .continue,
+ .form-container input:checked:nth-of-type(2) ~ #inputform .full-screen:nth-of-type(2) .continue,
+ .form-container input:checked:nth-of-type(3) ~ #inputform .full-screen:nth-of-type(3) .continue,
+ .form-container input:checked:nth-of-type(4) ~ #inputform .full-screen:nth-of-type(4) .continue,
+ .form-container input:checked:nth-of-type(5) ~ #inputform .full-screen:nth-of-type(5) .continue,
+ .form-container input:checked:nth-of-type(6) ~ #inputform .full-screen:nth-of-type(6) .continue {
+   display: block;
+ }
+
+
+ .form-container input:checked:nth-of-type(1) ~ .indicator label:nth-of-type(1),
+ .form-container input:checked:nth-of-type(2) ~ .indicator label:nth-of-type(2),
+ .form-container input:checked:nth-of-type(3) ~ .indicator label:nth-of-type(3),
+ .form-container input:checked:nth-of-type(4) ~ .indicator label:nth-of-type(4),
+ .form-container input:checked:nth-of-type(5) ~ .indicator label:nth-of-type(5),
+ .form-container input:checked:nth-of-type(6) ~ .indicator label:nth-of-type(6) {
+    color: pink;
+ }
+
+ .form-container input:checked:nth-of-type(7) ~ #inputform .full-screen,
+ .form-container input:checked:nth-of-type(7) + #inputform button {
+   display: block;
+ }
+
+
+.form-container input:checked:nth-of-type(7) ~ #inputform .full-screen {
+  width: 960px;
+  height: 200px;
+  background-color: #fffed8;
+  position: static;
+  margin: 20px 0;
+  border: none;
+  color: #000;
+}
+
+.form-container input:checked:nth-of-type(7) ~ #inputform .full-screen p {
+
+  color: #000;
+}
+
+.form-container input:checked:nth-of-type(7) ~ #inputform .full-screen .input-wrap {
+  margin: 10px auto;
+}
+
+
+.form-container input:checked:nth-of-type(7) ~ .indicator {
+  display: none;
+}
+ 
+
+
+.color {
+  display: none;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border: 1px solid #000;
+  
+}
+
+
+
+.color-container span {
+  margin-left: 10px;
+}
+
+
+
+.color-container input:checked + label .color {
+  display: block;
+}
+
+
+
+.color-container {/*
+  border: 1px solid #000;*/
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;/*
+  width: 100px;
+  height: 100px;*/
+  
+}
+
+
+
+.color-choice input:checked ~ .color-container {
+  width: 500px;
+  height: 600px;
+
+}
+
+.color-choice input:checked ~ .color-container .color {
+  display: block;
+}
+
+
+.indicator {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 200px;
+  right: 50px;
+  font-size: 16px;
+  
+}
+
+.color-wrap {
+   border: 2px solid #000;
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  background-color: gray;
+  color: #fff;
+  
+}
+
+
+
+.priority {
+  border: 1px solid black;
+  height: 500px;
+  padding: 10px;
+  overflow: hidden;
+}
+input[type="radio"] {
+  display: none;
+}
+html, body {margin: 0; height: 100%; overflow: hidden}
+body {
+  font-family: "Roboto";
+}
+a {
+  font-size: 18px;
+}
+input {
+  color: white;
+  font-size: 6vh !important;
+}
+#modalpage {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0; 
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,1); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
