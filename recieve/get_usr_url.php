@@ -1,4 +1,12 @@
+<link rel="stylesheet" href="css/get.css">
+<ul>
+  <li><a href="../">Send</a></li>
+  <li><a class="active" href="./">Recieve</a></li>
+  <li style="float:right"><a href="#about">About</a></li>
+</ul>
+
 <?php 
+
 
 if(!empty($_POST['user'])) {
   $user_code = $_POST['user'];
@@ -13,13 +21,13 @@ if(!empty($_POST['user'])) {
   if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
   }
-  //$sqlquery = "INSERT INTO userurl (id, usr, url) VALUES (NULL, '$usr', '$url') ";
   $sqlquery = "SELECT * FROM userurl WHERE usr = '$user_code'";
   $result = $conn->query($sqlquery);
 
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-    		echo json_encode($row['url']);
+        $url = $row['url'];
+        break;
 
 }
 $conn->query($sqlquery);
@@ -30,3 +38,13 @@ $conn->close();
 
 }
 ?>
+<div id="fullscreen">
+<div class="fullscreen-content">
+
+<div class="title">
+  <h1><a href="<?php echo $url ?>"><?php echo $url ?></a></h1>
+<p>... is the URL of the code <?php echo $user_code ?></p>
+</div>
+
+</div>
+</div>

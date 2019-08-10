@@ -24,25 +24,9 @@ function validateForm() {
     printOutText("Code must be filled out");
     return false;
   } else if (x.length != 5) {
-  	printOutText("Code must be exactly the length of five");
-  	
-  } else {
-  	$.get(
-    {
-      url : "get_usr_url.php",
-      type: "POST",
-      data : {user:x},
-      success: function(data)
-    {
-
-    alert(data)
-    }
-  
-  });
-
-    console.log(x)
+  	printOutText("Code must be exactly the length of six");
   	return false;
-
-    
+  } else {
+    return true;
+  }
   } 
-}
