@@ -16,7 +16,7 @@ function submit() {
 	console.log("submit");
 	$("#inputform").submit();
 }
- setInterval(function(){ placeHolder() }, 500);
+ setInterval(function(){ placeHolder() }, 50);
 
 function validateForm() {
   var x = document.forms["form"]["code"].value;
