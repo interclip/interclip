@@ -5,6 +5,8 @@
   <li style="float:right"><a href="#about">About</a></li>
 </ul>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
 <?php 
 
 
