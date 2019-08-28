@@ -11,7 +11,7 @@
   <li style="float:right"><a href="about.html">About</a></li>
 </ul>
 
-<form name="urlform" id="content" onsubmit="return validateForm()" action="new.php" method="POST">
+<form name="urlform" id="content" onsubmit="return validateForm()" action="new" method="POST">
 
   <input type="text" name="input" class="input" id="search-input">
   <button type="reset" class="search" id="search-btn"></button>

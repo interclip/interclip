@@ -118,13 +118,13 @@ ul {
 }
 
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1000px) {
   iframe#ytplayerSide {
     width: 100vw;
     height: 50vh;
   }
 }
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 1000px) {
   iframe#ytplayerSide {
     width: 50vw;
     height: 50vh;
