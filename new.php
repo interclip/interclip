@@ -1,8 +1,11 @@
+<div id="endora" style="display: none">
+  <endora>
+</div>
 <link rel="stylesheet" href="css/new.css">
 <ul>
   <li><a class="active" href="./">Send</a></li>
   <li><a href="./recieve/">Recieve</a></li>
-  <li style="float:right"><a href="#about">About</a></li>
+  <li style="float:right"><a href="about.html">About</a></li>
 </ul>
 <?php
 if(isset($_POST['input'])) {
