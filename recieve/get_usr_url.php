@@ -55,7 +55,6 @@ $conn->close();
 </div>
 <script> 
 function valUrl() {
-  alert($('#urlLink').text())
     var url = $('#urlLink').text();
     if (url != undefined || url != '') {
       var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
