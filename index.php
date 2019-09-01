@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="css/index.css">
-
+<div id="endora" style="display: none">
+  <endora>
+</div>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <ul>
   <li><a class="active" href="#">Send</a></li>
   <li><a href="./recieve/">Recieve</a></li>
-  <li style="float:right"><a href="#about">About</a></li>
+  <li style="float:right"><a href="about.html">About</a></li>
 </ul>
-  
-<form name="urlform" id="content" onsubmit="return validateForm()" action="new.php" method="POST">
+
+<form name="urlform" id="content" onsubmit="return validateForm()" action="new" method="POST">
 
   <input type="text" name="input" class="input" id="search-input">
   <button type="reset" class="search" id="search-btn"></button>

@@ -1,8 +1,11 @@
 <link rel="stylesheet" href="css/get.css">
+<div id="endora" style="display: none">
+  <endora>
+</div>
 <ul>
   <li><a href="../">Send</a></li>
   <li><a class="active" href="./">Recieve</a></li>
-  <li style="float:right"><a href="#about">About</a></li>
+  <li style="float:right"><a href="about.html">About</a></li>
 </ul>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
