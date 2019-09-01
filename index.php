@@ -8,7 +8,7 @@
   <li><a href="./recieve/">Recieve</a></li>
   <li style="float:right"><a href="#about">About</a></li>
 </ul>
-
+  
 <form name="urlform" id="content" onsubmit="return validateForm()" action="new.php" method="POST">
 
   <input type="text" name="input" class="input" id="search-input">

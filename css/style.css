@@ -1,223 +1,115 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:600,400,300);
-#sv {
-	position: absolute;
-	top: 55%;
-	text-align: center;
-}
-
-body {
-	font-family: 'Open Sans', sans-serif;
-}
-
-.container {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 250px;
-	height: 50px;
-	transform: translate(-50%, -50%);
-	overflow: hidden;
-}
-
-input[type=text] {
-	position: absolute;
-	background-color: transparent;
-	color: #7f8c8d;
-	font-weight: 600;
-	outline: none;
-	border: none;
-	border-bottom: 1px solid #bdc3c7;
-}
-
-.placeholder {
-	position: absolute;
-	bottom: 5px;
-	left: 0;
-	margin: 0;
-	font-size: 13px;
-	color: #95a5a6;
-	transition: .2s all ease-out;
-}
-
-.lb {
-	position: absolute;
-	top: 10px;
-	left: -30px;
-	z-index: 40;
-	margin: 0;
-	font-size: 10px;
-	color: #3498db;
-	opacity: 0;
-	transition: .2s all ease-out;
-}
-
-.lb--animate {
-	opacity: 1;
-	left: 0;
-}
-
-.placeholder--animate {
-	left: 20px;
-	opacity: 0;
-}
-
-.border {
-	position: absolute;
-	bottom: 0px;
-	display: inline-block;
-	width: 0;
-	height: 2px;
-	padding: 0;
-	margin: 0;
-	background-color: #3498db;
-	transition: .2s width ease-out;
-}
-
-.border--animate {
-	width: 100%;
-}
-.hidden {
-	display: none;
-}
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Palanquin&display=swap');
 
 /* Imgur Upload Style */
 
 body.loading .loading-modal {
-	display: block;
+    display: block
 }
 
 .title {
-	margin-right: auto;
-	margin-left: auto;
-	text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
 }
 
 .dropzone {
-	/*  border: 4px dashed #ccc; */
-	height: 500px;
-	position: relative;
-	margin-right: auto;
-	margin-left: auto;
-	max-width: 50%;
+    border: 4px dashed #ccc;
+    height: 200px;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 50%;
 }
 
 .info {
-	margin-top: 11%;
+    margin-top: 11%;
 }
-
+body {
+	font-family: 'Palanquin'
+}
 .dropzone p {
-	/*height: 100%;*/
-	/*line-height: 200px;*/
-	margin: 0%;
-	text-align: center;
-	width: 100%;
+    /*height: 100%;*/
+    /*line-height: 200px;*/
+    margin: 0%;
+    text-align: center;
+    width: 100%
 }
 
 .input {
-	height: 100%;
-	left: 0;
-	outline: 0;
-	opacity: 0;
-	position: absolute;
-	top: 0;
-	width: 100%;
+    height: 100%;
+    left: 0;
+    outline: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%
 }
 
 .status {
-	position: relative;
-	border-radius: 5px;
-	text-align: center;
-	width: 50%;
-	margin-left: auto;
-	margin-right: auto;
+    border-radius: 5px;
+    text-align: center;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .image-url {
-	width: 50%;
+    width: 50%;
 }
 
 .dropzone.dropzone-dragging {
-	border-color: #000;
+    border-color: #000
 }
 
 .loading-modal {
-	background-color: rgba(71, 68, 68, 0.8);
-	display: none;
-	position: fixed;
-	z-index: 1000;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
+    background-color: rgba(255, 255, 255, .8);
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%
 }
 
 .loading-table {
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 15%;
-	margin-bottom: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15%;
+    margin-bottom: 15%;
 }
 
 .img {
-	width: 100%;
+    width: 100%;
 }
-html,
-body {
-	height: 100%;
-	margin: 0;
-}
-
-.dropzone {
-	min-height: 100%;
-	min-width: 100%;
-	display: flex;
-	align-items: stretch;
-	position: relative;
-}
-
-#clipboard {
-	font-size: 200%;
-	text-align: center;
-	line-height: 1.5;
-	font-weight: 900;
-	position: relative;
-	bottom: 200px;
-}
-.hidden {
-	display: none;
-}
-¨ /* dark and normal mode */ body,
-h1,
-h2 {
-	transition: 1s all ease;
-}
-
-/* Light mode */
-body.day {
-	background: white;
-}
-
-h1.day,
-h2.day {
-	color: black;
-	transition-duration: 300ms;
-}
-
-/* Dark mode */
-body.night {
-	background: black;
-	transition-duration: 300ms;
-}
-
-h1.night,
-h2.night {
-	color: white;
-	transition-duration: 300ms;
-}
-.night #clipboard {
-	color: white;
-	transition-duration: 300ms;
-}
-input {
-	max-width: 30vw;
-}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  .active {
+    background-color: #ff9800;
+  }
+  body{
+	  background-color: #ff9800;
+  }
