@@ -15,10 +15,8 @@
 
 if(!empty($_POST['user'])) {
   $user_code = $_POST['user'];
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $DBName = "interclip";
+  
+  include("../db.php");
   // Create connection
   $conn = new mysqli($servername, $username, $password, $DBName);
   

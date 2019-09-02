@@ -12,10 +12,8 @@
 
 <?php
 if(isset($_POST['input'])) {
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $DBName = "interclip";
+  include("db.php");
+
   
   // Create connection
   $conn = new mysqli($servername, $username, $password, $DBName);
