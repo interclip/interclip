@@ -49,14 +49,14 @@ $conn->close();
   <h1><a id="urlLink" href="<?php echo $url ?>"><?php echo $url ?></a></h1>
 <p>... is the URL of the code <?php echo $user_code ?></p>
 <iframe id="ytplayerSide" frameborder="0"> </iframe>
-
+<img id="imgShow"> 
 </div>
 
 </div>
 </div>
 <script> 
-function valUrl() {
     var url = $('#urlLink').text();
+function valUrl() {
     if (url != undefined || url != '') {
       var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
       var match = url.match(regExp);
@@ -72,4 +72,12 @@ function valUrl() {
     }
   }
   valUrl()
+  function imageCheck(url) {
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+}
+if(imageCheck(url)) {
+  $("#imgShow").attr('src', url);
+} else {
+  $("#imgShow").hide();
+}
   </script>
