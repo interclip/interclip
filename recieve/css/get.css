@@ -114,3 +114,7 @@ display: none;
   color: #fff;
   }
 }
+img {
+  width: 80%;
+    height: auto;
+  }
