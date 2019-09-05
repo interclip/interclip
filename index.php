@@ -9,8 +9,10 @@
 
 <ul>
   <li><a class="active" href="#">Send</a></li>
+  <li><a href="image">Send image</a></li>
+
   <li><a href="./recieve/">Recieve</a></li>
-  <li style="float:right"><a href="about.html">About</a></li>
+  <li style="float:right"><a href="about">About</a></li>
 </ul>
 
 <form name="urlform" id="content" onsubmit="return validateForm()" action="new" method="POST">
