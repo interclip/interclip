@@ -3,6 +3,8 @@
 <div id="endora" style="display: none">
   <endora>
 </div>
+<meta charset="UTF-8">
+<title>Interclip - easy peasy clipboard sharing</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <ul>
