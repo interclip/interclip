@@ -50,8 +50,12 @@ $conn->close();
 <p>... is the URL of the code <?php echo $user_code ?></p>
 <iframe id="ytplayerSide" frameborder="0"> </iframe>
 <img id="imgShow"> 
+<video id="player" playsinline controls>
+<source id="videoSource"/>
+</video>
 </div>
 
 </div>
 </div>
+
 <script src="../js/get_link.js"></script>
