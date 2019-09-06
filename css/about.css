@@ -1,0 +1,41 @@
+img{
+	max-width: 80%;
+  margin-top: 50px;
+  height: auto;
+}
+a {
+color: black;
+font-weight: 600;
+}
+p {
+font-size: 20px;
+padding-right: 10vw;
+padding-left: 10vw;
+}
+ul.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li.nav {
+    float: left;
+  }
+  
+  li.nav a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li.nav a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  .active {
+    background-color: #673ab7;
+  }
