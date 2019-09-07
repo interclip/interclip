@@ -1,6 +1,6 @@
 <?php
 if(isset($_POST['url'])) {
-  include("db.php");
+  include "db.php";
 
   
   // Create connection
