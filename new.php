@@ -22,7 +22,7 @@ if(isset($_POST['input'])) {
   if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
   }
-  function gen_uid($lenen=10){
+  function gen_uid($len=10){
     return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $len);
     }
     $usr = gen_uid(5);
