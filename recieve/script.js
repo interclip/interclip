@@ -1,22 +1,25 @@
-
 function placeHolder() {
-	  var hash = Math.random().toString(36).substr(2, 5);
+  var hash = Math.random()
+    .toString(36)
+    .substr(2, 5);
 
-if($("#code").attr("placeholder", hash)) {
-	console.log("Placed holder")
-} else {
-	console.log("fuck me")
-}
+  if ($("#code").attr("placeholder", hash)) {
+    console.log("Placed holder");
+  } else {
+    console.log("fuck me");
+  }
 }
 function printOutText(text) {
-	$("#result").text = text;
+  $("#result").text = text;
 }
 
 function submit() {
-	console.log("submit");
-	$("#inputform").submit();
+  console.log("submit");
+  $("#inputform").submit();
 }
- setInterval(function(){ placeHolder() }, 50);
+setInterval(function() {
+  placeHolder();
+}, 50);
 
 function validateForm() {
   var x = document.forms["form"]["code"].value;
@@ -24,9 +27,9 @@ function validateForm() {
     printOutText("Code must be filled out");
     return false;
   } else if (x.length !== 5) {
-  	printOutText("Code must be exactly the length of six");
-  	return false;
+    printOutText("Code must be exactly the length of five");
+    return false;
   } else {
     return true;
   }
-  } 
+}
