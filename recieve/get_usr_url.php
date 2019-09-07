@@ -1,3 +1,4 @@
+<title>Get your link | Interclip</title>
 <link rel="stylesheet" href="css/get.css">
 <div id="endora" style="display: none">
   <endora>
