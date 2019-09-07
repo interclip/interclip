@@ -150,7 +150,7 @@ a {
 }
 input {
   color: white;
-  font-size: 6vh !important;
+  font-size: 6vh;
 }
 #modalpage {
   position: fixed; /* Sit on top of the page content */
