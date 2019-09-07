@@ -23,7 +23,7 @@ function validateForm() {
   if (x == "") {
     printOutText("Code must be filled out");
     return false;
-  } else if (x.length != 5) {
+  } else if (x.length !== 5) {
   	printOutText("Code must be exactly the length of six");
   	return false;
   } else {
