@@ -26,4 +26,3 @@ if ($conn->query($sqlquery) === TRUE) {
 $conn->close();
 }
 echo $usr;
-?>
