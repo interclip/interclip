@@ -1,7 +1,7 @@
 var url = $("#urlLink").text();
 function valUrl() {
   if (url != undefined || url != "") {
-    console.log("The URL: "+ url);
+    console.log("The URL: " + url);
 
     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
     var match = url.match(regExp);
@@ -13,10 +13,10 @@ function valUrl() {
         "https://www.youtube.com/embed/" + match[2] + "?autoplay=0&rel=0"
       );
     } else {
-        $("#ytplayerSide").hide();
-  
-        // Do anything for not being valid
-      }
+      $("#ytplayerSide").hide();
+
+      // Do anything for not being valid
+    }
   } else {
     $("#ytplayerSide").hide();
     $("#player").hide();
@@ -58,15 +58,11 @@ function record(url, result) {
   }
 }
 function videoCheck(url) {
-  return (
-    url.match(/\.(mp4|mkv)$/) !=
-    null
-  );
+  return url.match(/\.(mp4|mkv)$/) != null;
 }
 if (videoCheck(url)) {
-    console.log("A video");
-    $("#videoSource").attr("src", url);
-
+  console.log("A video");
+  $("#videoSource").attr("src", url);
 } else {
   $("#player").hide();
 }
