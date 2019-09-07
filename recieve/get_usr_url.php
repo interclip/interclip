@@ -49,9 +49,9 @@ $conn->close();
   <h1><a id="urlLink" href="<?php if(isset($url)) { echo $url;} ?>"><?php if(isset($url)) { echo $url;} ?></a></h1>
 <?php 
 if(isset($url)) {
-  echo "<p>... is the URL of the code". $user_code."</p>";
+  echo "<p>... is the URL of the code ". $user_code."</p>";
   } else {
-  echo "<p>There was no url found for the code ". $user_code . "</p>";
+  echo "<p>There was no url found for the code ;". $user_code . "</p>";
   } 
 ?>
 <iframe id="ytplayerSide" frameborder="0"> </iframe>
