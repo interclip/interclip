@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Imgur-Upload</title>
+    <title>Upload an image | Interclip</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./css/style.css" rel="stylesheet" media="screen">
     <link href="./css/mobile-style.css" rel="stylesheet" media="screen">
@@ -13,7 +13,6 @@
 </head>
 
 </head>
-<body>
 
 
 <!-- Trigger/Open The Modal -->
@@ -23,9 +22,10 @@
 
   <!-- Modal content -->
   <div class="modal-content">
+  <center>
+
     <span class="close">&times;</span>
-    <img src="" width="90">
-    <center>
+    <img class="modalImg" src="" width="90">
     <p id="code">The code to your image</p>
 </center>
   </div>
@@ -37,12 +37,12 @@
         <li><a class="active" href="#">Send image</a></li>
         <li><a href="./recieve/">Recieve</a></li>
 
-        <li style="float:right"><a href="#about">About</a></li>
+        <li style="float:right"><a href="./about">About</a></li>
       </ul>
       
 <body>
     <div class="title">
-        <h1>Upload an image to Interclip</h1>
+        <h1>Upload an image to Interclip using the <a href="https://apidocs.imgur.com/?version=latest">Imgur API </a></h1>
         <p>Just drag&drop</p>
     </div>
     <div class="dropzone">
