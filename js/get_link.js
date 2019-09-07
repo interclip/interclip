@@ -1,6 +1,7 @@
 var url = $("#urlLink").text();
 function valUrl() {
   if (url != undefined || url != "") {
+    console.log("The URL: "+ url);
 
     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
     var match = url.match(regExp);
@@ -18,6 +19,9 @@ function valUrl() {
       }
   } else {
     $("#ytplayerSide").hide();
+    $("#player").hide();
+    $("#imgShow").hide();
+    console.log("The url wasn't set");
 
     // Do anything for not being valid
   }
@@ -64,7 +68,7 @@ if (videoCheck(url)) {
     $("#videoSource").attr("src", url);
 
 } else {
-  $("#videoSource").hide();
+  $("#player").hide();
 }
 
 testImage(url, record);

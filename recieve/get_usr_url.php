@@ -30,7 +30,6 @@ if(!empty($_POST['user'])) {
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         $url = $row['url'];
-        echo " <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>";
         break;
 
 }
@@ -46,8 +45,14 @@ $conn->close();
 <div class="fullscreen-content">
 
 <div class="title">
-  <h1><a id="urlLink" href="<?php echo $url ?>"><?php echo $url ?></a></h1>
-<p>... is the URL of the code <?php echo $user_code ?></p>
+  <h1><a id="urlLink" href="<?php if(isset($url)) { echo $url;} ?>"><?php if(isset($url)) { echo $url;} ?></a></h1>
+<?php 
+if(isset($url)) {
+  echo "<p>... is the URL of the code". $user_code."</p>";
+  } else {
+  echo "<p>There was no url found for the code ". $user_code . "</p>";
+  } 
+?>
 <iframe id="ytplayerSide" frameborder="0"> </iframe>
 <img id="imgShow"> 
 <video id="player" playsinline controls>
@@ -57,5 +62,5 @@ $conn->close();
 
 </div>
 </div>
-
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src="../js/get_link.js"></script>
