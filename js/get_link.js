@@ -60,12 +60,24 @@ function record(url, result) {
 function videoCheck(url) {
   return url.match(/\.(mp4|mkv)$/) != null;
 }
+
+function documentCheck(url) {
+  return url.match(/\.(docx|pdf|xls|xlsx|doc|ppt|pptx|docm|dotx|dotm|docb|xlt|xlm|pot|pps|pptm|pub|xps|)$/) != null;
+}
+
 if (videoCheck(url)) {
   console.log("A video");
   $("#videoSource").attr("src", url);
 } else {
   $("#player").hide();
 }
+if(documentCheck(url)) {
+  console.log("A document");
+  $("#documentEmbed").attr("src", "https://view.officeapps.live.com/op/embed.aspx?src="+url);
+} else {
+  $("#documentEmbed").hide();
+}
 
 testImage(url, record);
 valUrl();
+console.log("Hit end")
