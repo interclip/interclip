@@ -62,9 +62,11 @@ function videoCheck(url) {
 }
 
 function documentCheck(url) {
-  return url.match(/\.(docx|pdf|xls|xlsx|doc|ppt|pptx|docm|dotx|dotm|docb|xlt|xlm|pot|pps|pptm|pub|xps|)$/) != null;
+  return url.match(/\.(txt|doc|docx|xls|xlsx|ppt|pptx|pdf|pages|dxf|eps|ps|ttf|xps|zip|rar)$/) != null;
 }
-
+function musicCheck(url) {
+  return url.match(/\.(mp3|waw|ogg)$/) != null;
+}
 if (videoCheck(url)) {
   console.log("A video");
   $("#videoSource").attr("src", url);
@@ -73,11 +75,16 @@ if (videoCheck(url)) {
 }
 if(documentCheck(url)) {
   console.log("A document");
-  $("#documentEmbed").attr("src", "https://view.officeapps.live.com/op/embed.aspx?src="+url);
+  $("#documentEmbed").attr("src", "https://drive.google.com/viewerng/viewer?embedded=true&url="+url);
 } else {
   $("#documentEmbed").hide();
 }
+if(musicCheck(url)) {
+  $("#music").html('<audio controls><source src="'+url+'"></audio> ');
 
+
+
+}
 testImage(url, record);
 valUrl();
 console.log("Hit end")
