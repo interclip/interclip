@@ -5,6 +5,7 @@
 </div>
 <ul>
   <li><a href="../">Send</a></li>
+  <li><a href="../image">Send image</a></li>
   <li><a class="active" href="./">Recieve</a></li>
   <li style="float:right"><a href="../about.html">About</a></li>
 </ul>
