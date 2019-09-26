@@ -53,3 +53,8 @@ img.modalImg {
   color: black;
   font-weight: 600;
 }
+center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  }
