@@ -3,5 +3,6 @@
 
 [Website](http://uni.hys.cz)
 
-
 [![BCH compliance](https://bettercodehub.com/edge/badge/filiptronicek/Interclip?branch=master)]()
+
+![logo](https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png)
