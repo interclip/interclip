@@ -79,7 +79,7 @@ function videoCheck(url) {
 }
 
 function documentCheck(url) {
-  return url.match(/\.(txt|doc|docx|xls|xlsx|ppt|pptx|pdf|pages|dxf|eps|ps|ttf|xps|zip|rar)$/) != null;
+  return url.match(/\.(txt|doc|docx|xls|xlsx|ppt|pptx|pdf|pages|eps|ps|ttf|xps|zip|rar)$/) != null;
 }
 function musicCheck(url) {
   return url.match(/\.(mp3|waw|ogg)$/) != null;
