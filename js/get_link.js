@@ -20,9 +20,16 @@ function valUrl() {
     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
     var match = url.match(regExp);
     if (match && match[2].length == 11) {
+      console.log("YT")
       // Do anything for being valid
-      // if need to change the url to embed url then use below line
-      $("#ytplayerSide").attr("src","https://www.youtube.com/embed/" + match[2] + "?autoplay=0&rel=0");
+      // if need to change the url to embed url then use below line)
+      $('#video').html('<iframe id="yt" width="100%" height="500" frameborder="0"> </iframe>');
+
+      $("#yt").attr(
+        "src",
+        "https://www.youtube.com/embed/" + match[2] + "?autoplay=0&rel=0"
+      );
+    
     } else {
       if(GetVimeoIDbyUrl(url)) {
         id = GetVimeoIDbyUrl(url);
@@ -30,7 +37,7 @@ function valUrl() {
         $('#video').html('<iframe id="vimeoPlayer" src="" width="100%" height="500" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>')
         $("#vimeoPlayer").attr("src",'//player.vimeo.com/video/'+id+'?title=0&amp;byline=0&amp;portrait=0&amp;color=ffff00"');
       } else {
-        $("#ytplayerSide").hide();
+        $("#yt").hide();
       }
       // Do anything for not being valid
     }
@@ -93,6 +100,7 @@ if (videoCheck(url)) {
 }
 if(documentCheck(url)) {
   console.log("A document");
+  $("#video").html("<iframe id='documentEmbed' src='' width='100%' height='623px' frameborder='0'>");
   $("#documentEmbed").attr("src", "https://drive.google.com/viewerng/viewer?embedded=true&url="+url);
 } else {
   $("#documentEmbed").hide();

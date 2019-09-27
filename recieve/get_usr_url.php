@@ -55,8 +55,6 @@ if(isset($url)) {
   echo "<p>There was no url found for the code ;". $user_code . "</p>";
   } 
 ?>
-<iframe id="documentEmbed" src='' width='100%' height='623px' frameborder='0'>
-<iframe id="ytplayerSide" frameborder="0"> </iframe>
 <div id="video">
 <img id="imgShow"> 
 <div id="music">
