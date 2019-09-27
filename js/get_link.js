@@ -86,7 +86,7 @@ function musicCheck(url) {
 }
 if (videoCheck(url)) {
   console.log("A video");
-  $(".fullscreen-content").append('<video id="player" playsinline controls><source id="videoSource"/></video>')
+  $("#video").html('<video id="player" playsinline controls><source id="videoSource"/></video>')
   $("#videoSource").attr("src", url);
 } else {
   $("#player").hide();
