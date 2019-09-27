@@ -1,4 +1,18 @@
 var url = $("#urlLink").text();
+function GetVimeoIDbyUrl(url) {
+  var id = false;
+  $.ajax({
+    url: 'https://vimeo.com/api/oembed.json?url='+url,
+    async: false,
+    success: function(response) {
+      if(response.video_id) {
+        id = response.video_id;
+      }
+    }
+  });
+  return id;
+}        //
+
 function valUrl() {
   if (url != undefined || url != "") {
     console.log("The URL: " + url);
@@ -8,13 +22,16 @@ function valUrl() {
     if (match && match[2].length == 11) {
       // Do anything for being valid
       // if need to change the url to embed url then use below line
-      $("#ytplayerSide").attr(
-        "src",
-        "https://www.youtube.com/embed/" + match[2] + "?autoplay=0&rel=0"
-      );
+      $("#ytplayerSide").attr("src","https://www.youtube.com/embed/" + match[2] + "?autoplay=0&rel=0");
     } else {
-      $("#ytplayerSide").hide();
-
+      if(GetVimeoIDbyUrl(url)) {
+        id = GetVimeoIDbyUrl(url);
+        console.log("A Vimeo! " + id);
+        $('#video').html('<iframe id="vimeoPlayer" src="" width="100%" height="500" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>')
+        $("#vimeoPlayer").attr("src",'//player.vimeo.com/video/'+id+'?title=0&amp;byline=0&amp;portrait=0&amp;color=ffff00"');
+      } else {
+        $("#ytplayerSide").hide();
+      }
       // Do anything for not being valid
     }
   } else {
@@ -69,6 +86,7 @@ function musicCheck(url) {
 }
 if (videoCheck(url)) {
   console.log("A video");
+  $(".fullscreen-content").append('<video id="player" playsinline controls><source id="videoSource"/></video>')
   $("#videoSource").attr("src", url);
 } else {
   $("#player").hide();

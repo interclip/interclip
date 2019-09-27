@@ -44,7 +44,7 @@ $conn->close();
 
 ?>
 <div id="fullscreen">
-<div class="fullscreen-content">
+<div class="fullscreen-content" id="resultSec">
 
 <div class="title">
   <h1><a id="urlLink" href="<?php if(isset($url)) { echo $url;} ?>"><?php if(isset($url)) { echo $url;} ?></a></h1>
@@ -57,10 +57,8 @@ if(isset($url)) {
 ?>
 <iframe id="documentEmbed" src='' width='100%' height='623px' frameborder='0'>
 <iframe id="ytplayerSide" frameborder="0"> </iframe>
+<div id="video">
 <img id="imgShow"> 
-<video id="player" playsinline controls>
-<source id="videoSource"/>
-</video>
 <div id="music">
 </div>
 </div>
