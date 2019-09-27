@@ -2,16 +2,16 @@ var url = $("#urlLink").text();
 function GetVimeoIDbyUrl(url) {
   var id = false;
   $.ajax({
-    url: 'https://vimeo.com/api/oembed.json?url='+url,
+    url: "https://vimeo.com/api/oembed.json?url=" + url,
     async: false,
     success: function(response) {
-      if(response.video_id) {
+      if (response.video_id) {
         id = response.video_id;
       }
     }
   });
   return id;
-}        //
+} //
 
 function valUrl() {
   if (url != undefined || url != "") {
@@ -20,22 +20,30 @@ function valUrl() {
     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
     var match = url.match(regExp);
     if (match && match[2].length == 11) {
-      console.log("YT")
+      console.log("YT");
       // Do anything for being valid
       // if need to change the url to embed url then use below line)
-      $('#video').html('<iframe id="yt" width="100%" height="500" frameborder="0"> </iframe>');
+      $("#video").html(
+        '<iframe id="yt" width="100%" height="500" frameborder="0"> </iframe>'
+      );
 
       $("#yt").attr(
         "src",
         "https://www.youtube.com/embed/" + match[2] + "?autoplay=0&rel=0"
       );
-    
     } else {
-      if(GetVimeoIDbyUrl(url)) {
+      if (GetVimeoIDbyUrl(url)) {
         id = GetVimeoIDbyUrl(url);
         console.log("A Vimeo! " + id);
-        $('#video').html('<iframe id="vimeoPlayer" src="" width="100%" height="500" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>')
-        $("#vimeoPlayer").attr("src",'//player.vimeo.com/video/'+id+'?title=0&amp;byline=0&amp;portrait=0&amp;color=ffff00"');
+        $("#video").html(
+          '<iframe id="vimeoPlayer" src="" width="100%" height="500" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
+        );
+        $("#vimeoPlayer").attr(
+          "src",
+          "//player.vimeo.com/video/" +
+            id +
+            '?title=0&amp;byline=0&amp;portrait=0&amp;color=ffff00"'
+        );
       } else {
         $("#yt").hide();
       }
@@ -86,31 +94,39 @@ function videoCheck(url) {
 }
 
 function documentCheck(url) {
-  return url.match(/\.(doc|docx|xls|xlsx|ppt|pptx|pdf|pages|eps|ps|ttf|xps|zip|rar)$/) != null;
+  return (
+    url.match(
+      /\.(doc|docx|xls|xlsx|ppt|pptx|pdf|pages|eps|ps|ttf|xps|zip|rar)$/
+    ) != null
+  );
 }
 function musicCheck(url) {
   return url.match(/\.(mp3|waw|ogg)$/) != null;
 }
 if (videoCheck(url)) {
   console.log("A video");
-  $("#video").html('<video id="player" width="100%" playsinline controls><source id="videoSource"/></video>')
+  $("#video").html(
+    '<video id="player" width="100%" playsinline controls><source id="videoSource"/></video>'
+  );
   $("#videoSource").attr("src", url);
 } else {
   $("#player").hide();
 }
-if(documentCheck(url)) {
+if (documentCheck(url)) {
   console.log("A document");
-  $("#video").html("<iframe id='documentEmbed' src='' width='100%' height='623px' frameborder='0'>");
-  $("#documentEmbed").attr("src", "https://drive.google.com/viewerng/viewer?embedded=true&url="+url);
+  $("#video").html(
+    "<iframe id='documentEmbed' src='' width='100%' height='623px' frameborder='0'>"
+  );
+  $("#documentEmbed").attr(
+    "src",
+    "https://drive.google.com/viewerng/viewer?embedded=true&url=" + url
+  );
 } else {
   $("#documentEmbed").hide();
 }
-if(musicCheck(url)) {
-  $("#music").html('<audio controls><source src="'+url+'"></audio> ');
-
-
-
+if (musicCheck(url)) {
+  $("#music").html('<audio controls><source src="' + url + '"></audio> ');
 }
 testImage(url, record);
 valUrl();
-console.log("Hit end")
+console.log("Hit end");
