@@ -16,3 +16,4 @@ Then press Enter and through the magic of code here is the code to your link!
 * SoundCloud embed
 * PasteBin Embed
 * fix text-overflow with long URLs on new.php
+* Streamable embed
