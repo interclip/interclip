@@ -16,4 +16,4 @@ Then press enter and through the magic of code here is the code to your link!
 ## To-dos:
 * SoundClound embed
 * PasteBin Embed
-* fix text-owerflow with long urls on [new.php](https://github.com/filiptronicek/Interclip/blob/master/new.php)
+* fix text-overflow with long urls on [new.php](https://github.com/filiptronicek/Interclip/blob/master/new.php)
