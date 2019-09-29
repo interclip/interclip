@@ -7,8 +7,8 @@ function reDir($url) {
 }
 
 
-if (isset($_GET['code'])) {
-    $user_code = $_GET['code'];
+if (isset($_GET['c'])) {
+    $user_code = $_GET['c'];
     $conn = new mysqli($servername, $username, $password, $DBName);
 
     // Check connection
