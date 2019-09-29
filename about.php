@@ -9,12 +9,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
-<ul class="nav">
-  <li class="nav"><a href="./">Send</a></li>
-  <li class="nav"><a href="./image">Send image</a></li>
-  <li class="nav"><a href="./recieve/">Recieve</a></li>
-  <li class="nav" style="float:right"><a class="active" href="">About</a></li>
-</ul>
+<div class="nav">
+<?php
+include("menu.php");
+?>
+</div>
 <br>
 <body class="">
   
