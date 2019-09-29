@@ -90,7 +90,7 @@ function record(url, result) {
   }
 }
 function videoCheck(url) {
-  return url.match(/\.(mp4|mkv)$/) != null;
+  return url.match(/\.(mp4|mkv|MP4|MKV)$/) != null;
 }
 
 function documentCheck(url) {

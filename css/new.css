@@ -19,6 +19,7 @@ background-size: cover;
 display: table-cell;
 text-align: center;
 vertical-align: middle;
+max-width: 100vw !important;
 }
 
 #fullscreen .fullscreen-content .title {
@@ -129,4 +130,8 @@ ul {
     width: 50vw;
     height: 50vh;
   }
+}
+span.url {
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
 }

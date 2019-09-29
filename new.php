@@ -6,7 +6,7 @@
   <li><a class="active" href="./">Send</a></li>
   <li><a href="./image">Send image</a></li>
   <li><a href="./recieve/">Recieve</a></li>
-  <li style="float:right"><a href="about.html">About</a></li>
+  <li style="float:right"><a href="about">About</a></li>
 </ul>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,7 +45,7 @@ $conn->close();
 <div class="title">
   <?php
 if(isset($_POST['input'])) {
-  echo '<p>'.$url.'<br><br> was saved as</p>  <h1>'.$usr.'</h1>  <div id="qrcode"></div>  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>  <script src="js/jquery.qrcode.min.js"></script><script>  valUrl();  $("#qrcode").qrcode({width: 256,height: 256,text: "'.$url.'",  fill: "#fff",background: "#ff9800", foreground:"black"}); </script></div>';
+  echo '<p><span class="url">'.$url.'</span><br><br> was saved as</p>  <h1>'.$usr.'</h1>';
 } else {
   echo '<h1 class="errheader"><span>4</span>&nbsp;<span>0</span>&nbsp;<span>0</span> </h1><br> <span id="errcode">bad request</span>';
 }

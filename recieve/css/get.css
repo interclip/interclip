@@ -20,6 +20,7 @@ body {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
+  max-width: 100vw;
 }
 
 #fullscreen .fullscreen-content .title {
@@ -38,6 +39,8 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: 3em;
   margin: 5px 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 #fullscreen .fullscreen-content .title p {
