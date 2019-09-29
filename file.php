@@ -20,27 +20,22 @@
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-  <center>
+    <!-- Modal content -->
+    <div class="modal-content">
+        <center>
 
-    <span class="close">&times;</span>
-    <img class="modalImg" src="" width="100%" class="center">
-    <p id="code">The code to your image</p>
-</center>
-  </div>
+            <span class="close">&times;</span>
+            <img class="modalImg" src="" width="100%" class="center">
+            <p id="code">The code to your image</p>
+        </center>
+    </div>
 
 </div>
 
-<ul>
-        <li><a href="./">Send</a></li>
-        <li><a href="./image">Send image</a></li>
-        <li><a class="active" href="#">Send file</a></li>
-        <li><a href="./recieve/">Recieve</a></li>
+<?php
+include("menu.php");
+?>
 
-        <li style="float:right"><a href="./about">About</a></li>
-      </ul>
-      
 <body>
     <div class="title">
         <h1>Upload a file to Interclip using <a href="https://fotup.app/">Fotup </a></h1>
