@@ -49,8 +49,8 @@ if (!empty($_POST['user'])) {
       <h1><a id="urlLink" href="<?php if (isset($url)) {
                                   echo $url;
                                 } ?>"><?php if (isset($url)) {
-                                                                          echo $url;
-                                                                        } ?></a></h1>
+                                        echo $url;
+                                      } ?></a></h1>
       <?php
       if (isset($url)) {
         echo "<p>... is the URL of the code " . $user_code . "</p>";
