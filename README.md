@@ -2,6 +2,7 @@
 ## A handy-dandy clipboard sharing tool to share URLs between devices and users
 
 [Stable](http://uni.hys.cz)
+
 [Development](http://unidev.hys.cz/)
 
 [![BCH compliance](https://bettercodehub.com/edge/badge/filiptronicek/Interclip?branch=master)]()
