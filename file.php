@@ -14,24 +14,6 @@
 
 </head>
 
-
-<!-- Trigger/Open The Modal -->
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-        <center>
-
-            <span class="close">&times;</span>
-            <img class="modalImg" src="" width="100%" class="center">
-            <p id="code">The code to your image</p>
-        </center>
-    </div>
-
-</div>
-
 <?php
 include("menu.php");
 ?>
