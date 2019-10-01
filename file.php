@@ -9,18 +9,7 @@
     <link href="./css/mobile-style.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="css/image.css">
     <link rel="shortcut icon" href="./favicon.png">
-    <style type="text/css">
-        .demo-droppable {
-            background: #E58900;
-            color: #000;
-            padding: 100px 0;
-            text-align: center;
-        }
-
-        .demo-droppable.dragover {
-            background: #E58900;
-        }
-    </style>
+    <link rel="stylesheet" href="css/file.css">
 </head>
 
 </head>
@@ -44,6 +33,7 @@ include("menu.php");
   <p>Drag files here or click to upload</p>
 </div>
 <div class="output"></div>
+<span class="code"></span>
     </div>
 
 

@@ -1,3 +1,6 @@
+var modal = document.getElementById("modal");
+var output = document.querySelector('.output');
+modal.style.display = "none";
 (function(window) {
     function triggerCallback(e, callback) {
       if(!callback || typeof callback !== 'function') {
@@ -50,7 +53,6 @@
   (function(window) {
     makeDroppable(window.document.querySelector('.demo-droppable'), function(files) {
       console.log(files);
-      var output = document.querySelector('.output');
       output.innerHTML = '';
       for(var i=0; i<files.length; i++) {
         if(files[i].type.indexOf('image/') === 0) {
@@ -70,15 +72,7 @@ function uploadRe($files) {
       //var $files = $(this).get(0).files;
 
         console.log($files);
-        /*
-      if ($files.length) {
-    
-        // Reject big files
-        if ($files[0].size > $(this).data("max-size") * 4096) {
-          console.log("Please select a smaller file");
-          return false;
-        }
-    */
+
         // Begin file upload
         console.log("Uploading file to put.re..");
     
@@ -98,12 +92,28 @@ function uploadRe($files) {
         var formData = new FormData();
         formData.append("image", $files);
         settings.data = formData;
-    
-        // Response contains stringified JSON
-        // Image URL available at response.data.link
-        
+
+        modal.style.display = "block";
+
         $.ajax(settings).done(function(response) {
-          console.log(response);
+            var data = JSON.parse(response);
+            console.log(data.data.link)
+          $.post(
+            "api.php",
+            {
+              url: data.data.link
+            },
+            function(data, status) {
+              console.log("Data: " + data + "\nStatus: " + status);
+              if (status == "success") {
+                $(".code").text(data);
+              }
+            }
+          );
+          
+
         });
-    
+        $(".demo-droppable").hide();
+        modal.style.display = "none";
+
       }
