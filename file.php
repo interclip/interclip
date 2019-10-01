@@ -24,7 +24,14 @@
 </head>
 
 </head>
+<div id="modal" class="modal">
 
+  <!-- Modal content -->
+  <div class="modal-content">
+    <p><img src="css/loading-spin.svg" alt=""></p>
+  </div>
+
+</div>
 <?php
 include("menu.php");
 ?>
