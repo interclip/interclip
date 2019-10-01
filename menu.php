@@ -25,3 +25,4 @@ foreach ($pages as $page) {
         }
     }
 }
+echo '<div id="endora" style="display: none"><endora></div>';
