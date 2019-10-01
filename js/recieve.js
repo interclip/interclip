@@ -19,7 +19,7 @@ function submit() {
 }
 setInterval(function() {
   placeHolder();
-}, 50);
+}, 500);
 
 function validateForm() {
   var x = document.forms["form"]["code"].value;
@@ -33,3 +33,4 @@ function validateForm() {
     return true;
   }
 }
+placeHolder();

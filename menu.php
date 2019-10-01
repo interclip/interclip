@@ -5,7 +5,6 @@ $currFile = basename(__FILE__, '.php');
 $index = 0;
 $pages = array(
     'clip' => ['', 'Clip'],
-    'image' => ['image', 'Send image'],
     'file' => ['file', 'Send file'],
     'recieve' => ['recieve', 'Recieve clip'],
     'about' => ['about', 'About'],
@@ -26,3 +25,4 @@ foreach ($pages as $page) {
         }
     }
 }
+echo '<div id="endora" style="display: none"><endora></div>';
