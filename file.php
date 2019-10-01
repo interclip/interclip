@@ -28,7 +28,6 @@ include("menu.php");
 <body>
     <div class="title">
         <h1>Upload a file to Interclip</h1>
-        <p>Just drag&drop</p>
         <div class="demo-droppable">
   <p>Drag files here or click to upload</p>
 </div>
