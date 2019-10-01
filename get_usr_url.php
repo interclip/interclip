@@ -55,11 +55,9 @@ if (!empty($_POST['user'])) {
         echo "<p>There was no url found for the code ;" . $user_code . "</p>";
       }
       ?>
-      <div id="video">
-        <img id="imgShow">
-        <div id="music">
-        </div>
-      </div>
+      <div id="embed"> </div>
+      <img id="imgShow">
+
 
     </div>
   </div>

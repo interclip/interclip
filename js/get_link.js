@@ -17,13 +17,13 @@ function valUrl() {
   if (url != undefined || url != "") {
     console.log("The URL: " + url);
 
-    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/i;
     var match = url.match(regExp);
     if (match && match[2].length == 11) {
       console.log("YT");
       // Do anything for being valid
       // if need to change the url to embed url then use below line)
-      $("#video").html(
+      $("#embed").html(
         '<iframe id="yt" width="100%" height="500" frameborder="0"> </iframe>'
       );
 
@@ -35,7 +35,7 @@ function valUrl() {
       if (GetVimeoIDbyUrl(url)) {
         id = GetVimeoIDbyUrl(url);
         console.log("A Vimeo! " + id);
-        $("#video").html(
+        $("#embed").html(
           '<iframe id="vimeoPlayer" src="" width="100%" height="500" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
         );
         $("#vimeoPlayer").attr(
@@ -50,11 +50,9 @@ function valUrl() {
       // Do anything for not being valid
     }
   } else {
-    $("#ytplayerSide").hide();
     $("#player").hide();
     $("#imgShow").hide();
     console.log("The url wasn't set");
-
     // Do anything for not being valid
   }
 }
@@ -90,31 +88,31 @@ function record(url, result) {
   }
 }
 function videoCheck(url) {
-  return url.match(/\.(mp4|mkv|MP4|MKV)$/) != null;
+  return url.match(/\.(mp4|mkv)$/i) != null;
 }
 
 function documentCheck(url) {
   return (
     url.match(
-      /\.(doc|docx|xls|xlsx|ppt|pptx|pdf|pages|eps|ps|ttf|xps|zip|rar)$/
+      /\.(doc|docx|xls|xlsx|ppt|pptx|pdf|pages|eps|ps|ttf|xps|zip|rar)$/i
     ) != null
   );
 }
 function musicCheck(url) {
-  return url.match(/\.(mp3|waw|ogg)$/) != null;
+  return url.match(/\.(mp3|waw|ogg)$/i) != null;
 }
 if (videoCheck(url)) {
   console.log("A video");
-  $("#video").html(
+  $("#embed").html(
     '<video id="player" width="100%" playsinline controls><source id="videoSource"/></video>'
   );
-  $("#videoSource").attr("src", url);
+  $("#embedSource").attr("src", url);
 } else {
   $("#player").hide();
 }
 if (documentCheck(url)) {
   console.log("A document");
-  $("#video").html(
+  $("#embed").html(
     "<iframe id='documentEmbed' src='' width='100%' height='623px' frameborder='0'>"
   );
   $("#documentEmbed").attr(
@@ -125,7 +123,7 @@ if (documentCheck(url)) {
   $("#documentEmbed").hide();
 }
 if (musicCheck(url)) {
-  $("#music").html('<audio controls><source src="' + url + '"></audio> ');
+  $("#embed").html('<audio controls><source src="' + url + '"></audio> ');
 }
 testImage(url, record);
 valUrl();
