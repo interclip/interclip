@@ -98,6 +98,9 @@ function documentCheck(url) {
     ) != null
   );
 }
+function textCheck(url) {
+  return url.match(/\.(txt)$/i) != null;
+}
 function musicCheck(url) {
   return url.match(/\.(mp3|waw|ogg)$/i) != null;
 }
@@ -124,6 +127,9 @@ if (documentCheck(url)) {
 }
 if (musicCheck(url)) {
   $("#embed").html('<audio controls><source src="' + url + '"></audio> ');
+}
+if (textCheck(url)) {
+  $("#embed").load(url);
 }
 testImage(url, record);
 valUrl();
