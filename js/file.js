@@ -45,7 +45,7 @@ modal.style.display = "none";
       
       ele.addEventListener('click', function() {
         input.value = null;
-        input.click();
+        if(clickEnabled) input.click();
       });
     }
     window.makeDroppable = makeDroppable;

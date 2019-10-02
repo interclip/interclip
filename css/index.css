@@ -176,3 +176,19 @@ body {
   .active {
     background-color: #ff9800;
   }
+  .demo-droppable {
+    color: #000;
+    padding: 100vh 0;
+    text-align: center;
+}
+
+
+.code {
+    font-size: 3rem;
+}
+.modal img {
+    width: 100%;
+}
+.modal {
+    max-height: 100vh;
+}
