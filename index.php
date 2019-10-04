@@ -21,6 +21,23 @@
     <button type="reset" class="search" id="search-btn"></button>
 
   </form>
+  <div id="modal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <p><img src="css/loading-spin.svg" alt=""></p>
+  </div>
+
+</div>
+  <div class="demo-droppable">
+</div>
+<div class="output"></div>
+<span class="code"></span>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+  clickEnabled = false;
+  </script>
   <script src="js/index.js"> </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="js/file.js"></script>
 </body>

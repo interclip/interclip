@@ -52,17 +52,18 @@ if (!empty($_POST['user'])) {
       if (isset($url)) {
         echo "<p>... is the URL of the code " . $user_code . "</p>";
       } else {
-        echo "<p>There was no url found for the code ;" . $user_code . "</p>";
+        echo "<p>There was no url found for the code " . $user_code . "</p>";
       }
       ?>
       <div id="embed"> </div>
       <img id="imgShow">
-
+      <div id="output"> </div>
 
     </div>
   </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script src="https://embed.filiptronicek.now.sh/embed.js"></script>
+  <script src="js/get.js"></script>
   <script> 
 Embed($("#urlLink").text());
   </script>
