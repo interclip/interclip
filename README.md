@@ -17,7 +17,7 @@ Clipping is easy. Just click on the magnifying glass and paste in your link!
 
 Then press Enter and through the magic of code here is the code to your link!
 
-##Dependencies
+## Dependencies
 - [filiptronicek/Embed](https://github.com/filiptronicek/Embed)
 
 ## To-dos:
