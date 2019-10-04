@@ -21,9 +21,6 @@ Then press Enter and through the magic of code here is the code to your link!
 - [filiptronicek/Embed](https://github.com/filiptronicek/Embed)
 
 ## To-dos:
-* SoundCloud embed
-* PasteBin Embed
-* Text-file embed
-* Streamable embed
 * fix text-overflow with long URLs on new.php
+* ~~Text-file embed~~
 * ~~an universal file uploader [StackOverflow](https://stackoverflow.com/questions/58153921/how-can-you-upload-to-catbox-using-javascript)~~
