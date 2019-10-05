@@ -1,5 +1,5 @@
 <div id="endora" style="display: none">
-  <endora>
+    <endora>
 </div>
 <link rel="stylesheet" href="css/new.css">
 <?php
@@ -37,10 +37,10 @@ $conn->close();
 }
 ?>
 <div id="fullscreen">
-<div class="fullscreen-content">
+    <div class="fullscreen-content">
 
-<div class="title">
-  <?php
+        <div class="title">
+            <?php
 if(isset($_POST['input'])) {
   echo '<p><span id="url" class="url">'.$url.'</span><br><br> was saved as</p>  <h1>'.$usr.'</h1><div id="embed"> </div>';
 } else {
@@ -48,12 +48,12 @@ if(isset($_POST['input'])) {
 }
 
 ?>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-  <script src="https://embed.filiptronicek.now.sh/embed.js"></script>
-  <script> 
-Embed($("#url").text());
-  </script>
+            <script src="https://embed.filiptronicek.now.sh/embed.js"></script>
+            <script>
+            Embed($("#url").text());
+            </script>
 
-</div>
-</div>
+        </div>
+    </div>
