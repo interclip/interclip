@@ -68,15 +68,11 @@ modal.style.display = "none";
     return file;
 }
 function uploadRe($files) {
-    
-      //var $files = $(this).get(0).files;
-
         console.log($files);
-
         // Begin file upload
         console.log("Uploading file to put.re..");
     
-        // Replace ctrlq with your own API key
+        // API Endpoint
         var apiUrl = 'https://api.put.re/upload';
     
         var settings = {
