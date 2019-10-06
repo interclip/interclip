@@ -6,7 +6,7 @@
 
 [Development](http://unidev.hys.cz/)
 
-[![BCH compliance](https://bettercodehub.com/edge/badge/filiptronicek/Interclip?branch=master)]()
+![BCH compliance](https://bettercodehub.com/edge/badge/filiptronicek/Interclip?branch=master) ![clipboard](https://img.shields.io/badge/clipboard-copied-orange) ![](https://img.shields.io/github/repo-size/aperta-principium/Interclip)
 
 ![logo](https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png)
 
