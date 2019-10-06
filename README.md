@@ -3,7 +3,7 @@
 
 ## A handy-dandy clipboard sharing tool to share URLs between devices and users
 
-![GitHub commits since tagged version](https://img.shields.io/github/commits-since/aperta-principium/Interclip/3.0?style=for-the-badge)
+![GitHub commits since latest release](https://img.shields.io/github/commits-since/aperta-principium/interclip/latest?style=for-the-badge)
 
 [Stable](http://uni.hys.cz)
 
