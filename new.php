@@ -37,23 +37,22 @@ if (isset($_POST['input'])) {
 }
 ?>
 <div id="fullscreen">
-  <div class="fullscreen-content">
+<div class="fullscreen-content">
 
-    <div class="title">
-      <?php
-      if (isset($_POST['input'])) {
-        echo '<p><span id="url" class="url">' . $url . '</span><br><br> was saved as</p>  <h1>' . $usr . '</h1><div id="embed"> </div>';
-      } else {
-        echo '<h1 class="errheader"><span>4</span>&nbsp;<span>0</span>&nbsp;<span>0</span> </h1><br> <span id="errcode">bad request</span>';
-      }
+<div class="title">
+  <?php
+if(isset($_POST['input'])) {
+  echo '<p><span id="url" class="url">'.$url.'</span><br><br> was saved as</p>  <h1>'.$usr.'</h1><div id="embed"> </div>';
+} else {
+  echo '<h1 class="errheader"><span>4</span>&nbsp;<span>0</span>&nbsp;<span>0</span> </h1><br> <span id="errcode">bad request</span>';
+}
 
-      ?>
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+?>
+    <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js"> </script>
+    <script src="https://cdn.jsdelivr.net/gh/filiptronicek/Embed/embed.js"> </script>
+  <script> 
+Embed($("#url").text());
+  </script>
 
-      <script src="https://embed.filiptronicek.now.sh/embed.js"></script>
-      <script>
-        Embed($("#url").text());
-      </script>
-
-    </div>
-  </div>
+</div>
+</div>
