@@ -62,7 +62,7 @@ if (!empty($_POST['user'])) {
     </div>
   </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script src="https://embed.filiptronicek.now.sh/embed.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/filiptronicek/Embed/embed.js"> </script>
   <script src="js/get.js"></script>
   <script> 
 Embed($("#urlLink").text());
