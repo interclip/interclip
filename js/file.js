@@ -93,11 +93,11 @@ function uploadRe($files) {
 
         $.ajax(settings).done(function(response) {
             var data = JSON.parse(response);
-            console.log(data)
+            console.log(data);
           $.post(
             "api.php",
             {
-              url: data.data.deleteLink
+              url: data.data.link
             },
             function(data, status) {
               console.log("Data: " + data + "\nStatus: " + status);
