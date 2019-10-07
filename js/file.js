@@ -93,7 +93,7 @@ function uploadRe($files) {
 
         $.ajax(settings).done(function(response) {
             var data = JSON.parse(response);
-            console.log(data);
+            console.log(data.data.link);
           $.post(
             "api.php",
             {
