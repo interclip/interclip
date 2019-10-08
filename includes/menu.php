@@ -29,7 +29,7 @@ $pages = array(
 $scriptNameArray = explode("\\",$scriptPath);
 $currFile = end($scriptNameArray);
 
-if($currFile == "get.php" || "new.php") {
+if($currFile == "get.php" || $currFile == "new.php") {
     $urlPrefix = "../";
 } else {
     $urlPrefix = "./";
