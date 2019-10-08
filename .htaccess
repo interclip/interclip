@@ -1,25 +1,39 @@
-# Prevent viewing of htaccess file.
-<Files .htaccess>
-    order allow,deny
-    deny from all
-</Files>
+    # Prevent viewing of htaccess file.
+    <Files .htaccess>
+        order allow,deny
+        deny from all
+    </Files>
 
-# Prevent directory listings
-#Options All -Indexes
+    # REDIRECT FAVICON.ICO
+    <ifmodule mod_rewrite.c>
+    RewriteCond %{REQUEST_URI} !^/favicon\.ico [NC]
+    RewriteCond %{REQUEST_URI} favicon\.ico    [NC]
+    RewriteRule (.*) img/favicon.ico [R=301,L]
+    </ifmodule>
 
-#remove php file extension-e.g. https://example.com/file.php will become https://example.com/file
-RewriteEngine on 
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.*)$ $1.php [NC,L]
+    # Prevent directory listings
+    #Options All -Indexes
 
-#remove html file extension-e.g. https://example.com/file.html will become https://example.com/file
-RewriteEngine on 
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^(.*)$ $1.html [NC,L]
+    #remove php file extension-e.g. https://example.com/file.php will become https://example.com/file
+    RewriteEngine on 
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\.php -f
+    RewriteRule ^(.*)$ $1.php [NC,L]
 
-Redirect 301 /api.php /includes/api.php 
-Redirect 301 /db.php /includes/db.php 
-Redirect 301 /get.php /includes/get.php
-Redirect 301 /new.php /includes/new.php 
+    #remove html file extension-e.g. https://example.com/file.html will become https://example.com/file
+    RewriteEngine on 
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\.html -f
+    RewriteRule ^(.*)$ $1.html [NC,L]
+
+
+    ErrorDocument 404 /error.php
+    ErrorDocument 401 /error.php
+    ErrorDocument 400 /error.php
+    ErrorDocument 403 /error.php
+    ErrorDocument 405 /error.php
+    ErrorDocument 408 /error.php
+    ErrorDocument 414 /error.php
+    ErrorDocument 500 /error.php
+    ErrorDocument 502 /error.php
+    ErrorDocument 504 /error.php
