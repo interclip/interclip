@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="../css/index.css">
 <?php
 
 $status = $_SERVER['REDIRECT_STATUS'];
