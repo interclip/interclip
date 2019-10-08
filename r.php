@@ -1,3 +1,4 @@
+<title>Check this clip out!</title>
 <?php
 include("includes/db.php");
 
