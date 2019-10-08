@@ -26,10 +26,10 @@ $pages = array(
     'recieve' => ['recieve', 'Recieve clip'],
     'about' => ['about', 'About'],
 );
-$scriptNameArray = explode("\\",$scriptPath);
+$scriptNameArray = explode("\\", $scriptPath);
 $currFile = end($scriptNameArray);
 
-if($currFile == "get.php" || $currFile == "new.php") {
+if ($currFile == "get.php" || $currFile == "new.php") {
     $urlPrefix = "../";
 } else {
     $urlPrefix = "./";
@@ -47,7 +47,7 @@ foreach ($pages as $page) {
         echo '<li><a class="active" href="#">' . $page[1] . '</a></li>';
     } else {
         if ($page[0] == "about") {
-            echo '<li style="float:right"><a href="'. $urlPrefix .'about">About</a></li></ul>';
+            echo '<li style="float:right"><a href="' . $urlPrefix . 'about">About</a></li></ul>';
         } else {
             echo '<li><a href="' . $urlPrefix . $page[0] . '">' . $page[1] . '</a></li> ';
         }
