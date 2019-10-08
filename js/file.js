@@ -96,7 +96,9 @@ function uploadRe($files) {
 
   $.ajax(settings).done(function(response) {
     var data = JSON.parse(response);
+    data.data.link = "http://unidev.hys.cz/r?f=" + data.data.name;
     console.log(data.data.link);
+
     $.post(
       "includes/api.php",
       {

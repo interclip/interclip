@@ -1,7 +1,8 @@
 <?php
-include("db.php");
+include("includes/db.php");
 
-function reDir($url) {
+function reDir($url)
+{
     header("Location: " . $url . "");
     die();
 }
@@ -24,7 +25,6 @@ if (isset($_GET['c'])) {
             echo "Redirecting you to " . $url;
             reDir($url);
             break;
-
         }
         $conn->query($sqlquery);
     } else {
@@ -32,6 +32,9 @@ if (isset($_GET['c'])) {
     }
 
     $conn->close();
+} elseif (isset($_GET['f'])) { 
+    $url = $_GET['f'];
+    include("includes/proxy.php");
 } else {
-    reDir("../");
+    reDir("./");
 }
