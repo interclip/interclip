@@ -3,7 +3,7 @@
 </div>
 <link rel="stylesheet" href="css/new.css">
 <?php
-include("menu.php");
+include("includes/menu.php");
 ?>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
