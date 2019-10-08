@@ -1,14 +1,14 @@
 <link rel="stylesheet" href="../css/index.css">
 <?php
-
+include("menu.php");
 $status = $_SERVER['REDIRECT_STATUS'];
 $codes = array(
     400 => array('400 Bad Request', 'The request cannot be fulfilled due to bad syntax.'),
     401 => array('401 Login Error', 'It appears that the password and/or user-name you entered was incorrect.'),
-    403 => array('403 Forbidden', 'Sorry, employees and staff only.'),
+    403 => array('403 Forbidden', 'Sorry, top secret stuff.'),
     404 => array('404 Missing', 'We\'re sorry, but the page you\'re looking for is missing, hiding, or maybe it moved somewhere else and forgot to tell you.'),
     405 => array('405 Method Not Allowed', 'The method specified in the Request-Line is not allowed for the specified resource.'),
-    408 => array('408 Request Timeout', 'Your browser failed to send a request in the time allowed by the server.'),
+    408 => array('408 Request Timeout', 'Hi, I\'m the server. I don\'t have all day for your request. Sry'),
     414 => array('414 URL To Long', 'The URL you entered is longer than the maximum length.'),
     500 => array('500 Internal Server Error', 'The request was unsuccessful due to an unexpected condition encountered by the server.'),
     502 => array('502 Bad Gateway', 'The server received an invalid response from the upstream server while trying to fulfill the request.'),
@@ -32,12 +32,12 @@ if ($errortitle == false) {
     <meta charset="utf-8">
 </head>
 
-<body style="text-align: center;margin-top: 30vh;">
+<body style="text-align: center;">
 
     <!-- Insert headers here. -->
 
     <?php
-    echo ('<h1 style="font-size: 5rem;">' . $errortitle . '</h1>');
+    echo ('<h1 style="font-size: 5rem;margin-top: 30vh;">' . $errortitle . '</h1>');
     echo ('<p style="font-size: 2rem;">' . $message . '</p>');
     ?>
 
