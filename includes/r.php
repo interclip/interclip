@@ -33,5 +33,5 @@ if (isset($_GET['c'])) {
 
     $conn->close();
 } else {
-    reDir("./");
+    reDir("../");
 }

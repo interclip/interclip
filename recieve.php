@@ -22,7 +22,7 @@
 
     <div class="wrapper">
         <div class="form-container">
-            <form id="inputform" name="form" onsubmit="return validateForm()" action="get_usr_url" method="POST">
+            <form id="inputform" name="form" onsubmit="return validateForm()" action="includes/get" method="POST">
 
                 <div class="full-screen">
 

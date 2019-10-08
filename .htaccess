@@ -5,7 +5,7 @@
 </Files>
 
 # Prevent directory listings
-Options All -Indexes
+#Options All -Indexes
 
 #remove php file extension-e.g. https://example.com/file.php will become https://example.com/file
 RewriteEngine on 
@@ -19,3 +19,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]
 
+Redirect 301 /api.php /includes/api.php 
+Redirect 301 /db.php /includes/db.php 
+Redirect 301 /get.php /includes/get.php
+Redirect 301 /new.php /includes/new.php 
