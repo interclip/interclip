@@ -32,13 +32,13 @@ if ($errortitle == false) {
     <meta charset="utf-8">
 </head>
 
-<body>
+<body style="text-align: center;margin-top: 30vh;">
 
     <!-- Insert headers here. -->
 
     <?php
-    echo ('<h1>' . $errortitle . '</h1>');
-    echo ('<p>' . $message . '</p>');
+    echo ('<h1 style="font-size: 5rem;">' . $errortitle . '</h1>');
+    echo ('<p style="font-size: 2rem;">' . $message . '</p>');
     ?>
 
     <!-- Insert footers here. -->
