@@ -35,8 +35,6 @@ if($currFile == "get.php" || "new.php") {
     $urlPrefix = "./";
 }
 
-echo $currFile;
-
 // Render the menu
 echo '<ul>';
 
