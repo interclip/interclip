@@ -22,7 +22,7 @@
 
 </div>
 <?php
-include("menu.php");
+include("includes/menu.php");
 ?>
 
 <body>

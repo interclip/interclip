@@ -13,7 +13,7 @@
 
 <body>
     <?php
-  include("menu.php");
+  include("includes/menu.php");
   ?>
     <form name="urlform" id="content" onsubmit="return validateForm()" action="new" method="POST">
 

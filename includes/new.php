@@ -1,7 +1,7 @@
 <div id="endora" style="display: none">
   <endora>
 </div>
-<link rel="stylesheet" href="css/new.css">
+<link rel="stylesheet" href="../css/new.css">
 <?php
 include("menu.php");
 ?>
