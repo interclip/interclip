@@ -23,8 +23,8 @@
     RewriteCond %{REQUEST_FILENAME}\.php -f
     RewriteRule ^(.*)$ $1.php [NC,L]
     #Add Trailing slash for end of the URL
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*[^/])$ /$1/ [L,R]
+    #RewriteCond %{REQUEST_FILENAME} !-f
+    #RewriteRule ^(.*[^/])$ /$1/ [L,R]
 
     #Error handling
     ErrorDocument 400 /includes/error.php
