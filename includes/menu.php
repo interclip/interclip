@@ -17,6 +17,7 @@ _paq.push(['enableLinkTracking']);
 })();
 </script>
 <?php
+include('prod.php');
 
 $relative_path = $_SERVER['PHP_SELF'];
 $index = 0;
@@ -27,8 +28,7 @@ $pages = array(
     'recieve' => ['recieve', 'Recieve clip'],
     'about' => ['about', 'About'],
 );
-$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-if ($actual_link == "http://localhost") {
+if (!isProd()) {
     $scriptNameArray = explode("\\", $scriptPath);
 } else {
     $scriptNameArray = explode("/", $scriptPath);
