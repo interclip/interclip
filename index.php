@@ -13,8 +13,8 @@
 
 <body>
     <?php
-  include("includes/menu.php");
-  ?>
+    include("includes/menu.php");
+    ?>
     <form name="urlform" id="content" onsubmit="return validateForm()" action="includes/new" method="POST">
 
         <input type="text" name="input" class="input" id="search-input">
@@ -36,7 +36,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script>
-    clickEnabled = false;
+        clickEnabled = false;
     </script>
     <script src="js/index.js"> </script>
     <script src="js/file.js"></script>
