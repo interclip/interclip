@@ -15,7 +15,7 @@
     <?php
   include("includes/menu.php");
   ?>
-    <form name="urlform" id="content" onsubmit="return validateForm()" action="new" method="POST">
+    <form name="urlform" id="content" onsubmit="return validateForm()" action="includes/new" method="POST">
 
         <input type="text" name="input" class="input" id="search-input">
         <button type="reset" class="search" id="search-btn"></button>
