@@ -43,5 +43,6 @@
         clickEnabled = false;
     </script>
     <script src="js/index.js"> </script>
+    <script src="js/validate.js"> </script>
     <script src="js/file.js"></script>
 </body>
