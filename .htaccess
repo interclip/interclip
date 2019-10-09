@@ -14,19 +14,16 @@
     # Prevent directory listings
     Options All -Indexes
 
-    #remove php file extension-e.g. https://example.com/file.php will become https://example.com/file
+    #remove php file extension
     RewriteEngine on 
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}\.php -f
     RewriteRule ^(.*)$ $1.php [NC,L]
-
-    #remove html file extension-e.g. https://example.com/file.html will become https://example.com/file
-    RewriteEngine on 
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME}\.html -f
-    RewriteRule ^(.*)$ $1.html [NC,L]
-
-
+    #Add Trailing slash for end of the URL
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*[^/])$ /$1/ [L,R]
+    
+    #Error handling
     ErrorDocument 404 /includes/error.php
     ErrorDocument 401 /includes/error.php
     ErrorDocument 400 /includes/error.php
@@ -37,3 +34,4 @@
     ErrorDocument 500 /includes/error.php
     ErrorDocument 502 /includes/error.php
     ErrorDocument 504 /includes/error.php
+
