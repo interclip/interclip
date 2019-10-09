@@ -3,7 +3,10 @@
         order allow,deny
         deny from all
     </Files>
-
+    <Files db.php>
+        order allow,deny
+        deny from all
+    </Files>
     # REDIRECT FAVICON.ICO
     <ifmodule mod_rewrite.c>
     RewriteCond %{REQUEST_URI} !^/favicon\.ico [NC]
@@ -20,9 +23,9 @@
     RewriteCond %{REQUEST_FILENAME}\.php -f
     RewriteRule ^(.*)$ $1.php [NC,L]
     #Add Trailing slash for end of the URL
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*[^/])$ /$1/ [L,R]
-    
+    #RewriteCond %{REQUEST_FILENAME} !-f
+    #RewriteRule ^(.*[^/])$ /$1/ [L,R]
+
     #Error handling
     ErrorDocument 404 /includes/error.php
     ErrorDocument 401 /includes/error.php
