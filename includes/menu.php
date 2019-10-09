@@ -17,6 +17,7 @@ _paq.push(['enableLinkTracking']);
 })();
 </script>
 <?php
+
 $relative_path = $_SERVER['PHP_SELF'];
 $index = 0;
 list($scriptPath) = get_included_files();

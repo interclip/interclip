@@ -3,7 +3,10 @@
         order allow,deny
         deny from all
     </Files>
-
+    <Files db.php>
+        order allow,deny
+        deny from all
+    </Files>
     # REDIRECT FAVICON.ICO
     <ifmodule mod_rewrite.c>
     RewriteCond %{REQUEST_URI} !^/favicon\.ico [NC]
@@ -14,26 +17,28 @@
     # Prevent directory listings
     Options All -Indexes
 
-    #remove php file extension-e.g. https://example.com/file.php will become https://example.com/file
+    #remove php file extension
     RewriteEngine on 
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}\.php -f
     RewriteRule ^(.*)$ $1.php [NC,L]
+    #Add Trailing slash for end of the URL
+    #RewriteCond %{REQUEST_FILENAME} !-f
+    #RewriteRule ^(.*[^/])$ /$1/ [L,R]
 
-    #remove html file extension-e.g. https://example.com/file.html will become https://example.com/file
-    RewriteEngine on 
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME}\.html -f
-    RewriteRule ^(.*)$ $1.html [NC,L]
-
-
-    ErrorDocument 404 /includes/error.php
-    ErrorDocument 401 /includes/error.php
+    #Error handling
     ErrorDocument 400 /includes/error.php
+    ErrorDocument 401 /includes/error.php
+    ErrorDocument 402 /includes/error.php
+    ErrorDocument 404 /includes/error.php
     ErrorDocument 403 /includes/error.php
     ErrorDocument 405 /includes/error.php
+    ErrorDocument 406 /includes/error.php
+    ErrorDocument 407 /includes/error.php
     ErrorDocument 408 /includes/error.php
+    ErrorDocument 409 /includes/error.php
     ErrorDocument 414 /includes/error.php
     ErrorDocument 500 /includes/error.php
     ErrorDocument 502 /includes/error.php
     ErrorDocument 504 /includes/error.php
+
