@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="css/index.css">
 <link rel="stylesheet" href="css/mobile.css">
+
 <head>
     <meta charset="UTF-8">
     <title>Interclip - easy peasy clipboard sharing</title>

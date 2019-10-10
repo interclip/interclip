@@ -17,7 +17,9 @@ _paq.push(['enableLinkTracking']);
 })();
 </script>
 <?php
-include('prod.php');
+if(!isset($prodvar)) {
+    include('prod.php');
+  }
 
 $relative_path = $_SERVER['PHP_SELF'];
 $index = 0;
