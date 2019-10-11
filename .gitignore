@@ -2,3 +2,5 @@ db.php
 .vscode/
 desktop.ini
 upload.py
+vendor/
+includes/mail_auth.php
