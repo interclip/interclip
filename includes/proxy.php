@@ -4,6 +4,7 @@ $url = end($url);
 $url = "https://s.put.re/" . $url;
 
 
+
 header('Content-Description: File Transfer');
 header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename="' . basename($url) . '"');
@@ -13,3 +14,4 @@ header('Pragma: public');
 flush(); // Flush system output buffer
 readfile($url);
 exit;
+reDir($url);
