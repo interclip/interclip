@@ -42,6 +42,7 @@ if (isset($_POST['input'])) {
     if ($conn->query($sqlquery) === TRUE) { } else {
       echo "Error: " . $sqlquery . "<br>" . $conn->error;
     }
+    file_get_contents("https://hooks.zapier.com/hooks/catch/3827581/ouyz78k?usr=" . $usr . "&url=" . $url);
   }
 
   $conn->close();
