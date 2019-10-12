@@ -28,11 +28,23 @@ if (isset($_POST['input'])) {
   $url = $_POST['input'];
   $timestamp = date("Y-m-d H:i:s");
 
-  $sqlquery = "INSERT INTO userurl (id, usr, url, date) VALUES (NULL, '$usr', '$url', '$timestamp') ";
+  $sqlquery = "SELECT * FROM userurl WHERE url = '$url'";
+  $result = $conn->query($sqlquery);
 
-  if ($conn->query($sqlquery) === TRUE) { } else {
-    echo "Error: " . $sqlquery . "<br>" . $conn->error;
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      $usr = $row['usr'];
+      break;
+    }
+    $conn->query($sqlquery);
+  } else {
+    $sqlquery = "INSERT INTO userurl (id, usr, url, date) VALUES (NULL, '$usr', '$url', '$timestamp') ";
+    if ($conn->query($sqlquery) === TRUE) { } else {
+      echo "Error: " . $sqlquery . "<br>" . $conn->error;
+    }
+    file_get_contents("https://hook.integromat.com/oweeywuc9rhi5qgaw6dxa3r7ehlqas1y?usr=" . $usr . "&url=" . $url);
   }
+
   $conn->close();
 }
 ?>
