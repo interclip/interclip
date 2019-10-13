@@ -4,8 +4,8 @@
     <endora>
 </div>
 <?php
-include("menu.php");
-include_once("components/get.php");
+include "menu.php";
+include_once "components/get.php";
 ?>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
