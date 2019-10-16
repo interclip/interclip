@@ -39,6 +39,11 @@ if (isset($_POST['url'])) {
   }
   echo $usr;
 } else {
+<<<<<<< Updated upstream
   echo "Error: no URL given";
   // my else codes goes
+=======
+  echo "Error: no URL given";
+  die();
+>>>>>>> Stashed changes
 }
