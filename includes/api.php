@@ -39,7 +39,8 @@ if (isset($_POST['url'])) {
   }
   echo $usr;
 } else {
-  http_response_code(400);
+  http_response_code(404);
   echo "Error: no URL given";
   die();
+  // my else codes goes
 }
