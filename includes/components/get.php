@@ -1,6 +1,6 @@
 <?php
-if (!empty($_POST['code'])) {
-  $user_code = $_POST['code'];
+if (!empty($_POST['user'])) {
+  $user_code = $_POST['user'];
 
   include("./db.php");
   // Create connection
