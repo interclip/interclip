@@ -1,0 +1,17 @@
+@media (prefers-color-scheme: dark) {
+    body, .full-screen, #code {
+      background: #444 !important;
+      color: #e4e4e4 !important;
+    }
+    a {
+      color: #e39777 !important;
+    }
+    img {
+      filter: grayscale(30%) !important;
+    }
+    .demo-droppable {
+        background: rgb(65, 64, 64) !important;
+        color: #e4e4e4 !important;
+    }
+
+  }

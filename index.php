@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/dark.css">
 <div id="endora" style="display: none">
     <endora>
 </div>
@@ -40,7 +41,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script>
-        clickEnabled = false;
+    clickEnabled = false;
     </script>
     <script src="js/index.js"> </script>
     <script src="js/validate.js"> </script>
