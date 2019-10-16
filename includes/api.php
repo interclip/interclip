@@ -33,13 +33,14 @@ if (isset($_POST['url'])) {
       if ($conn->query($sqlquery) === TRUE) { } else {
         echo "Error: " . $sqlquery . "<br>" . $conn->error;
       }
-      file_get_contents("https://hook.integromat.com/oweeywuc9rhi5qgaw6dxa3r7ehlqas1y?usr=" . $usr . "&url=" . $url);
     }
 
     $conn->close();
   }
   echo $usr;
 } else {
+  http_response_code(404);
   echo "Error: no URL given";
+  die();
   // my else codes goes
 }
