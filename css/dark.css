@@ -7,7 +7,7 @@
       color: #e39777 !important;
     }
     img {
-      filter: grayscale(30%) !important;
+      filter: grayscale(20%) !important;
     }
     .demo-droppable {
         background: rgb(65, 64, 64) !important;

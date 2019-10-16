@@ -2,8 +2,9 @@
   <endora>
 </div>
 <link rel="stylesheet" href="../css/new.css">
+<link rel="stylesheet" href="../css/dark.css">
 <?php
-include("menu.php");
+include "menu.php";
 ?>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +43,6 @@ if (isset($_POST['input'])) {
     if ($conn->query($sqlquery) === TRUE) { } else {
       echo "Error: " . $sqlquery . "<br>" . $conn->error;
     }
-    file_get_contents("https://hook.integromat.com/oweeywuc9rhi5qgaw6dxa3r7ehlqas1y?usr=" . $usr . "&url=" . $url);
   }
 
   $conn->close();

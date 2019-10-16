@@ -1,5 +1,7 @@
 <title>Get your link | Interclip</title>
 <link rel="stylesheet" href="../css/get.css">
+<link rel="stylesheet" href="../css/dark.css">
+
 <div id="endora" style="display: none">
     <endora>
 </div>
