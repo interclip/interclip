@@ -42,7 +42,6 @@ if (isset($_POST['input'])) {
     if ($conn->query($sqlquery) === TRUE) { } else {
       echo "Error: " . $sqlquery . "<br>" . $conn->error;
     }
-    file_get_contents("https://hook.integromat.com/oweeywuc9rhi5qgaw6dxa3r7ehlqas1y?usr=" . $usr . "&url=" . $url);
   }
 
   $conn->close();
