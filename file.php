@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/image.css">
     <link rel="shortcut icon" href="./favicon.png">
     <link rel="stylesheet" href="css/file.css">
+    <link rel="stylesheet" href="css/dark.css">
 </head>
 
 </head>

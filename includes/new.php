@@ -2,8 +2,9 @@
   <endora>
 </div>
 <link rel="stylesheet" href="../css/new.css">
+<link rel="stylesheet" href="../css/dark.css">
 <?php
-include("menu.php");
+include "menu.php";
 ?>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
