@@ -1,5 +1,5 @@
 # Interclip
-![BCH compliance](https://bettercodehub.com/edge/badge/filiptronicek/Interclip?branch=master) ![clipboard](https://img.shields.io/badge/clipboard-copied-orange) ![](https://img.shields.io/github/repo-size/aperta-principium/Interclip)
+![BCH compliance](https://bettercodehub.com/edge/badge/filiptronicek/Interclip?branch=master) ![clipboard](https://img.shields.io/badge/clipboard-copied-orange) ![](https://img.shields.io/github/repo-size/aperta-principium/Interclip) [![Maintainability](https://api.codeclimate.com/v1/badges/0a72c92a0a2da0c79ba5/maintainability)](https://codeclimate.com/github/aperta-principium/Interclip/maintainability)
 
 ## A handy-dandy clipboard sharing tool to share URLs between devices and users
 
