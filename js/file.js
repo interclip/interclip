@@ -1,22 +1,6 @@
 var modal = document.getElementById("modal");
 var output = document.querySelector(".output");
 modal.style.display = "none";
-
-// Uploading variables
-
-var settings = {
-  async: false,
-  crossDomain: true,
-  processData: false,
-  contentType: false,
-  type: "POST",
-  url: apiUrl,
-  mimeType: "multipart/form-data"
-};
-
-// API Endpoint
-var apiUrl = "https://api.put.re/upload";
-
 (function(window) {
   function triggerCallback(e, callback) {
     if (!callback || typeof callback !== "function") {
@@ -90,6 +74,19 @@ function uploadRe($files) {
   console.log($files);
   // Begin file upload
   console.log("Uploading file to put.re..");
+
+  // API Endpoint
+  var apiUrl = "https://api.put.re/upload";
+
+  var settings = {
+    async: false,
+    crossDomain: true,
+    processData: false,
+    contentType: false,
+    type: "POST",
+    url: apiUrl,
+    mimeType: "multipart/form-data"
+  };
 
   var formData = new FormData();
   formData.append("image", $files);
