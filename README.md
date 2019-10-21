@@ -1,11 +1,9 @@
 # Interclip
-![clipboard](https://img.shields.io/badge/clipboard-copied-orange)
-![Clipboard](https://img.shields.io/github/repo-size/aperta-principium/Interclip)
-[![Maintainability](https://api.codeclimate.com/v1/badges/0a72c92a0a2da0c79ba5/maintainability)](https://codeclimate.com/github/aperta-principium/Interclip/maintainability)
+![clipboard](https://img.shields.io/badge/clipboard-copied-orange) ![Clipboard](https://img.shields.io/github/repo-size/aperta-principium/Interclip) [![Maintainability](https://api.codeclimate.com/v1/badges/0a72c92a0a2da0c79ba5/maintainability)](https://codeclimate.com/github/aperta-principium/Interclip/maintainability)
+![GitHub commits since latest release](https://img.shields.io/github/commits-since/aperta-principium/interclip/latest)
 
 ## A handy-dandy clipboard sharing tool to share URLs between devices and users
 
-![GitHub commits since latest release](https://img.shields.io/github/commits-since/aperta-principium/interclip/latest?style=for-the-badge)
 
 [Stable](http://uni.hys.cz)
 
