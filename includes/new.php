@@ -56,7 +56,7 @@ if (isset($_POST['input'])) {
       if (isset($_POST['input'])) {
         echo '<p><span id="url" class="url">' . $url . '</span><br><br> was saved as</p>  <h1>' . $usr . '</h1><div id="embed"> </div>';
       } else {
-        echo '<h1 class="errheader"><span>4</span>&nbsp;<span>0</span>&nbsp;<span>0</span> </h1><br> <span id="errcode">bad request</span>';
+        include_once "components/outputs/new-404.php";
       }
 
       ?>
