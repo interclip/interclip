@@ -5,7 +5,8 @@
 1. [ Intro ](#intro)
 2. [ Built with ](#dependencies)
 3. [ Developer tools ](#dependencies)
-4. [ Tutorial ](#tutorial)
+4. [ To-dos ](#todo) 
+5. [ Tutorial ](#tutorial)
 
 <a name="intro"> </a>
 ## What is it?
@@ -31,6 +32,8 @@ A handy-dandy clipboard sharing tool to share URLs between devices and users
 <a name="libs"> </a>
 ## Developer libraries
 * [Python wrapper](https://github.com/aperta-principium/Interclip-python)
+
+<a name="todo"> </a>
 ## To-dos
 * write a Ruby on Rails lib
 * write a JavaScript lib
