@@ -6,7 +6,7 @@
 2. [ Built with ](#dependencies)
 3. [ Developer tools ](#dependencies)
 4. [ To-dos ](#todo) 
-5. [ Tutorial ](#tutorial)
+5. [ Tutorial ](#howto)
 
 <a name="intro"> </a>
 ## What is it?
