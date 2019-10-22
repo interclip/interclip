@@ -135,3 +135,6 @@ span.url {
   text-overflow: ellipsis !important;
   overflow: hidden !important;
 }
+#qrcode > canvas {
+  max-width: 50vw;
+}

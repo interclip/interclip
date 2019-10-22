@@ -48,20 +48,22 @@ if (isset($_POST['input'])) {
   $conn->close();
 }
 ?>
+<script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js"> </script>
+<script src="https://cdn.jsdelivr.net/gh/filiptronicek/Embed/embed.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"> </script>
 <div id="fullscreen">
   <div class="fullscreen-content">
 
     <div class="title">
       <?php
       if (isset($_POST['input'])) {
-        echo '<p><span id="url" class="url">' . $url . '</span><br><br> was saved as</p>  <h1>' . $usr . '</h1><div id="embed"> </div>';
+        include_once "components/outputs/new-ok-msg.php";
       } else {
         include_once "components/outputs/new-404.php";
       }
 
       ?>
-      <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js"> </script>
-      <script src="https://cdn.jsdelivr.net/gh/filiptronicek/Embed/embed.js"> </script>
+
       <script>
         Embed($("#url").text());
       </script>
