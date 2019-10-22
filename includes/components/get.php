@@ -1,7 +1,4 @@
 <?php
-if (!empty($_POST['user'])) {
-  $user_code = $_POST['user'];
-
   include("./db.php");
   // Create connection
   $conn = new mysqli($servername, $username, $password, $DBName);
@@ -23,4 +20,3 @@ if (!empty($_POST['user'])) {
 
   $conn->close();
   //}
-} 

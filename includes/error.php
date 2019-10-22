@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="../css/index.css">
+<link rel="stylesheet" href="../css/dark.css">
 <?php
 include("menu.php");
 $status = $_SERVER['REDIRECT_STATUS'];
@@ -37,8 +38,21 @@ if ($errortitle == false) {
     <!-- Insert headers here. -->
 
     <?php
+    function reDir($url)
+    {
+        header("Location: " . $url . "");
+        die();
+    }
     echo ('<h1 style="font-size: 5rem;margin-top: 30vh;">' . $errortitle . '</h1>');
     echo ('<p style="font-size: 2rem;">' . $message . '</p>');
+    /* Check if requested string wasn't a code */
+    if (strlen(basename($_SERVER['REQUEST_URI'])) == 5) {
+        $user_code = basename($_SERVER['REQUEST_URI']);
+        include_once "components/get.php";
+        if (isset($url)) {
+            reDir($url);
+        }
+    }
     ?>
 
     <!-- Insert footers here. -->
