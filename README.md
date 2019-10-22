@@ -12,6 +12,13 @@
 
 ![logo](https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png)
 
+1. [ Description. ](#libs)
+2. [ Usage tips. ](#usage)
+
+
+
+
+<a name="libs"> </a>
 ## Built with
 - [aperta-principium/Embed](https://github.com/aperta-principium/Embed)
 - [aperta-principium/Interclip-proxy](https://github.com/aperta-principium/Interclip-proxy)
