@@ -5,10 +5,9 @@
 
 <script>
     var options = {
-    text: "<?php echo $url ?>",
-    background: "#444444",
-    foreground: "#e4e4e4",
-    
+        text: "<?php echo $url ?>",
+        background: "#444444",
+        foreground: "#e4e4e4",
     }
     $('#qrcode').qrcode(options);
 </script>
