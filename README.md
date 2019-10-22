@@ -1,8 +1,15 @@
 # Interclip
 ![clipboard](https://img.shields.io/badge/clipboard-copied-orange) ![Clipboard](https://img.shields.io/github/repo-size/aperta-principium/Interclip) [![Maintainability](https://api.codeclimate.com/v1/badges/0a72c92a0a2da0c79ba5/maintainability)](https://codeclimate.com/github/aperta-principium/Interclip/maintainability)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/aperta-principium/interclip/latest)
+## Table of contents
+1. [ Intro ](#intro)
+2. [ Built with ](#dependencies)
+3. [ Developer tools ](#dependencies)
+4. [ Tutorial ](#tutorial)
 
-## A handy-dandy clipboard sharing tool to share URLs between devices and users
+<a name="intro"> </a>
+## What is it?
+A handy-dandy clipboard sharing tool to share URLs between devices and users
 
 
 [Stable](http://uni.hys.cz)
@@ -12,17 +19,16 @@
 
 ![logo](https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png)
 
-1. [ Description. ](#libs)
-2. [ Usage tips. ](#usage)
 
 
 
 
-<a name="libs"> </a>
+<a name="dependencies"> </a>
 ## Built with
 - [aperta-principium/Embed](https://github.com/aperta-principium/Embed)
 - [aperta-principium/Interclip-proxy](https://github.com/aperta-principium/Interclip-proxy)
 
+<a name="libs"> </a>
 ## Developer libraries
 * [Python wrapper](https://github.com/aperta-principium/Interclip-python)
 ## To-dos
@@ -32,6 +38,7 @@
 * ~~Text-file embed~~
 * ~~an universal file uploader [StackOverflow](https://stackoverflow.com/questions/58153921/how-can-you-upload-to-catbox-using-javascript)~~
 
+<a name="howto"> </a>
 ## How to clip?
 
 Clipping is easy. Just click on the magnifying glass and paste in your link!
