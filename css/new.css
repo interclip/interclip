@@ -139,3 +139,16 @@ span.url {
 #qrcode > canvas {
   max-width: 50vw;
 }
+html {
+  content: "";
+}
+@media (prefers-color-scheme: light) {
+  html {
+      content: "light";
+  }
+}
+@media (prefers-color-scheme: dark) {
+  html {
+      content: "dark";
+  }
+}
