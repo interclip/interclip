@@ -2,13 +2,12 @@
 ![clipboard](https://img.shields.io/badge/clipboard-copied-orange) ![Clipboard](https://img.shields.io/github/repo-size/aperta-principium/Interclip) [![Maintainability](https://api.codeclimate.com/v1/badges/0a72c92a0a2da0c79ba5/maintainability)](https://codeclimate.com/github/aperta-principium/Interclip/maintainability)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/aperta-principium/interclip/latest)
 ## Table of contents
-1. [ Intro ](#intro)
+1. [ Intro ](#What-is-it)
 2. [ Built with ](#dependencies)
 3. [ Developer tools ](#dependencies)
 4. [ To-dos ](#todo) 
 5. [ Tutorial ](#howto)
 
-<a name="intro"> </a>
 ## What is it?
 A handy-dandy clipboard sharing tool to share URLs between devices and users
 
