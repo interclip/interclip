@@ -5,8 +5,10 @@
 <div id="endora" style="display: none">
   <endora>
 </div>
+<title> Get clip - Interclip </title>
+
 <?php
-include "menu.php";
+include_once "menu.php";
 if (!empty($_POST['user'])) {
   $user_code = $_POST['user'];
   include_once "components/get.php";
