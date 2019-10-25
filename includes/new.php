@@ -3,8 +3,9 @@
 </div>
 <link rel="stylesheet" href="../css/new.css">
 <link rel="stylesheet" href="../css/dark.css">
+<title> New clip - Interclip </title>
 <?php
-include "menu.php";
+include_once "menu.php";
 ?>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
