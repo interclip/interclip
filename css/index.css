@@ -9,6 +9,7 @@ body {
     background-color: #ff9800;
     color: #fff;
     margin: 0;
+    max-height: 100vh !important;
   }
   
   #content {
@@ -181,7 +182,6 @@ body {
     padding: 100vh 0;
     text-align: center;
 }
-
 
 .code {
     font-size: 3rem;

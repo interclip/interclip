@@ -29,6 +29,10 @@
     #RewriteCond %{REQUEST_FILENAME} !-f
     #RewriteRule ^(.*[^/])$ /$1/ [L,R]
 
+    RewriteEngine On
+    # Exclude index.php and etc.php from redirecting
+    RewriteCond %{REQUEST_URI} ^/(get|new|api|get-api)
+    RewriteRule ^(.*)$ includes/$1/ [L]
 
     #Error handling
     ErrorDocument 400 /includes/error.php

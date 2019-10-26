@@ -10,13 +10,13 @@
         .replace(/"/g, '')
     if (style == "" || style == "light") {
         var options = {
-            text: "<?php echo $usr ?>",
+            text: "https://iclip.netlify.com/r/<?php echo $usr ?>",
             background: "#ff9800",
             foreground: "#000000",
         }
     } else if (style == "dark") {
         var options = {
-            text: "<?php echo $usr ?>",
+            text: "https://iclip.netlify.com/r/<?php echo $usr ?>",
             background: "#444444",
             foreground: "#e4e4e4",
         }
