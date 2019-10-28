@@ -30,7 +30,6 @@ body {
   margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
   border-radius: 20px;
   color: #fff;
 }
@@ -97,7 +96,6 @@ li a:hover:not(.active) {
     margin: 0 auto;
     background-color: rgba(0, 0, 0, 0.5);
     -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
     border-radius: 20px;
     color: #fff;
     overflow: hidden;
@@ -111,7 +109,6 @@ li a:hover:not(.active) {
     margin: 0 auto;
     background-color: rgba(0, 0, 0, 0.5);
     -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
     border-radius: 20px;
     color: #fff;
   }
