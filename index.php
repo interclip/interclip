@@ -44,7 +44,7 @@ if (preg_match('/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|
         <div class="output"></div>
         <span class="code"></span>
         <br>
-        <button class="copy" onclick="copyText()">Copy code</button>
+        <button class="copy">Copy code</button>
     </center>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

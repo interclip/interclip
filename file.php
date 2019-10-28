@@ -37,7 +37,7 @@ include("includes/menu.php");
         <div class="output"></div>
         <span id="code" class="code"></span> 
         <br>
-        <button id="copy" class="copy" onclick="copyText()">Copy code</button>
+        <button id="copy" class="copy">Copy code</button>
     </div>
 
     <script>
