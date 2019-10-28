@@ -1,19 +1,19 @@
 .demo-droppable {
-    background: #E58900;
-    color: #000;
-    padding: 100px 0;
-    text-align: center;
+  background: #e58900;
+  color: #000;
+  padding: 100px 0;
+  text-align: center;
 }
 
 .demo-droppable.dragover {
-    background: #E58900;
+  background: #e58900;
 }
 .code {
-    font-size: 3rem;
+  font-size: 3rem;
 }
 .modal img {
-    width: 100%;
+  width: 100%;
 }
 .modal {
-    max-height: 100vh;
+  max-height: 100vh;
 }

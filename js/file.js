@@ -1,5 +1,8 @@
 var modal = document.getElementById("modal");
 var output = document.querySelector(".output");
+
+$(".copy").hide();
+
 modal.style.display = "none";
 (function(window) {
   function triggerCallback(e, callback) {
@@ -71,13 +74,40 @@ function putRe(file) {
   return file;
 }
 
-function copyText() {
-  var copyText = $(".code");
-  copyText.select();
-  document.execCommand("copy");
-  alert("Copied the text: " + copyText.value);
-}
+function fallbackCopyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+  textArea.value = text;
+  textArea.style.position = "fixed"; //avoid scrolling to bottom
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
 
+  try {
+    var successful = document.execCommand("copy");
+    var msg = successful ? "successful" : "unsuccessful";
+    console.log("Fallback: Copying text command was " + msg);
+  } catch (err) {
+    console.error("Fallback: Oops, unable to copy", err);
+  }
+
+  document.body.removeChild(textArea);
+}
+function copyTextToClipboard(text) {
+  if (!navigator.clipboard) {
+    fallbackCopyTextToClipboard(text);
+    return;
+  }
+  navigator.clipboard.writeText(text).then(
+    function() {
+      console.log("Async: Copying to clipboard was successful!");
+      $(".copy").css("background", "#00ff00");
+    },
+    function(err) {
+      console.error("Async: Could not copy text: ", err);
+    }
+  );
+}
+var copyBtn = document.querySelector(".copy");
 function showCode(data) {
   $.get(
     "./includes/components/short-api.php?url=" +
@@ -99,6 +129,10 @@ function showCode(data) {
               $("#content").hide();
               $(".code").text(data);
               modal.style.display = "none";
+              $(".copy").show();
+              copyBtn.addEventListener("click", function(event) {
+                copyTextToClipboard(data);
+              });
             }
           }
         );

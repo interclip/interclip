@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="./favicon.png">
     <link rel="stylesheet" href="css/file.css">
     <link rel="stylesheet" href="css/dark.css">
+    <link rel="stylesheet" href="css/copy.css">
 </head>
 
 </head>
@@ -34,7 +35,9 @@ include("includes/menu.php");
             <p>Drag files here or click to upload</p>
         </div>
         <div class="output"></div>
-        <span class="code"></span>
+        <span id="code" class="code"></span> 
+        <br>
+        <button id="copy" class="copy" onclick="copyText()">Copy code</button>
     </div>
 
     <script>
