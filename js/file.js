@@ -114,6 +114,7 @@ function uploadRe($files) {
               if (status == "success") {
                 $(".code").text(data);
               }
+              modal.style.display = "none";
             }
           );
         }
@@ -123,5 +124,4 @@ function uploadRe($files) {
     
   });
   $(".demo-droppable").hide();
-  modal.style.display = "none";
 }

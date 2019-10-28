@@ -13,6 +13,13 @@ if (!empty($_POST['user'])) {
   $user_code = $_POST['user'];
   include_once "components/get.php";
 }
+
+function get_shorten_url( $url ) {
+	$headers = get_headers( $url, 1 );
+	$url = $headers['Location'];
+	return $url;
+}
+$realUrl = get_shorten_url($url);
 ?>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,5 +54,5 @@ if (!empty($_POST['user'])) {
 <script src="https://cdn.jsdelivr.net/gh/filiptronicek/Embed/embed.js"> </script>
 <script src="../js/get.js"></script>
 <script>
-  Embed($("#urlLink").text());
+  Embed("<?php echo $realUrl ?>");
 </script>
