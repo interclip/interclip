@@ -70,6 +70,43 @@ modal.style.display = "none";
 function putRe(file) {
   return file;
 }
+
+function copyText() {
+  var copyText = $(".code");
+  copyText.select();
+  document.execCommand("copy");
+  alert("Copied the text: " + copyText.value);
+}
+
+function showCode(data) {
+  $.get(
+    "./includes/components/short-api.php?url=" +
+      encodeURI(data.data.link) +
+      "&keyword=" +
+      data.data.name,
+
+    function(data, status) {
+      console.log("Data: " + data.shorturl + "\nStatus: " + status);
+      if (status == "success") {
+        $.post(
+          "includes/api.php",
+          {
+            url: data.shorturl
+          },
+          function(data, status) {
+            console.log("Data: " + data + "\nStatus: " + status);
+            if (status == "success") {
+              $("#content").hide();
+              $(".code").text(data);
+              modal.style.display = "none";
+            }
+          }
+        );
+      }
+    }
+  );
+}
+
 function uploadRe($files) {
   console.log($files);
   // Begin file upload
@@ -98,30 +135,7 @@ function uploadRe($files) {
     var data = JSON.parse(response);
     //data.data.link = "https://iq.now.sh/s/" + data.data.name;
     console.log(data);
-    $.get(
-      "./includes/components/short-api.php?url="+encodeURI(data.data.link)+"&keyword="+data.data.name,
-
-      function(data, status) {
-        console.log("Data: " + data.shorturl + "\nStatus: " + status);
-        if (status == "success") {
-          $.post(
-            "includes/api.php",
-            {
-              url: data.shorturl
-            },
-            function(data, status) {
-              console.log("Data: " + data + "\nStatus: " + status);
-              if (status == "success") {
-                $(".code").text(data);
-              }
-              modal.style.display = "none";
-            }
-          );
-        }
-      }
-    );
-
-    
+    showCode(data);
   });
   $(".demo-droppable").hide();
 }

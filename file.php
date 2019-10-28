@@ -27,6 +27,7 @@ include("includes/menu.php");
 ?>
 
 <body>
+    <span id="content"> </span>
     <div class="title">
         <h1>Upload a file to Interclip</h1>
         <div class="demo-droppable">
