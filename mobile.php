@@ -17,7 +17,7 @@
         header('Location: ./');
     }
     ?>
-    <form name="urlform" id="content" onsubmit="return validateForm()" action="includes/new" method="POST">
+    <form name="urlform" id="content" onsubmit="return validateForm()" action="./includes/new" method="POST">
 
         <input type="text" name="input" class="input" id="search-input">
 

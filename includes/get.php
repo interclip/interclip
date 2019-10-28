@@ -30,7 +30,10 @@ if (!empty($_POST['user'])) {
       if (isset($url)) {
         echo "<p>... is the URL of the code " . $user_code . "</p>";
       } else {
+        http_response_code(400);
         echo "<p>There was no url found for the code " . $user_code . "</p>";
+        die();
+
       }
       ?>
       <div id="embed"> </div>

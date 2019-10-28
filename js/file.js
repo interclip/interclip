@@ -96,21 +96,31 @@ function uploadRe($files) {
 
   $.ajax(settings).done(function(response) {
     var data = JSON.parse(response);
-    data.data.link = "https://iq.now.sh/s/" + data.data.name;
-    console.log(data.data.link);
+    //data.data.link = "https://iq.now.sh/s/" + data.data.name;
+    console.log(data);
+    $.get(
+      "./includes/components/short-api.php?url="+encodeURI(data.data.link)+"&keyword="+data.data.name,
 
-    $.post(
-      "includes/api.php",
-      {
-        url: data.data.link
-      },
       function(data, status) {
-        console.log("Data: " + data + "\nStatus: " + status);
+        console.log("Data: " + data.shorturl + "\nStatus: " + status);
         if (status == "success") {
-          $(".code").text(data);
+          $.post(
+            "includes/api.php",
+            {
+              url: data.shorturl
+            },
+            function(data, status) {
+              console.log("Data: " + data + "\nStatus: " + status);
+              if (status == "success") {
+                $(".code").text(data);
+              }
+            }
+          );
         }
       }
     );
+
+    
   });
   $(".demo-droppable").hide();
   modal.style.display = "none";
