@@ -96,7 +96,7 @@ function uploadRe($files) {
 
   $.ajax(settings).done(function(response) {
     var data = JSON.parse(response);
-    data.data.link = "https://iclip.netlify.com/s/" + data.data.name;
+    data.data.link = "https://iq.now.sh/s/" + data.data.name;
     console.log(data.data.link);
 
     $.post(
