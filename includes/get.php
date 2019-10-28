@@ -13,13 +13,14 @@ if (!empty($_POST['user'])) {
   $user_code = $_POST['user'];
   include_once "components/get.php";
 }
-
+if(!empty($url)) {
 function get_shorten_url( $url ) {
 	$headers = get_headers( $url, 1 );
 	$url = $headers['Location'];
 	return $url;
 }
 $realUrl = get_shorten_url($url);
+}
 ?>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
