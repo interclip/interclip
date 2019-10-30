@@ -62,7 +62,7 @@ modal.style.display = "none";
     for (var i = 0; i < files.length; i++) {
       if (files[i].type.indexOf("image/") === 0) {
         output.innerHTML +=
-          '<img width="200" src="' + URL.createObjectURL(files[i]) + '" />';
+          `<img width="200" src="${URL.createObjectURL(files[i])}" />`;
       }
       output.innerHTML += "<p>" + files[i].name + "</p>";
     }
@@ -85,9 +85,9 @@ function fallbackCopyTextToClipboard(text) {
   try {
     var successful = document.execCommand("copy");
     var msg = successful ? "successful" : "unsuccessful";
-    console.log("Fallback: Copying text command was " + msg);
+    console.log(`Fallback: Copying text command was ${msg}`);
   } catch (err) {
-    console.error("Fallback: Oops, unable to copy", err);
+    console.error(`Fallback: Oops, unable to copy ${err}`);
   }
 
   document.body.removeChild(textArea);
@@ -100,23 +100,26 @@ function copyTextToClipboard(text) {
   navigator.clipboard.writeText(text).then(
     function() {
       console.log("Async: Copying to clipboard was successful!");
-      $(".copy").css("background", "#00ff00");
+      $(".copy").css("background", "#0db60d");
+      setTimeout(function(){ $(".copy").css("background", "#2463ac");}, 3000);
+
     },
     function(err) {
-      console.error("Async: Could not copy text: ", err);
+      console.error(`Async: Could not copy text: ${err}`);
+      $(".copy").css("background", "#f00");
+
     }
   );
 }
 var copyBtn = document.querySelector(".copy");
 function showCode(data) {
   $.get(
-    "./includes/components/short-api.php?url=" +
-      encodeURI(data.data.link) +
-      "&keyword=" +
-      data.data.name,
+    `./includes/components/short-api.php?url=${encodeURI(
+      data.data.link
+    )}&keyword=${data.data.name}`,
 
     function(data, status) {
-      console.log("Data: " + data.shorturl + "\nStatus: " + status);
+      console.log(`Data: ${data.shorturl} \nStatus: ${status}`);
       if (status == "success") {
         $.post(
           "includes/api.php",
@@ -124,7 +127,7 @@ function showCode(data) {
             url: data.shorturl
           },
           function(data, status) {
-            console.log("Data: " + data + "\nStatus: " + status);
+            console.log(`Data: ${data} \nStatus: ${status}`);
             if (status == "success") {
               $("#content").hide();
               $(".code").text(data);
