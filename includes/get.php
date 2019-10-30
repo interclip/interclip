@@ -16,8 +16,7 @@ if (!empty($_POST['user'])) {
 if(!empty($url)) {
 function get_shorten_url( $url ) {
 	$headers = get_headers( $url, 1 );
-	$url = $headers['Location'];
-	return $url;
+	if(isset($headers['Location'])) return $headers['Location']; else return $url;
 }
 $realUrl = get_shorten_url($url);
 }
