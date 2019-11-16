@@ -1,6 +1,9 @@
 var modal = document.getElementById("modal");
 var output = document.querySelector(".output");
 
+fileSizeLimitInMegabytes = 100;
+fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1000000;
+
 $(".copy").hide();
 
 modal.style.display = "none";
@@ -65,9 +68,21 @@ modal.style.display = "none";
           `<img width="200" src="${URL.createObjectURL(files[i])}" />`;
       }
       output.innerHTML += "<p>" + files[i].name + "</p>";
+
+      if(clickEnabled != false) {
+        $(".note").fadeOut(500);
+      }
+
+      if(files[i].size > fileSizeLimitInBytes) {
+        console.log(`File size over ${fileSizeLimitInMegabytes} MB.`);
+        alert(`File size over ${fileSizeLimitInMegabytes} MB.`);
+        location.reload();
+        break;  
+      }
+      uploadRe(putRe(files[i]));
+
     }
 
-    uploadRe(putRe(files[0]));
   });
 })(this);
 function putRe(file) {
@@ -176,3 +191,4 @@ function uploadRe($files) {
   });
   $(".demo-droppable").hide();
 }
+console.log("Done");

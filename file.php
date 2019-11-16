@@ -31,6 +31,7 @@ include("includes/menu.php");
     <span id="content"> </span>
     <div class="title">
         <h1>Upload a file to Interclip</h1>
+        <p class="note">Upload any file type that's under 100MB. All files are <a href="https://put.re/privacy">encrypted upon upload and are MD5 perfect</a></p>
         <div class="demo-droppable">
             <p>Drag files here or click to upload</p>
         </div>
