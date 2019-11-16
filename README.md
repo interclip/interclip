@@ -36,6 +36,11 @@ A handy-dandy clipboard sharing tool to share URLs between devices and users
 ## Developer libraries
 * [Python wrapper](https://github.com/aperta-principium/Interclip-python)
 
+## API
+There is a very simple API for anybody to use. You can use it for storing URLs in your To-do app, or as a connection between order IDs and their URLs. The possibilities are endless
+The API endpoint is at ```http://uni.hys.cz/includes/api```.
+
+
 <a name="todo"> </a>
 ## To-dos
 * write a Ruby on Rails lib
