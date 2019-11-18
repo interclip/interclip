@@ -49,7 +49,7 @@ function writeDb($url)
 if(isset($_GET['url'])) {
   writeDb($_GET['url']);
 } else if(isset($_POST['url'])) {
-  writeDb($_GET['url']);
+  writeDb($_POST['url']);
 } else {
   http_response_code(404);
   echo "Error: no URL given";
