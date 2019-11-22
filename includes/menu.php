@@ -10,6 +10,7 @@ $pages = array(
     'clip' => ['', 'Clip'],
     'file' => ['file', 'Send file'],
     'recieve' => ['recieve', 'Recieve clip'],
+    'desktop' => ['desktop', "Desktop"],
     'about' => ['about', 'About'],
 );
 if (!isProd()) {

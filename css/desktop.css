@@ -1,0 +1,23 @@
+.repocard {
+  height: 300px;
+  width: 30vw;
+  background: white;
+  margin: 0 auto;
+  color: rgb(36, 41, 46);
+  text-align: left;
+  transition-duration: 250ms;
+}
+.repocard h1 {
+  text-align: center;
+}
+@media only screen and (max-width: 900px) and (min-width: 700px) {
+  .repocard {
+    width: 70vw;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .repocard {
+    width: 100vw;
+  }
+}
