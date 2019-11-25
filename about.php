@@ -32,28 +32,23 @@
 
          </div>
 
-         <p>From <a href="http://filiptronicek.me/interclip-3/"> the article</a> on <a href="http://filiptronicek.me">filiptronicek.me </a></p>
+         <p>From <a href="https://dev.to/filiptronicek/interclip-2hcn/"> the article</a> on <a href="https://dev.to">dev.to </a></p>
          <p>
-             <p>
-                 Soooo...
-                 I was really excited for this release, mainly because a lot of people I talked to said it is a great
-                 idea and that they would use it. The problem with storing the URL into a plain text file accessible to
-                 everyone (besides f-ing security) is, that if for every user there was a text file (each just under
-                 50B) would be a very bandwidth and storage hungry action. So I went through the hassle of doing all the
-                 PHP-MySQL crazy $(&quot;hit&quot;) and made the database. Then I went through a couple of fullscreen
-                 form and text designs on CodePen:
-             </p>
-             <ul>
-                 <li><a href="https://codepen.io/filip_tronicek/pen/qeJjPz">When the user makes a query on a specific
-                         code</a> </li>
-                 <li><a href="https://codepen.io/filip_tronicek/pen/rXqwro">When the user adds a URL to the database</a>
-                 </li>
-                 <li><a href="https://codepen.io/filip_tronicek/pen/dxNdgN">Recieve link main page</a> </li>
-                 <li><a href="https://codepen.io/MilanMilosev/pen/JdgRpB/">Main page - send link</a> </li>
-             </ul>
-             <p>After that I figured out that the code that is used to access the urls from the database should be 5
-                 digit base 36 strings, so that makes about 60 466 176 combinations - and I want to make a cron script,
-                 that deletes all the codes after a week in the next major release.</p>
+             <p>Hi devs,
+                 I want to ask you a question: Do you use the same operating system and tools for everything you do at work (or home)? If your answer is yes, well, then there&#39;s nothing to worry about but if not, a tool I made may come in handy.
+                 You probably use a deployment tool for your work (if you do web development), or you have a documentation website which you want to read on your computer. For both of those things (and anything else URL related), you can use Interclip. </p>
+             <h2 id="what-is-interclip-">What is Interclip?</h2>
+             <p>Interclip is a modern solution for sharing URLs with yourself or someone else. You probably share URLs by just emailing them to yourself, right? Think about it. Isn&#39;t this just like... dumb? Filling your inbox and taking so much time is just nonsense. If you use Interclip, you can just paste a URL and get back a five-digit randomly generated code. This code you can then input on your other device (doesn&#39;t even have to be yours) and get the URL back.</p>
+             <h2 id="don-t-know-where-to-host-a-file-interclip-can-also-help">Don&#39;t know where to host a file? Interclip can also help</h2>
+             <p>Interclip is not just about URLs, but also about files. Any file smaller than 100 MB can be uploaded to Interclip and never be deleted. So you can host anything because there&#39;s also no file-type limitation. Also, every file is encrypted so no-one else will be able to see it.</p>
+             <h2 id="api-of-course-we-do">API? Of course we do</h2>
+             <p>There&#39;s also a very simple API for developers to use. Check the documentation for details.</p>
+             <h2 id="open-source">Open Source</h2>
+             <p>The entirety of Interclip is open source. I am working on it just by myself now so any contributions are welcome! And if you&#39;re not really into web-development or you don&#39;t have the time, a star on GitHub would be very appreciated. </p>
+             <p>The APP: <a href="http://uni.hys.cz">uni.hys.cz</a>
+                 Github repo: <a href="https://github.com/aperta-principium/Interclip">aperta-principium/Interclip</a></p>
+             <p>Thanks for reading. Happy developing!</p>
+
              <p>
                  <img src="https://user-images.githubusercontent.com/29888641/62826686-faa86b80-bbbf-11e9-81db-c7e321eaf2e4.png" alt="image">
                  <img src="https://user-images.githubusercontent.com/29888641/62826693-127fef80-bbc0-11e9-95fe-300241e31397.png" alt="image">
