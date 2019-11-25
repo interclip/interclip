@@ -27,6 +27,7 @@
          <div class="repocard">
              <h1>Interclip desktop</h1>
              <span id="commits"> </span>
+             <br>
              <span id="stars"></span>
          </div>
         <div id="repo"></div>

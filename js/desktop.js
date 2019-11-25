@@ -19,3 +19,15 @@ $.get(
     }
   );
   
+  $.get(
+    "https://api.github.com/repos/aperta-principium/Interclip-desktop/stargazers",
+    {},
+    function(data) {
+        console.log(data);
+        $("#stars").append(
+          "Stars: " + data.length
+        );
+
+    }
+  );
+  
