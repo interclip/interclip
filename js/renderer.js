@@ -9,5 +9,6 @@ if (navigator.appVersion.indexOf("Linux") != -1) OSName = "Linux";
 if (OSName == "MacOS" || OSName == "Windows" || OSName == "Linux") {
     $("#desktopMenuItem").show();
 } else {
+    $("#desktopMenuItem").hide();
     console.log(OSName);
 }
