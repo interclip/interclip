@@ -52,7 +52,7 @@ echo '<div id="endora" style="display: none"><endora></div>';
 
 ?>
 <script src='https://cdn.jsdelivr.net/gh/jquery/jquery/dist/jquery.min.js'></script>
-<script src="js/renderer.js"></script>
+<!--<script src="js/renderer.js"></script> -->
 <script type="module" src="https://cdn.pika.dev/dark-mode-toggle"></script>
 <dark-mode-toggle
       style="display: flex; justify-content: flex-end"
