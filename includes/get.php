@@ -1,6 +1,6 @@
 <title>Get your link | Interclip</title>
 <link rel="stylesheet" href="../css/get.css">
-<link rel="stylesheet" href="../css/dark.css">
+<link rel="stylesheet" href="../css/dark.css" media="(prefers-color-scheme: dark)">
 
 <div id="endora" style="display: none">
   <endora>

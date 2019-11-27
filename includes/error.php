@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="../css/index.css">
-<link rel="stylesheet" href="../css/dark.css">
+<link rel="stylesheet" href="../css/dark.css" media="(prefers-color-scheme: dark)">
 <?php
 include("menu.php");
 $status = $_SERVER['REDIRECT_STATUS'];

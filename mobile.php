@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="css/index.css">
 <link rel="stylesheet" href="css/mobile.css">
-<link rel="stylesheet" href="css/dark.css">
+<link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)">
 <head>
     <meta charset="UTF-8">
     <title>Interclip - easy peasy clipboard sharing</title>

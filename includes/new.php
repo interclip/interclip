@@ -2,7 +2,7 @@
   <endora>
 </div>
 <link rel="stylesheet" href="../css/new.css">
-<link rel="stylesheet" href="../css/dark.css">
+<link rel="stylesheet" href="../css/dark.css" media="(prefers-color-scheme: dark)">
 <title> New clip - Interclip </title>
 <?php
 include_once "menu.php";
