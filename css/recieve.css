@@ -1,22 +1,22 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-html, body {
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+html,
+body {
   width: 100%;
   height: 100%;
-  max-width: 100vw !important;  
-  background-color: #3cbcc3;
-
+  max-width: 100vw !important;
 }
 
 .wrapper {
   font-size: 36px;
   font-weight: bold;
-  
 }
-
-
 
 p {
   color: #fff;
+}
+
+body {
+  background-color: #3cbcc3;
 }
 
 input[type="text"] {
@@ -27,30 +27,29 @@ input[type="text"] {
   background-color: #3cbcc3;
 }
 
-.input-wrap{
+.input-wrap {
   width: 500px;
   margin: 180px auto;
 }
 
-
 .form-container {
   position: relative;
- }
- 
- .full-screen {
-   width: 100%;
-   height: 1000px;
-   padding: 20px;
-   background-color: #3cbcc3;
-   transition: display 0.5s;
-   margin-top: -39px;
- }
- 
- .full-screen {
-   position: absolute;
-   display: block;
- }
- 
+}
+
+.full-screen {
+  width: 100%;
+  height: 1000px;
+  padding: 20px;
+  background-color: #3cbcc3;
+  transition: display 0.5s;
+  margin-top: -39px;
+}
+
+.full-screen {
+  position: absolute;
+  display: block;
+}
+
 button {
   border: 1px solid #000;
   border-radius: 30px;
@@ -64,54 +63,40 @@ button {
   font-size: 24px;
 }
 
-
-
-
 .color {
   display: none;
   width: 100px;
   height: 100px;
   margin: 10px;
   border: 1px solid #000;
-  
 }
-
-
 
 .color-container span {
   margin-left: 10px;
 }
 
-
-
 .color-container input:checked + label .color {
   display: block;
 }
 
-
-
-.color-container {/*
+.color-container {
+  /*
   border: 1px solid #000;*/
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;/*
+  flex-wrap: wrap; /*
   width: 100px;
   height: 100px;*/
-  
 }
-
-
 
 .color-choice input:checked ~ .color-container {
   width: 500px;
   height: 600px;
-
 }
 
 .color-choice input:checked ~ .color-container .color {
   display: block;
 }
-
 
 .indicator {
   display: flex;
@@ -120,20 +105,16 @@ button {
   top: 200px;
   right: 50px;
   font-size: 16px;
-  
 }
 
 .color-wrap {
-   border: 2px solid #000;
+  border: 2px solid #000;
   width: 100px;
   height: 100px;
   padding: 5px;
   background-color: gray;
   color: #fff;
-  
 }
-
-
 
 .priority {
   border: 1px solid black;
@@ -143,7 +124,11 @@ button {
 input[type="radio"] {
   display: none;
 }
-html, body {margin: 0; height: 100%;}
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
 body {
   font-family: "Roboto";
 }
@@ -159,11 +144,11 @@ input {
   display: none; /* Hidden by default */
   width: 100%; /* Full width (cover the whole page) */
   height: 100%; /* Full height (cover the whole page) */
-  top: 0; 
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,1); /* Black background with opacity */
+  background-color: rgba(0, 0, 0, 1); /* Black background with opacity */
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
   cursor: pointer; /* Add a pointer on hover */
 }
@@ -173,6 +158,7 @@ ul {
   padding: 0;
   overflow: hidden;
   background-color: #333;
+  width: 100vw;
 }
 
 li {
