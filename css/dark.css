@@ -10,7 +10,3 @@ a {
 img {
   filter: grayscale(20%) !important;
 }
-.demo-droppable {
-  background: rgb(65, 64, 64) !important;
-  color: #e4e4e4 !important;
-}

@@ -14,7 +14,15 @@
     <link rel="stylesheet" href="css/copy.css">
 </head>
 
-</head>
+<style>
+    @media (prefers-color-scheme: dark) {
+        .demo-droppable {
+            background: rgb(65, 64, 64) !important;
+            color: #e4e4e4 !important;
+        }
+    }
+</style>
+
 <div id="modal" class="modal">
 
     <!-- Modal content -->
@@ -36,7 +44,7 @@ include("includes/menu.php");
             <p>Drag files here or click to upload</p>
         </div>
         <div class="output"></div>
-        <span id="code" class="code"></span> 
+        <span id="code" class="code"></span>
         <br>
         <button id="copy" class="copy">Copy code</button>
     </div>
