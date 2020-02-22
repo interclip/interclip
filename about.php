@@ -1,7 +1,7 @@
  <!-- Compiled and minified CSS -->
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
  <link rel="stylesheet" href="./css/about.css">
- <link rel="stylesheet" href="css/dark.css">
+ <link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)">
 
  <html>
 
