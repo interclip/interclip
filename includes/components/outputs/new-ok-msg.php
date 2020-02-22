@@ -1,5 +1,5 @@
 <p><span id="url" class="url"><?php echo $url ?> </span><br><br> was saved as</p>
-<h1><?php echo $usr ?></h1>
+<h1 class="usrCode"><?php echo $usr ?></h1>
 <div id="embed"> </div>
 <div id="qrcode"></div>
 
