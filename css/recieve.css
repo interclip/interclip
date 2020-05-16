@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 html,
 body {
+  font-family: "Roboto";
+  margin: 0;
+  height: 100%;
   width: 100%;
   height: 100%;
   max-width: 100vw !important;
@@ -44,9 +47,6 @@ input[type="text"] {
   background-color: #3cbcc3;
   transition: display 0.5s;
   margin-top: -39px;
-}
-
-.full-screen {
   position: absolute;
   display: block;
 }
@@ -124,14 +124,6 @@ button {
 }
 input[type="radio"] {
   display: none;
-}
-html,
-body {
-  margin: 0;
-  height: 100%;
-}
-body {
-  font-family: "Roboto";
 }
 a {
   font-size: 18px;
