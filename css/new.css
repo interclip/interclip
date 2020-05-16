@@ -75,7 +75,7 @@ ul {
   }
   
   .active {
-    background-color: # ;
+    background-color: none;
   }
   h1.errheader {
     animation-name: tada;
