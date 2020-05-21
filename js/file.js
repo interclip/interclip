@@ -148,7 +148,7 @@ function showCode(data) {
               $(".code").text(data);
               modal.style.display = "none";
               $(".copy").show();
-              copyBtn.addEventListener("click", function(event) {
+              copyBtn.addEventListener("click", function() {
                 copyTextToClipboard(data);
               });
             }

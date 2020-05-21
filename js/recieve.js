@@ -13,10 +13,6 @@ function printOutText(text) {
   $("#result").text = text;
 }
 
-function submit() {
-  console.log("submit");
-  $("#inputform").submit();
-}
 setInterval(function() {
   placeHolder();
 }, 500);

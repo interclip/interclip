@@ -26,7 +26,9 @@ body.loading .loading-modal {
     margin-top: 11%;
 }
 body {
-	font-family: 'Palanquin'
+    font-family: 'Palanquin';
+    background-color: #ff9800;
+
 }
 .dropzone p {
     height: 100%;
@@ -110,7 +112,4 @@ ul {
   
   .active {
     background-color: #ff9800;
-  }
-  body{
-	  background-color: #ff9800;
   }
