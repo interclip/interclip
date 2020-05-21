@@ -5,6 +5,9 @@ function writeDb($url)
     if (filter_var($url, FILTER_VALIDATE_URL)) {
       include "db.php";
 
+      $url = str_replace("<","&lt;",$url );
+      $url = str_replace(">","&gt;",$url );
+    
 
       // Create connection
       $conn = new mysqli($servername, $username, $password, $DBName);

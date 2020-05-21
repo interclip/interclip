@@ -18,6 +18,11 @@ if (isset($_POST['input'])) {
   // Create connection
   $conn = new mysqli($servername, $username, $password, $DBName);
 
+  $url = $_POST['input'];
+
+  $url = str_replace("<","&lt;",$url );
+  $url = str_replace(">","&gt;",$url );
+
   // Check connection
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -27,7 +32,6 @@ if (isset($_POST['input'])) {
     return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $len);
   }
   $usr = gen_uid(5);
-  $url = $_POST['input'];
   $timestamp = date("Y-m-d H:i:s");
 
   $sqlquery = "SELECT * FROM userurl WHERE url = '$url'";
