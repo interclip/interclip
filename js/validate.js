@@ -10,7 +10,6 @@ function validateForm() {
   if (!isValidURL(x) || x == "") {
     alert("You have to enter a valid URL");
     return false;
-  } else {
   }
 }
 // When the user clicks anywhere outside of the modal, close it
