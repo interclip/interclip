@@ -41,6 +41,17 @@ There is a very simple API for anybody to use. You can use it for storing URLs i
 The API endpoint is at ```http://uni.hys.cz/includes/api```.
 
 
+POST
+`http://uni.hys.cz/includes/api`
+body:
+```json
+{
+  "url": "https://duckduckgo.com"
+}
+```
+GET
+`http://uni.hys.cz/includes/api?url=https://flutter.dev/`
+
 <a name="todo"> </a>
 ## To-dos
 * write a Ruby on Rails lib
