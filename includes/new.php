@@ -41,7 +41,7 @@ if (isset($_POST['input'])) {
     $conn->query($sqlquery);
   } else {
     $sqlquery = "INSERT INTO userurl (id, usr, url, date) VALUES (NULL, '$usr', '$url', '$timestamp') ";
-    if ($conn->query($sqlquery) === TRUE) { } else {
+    if ($conn->query($sqlquery) === FALSE) {
       echo "Error: " . $sqlquery . "<br>" . $conn->error;
     }
   }
