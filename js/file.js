@@ -1,5 +1,6 @@
-var modal = document.getElementById("modal");
-var output = document.querySelector(".output");
+const modal = document.getElementById("modal");
+const output = document.querySelector(".output");
+const copyBtn = document.querySelector(".copy");
 
 fileSizeLimitInMegabytes = 100;
 fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1000000;
@@ -12,7 +13,7 @@ modal.style.display = "none";
     if (!callback || typeof callback !== "function") {
       return;
     }
-    var files;
+    let files;
     if (e.dataTransfer) {
       files = e.dataTransfer.files;
     } else if (e.target) {
@@ -21,7 +22,7 @@ modal.style.display = "none";
     callback.call(null, files);
   }
   function makeDroppable(ele, callback) {
-    var input = document.createElement("input");
+    const input = document.createElement("input");
     input.setAttribute("type", "file");
     input.setAttribute("multiple", true);
     input.style.display = "none";
@@ -62,7 +63,7 @@ modal.style.display = "none";
   ) {
     console.log(files);
     output.innerHTML = "";
-    for (var i = 0; i < files.length; i++) {
+    for (let i = 0; i < files.length; i++) {
       if (files[i].type.indexOf("image/") === 0) {
         output.innerHTML +=
           `<img width="200" src="${URL.createObjectURL(files[i])}" />`;
@@ -90,7 +91,7 @@ function putRe(file) {
 }
 
 function fallbackCopyTextToClipboard(text) {
-  var textArea = document.createElement("textarea");
+  const textArea = document.createElement("textarea");
   textArea.value = text;
   textArea.style.position = "fixed"; //avoid scrolling to bottom
   document.body.appendChild(textArea);
@@ -98,8 +99,8 @@ function fallbackCopyTextToClipboard(text) {
   textArea.select();
 
   try {
-    var successful = document.execCommand("copy");
-    var msg = successful ? "successful" : "unsuccessful";
+    const successful = document.execCommand("copy");
+    const msg = successful ? "successful" : "unsuccessful";
     console.log(`Fallback: Copying text command was ${msg}`);
   } catch (err) {
     console.error(`Fallback: Oops, unable to copy ${err}`);
@@ -126,7 +127,6 @@ function copyTextToClipboard(text) {
     }
   );
 }
-var copyBtn = document.querySelector(".copy");
 function showCode(data) {
   $.get(
     `./includes/components/short-api.php?url=${encodeURI(
@@ -165,9 +165,9 @@ function uploadRe($files) {
   console.log("Uploading file to put.re..");
 
   // API Endpoint
-  var apiUrl = "https://api.put.re/upload";
+  const apiUrl = "https://api.put.re/upload";
 
-  var settings = {
+  const settings = {
     async: false,
     crossDomain: true,
     processData: false,
@@ -177,14 +177,14 @@ function uploadRe($files) {
     mimeType: "multipart/form-data"
   };
 
-  var formData = new FormData();
+  const formData = new FormData();
   formData.append("image", $files);
   settings.data = formData;
 
   modal.style.display = "block";
 
   $.ajax(settings).done(function(response) {
-    var data = JSON.parse(response);
+    const data = JSON.parse(response);
     //data.data.link = "https://iq.now.sh/s/" + data.data.name;
     console.log(data);
     showCode(data);

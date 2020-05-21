@@ -1,5 +1,5 @@
 function placeHolder() {
-  var hash = Math.random()
+  const hash = Math.random()
     .toString(36)
     .substr(2, 5);
 
@@ -18,7 +18,7 @@ setInterval(function() {
 }, 500);
 
 function validateForm() {
-  var x = document.forms["form"]["code"].value;
+  const x = document.forms["form"]["code"].value;
   if (x == "") {
     printOutText("Code must be filled out");
     return false;
