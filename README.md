@@ -54,11 +54,11 @@ GET
 
 <a name="todo"> </a>
 ## To-dos
-* write a Ruby on Rails lib
-* write a JavaScript lib
-* fix text-overflow with long URLs on new.php
-* ~~Text-file embed~~
-* ~~an universal file uploader [StackOverflow](https://stackoverflow.com/questions/58153921/how-can-you-upload-to-catbox-using-javascript)~~
+- [ ] write a Ruby on Rails lib
+- [ ] write a JavaScript lib
+- [ ] fix text-overflow with long URLs on new.php
+- [x] Text-file embed
+- [x] an universal file uploader [StackOverflow](https://stackoverflow.com/questions/58153921/how-can-you-upload-to-catbox-using-javascript)
 
 <a name="howto"> </a>
 ## How to clip?
