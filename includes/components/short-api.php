@@ -3,7 +3,7 @@
 //The URL
 $url = $_GET["url"];
 
-$keyword = $_GET["keyword"];
+//$keyword = $_GET["keyword"];
 
 $action = "shorturl";
 
@@ -16,8 +16,8 @@ $format = "json";
 $contents = file_get_contents("https://u.nu/api.php?action=".$action."&format=".$format."&url=".$url);
 
 //If $contents is not a boolean FALSE value.
-if($contents !== false){
+//if($contents !== false){
     $content = json_decode($contents);
     header('Content-Type: application/json');
     echo json_encode($content);
-}
+//}
