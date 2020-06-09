@@ -17,8 +17,12 @@ setInterval(function() {
   placeHolder();
 }, 500);
 
+function submit() {
+  document.forms.form.submit();
+}
+
 function validateForm() {
-  const x = document.forms["form"]["code"].value;
+  const x = document.forms.form.code.value;
   if (x == "") {
     printOutText("Code must be filled out");
     return false;
