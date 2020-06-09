@@ -127,20 +127,20 @@ function copyTextToClipboard(text) {
   );
 }
 function showCode(data) {
+  /*
   $.get(
     `./includes/components/short-api.php?url=${encodeURI(
       data
     )}&keyword=${data}`,
-
-    function (data, status) {
-      console.log(`Data: ${data.shorturl} \nStatus: ${status}`);
+*/
+let status="success";
       if (status == "success") {
         $.post(
           "includes/api.php",
           {
-            url: data.shorturl,
+            url: data,
           },
-          function (data, status) {
+          function (data, status="success") {
             console.log(`Data: ${data} \nStatus: ${status}`);
             if (status == "success") {
               $("#content").hide();
@@ -154,8 +154,6 @@ function showCode(data) {
           }
         );
       }
-    }
-  );
 }
 
 function uploadRe($files) {
