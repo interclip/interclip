@@ -17,6 +17,10 @@ setInterval(function() {
   placeHolder();
 }, 500);
 
+function submit() {
+  document.forms.form.submit();
+}
+
 function validateForm() {
   const x = document.forms["form"]["code"].value;
   if (x == "") {
