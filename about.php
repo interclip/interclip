@@ -17,7 +17,7 @@
 </div>
 <br>
 
-<body class="">
+<body>
 
     <div class="center">
         <h1>About Interclip</h1>
