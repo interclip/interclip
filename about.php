@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="./css/about.css">
     <link rel="stylesheet" href="./css/dark.css" media="(prefers-color-scheme: dark)">
+    <link rel='stylesheet' type='text/css' href='//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' />
+
 </head>
 <div class="nav">
     <?php
@@ -62,7 +64,6 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="js/about.js"></script>
-    <link rel='stylesheet' type='text/css' href='//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' />
     <style>
         @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
