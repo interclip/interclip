@@ -23,7 +23,7 @@
         <h1>About Interclip</h1>
 
         <div id="repoInfo">
-            Read the <a href="https://aperta-principium.github.io/Interclip/">Documentation </a>
+            Read the <a href="https://aperta-principium.github.io/Interclip/">Documentation</a>
             <br />
             Current release: <span id="version"></span>
             <br />
