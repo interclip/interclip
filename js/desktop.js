@@ -8,12 +8,12 @@ function download(os) {
     function(data) {
       if (os == "Linux" || os == "Ubuntu") {
         location.href =
-          downloadsUrl + data[0].tag_name.replace("v", "") + ".AppImage";
+          `${downloadsUrl + data[0].tag_name.replace("v", "")}.AppImage`;
       } else if (os == "Windows") {
-        location.href = downloadsUrl + "install.exe";
+        location.href = `${downloadsUrl}install.exe`;
       } else if (os == "Macos") {
         location.href =
-          downloadsUrl + data[0].tag_name.replace("v", "") + ".dmg";
+          `${downloadsUrl + data[0].tag_name.replace("v", "")}.dmg`;
       }
     }
   );
