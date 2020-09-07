@@ -20,8 +20,8 @@ if (isset($_POST['input'])) {
 
   $url = $_POST['input'];
 
-  $url = str_replace("<","&lt;",$url );
-  $url = str_replace(">","&gt;",$url );
+  $url = str_replace("<", "&lt;", $url);
+  $url = str_replace(">", "&gt;", $url);
 
   // Check connection
   if ($conn->connect_error) {
