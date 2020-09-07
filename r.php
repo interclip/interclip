@@ -33,7 +33,7 @@ if (isset($_GET['c'])) {
     }
 
     $conn->close();
-} elseif (isset($_GET['f'])) { 
+} elseif (isset($_GET['f'])) {
     $url = $_GET['f'];
     include("includes/proxy.php");
 } else {
