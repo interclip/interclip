@@ -12,7 +12,7 @@ include_once "menu.php";
 
 <?php
 if (isset($_POST['input'])) {
-  include "db.php";
+  include "../db.php";
 
 
   // Create connection
