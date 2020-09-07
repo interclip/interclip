@@ -16,8 +16,6 @@
             media.addListener(handleChange)
         }
 
-        return remove
-
         function handleChange () {
             const scheme = media.matches
             ? 'dark'
