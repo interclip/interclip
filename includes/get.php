@@ -13,12 +13,14 @@ if (!empty($_POST['user'])) {
   $user_code = $_POST['user'];
   include_once "components/get.php";
 }
-if(!empty($url)) {
-function get_shorten_url( $url ) {
-	$headers = get_headers( $url, 1 );
-	if(isset($headers['Location'])) return $headers['Location']; else return $url;
-}
-$realUrl = get_shorten_url($url);
+if (!empty($url)) {
+  function get_shorten_url($url)
+  {
+    $headers = get_headers($url, 1);
+    if (isset($headers['Location'])) return $headers['Location'];
+    else return $url;
+  }
+  $realUrl = get_shorten_url($url);
 }
 ?>
 
@@ -40,7 +42,6 @@ $realUrl = get_shorten_url($url);
         http_response_code(400);
         echo "<p>There was no url found for the code " . $user_code . "</p>";
         die();
-
       }
       ?>
       <div id="embed"> </div>
