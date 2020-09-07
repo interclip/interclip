@@ -5,9 +5,9 @@ function writeDb($url)
     if (filter_var($url, FILTER_VALIDATE_URL)) {
       include "db.php";
 
-      $url = str_replace("<","&lt;",$url );
-      $url = str_replace(">","&gt;",$url );
-    
+      $url = str_replace("<", "&lt;", $url);
+      $url = str_replace(">", "&gt;", $url);
+
 
       // Create connection
       $conn = new mysqli($servername, $username, $password, $DBName);
@@ -49,9 +49,9 @@ function writeDb($url)
     // my else codes goes
   }
 }
-if(isset($_GET['url'])) {
+if (isset($_GET['url'])) {
   writeDb($_GET['url']);
-} else if(isset($_POST['url'])) {
+} else if (isset($_POST['url'])) {
   writeDb($_POST['url']);
 } else {
   http_response_code(404);
