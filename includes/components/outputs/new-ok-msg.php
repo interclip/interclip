@@ -24,18 +24,9 @@
             : 'light'
             onChange(scheme)
         }
-
-        function remove () {
-            if ('removeEventListener' in media) {
-            media.removeEventListener('change', handleChange)
-            } else if ('removeListener' in media) {
-            media.removeListener(handleChange)
-            }
-            onChange = null
-        }
     }
     /* End of copyrighted code, code from https://github.com/feross/color-scheme-change */
-    
+
     const style = window
         .getComputedStyle(document.documentElement)
         .getPropertyValue('content')
