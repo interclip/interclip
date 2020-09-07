@@ -26,7 +26,7 @@
  </div>
  <br>
 
- <body class="">
+ <body>
      <div class="center">
          <h1>Interclip on the desktop</h1>
 
