@@ -20,8 +20,6 @@
 
         $user_os = getOS();
 
-
-
         //header("Location: https://github.com/aperta-principium/Interclip-desktop/releases/latest/download/Interclip-0.1.1.AppImage");
 
         ?>
@@ -31,7 +29,6 @@
  <body class="">
      <div class="center">
          <h1>Interclip on the desktop</h1>
-
 
          <!-- Compiled and minified JavaScript -->
          <script src='https://cdn.jsdelivr.net/gh/jquery/jquery/dist/jquery.min.js'></script>
