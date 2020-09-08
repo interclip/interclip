@@ -2,8 +2,8 @@ const modal = document.getElementById("modal");
 const output = document.querySelector(".output");
 const copyBtn = document.querySelector(".copy");
 
-fileSizeLimitInMegabytes = 100;
-fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1000000;
+const fileSizeLimitInMegabytes = 100;
+const fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1000000;
 
 $(".copy").hide();
 
