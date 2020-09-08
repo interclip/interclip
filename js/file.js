@@ -2,13 +2,15 @@ const modal = document.getElementById("modal");
 const output = document.querySelector(".output");
 const copyBtn = document.querySelector(".copy");
 
-fileSizeLimitInMegabytes = 100;
+const fileSizeLimitInMegabytes = 100;
+const 
 fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1000000;
 
 $(".copy").hide();
 
 modal.style.display = "none";
-(function (window) {
+
+((window) => {
   function triggerCallback(e, callback) {
     if (!callback || typeof callback !== "function") {
       return;
@@ -52,12 +54,13 @@ modal.style.display = "none";
 
     ele.addEventListener("click", function () {
       input.value = null;
-      if (clickEnabled) input.click();
+      if (clickEnabled)
+        input.click();
     });
   }
   window.makeDroppable = makeDroppable;
 })(this);
-(function (window) {
+((window) => {
   makeDroppable(window.document.querySelector(".demo-droppable"), function (
     files
   ) {

@@ -149,6 +149,7 @@ input {
   -ms-transform: translate(-100%, -50%);
   transform: translate(-100%, -50%);
 }
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -176,6 +177,7 @@ li a:hover:not(.active) {
 .active {
   background-color: #ff9800;
 }
+
 .demo-droppable {
   color: #000;
   padding: 100vh 0;
@@ -185,9 +187,11 @@ li a:hover:not(.active) {
 .code {
   font-size: 3rem;
 }
+
 .modal img {
   width: 100%;
 }
+
 .modal {
   max-height: 100vh;
 }

@@ -13,9 +13,9 @@ function printOutText(text) {
   $("#result").text = text;
 }
 
-setInterval(function() {
-  placeHolder();
-}, 500);
+setInterval(() => {
+    placeHolder();
+  }, 500);
 
 function submit() {
   document.forms.form.submit();
@@ -23,7 +23,7 @@ function submit() {
 
 function validateForm() {
   const x = document.forms.form.code.value;
-  if (x == "") {
+  if (x === "") {
     printOutText("Code must be filled out");
     return false;
   } else if (x.length !== 5) {

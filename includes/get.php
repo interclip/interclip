@@ -11,6 +11,8 @@
 include_once "menu.php";
 if (!empty($_POST['user'])) {
   $user_code = $_POST['user'];
+
+  include_once "../db.php";
   include_once "components/get.php";
 }
 if (!empty($url)) {
