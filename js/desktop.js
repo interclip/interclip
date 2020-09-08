@@ -2,7 +2,6 @@ const downloadsUrl =
   "https://github.com/aperta-principium/Interclip-desktop/releases/latest/download/Interclip-";
 
 function download(os) {
-  console.log(os);
   $.get(
     "https://api.github.com/repos/aperta-principium/Interclip-desktop/releases",
     {},
