@@ -4,9 +4,11 @@ body,
   background: #444 !important;
   color: #e4e4e4 !important;
 }
+
 a {
   color: #e39777 !important;
 }
+
 img {
   filter: grayscale(20%) !important;
 }
