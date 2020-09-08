@@ -14,43 +14,8 @@ include_once "menu.php";
 if (isset($_POST['input'])) {
   include "../db.php";
 
-
-  // Create connection
-  $conn = new mysqli($servername, $username, $password, $DBName);
-
   $url = $_POST['input'];
-
-  $url = str_replace("<", "&lt;", $url);
-  $url = str_replace(">", "&gt;", $url);
-
-  // Check connection
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
-  function gen_uid($len = 10)
-  {
-    return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $len);
-  }
-  $usr = gen_uid(5);
-  $timestamp = date("Y-m-d H:i:s");
-
-  $sqlquery = "SELECT * FROM userurl WHERE url = '$url'";
-  $result = $conn->query($sqlquery);
-
-  if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-      $usr = $row['usr'];
-      break;
-    }
-    $conn->query($sqlquery);
-  } else {
-    $sqlquery = "INSERT INTO userurl (id, usr, url, date) VALUES (NULL, '$usr', '$url', '$timestamp') ";
-    if ($conn->query($sqlquery) === FALSE) {
-      echo "Error: " . $sqlquery . "<br>" . $conn->error;
-    }
-  }
-
-  $conn->close();
+  include_once "./components/new.php";
 }
 ?>
 <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js"> </script>
@@ -61,12 +26,10 @@ if (isset($_POST['input'])) {
 
     <div class="title">
       <?php
-      if (isset($_POST['input'])) {
+      if (isset($_POST['input']))
         include_once "components/outputs/new-ok-msg.php";
-      } else {
+      else
         include_once "components/outputs/new-404.php";
-      }
-
       ?>
 
       <script>
