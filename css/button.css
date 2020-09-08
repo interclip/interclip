@@ -20,9 +20,9 @@ a.btn::before {
   right: 0;
   background: linear-gradient(135deg, #6e8efb, #a777e3);
   border-radius: 4px;
-  transition: box-shadow .5s ease, -webkit-transform .2s ease;
-  transition: box-shadow .5s ease, transform .2s ease;
-  transition: box-shadow .5s ease, transform .2s ease, -webkit-transform .2s ease;
+  transition: box-shadow 0.5s ease, -webkit-transform 0.2s ease;
+  transition: box-shadow 0.5s ease, transform 0.2s ease;
+  transition: box-shadow 0.5s ease, transform 0.2s ease, -webkit-transform 0.2s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 a.btn:hover::before {
@@ -32,11 +32,11 @@ a.btn::after {
   position: relative;
   display: inline-block;
   content: attr(data-title);
-  transition: -webkit-transform .2s ease;
-  transition: transform .2s ease;
-  transition: transform .2s ease, -webkit-transform .2s ease;
+  transition: -webkit-transform 0.2s ease;
+  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, -webkit-transform 0.2s ease;
   font-weight: bold;
-  letter-spacing: .01em;
+  letter-spacing: 0.01em;
   will-change: transform;
   -webkit-transform: translateY(var(--ty, 0)) rotateX(var(--rx, 0)) rotateY(var(--ry, 0));
           transform: translateY(var(--ty, 0)) rotateX(var(--rx, 0)) rotateY(var(--ry, 0));
