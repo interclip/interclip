@@ -23,7 +23,7 @@ function submit() {
 
 function validateForm() {
   const x = document.forms.form.code.value;
-  if (x == "") {
+  if (x === "") {
     printOutText("Code must be filled out");
     return false;
   } else if (x.length !== 5) {
