@@ -46,10 +46,12 @@ body {
   font-family: "Lato", sans-serif;
   font-size: 2em;
 }
+
 h1 a {
   text-decoration: none;
   color: white;
 }
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -77,12 +79,14 @@ li a:hover:not(.active) {
 .active {
   background-color: none;
 }
+
 h1.errheader {
   animation-name: tada;
   animation-duration: 4000ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
+
 @keyframes tada {
   from {
     -webkit-transform: scale3d(1, 1, 1);
@@ -115,6 +119,7 @@ h1.errheader {
     transform: scale3d(1, 1, 1);
   }
 }
+
 #qrcode {
   margin-top: 35px;
 }
@@ -125,32 +130,39 @@ h1.errheader {
     height: 50vh;
   }
 }
+
 @media only screen and (min-width: 1000px) {
   iframe#ytplayerSide {
     width: 50vw;
     height: 50vh;
   }
 }
+
 span.url {
   text-overflow: ellipsis !important;
   overflow: hidden !important;
 }
+
 #qrcode > canvas {
   max-width: 50vw;
 }
+
 html {
   content: "";
 }
+
 @media (prefers-color-scheme: light) {
   html {
     content: "light";
   }
 }
+
 @media (prefers-color-scheme: dark) {
   html {
     content: "dark";
   }
 }
+
 .usrCode {
   font-variant-numeric: slashed-zero;
 }
