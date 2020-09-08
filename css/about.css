@@ -3,15 +3,18 @@ img {
   margin-top: 50px;
   height: auto;
 }
+
 a {
   color: black;
   font-weight: 600;
 }
+
 p {
   font-size: 20px;
   padding-right: 10vw;
   padding-left: 10vw;
 }
+
 div.nav ul {
   list-style-type: none;
   margin: 0;
@@ -39,6 +42,7 @@ div.nav li a:hover:not(.active) {
 .active {
   background-color: #673ab7;
 }
+
 #repoInfo {
   margin-top: 50px;
   margin-bottom: 100px;
