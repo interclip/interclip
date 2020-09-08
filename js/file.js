@@ -3,7 +3,8 @@ const output = document.querySelector(".output");
 const copyBtn = document.querySelector(".copy");
 
 const fileSizeLimitInMegabytes = 100;
-const fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1000000;
+const 
+fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1000000;
 
 $(".copy").hide();
 
