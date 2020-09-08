@@ -13,9 +13,9 @@ function printOutText(text) {
   $("#result").text = text;
 }
 
-setInterval(function() {
-  placeHolder();
-}, 500);
+setInterval(() => {
+    placeHolder();
+  }, 500);
 
 function submit() {
   document.forms.form.submit();
