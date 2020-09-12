@@ -1,5 +1,7 @@
 <?php
 
+include_once "../db.php";
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $DBName);
 
@@ -10,10 +12,12 @@ $url = str_replace(">", "&gt;", $url);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
 function gen_uid($len = 10)
 {
     return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $len);
 }
+
 $usr = gen_uid(5);
 $timestamp = date("Y-m-d H:i:s");
 

@@ -12,8 +12,6 @@ include_once "menu.php";
 
 <?php
 if (isset($_POST['input'])) {
-  include "../db.php";
-
   $url = $_POST['input'];
   include_once "./components/new.php";
 }
