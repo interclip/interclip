@@ -12,7 +12,8 @@ $pages = array(
     'file' => ['file', 'Send file'],
     'recieve' => ['recieve', 'Recieve clip'],
     'desktop' => ['desktop', "Desktop"],
-    'about' => ['about', 'About'],
+    'privacy' => ['privacy', 'Privacy policy'],
+    'about' => ['about', 'About']
 );
 if (!isProd()) {
     $scriptNameArray = explode("\\", $scriptPath);
