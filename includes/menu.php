@@ -3,7 +3,6 @@ if (!isset($prodvar)) {
     include('prod.php');
 }
 
-
 $relative_path = $_SERVER['PHP_SELF'];
 $index = 0;
 list($scriptPath) = get_included_files();
@@ -12,7 +11,8 @@ $pages = array(
     'file' => ['file', 'Send file'],
     'recieve' => ['recieve', 'Recieve clip'],
     'desktop' => ['desktop', "Desktop"],
-    'about' => ['about', 'About'],
+    'privacy' => ['privacy', 'Privacy policy'],
+    'about' => ['about', 'About']
 );
 if (!isProd()) {
     $scriptNameArray = explode("\\", $scriptPath);
@@ -57,6 +57,5 @@ echo '<div id="endora" style="display: none"><endora></div>';
 <link rel="manifest" href="/site.webmanifest">
 
 <script src='https://cdn.jsdelivr.net/gh/jquery/jquery/dist/jquery.min.js'></script>
-<!--<script src="js/renderer.js"></script> -->
 <script type="module" src="https://cdn.pika.dev/dark-mode-toggle"></script>
 <dark-mode-toggle style="display: flex; justify-content: flex-end" id="dark-mode-toggle-1" appearance="switch" dark="Dark" light="Light" remember="Remember this"></dark-mode-toggle>
