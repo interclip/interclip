@@ -29,7 +29,7 @@ if ($currFile == "get.php" || $currFile == "new.php") {
 }
 
 // Render the menu
-echo '<ul>';
+echo '<ul id="menu">';
 
 //echo sizeof($pages);
 foreach ($pages as $page) {
