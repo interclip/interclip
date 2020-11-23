@@ -15,9 +15,7 @@
 ## What is it?
 A handy-dandy clipboard sharing tool to share URLs between devices and users
 
-[Stable](http://uni.hys.cz)
-
-[Development](http://unidev.hys.cz/)
+[App](https://link.mannoviny.cz)
 
 ![logo](https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png)
 
