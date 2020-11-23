@@ -25,11 +25,12 @@ body.loading .loading-modal {
 .info {
     margin-top: 11%;
 }
+
 body {
     font-family: 'Palanquin';
     background-color: #ff9800;
-
 }
+
 .dropzone p {
     height: 100%;
     /*line-height: 200px;*/
