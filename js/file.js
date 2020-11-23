@@ -64,7 +64,7 @@ modal.style.display = "none";
   makeDroppable(window.document.querySelector(".demo-droppable"), function (
     files
   ) {
-    console.log(files);
+    $("#content").hide();
     output.innerHTML = "";
     for (let i = 0; i < files.length; i++) {
       if (files[i].type.indexOf("image/") === 0) {
@@ -146,7 +146,6 @@ let status="success";
           (data, status = "success") => {
             console.log(`Data: ${data} \nStatus: ${status}`);
             if (status == "success") {
-              $("#content").hide();
               $(".code").text(data);
               modal.style.display = "none";
               $(".copy").show();
