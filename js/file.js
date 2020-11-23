@@ -141,9 +141,9 @@ let status="success";
             url: data,
           },
           (data, status = "success") => {
-            console.log(`Data: ${data} \nStatus: ${status}`);
+            console.log(`Data: ${data.result} \nStatus: ${status}`);
             if (status == "success") {
-              $(".code").text(data);
+              $(".code").text(data.result);
               modal.style.display = "none";
               $(".copy").show();
               copyBtn.addEventListener("click", () => {
