@@ -77,7 +77,6 @@ modal.style.display = "none";
         }
 
         if (files[i].size > fileSizeLimitInBytes) {
-          console.log(`File size over ${fileSizeLimitInMegabytes} MB.`);
           alert(`File size over ${fileSizeLimitInMegabytes} MB.`);
           location.reload();
           break;
@@ -157,15 +156,12 @@ let status="success";
 }
 
 function uploadRe($files) {
-  console.log($files);
   // Begin file upload
-  console.log("Uploading file to catbox..");
   const request = new XMLHttpRequest();
   request.onreadystatechange = () => {
     if (request.readyState == XMLHttpRequest.DONE) {
       const data = (request.responseText);
       //data.data.link = "https://iq.now.sh/s/" + data.data.name;
-      console.log(data);
       showCode(data);
     }
   };
@@ -183,4 +179,3 @@ function uploadRe($files) {
   modal.style.display = "block";
   $(".demo-droppable").hide();
 }
-console.log("Done");
