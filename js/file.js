@@ -117,11 +117,11 @@ function copyTextToClipboard(text) {
     () => {
       console.log("Async: Copying to clipboard was successful!");
       $(".copy").css("background", "#0db60d");
-      setTimeout(function () {
-        $(".copy").css("background", "#2463ac");
-      }, 3000);
+      setTimeout(() => {
+          $(".copy").css("background", "#2463ac");
+        }, 3000);
     },
-    function (err) {
+    (err) => {
       console.error(`Async: Could not copy text: ${err}`);
       $(".copy").css("background", "#f00");
     }
@@ -161,7 +161,7 @@ function uploadRe($files) {
   // Begin file upload
   console.log("Uploading file to catbox..");
   const request = new XMLHttpRequest();
-  request.onreadystatechange = function () {
+  request.onreadystatechange = () => {
     if (request.readyState == XMLHttpRequest.DONE) {
       const data = (request.responseText);
       //data.data.link = "https://iq.now.sh/s/" + data.data.name;
