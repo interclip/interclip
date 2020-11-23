@@ -41,18 +41,6 @@
 
         <h2>How we use your information</h2>
 
-        <p>We use the information we collect in various ways, including to:</p>
-
-        <ul>
-            <li>Provide, operate, and maintain our webste</li>
-            <li>Improve, personalize, and expand our webste</li>
-            <li>Understand and analyze how you use our webste</li>
-            <li>Develop new products, services, features, and functionality</li>
-            <li>Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the webste, and for marketing and promotional purposes</li>
-            <li>Send you emails</li>
-            <li>Find and prevent fraud</li>
-        </ul>
-
         <h2>Log Files</h2>
 
         <p>Interclip follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.</p>
