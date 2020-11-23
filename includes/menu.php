@@ -48,7 +48,6 @@ foreach ($pages as $page) {
         }
     }
 }
-echo '<div id="endora" style="display: none"><endora></div>';
 
 ?>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">

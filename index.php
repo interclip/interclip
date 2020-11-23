@@ -3,10 +3,6 @@
 <link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)">
 <link rel="stylesheet" href="css/copy.css">
 
-<div id="endora" style="display: none">
-    <endora>
-</div>
-
 <head>
     <meta charset="UTF-8">
     <title>Interclip - easy peasy clipboard sharing</title>

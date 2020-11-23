@@ -1,7 +1,4 @@
 <html>
-<div id="endora" style="display: none">
-    <endora>
-</div>
 
 <head>
     <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
