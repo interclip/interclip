@@ -1,4 +1,8 @@
 <?php
+
+  include_once "./db.php";
+
+
   // Create connection
   $conn = new mysqli($servername, $username, $password, $DBName);
 
