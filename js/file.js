@@ -28,65 +28,63 @@ modal.style.display = "none";
     input.setAttribute("type", "file");
     input.setAttribute("multiple", true);
     input.style.display = "none";
-    input.addEventListener("change", function (e) {
-      triggerCallback(e, callback);
-    });
+    input.addEventListener("change", (e) => {
+        triggerCallback(e, callback);
+      });
     ele.appendChild(input);
 
-    ele.addEventListener("dragover", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      ele.classList.add("dragover");
-    });
+    ele.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        ele.classList.add("dragover");
+      });
 
-    ele.addEventListener("dragleave", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      ele.classList.remove("dragover");
-    });
+    ele.addEventListener("dragleave", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        ele.classList.remove("dragover");
+      });
 
-    ele.addEventListener("drop", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      ele.classList.remove("dragover");
-      triggerCallback(e, callback);
-    });
+    ele.addEventListener("drop", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        ele.classList.remove("dragover");
+        triggerCallback(e, callback);
+      });
 
-    ele.addEventListener("click", function () {
-      input.value = null;
-      if (clickEnabled)
-        input.click();
-    });
+    ele.addEventListener("click", () => {
+        input.value = null;
+        if (clickEnabled)
+          input.click();
+      });
   }
   window.makeDroppable = makeDroppable;
 })(this);
 ((window) => {
-  makeDroppable(window.document.querySelector(".demo-droppable"), function (
-    files
-  ) {
-    $("#content").hide();
-    output.innerHTML = "";
-    for (let i = 0; i < files.length; i++) {
-      if (files[i].type.indexOf("image/") === 0) {
-        output.innerHTML += `<img width="200" src="${URL.createObjectURL(
-          files[i]
-        )}" />`;
-      }
-      output.innerHTML += "<p>" + files[i].name + "</p>";
+  makeDroppable(window.document.querySelector(".demo-droppable"), (files) => {
+      $("#content").hide();
+      output.innerHTML = "";
+      for (let i = 0; i < files.length; i++) {
+        if (files[i].type.indexOf("image/") === 0) {
+          output.innerHTML += `<img width="200" src="${URL.createObjectURL(
+            files[i]
+          )}" />`;
+        }
+        output.innerHTML += "<p>" + files[i].name + "</p>";
 
-      if (clickEnabled != false) {
-        $(".note").fadeOut(500);
-      }
+        if (clickEnabled != false) {
+          $(".note").fadeOut(500);
+        }
 
-      if (files[i].size > fileSizeLimitInBytes) {
-        console.log(`File size over ${fileSizeLimitInMegabytes} MB.`);
-        alert(`File size over ${fileSizeLimitInMegabytes} MB.`);
-        location.reload();
-        break;
+        if (files[i].size > fileSizeLimitInBytes) {
+          console.log(`File size over ${fileSizeLimitInMegabytes} MB.`);
+          alert(`File size over ${fileSizeLimitInMegabytes} MB.`);
+          location.reload();
+          break;
+        }
+        uploadRe(putRe(files[i]));
       }
-      uploadRe(putRe(files[i]));
-    }
-  });
+    });
 })(this);
 function putRe(file) {
   return file;
