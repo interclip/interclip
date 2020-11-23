@@ -150,9 +150,9 @@ let status="success";
               $(".code").text(data);
               modal.style.display = "none";
               $(".copy").show();
-              copyBtn.addEventListener("click", function () {
-                copyTextToClipboard(data);
-              });
+              copyBtn.addEventListener("click", () => {
+                  copyTextToClipboard(data);
+                });
             }
           }
         );
