@@ -28,65 +28,62 @@ modal.style.display = "none";
     input.setAttribute("type", "file");
     input.setAttribute("multiple", true);
     input.style.display = "none";
-    input.addEventListener("change", function (e) {
-      triggerCallback(e, callback);
-    });
+    input.addEventListener("change", (e) => {
+        triggerCallback(e, callback);
+      });
     ele.appendChild(input);
 
-    ele.addEventListener("dragover", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      ele.classList.add("dragover");
-    });
+    ele.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        ele.classList.add("dragover");
+      });
 
-    ele.addEventListener("dragleave", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      ele.classList.remove("dragover");
-    });
+    ele.addEventListener("dragleave", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        ele.classList.remove("dragover");
+      });
 
-    ele.addEventListener("drop", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      ele.classList.remove("dragover");
-      triggerCallback(e, callback);
-    });
+    ele.addEventListener("drop", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        ele.classList.remove("dragover");
+        triggerCallback(e, callback);
+      });
 
-    ele.addEventListener("click", function () {
-      input.value = null;
-      if (clickEnabled)
-        input.click();
-    });
+    ele.addEventListener("click", () => {
+        input.value = null;
+        if (clickEnabled)
+          input.click();
+      });
   }
   window.makeDroppable = makeDroppable;
 })(this);
 ((window) => {
-  makeDroppable(window.document.querySelector(".demo-droppable"), function (
-    files
-  ) {
-    console.log(files);
-    output.innerHTML = "";
-    for (let i = 0; i < files.length; i++) {
-      if (files[i].type.indexOf("image/") === 0) {
-        output.innerHTML += `<img width="200" src="${URL.createObjectURL(
-          files[i]
-        )}" />`;
-      }
-      output.innerHTML += "<p>" + files[i].name + "</p>";
+  makeDroppable(window.document.querySelector(".demo-droppable"), (files) => {
+      $("#content").hide();
+      output.innerHTML = "";
+      for (let i = 0; i < files.length; i++) {
+        if (files[i].type.indexOf("image/") === 0) {
+          output.innerHTML += `<img width="200" src="${URL.createObjectURL(
+            files[i]
+          )}" />`;
+        }
+        output.innerHTML += "<p>" + files[i].name + "</p>";
 
-      if (clickEnabled != false) {
-        $(".note").fadeOut(500);
-      }
+        if (clickEnabled != false) {
+          $(".note").fadeOut(500);
+        }
 
-      if (files[i].size > fileSizeLimitInBytes) {
-        console.log(`File size over ${fileSizeLimitInMegabytes} MB.`);
-        alert(`File size over ${fileSizeLimitInMegabytes} MB.`);
-        location.reload();
-        break;
+        if (files[i].size > fileSizeLimitInBytes) {
+          alert(`File size over ${fileSizeLimitInMegabytes} MB.`);
+          location.reload();
+          break;
+        }
+        uploadRe(putRe(files[i]));
       }
-      uploadRe(putRe(files[i]));
-    }
-  });
+    });
 })(this);
 function putRe(file) {
   return file;
@@ -119,11 +116,11 @@ function copyTextToClipboard(text) {
     () => {
       console.log("Async: Copying to clipboard was successful!");
       $(".copy").css("background", "#0db60d");
-      setTimeout(function () {
-        $(".copy").css("background", "#2463ac");
-      }, 3000);
+      setTimeout(() => {
+          $(".copy").css("background", "#2463ac");
+        }, 3000);
     },
-    function (err) {
+    (err) => {
       console.error(`Async: Could not copy text: ${err}`);
       $(".copy").css("background", "#f00");
     }
@@ -143,14 +140,13 @@ let status="success";
           {
             url: data,
           },
-          function (data, status="success") {
+          (data, status = "success") => {
             console.log(`Data: ${data} \nStatus: ${status}`);
             if (status == "success") {
-              $("#content").hide();
               $(".code").text(data);
               modal.style.display = "none";
               $(".copy").show();
-              copyBtn.addEventListener("click", function () {
+              copyBtn.addEventListener("click", () => {
                 copyTextToClipboard(data);
               });
             }
@@ -160,15 +156,12 @@ let status="success";
 }
 
 function uploadRe($files) {
-  console.log($files);
   // Begin file upload
-  console.log("Uploading file to catbox..");
   const request = new XMLHttpRequest();
-  request.onreadystatechange = function () {
+  request.onreadystatechange = () => {
     if (request.readyState == XMLHttpRequest.DONE) {
       const data = (request.responseText);
       //data.data.link = "https://iq.now.sh/s/" + data.data.name;
-      console.log(data);
       showCode(data);
     }
   };
@@ -186,4 +179,3 @@ function uploadRe($files) {
   modal.style.display = "block";
   $(".demo-droppable").hide();
 }
-console.log("Done");
