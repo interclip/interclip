@@ -186,6 +186,7 @@ li a:hover:not(.active) {
   left: 0;
   height: 90vh;
   width: 90vw;
+  z-index: -5;
 }
 
 .code {
