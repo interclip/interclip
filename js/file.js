@@ -143,7 +143,7 @@ let status="success";
           {
             url: data,
           },
-          function (data, status="success") {
+          (data, status = "success") => {
             console.log(`Data: ${data} \nStatus: ${status}`);
             if (status == "success") {
               $("#content").hide();
@@ -151,8 +151,8 @@ let status="success";
               modal.style.display = "none";
               $(".copy").show();
               copyBtn.addEventListener("click", () => {
-                  copyTextToClipboard(data);
-                });
+                copyTextToClipboard(data);
+              });
             }
           }
         );
