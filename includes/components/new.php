@@ -22,8 +22,8 @@ $timestamp = date("Y-m-d H:i:s");
 
 /* Expiry of clips */
 
-$startdate=strtotime("Today");
-$expires=strtotime("+1 week", $startdate);
+$startdate = strtotime("Today");
+$expires = strtotime("+1 week", $startdate);
 $expiryDate = date("Y-m-d", $expires);
 
 $sqlquery = "SELECT * FROM userurl WHERE url = '$url'";
