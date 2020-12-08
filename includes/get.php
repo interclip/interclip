@@ -38,7 +38,7 @@ if (!empty($url)) {
       if (isset($url)) {
         echo "<p>... is the URL of the code " . $user_code . "</p>";
       } else {
-        http_response_code(400);
+        http_response_code(404);
         echo "<p>There was no url found for the code " . $user_code . "</p>";
         die();
       }
