@@ -90,7 +90,7 @@ async function handleRequest(request) {
     const isInDB = async(cd) => await iclip.get(cd) !== null;
 
     var code = Math.random().toString(36).substr(2, 5);
-    while (await !isInDB(code)) {
+    while (!isInDB(code)) {
         code = Math.random().toString(36).substr(2, 5); // random 5 letter (base 36) string
     }
     console.log(code);
