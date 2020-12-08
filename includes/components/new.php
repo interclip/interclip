@@ -24,6 +24,7 @@ $timestamp = date("Y-m-d H:i:s");
 
 $startdate=strtotime("Today");
 $expires=strtotime("+1 week", $startdate);
+$expiryDate = date("Y-m-d", $expires);
 
 $sqlquery = "SELECT * FROM userurl WHERE url = '$url'";
 $result = $conn->query($sqlquery);
@@ -35,7 +36,7 @@ if ($result->num_rows > 0) {
     }
     $conn->query($sqlquery);
 } else {
-    $sqlquery = "INSERT INTO userurl (id, usr, url, expires) VALUES (NULL, '$usr', '$url', '$timestamp', '$expires') ";
+    $sqlquery = "INSERT INTO userurl (id, usr, url, date, expires) VALUES (NULL, '$usr', '$url', '$timestamp', '$expiryDate') ";
     if ($conn->query($sqlquery) === FALSE) {
         echo "Error: " . $sqlquery . "<br>" . $conn->error;
     }
