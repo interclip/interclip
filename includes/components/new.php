@@ -13,13 +13,17 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-function gen_uid($len = 10)
-{
+function gen_uid($len = 10) {
     return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $len);
 }
 
 $usr = gen_uid(5);
 $timestamp = date("Y-m-d H:i:s");
+
+/* Expiry of clips */
+
+$startdate=strtotime("Today");
+$expires=strtotime("+1 week", $startdate);
 
 $sqlquery = "SELECT * FROM userurl WHERE url = '$url'";
 $result = $conn->query($sqlquery);
@@ -31,7 +35,7 @@ if ($result->num_rows > 0) {
     }
     $conn->query($sqlquery);
 } else {
-    $sqlquery = "INSERT INTO userurl (id, usr, url, date) VALUES (NULL, '$usr', '$url', '$timestamp') ";
+    $sqlquery = "INSERT INTO userurl (id, usr, url, expires) VALUES (NULL, '$usr', '$url', '$timestamp', '$expires') ";
     if ($conn->query($sqlquery) === FALSE) {
         echo "Error: " . $sqlquery . "<br>" . $conn->error;
     }
