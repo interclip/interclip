@@ -1,6 +1,6 @@
 <?php
 
-  include_once "./db.php";
+include_once "./db.php";
 
 if (isset($user_code)) {
   // Create connection
