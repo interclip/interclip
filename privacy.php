@@ -23,7 +23,7 @@
     <div class="center">
         <h1>Privacy Policy for Interclip</h1>
 
-        <p>At Interclip, accessible from http://uni.hys.cz, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Interclip and how we use it.</p>
+        <p>At Interclip, accessible from https://interclip.app, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Interclip and how we use it.</p>
 
         <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
 
