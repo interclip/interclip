@@ -51,8 +51,9 @@ if (!empty($url)) {
   </div>
 </div>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src="https://cdn.jsdelivr.net/gh/aperta-principium/Embed/embed.min.js"> </script>
 <script src="../js/get.js"></script>
-<script>
-  Embed("<?php echo $realUrl ?>");
+<script type="module"> 
+import { embed } from "https://cdn.jsdelivr.net/gh/aperta-principium/embed.js/embed.min.js";
+
+embed("<?php echo $realUrl ?>");
 </script>

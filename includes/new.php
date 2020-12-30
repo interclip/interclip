@@ -16,7 +16,6 @@ include_once "menu.php";
 ?>
 
 <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js"> </script>
-<script src="https://cdn.jsdelivr.net/gh/aperta-principium/Embed/embed.js"> </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"> </script>
 
 <div id="fullscreen">
@@ -30,9 +29,10 @@ include_once "menu.php";
         include_once "components/outputs/new-404.php";
       ?>
 
-      <script>
-        Embed($("#url").text());
-      </script>
+      <script type="module"> 
+      import { embed } from "https://cdn.jsdelivr.net/gh/aperta-principium/embed.js/embed.min.js";
 
+      embed($("#url").text());
+      </script>
     </div>
   </div>
