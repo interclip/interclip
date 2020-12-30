@@ -53,7 +53,7 @@ if (!empty($url)) {
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src="../js/get.js"></script>
 <script type="module"> 
-import { embed } from "https://cdn.jsdelivr.net/gh/aperta-principium/Embed/embed.min.js";
+import { embed } from "https://cdn.jsdelivr.net/gh/aperta-principium/embed.js/embed.min.js";
 
 embed("<?php echo $realUrl ?>");
 </script>

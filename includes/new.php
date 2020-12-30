@@ -30,7 +30,7 @@ include_once "menu.php";
       ?>
 
       <script type="module"> 
-      import { embed } from "https://cdn.jsdelivr.net/gh/aperta-principium/Embed/embed.min.js";
+      import { embed } from "https://cdn.jsdelivr.net/gh/aperta-principium/embed.js/embed.min.js";
 
       embed($("#url").text());
       </script>
