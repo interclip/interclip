@@ -35,7 +35,7 @@ body {
 .dropzone p {
     height: 100%;
     /*line-height: 200px;*/
-    margin: 0%;
+    margin: 0;
     text-align: center;
     width: 100%
 }
@@ -67,7 +67,7 @@ body {
 }
 
 .loading-modal {
-    background-color: rgba(255, 255, 255, .8);
+    background-color: rgba(255, 255, 255, 0.8);
     display: none;
     position: fixed;
     z-index: 1000;
@@ -78,10 +78,7 @@ body {
 }
 
 .loading-table {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 15%;
-    margin-bottom: 15%;
+    margin: 15% auto;
 }
 
 .img {
@@ -93,29 +90,29 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #333;
-  }
-  
-  li {
+}
+
+li {
     float: left;
-    list-style:none;
-  }
-  
-  li a {
+    list-style: none;
+}
+
+li a {
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-  }
-  
-  li a:hover:not(.active) {
-    background-color: #111;
-  }
-  
-  .active {
-    background-color: #ff9800;
-  }
+}
 
-  #menu li:hover{
-      background-color: #222;
-  }
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #ff9800;
+}
+
+#menu li:hover {
+    background-color: #222;
+}
