@@ -16,12 +16,9 @@ body {
   position: absolute;
   height: 50px;
   width: 300px;
-  margin-left: 170px;
   top: 50%;
-  left: 50%;
-  /*
-  transform: translate(-50%, -50%);
-  */
+  left: 0;
+  transform: translate(calc(50vw + 150px));
 }
 
 #content.on {
