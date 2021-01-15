@@ -32,11 +32,13 @@ if ($currFile == "get.php" || $currFile == "new.php") {
 $logos = array_diff(scandir("img/alternate_icons/"), array('.', '..'));
 
 // Render the menu
-echo '<ul id="menu"><li><img style="max-height: 3.5rem; margin-left: 1rem; margin-right: 1rem;" src="./img/alternate_icons/' . $logos[array_rand($logos)] . '"></li>';
+
+/* Random icon */
+//echo '<ul id="menu"><li><img style="max-height: 3.5rem; margin-left: 1rem; margin-right: 1rem;" src="./img/alternate_icons/' . $logos[array_rand($logos)] . '"></li>';
+echo '<ul id="menu"><li><img style="max-height: 3.5rem; margin-left: 1rem; margin-right: 1rem;" src="./img/interclip_logo.png"></li>';
 
 //echo sizeof($pages);
 foreach ($pages as $page) {
-
     $index++;
     //  echo $page;
     if ($page[0] == $currFile) {
