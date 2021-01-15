@@ -29,6 +29,7 @@ body.loading .loading-modal {
 body {
     font-family: 'Palanquin';
     background-color: #ff9800;
+    margin: 0;
 }
 
 .dropzone p {
