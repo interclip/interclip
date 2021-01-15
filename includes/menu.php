@@ -20,6 +20,7 @@ if (!isProd()) {
     $scriptNameArray = explode("/", $scriptPath);
     include_once('analytics.php');
 }
+
 $currFile = end($scriptNameArray);
 
 if ($currFile == "get.php" || $currFile == "new.php") {
@@ -28,8 +29,10 @@ if ($currFile == "get.php" || $currFile == "new.php") {
     $urlPrefix = "./";
 }
 
+$logos = array_diff(scandir("img/alternate_icons/"), array('.', '..'));
+
 // Render the menu
-echo '<ul id="menu">';
+echo '<ul id="menu"><li><img style="max-height: 3.5rem; margin-left: 1rem; margin-right: 1rem;" src="./img/alternate_icons/' . $logos[array_rand($logos)] . '"></li>';
 
 //echo sizeof($pages);
 foreach ($pages as $page) {
