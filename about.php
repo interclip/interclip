@@ -58,7 +58,7 @@
             <p>There&#39;s also a very simple API for developers to use. Check the documentation for details.</p>
             <h2 id="open-source">Open Source</h2>
             <p>The entirety of Interclip is open source. I am working on it just by myself now so any contributions are welcome! And if you&#39;re not really into web-development or you don&#39;t have the time, a star on GitHub would be very appreciated. </p>
-            <p>The APP: <a href="https://link.mannoviny.cz">link.mannoviny.cz</a>
+            <p>The APP: <a href="https://interclip.app">interclip.app</a>
                 Github repo: <a href="https://github.com/aperta-principium/Interclip">aperta-principium/Interclip</a></p>
             <p>Thanks for reading. Happy developing!</p>
 
