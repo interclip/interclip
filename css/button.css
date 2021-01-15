@@ -1,7 +1,8 @@
 a.btn {
   display: inline-block;
   position: relative;
-  padding: 1.5em 2em;
+  padding: 1.8em 2em;
+  padding-top: 1rem;
   padding-top: 0;
   text-decoration: none;
   text-align: center;
@@ -36,6 +37,7 @@ a.btn:hover::before {
 }
 
 a.btn::after {
+  padding-top: 0.3rem;
   position: relative;
   display: inline-block;
   content: attr(data-title);
