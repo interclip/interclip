@@ -33,7 +33,6 @@ input[type="text"] {
 }
 
 .input-wrap {
-  width: 500px;
   margin-right: auto;
   margin-left: auto;
   text-align: center;
@@ -46,7 +45,6 @@ input[type="text"] {
 .full-screen {
   width: 100%;
   height: 1000px;
-  padding: 20px;
   background-color: #3cbcc3;
   transition: display 0.5s;
   margin-top: -39px;
