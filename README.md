@@ -15,7 +15,7 @@
 ## What is it?
 A handy-dandy clipboard sharing tool to share URLs between devices and users
 
-[App](https://link.mannoviny.cz)
+[App](https://interclip.app)
 
 ![logo](https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png)
 
@@ -30,11 +30,11 @@ A handy-dandy clipboard sharing tool to share URLs between devices and users
 
 ## API
 There is a very simple API for anybody to use. You can use it for storing URLs in your To-do app, or as a connection between order IDs and their URLs. The possibilities are endless
-The API endpoint is at ```http://uni.hys.cz/includes/api```.
+The API endpoint is at ```https://interclip.app/includes/api```.
 
 
 POST
-`http://uni.hys.cz/includes/api`
+`https://interclip.app/includes/api`
 body:
 ```json
 {
@@ -42,7 +42,7 @@ body:
 }
 ```
 GET
-`http://uni.hys.cz/includes/api?url=https://flutter.dev/`
+`https://interclip.app/includes/api?url=https://flutter.dev/`
 
 <a name="todo"> </a>
 ## To-dos
@@ -57,7 +57,7 @@ GET
 
 Clipping is easy. Just click on the magnifying glass and paste in your link!
 
-![how-to](https://github.com/filiptronicek/Interclip/raw/master/img/interclip-home.gif)
+![how-to](https://github.com/aperta-principium/Interclip/raw/master/img/interclip-home.gif)
 
 Then press Enter and through the magic of code here is the code to your link!
 
