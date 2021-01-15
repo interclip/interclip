@@ -6,25 +6,29 @@
 
 
     <url>
-        <loc>http://uni.hys.cz/</loc>
+        <loc>https://interclip.app/</loc>
         <lastmod>2019-09-07T08:29:08+00:00</lastmod>
         <priority>1.00</priority>
     </url>
     <url>
-        <loc>http://uni.hys.cz/file</loc>
+        <loc>https://interclip.app/file</loc>
         <lastmod>2019-09-07T08:29:08+00:00</lastmod>
         <priority>0.80</priority>
     </url>
     <url>
-        <loc>http://uni.hys.cz/recieve</loc>
+        <loc>https://interclip.app/recieve</loc>
         <lastmod>2019-09-07T08:21:34+00:00</lastmod>
         <priority>0.80</priority>
     </url>
     <url>
-        <loc>http://uni.hys.cz/about</loc>
+        <loc>https://interclip.app/about</loc>
         <lastmod>2019-09-07T08:21:33+00:00</lastmod>
         <priority>0.80</priority>
     </url>
-
+    <url>
+        <loc>https://interclip.app/privacy</loc>
+        <lastmod>2019-09-07T08:21:33+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
 
 </urlset>
