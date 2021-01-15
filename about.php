@@ -30,7 +30,20 @@
             Current release: <span id="version"></span>
             <br />
             Latest commit: <span id="commit"></span>
+            <br />
+            Total clips: 
+            <?php
+                include_once "./includes/db.php";
+                $conn = new mysqli($servername, $username, $password, $DBName);
 
+                $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
+                $result = $conn->query($sqlquery);
+                while ($row = $result->fetch_assoc()) {
+                    $count = $row['id'];
+                    break;
+                }
+                echo $count;
+            ?>
         </div>
 
         <p>From <a href="https://dev.to/filiptronicek/interclip-2hcn/"> the article</a> on <a href="https://dev.to">dev.to </a></p>
