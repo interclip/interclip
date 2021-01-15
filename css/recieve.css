@@ -1,7 +1,8 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Palanquin&display=swap');
+
 html,
 body {
-  font-family: "Roboto";
+  font-family: 'Palanquin';
   margin: 0;
   width: 100%;
   height: 100%;
@@ -121,10 +122,6 @@ button {
 
 input[type="radio"] {
   display: none;
-}
-
-a {
-  font-size: 18px;
 }
 
 input {
