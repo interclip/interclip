@@ -7,8 +7,7 @@
 1. [Intro](#intro)
 2. [Built with](#dependencies)
 3. [Developer tools](#dependencies)
-4. [To-dos](#todo) 
-5. [Tutorial](#howto)
+4. [Tutorial](#howto)
 
 <a name="intro"> </a>
 
@@ -43,14 +42,6 @@ body:
 ```
 GET
 `https://interclip.app/includes/api?url=https://flutter.dev/`
-
-<a name="todo"> </a>
-## To-dos
-- [ ] write a Ruby on Rails lib
-- [ ] write a JavaScript lib
-- [ ] fix text-overflow with long URLs on new.php
-- [x] Text-file embed
-- [x] an universal file uploader [StackOverflow](https://stackoverflow.com/questions/58153921/how-can-you-upload-to-catbox-using-javascript)
 
 <a name="howto"> </a>
 ## How to clip?
