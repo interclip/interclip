@@ -15,9 +15,11 @@
 
 .modal img {
   width: 100%;
-  display: none;
 }
 
 .modal {
   max-height: 100vh;
+  display: none;
 }
+
+
