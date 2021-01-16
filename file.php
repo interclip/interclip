@@ -14,15 +14,6 @@
     <link rel="stylesheet" href="css/copy.css">
 </head>
 
-<style>
-    @media (prefers-color-scheme: dark) {
-        .demo-droppable {
-            background: rgb(65, 64, 64) !important;
-            color: #e4e4e4 !important;
-        }
-    }
-</style>
-
 <div id="modal" class="modal">
 
     <!-- Modal content -->
