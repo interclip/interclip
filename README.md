@@ -20,7 +20,8 @@ A handy-dandy clipboard sharing tool to share URLs between devices and users
 
 <a name="dependencies"> </a>
 ## Built with
-- [aperta-principium/Embed](https://github.com/aperta-principium/Embed)
+- [aperta-principium/embed.js](https://github.com/aperta-principium/embed.js)
+- [filiptronicek/iclip-external](https://github.com/filiptronicek/iclip-external)
 - [aperta-principium/Interclip-proxy](https://github.com/aperta-principium/Interclip-proxy)
 
 <a name="libs"> </a>
