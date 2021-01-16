@@ -8,6 +8,8 @@ $conn = new mysqli($servername, $username, $password, $DBName);
 $url = str_replace("<", "&lt;", $url);
 $url = str_replace(">", "&gt;", $url);
 
+$url = mysqli_real_escape_string($conn, $url);
+
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
