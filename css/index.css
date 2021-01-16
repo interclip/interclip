@@ -195,6 +195,7 @@ li a:hover:not(.active) {
 
 .modal img {
   width: 100%;
+  display: none;
 }
 
 .modal {

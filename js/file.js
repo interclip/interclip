@@ -8,8 +8,6 @@ fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1000000;
 
 $(".copy").hide();
 
-modal.style.display = "none";
-
 ((window) => {
   function triggerCallback(e, callback) {
     if (!callback || typeof callback !== "function") {
