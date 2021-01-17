@@ -1,8 +1,12 @@
 <?php
 
-  include_once "./db.php";
+include_once "./db.php";
+include_once "./components/rate.php";
 
 if (isset($user_code)) {
+
+  noteLimit("get");
+
   // Create connection
   $conn = new mysqli($servername, $username, $password, $DBName);
 
