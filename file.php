@@ -13,15 +13,6 @@
     <link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)">
     <link rel="stylesheet" href="css/copy.css">
 </head>
-
-<div id="modal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-        <p><img src="css/loading-spin.svg" alt=""></p>
-    </div>
-
-</div>
 <?php
 include("includes/menu.php");
 ?>
@@ -33,6 +24,15 @@ include("includes/menu.php");
         <p class="note">Upload any file type that's under 100MB.</p>
         <div class="demo-droppable">
             <p>Drag files here or click to upload</p>
+        </div>
+                
+        <div id="modal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <p><img height="250" src="css/loading-spin.svg" alt=""></p>
+        </div>
+
         </div>
         <div class="output"></div>
         <span id="code" class="code"></span>
