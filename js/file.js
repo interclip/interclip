@@ -145,7 +145,7 @@ let status="success";
               modal.style.display = "none";
               $(".copy").show();
               copyBtn.addEventListener("click", () => {
-                copyTextToClipboard(data);
+                copyTextToClipboard(data.result);
               });
             }
           }
