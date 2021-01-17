@@ -26,6 +26,9 @@ $timestamp = date("Y-m-d H:i:s");
 $sqlquery = "SELECT * FROM userurl WHERE url = '$url'";
 $result = $conn->query($sqlquery);
 
+$duplicateCodeQuery = "SELECT * FROM `userurl` WHERE usr = '$usr'";
+$duplicateCodeResult = $conn->query($duplicateCodeQuery);
+
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $usr = $row['usr'];
@@ -33,6 +36,13 @@ if ($result->num_rows > 0) {
     }
     $conn->query($sqlquery);
 } else {
+
+    while ($duplicateCodeResult->num_rows > 0) {
+        $usr = gen_uid(5);
+        $duplicateCodeQuery = "SELECT * FROM `userurl` WHERE usr = '$usr'";
+        $duplicateCodeResult = $conn->query($duplicateCodeQuery);
+    }
+
     $sqlquery = "INSERT INTO userurl (id, usr, url, date) VALUES (NULL, '$usr', '$url', '$timestamp') ";
     if ($conn->query($sqlquery) === FALSE) {
         echo "Error: " . $sqlquery . "<br>" . $conn->error;
