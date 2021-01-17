@@ -1,6 +1,7 @@
 <?php
 
 header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
 
 if (!empty($_POST['code'])) {
   $user_code = $_POST['code'];
