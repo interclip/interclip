@@ -201,3 +201,7 @@ li a:hover:not(.active) {
   max-height: 100vh;
   display: none;
 }
+
+.copy {
+  display: none;
+}

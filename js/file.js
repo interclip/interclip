@@ -6,8 +6,6 @@ const fileSizeLimitInMegabytes = 100;
 const 
 fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1000000;
 
-$(".copy").hide();
-
 ((window) => {
   function triggerCallback(e, callback) {
     if (!callback || typeof callback !== "function") {
