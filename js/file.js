@@ -6,10 +6,6 @@ const fileSizeLimitInMegabytes = 100;
 const 
 fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1000000;
 
-$(".copy").hide();
-
-modal.style.display = "none";
-
 ((window) => {
   function triggerCallback(e, callback) {
     if (!callback || typeof callback !== "function") {
@@ -147,7 +143,7 @@ let status="success";
               modal.style.display = "none";
               $(".copy").show();
               copyBtn.addEventListener("click", () => {
-                copyTextToClipboard(data);
+                copyTextToClipboard(data.result);
               });
             }
           }

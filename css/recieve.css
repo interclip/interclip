@@ -1,7 +1,8 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Palanquin&display=swap');
+
 html,
 body {
-  font-family: "Roboto";
+  font-family: 'Palanquin';
   margin: 0;
   width: 100%;
   height: 100%;
@@ -32,7 +33,6 @@ input[type="text"] {
 }
 
 .input-wrap {
-  width: 500px;
   margin-right: auto;
   margin-left: auto;
   text-align: center;
@@ -45,7 +45,6 @@ input[type="text"] {
 .full-screen {
   width: 100%;
   height: 1000px;
-  padding: 20px;
   background-color: #3cbcc3;
   transition: display 0.5s;
   margin-top: -39px;
@@ -118,16 +117,16 @@ button {
   height: 500px;
   padding: 10px;
 }
+
 input[type="radio"] {
   display: none;
 }
-a {
-  font-size: 18px;
-}
+
 input {
   color: white;
   font-size: 6vh;
 }
+
 #modalpage {
   position: fixed; /* Sit on top of the page content */
   display: none; /* Hidden by default */
@@ -141,6 +140,7 @@ input {
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
   cursor: pointer; /* Add a pointer on hover */
 }
+
 ul {
   list-style-type: none;
   margin: 0;

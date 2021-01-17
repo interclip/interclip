@@ -30,7 +30,7 @@ if (preg_match('/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|
 
         <!-- Modal content -->
         <div class="modal-content">
-            <p><img src="css/loading-spin.svg" alt=""></p>
+            <p><img height="250" src="css/loading-spin.svg" alt=""></p>
         </div>
 
     </div>

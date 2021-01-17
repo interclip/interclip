@@ -1,14 +1,20 @@
-body, html,
+body,
+html,
 .full-screen,
 #code {
-  background: #444 !important;
-  color: #e4e4e4 !important;
+    background: #444 !important;
+    color: #e4e4e4 !important;
 }
 
 a {
-  color: #e39777 !important;
+    color: #e39777 !important;
 }
 
 img {
-  filter: grayscale(20%) !important;
+    filter: grayscale(20%) !important;
+}
+
+.demo-droppable {
+    background: #444444 !important;
+    color: #e4e4e4 !important;
 }

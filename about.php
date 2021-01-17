@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="./css/about.css">
     <link rel="stylesheet" href="./css/dark.css" media="(prefers-color-scheme: dark)">
     <link rel='stylesheet' type='text/css' href='//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' />
@@ -30,7 +29,20 @@
             Current release: <span id="version"></span>
             <br />
             Latest commit: <span id="commit"></span>
+            <br />
+            Total clips: 
+            <?php
+                include_once "./includes/db.php";
+                $conn = new mysqli($servername, $username, $password, $DBName);
 
+                $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
+                $result = $conn->query($sqlquery);
+                while ($row = $result->fetch_assoc()) {
+                    $count = $row['id'];
+                    break;
+                }
+                echo $count;
+            ?>
         </div>
 
         <p>From <a href="https://dev.to/filiptronicek/interclip-2hcn/"> the article</a> on <a href="https://dev.to">dev.to </a></p>
@@ -46,7 +58,7 @@
             <p>There&#39;s also a very simple API for developers to use. Check the documentation for details.</p>
             <h2 id="open-source">Open Source</h2>
             <p>The entirety of Interclip is open source. I am working on it just by myself now so any contributions are welcome! And if you&#39;re not really into web-development or you don&#39;t have the time, a star on GitHub would be very appreciated. </p>
-            <p>The APP: <a href="https://link.mannoviny.cz">link.mannoviny.cz</a>
+            <p>The APP: <a href="https://interclip.app">interclip.app</a>
                 Github repo: <a href="https://github.com/aperta-principium/Interclip">aperta-principium/Interclip</a></p>
             <p>Thanks for reading. Happy developing!</p>
 

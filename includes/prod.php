@@ -1,8 +1,8 @@
 <?php
 $GLOBALS['prodvar'] = true;
 $GLOBALS['local'] = "http://localhost";
-$GLOBALS['dev'] = "http://unidev.hys.cz";
-$GLOBALS['uni'] = "http://uni.hys.cz";
+$GLOBALS['dev'] = "https://interclip.app";
+$GLOBALS['uni'] = "https://interclip.app";
 $GLOBALS['link'] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 
 

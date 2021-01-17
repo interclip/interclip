@@ -9,16 +9,16 @@ body {
   color: #fff;
   margin: 0;
   max-height: 100vh !important;
+  overflow-x: hidden;
 }
 
 #content {
   position: absolute;
   height: 50px;
   width: 300px;
-  margin-left: 170px;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 0;
+  transform: translate(calc(50vw + 150px));
 }
 
 #content.on {
@@ -194,9 +194,15 @@ li a:hover:not(.active) {
 }
 
 .modal img {
-  width: 100%;
+  margin: auto;
 }
 
 .modal {
   max-height: 100vh;
+  display: none;
+  text-align: center;
+}
+
+.copy {
+  display: none;
 }

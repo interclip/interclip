@@ -8,12 +8,16 @@
 .demo-droppable.dragover {
   background: #e58900;
 }
+
 .code {
   font-size: 3rem;
 }
-.modal img {
-  width: 100%;
-}
+
 .modal {
   max-height: 100vh;
+  display: none;
+}
+
+#copy {
+  display: none;
 }

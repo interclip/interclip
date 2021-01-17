@@ -1,7 +1,9 @@
 a.btn {
-  position: relative;
   display: inline-block;
-  padding: 1.2em 2em;
+  position: relative;
+  padding: 1.8em 2em;
+  padding-top: 1rem;
+  padding-top: 0;
   text-decoration: none;
   text-align: center;
   cursor: pointer;
@@ -10,7 +12,11 @@ a.btn {
       -ms-user-select: none;
           user-select: none;
   color: white;
+  width: 10rem;
+  line-height: 1.2;
+  height: 5rem;
 }
+
 a.btn::before {
   content: '';
   position: absolute;
@@ -25,10 +31,13 @@ a.btn::before {
   transition: box-shadow 0.5s ease, transform 0.2s ease, -webkit-transform 0.2s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+
 a.btn:hover::before {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
+
 a.btn::after {
+  padding-top: 0.3rem;
   position: relative;
   display: inline-block;
   content: attr(data-title);

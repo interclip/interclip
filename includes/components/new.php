@@ -8,6 +8,8 @@ $conn = new mysqli($servername, $username, $password, $DBName);
 $url = str_replace("<", "&lt;", $url);
 $url = str_replace(">", "&gt;", $url);
 
+$url = mysqli_real_escape_string($conn, $url);
+
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -29,6 +31,9 @@ $expiryDate = date("Y-m-d", $expires);
 $sqlquery = "SELECT * FROM userurl WHERE url = '$url'";
 $result = $conn->query($sqlquery);
 
+$duplicateCodeQuery = "SELECT * FROM `userurl` WHERE usr = '$usr'";
+$duplicateCodeResult = $conn->query($duplicateCodeQuery);
+
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $usr = $row['usr'];
@@ -36,10 +41,16 @@ if ($result->num_rows > 0) {
     }
     $conn->query($sqlquery);
 } else {
+    while ($duplicateCodeResult->num_rows > 0) {
+        $usr = gen_uid(5);
+        $duplicateCodeQuery = "SELECT * FROM `userurl` WHERE usr = '$usr'";
+        $duplicateCodeResult = $conn->query($duplicateCodeQuery);
+    }
     $sqlquery = "INSERT INTO userurl (id, usr, url, date, expires) VALUES (NULL, '$usr', '$url', '$timestamp', '$expiryDate') ";
+
     if ($conn->query($sqlquery) === FALSE) {
         echo "Error: " . $sqlquery . "<br>" . $conn->error;
     }
 }
 
-$conn->close();
+//$conn->close();
