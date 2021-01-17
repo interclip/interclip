@@ -1,108 +1,29 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Palanquin&display=swap');
 
 html,
 body {
-  margin: 0;
-  width: 100%;
-  height: auto;
-  font-family: "Roboto", sans-serif;
-  background: #3cbcc3;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    font-family: 'Palanquin';
+    background: #3cbcc3;
 }
 
 #fullscreen {
-  width: 100%;
-  height: 100%;
-  display: table;
-  background-size: cover;
+    width: 100%;
+    height: 100%;
+    display: table;
+    background-size: cover;
 }
 
 #fullscreen .fullscreen-content {
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  max-width: 100vw;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    max-width: 100vw;
 }
 
 #fullscreen .fullscreen-content .title {
-  display: block;
-  width: 55%;
-  padding: 15px;
-  margin: 0 auto;
-  background-color: rgba(0, 0, 0, 0.5);
-  -webkit-border-radius: 20px;
-  border-radius: 20px;
-  color: #fff;
-}
-
-#fullscreen .fullscreen-content .title h1 {
-  font-family: "Roboto", sans-serif;
-  font-size: 3em;
-  margin: 5px 0;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-#fullscreen .fullscreen-content .title p {
-  font-family: "Roboto", sans-serif;
-  font-size: 2em;
-}
-h1 a {
-  text-decoration: none;
-  color: white;
-}
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover:not(.active) {
-  background-color: #111;
-}
-
-.active {
-  background-color: #3cbcc3;
-}
-@media only screen and (min-width: 700px) {
-  iframe#ytplayerSide {
-    width: 100%;
-    height: 65vh;
-  }
-}
-@media only screen and (max-width: 700px) {
-  iframe#ytplayerSide {
-    display: none;
-  }
-}
-@media only screen and (max-width: 1000px) {
-  #fullscreen .fullscreen-content .title {
-    display: block;
-    width: 100vw;
-    padding: 0;
-    margin: 0 auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    -webkit-border-radius: 20px;
-    border-radius: 20px;
-    color: #fff;
-    overflow: hidden;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  #fullscreen .fullscreen-content .title {
     display: block;
     width: 55%;
     padding: 15px;
@@ -111,9 +32,93 @@ li a:hover:not(.active) {
     -webkit-border-radius: 20px;
     border-radius: 20px;
     color: #fff;
-  }
 }
+
+#fullscreen .fullscreen-content .title h1 {
+    font-family: "Roboto", sans-serif;
+    font-size: 3em;
+    margin: 5px 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#fullscreen .fullscreen-content .title p {
+    font-family: "Roboto", sans-serif;
+    font-size: 2em;
+}
+h1 a {
+    text-decoration: none;
+    color: white;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #3cbcc3;
+}
+
+@media only screen and(min-width: 700px) {
+    iframe#ytplayerSide {
+        width: 100%;
+        height: 65vh;
+    }
+}
+
+@media only screen and(max-width: 700px) {
+    iframe#ytplayerSide {
+        display: none;
+    }
+}
+
+@media only screen and(max-width: 1000px) {
+    #fullscreen .fullscreen-content .title {
+        display: block;
+        width: 100vw;
+        padding: 0;
+        margin: 0 auto;
+        background-color: rgba(0, 0, 0, 0.5);
+        -webkit-border-radius: 20px;
+        border-radius: 20px;
+        color: #fff;
+        overflow: hidden;
+    }
+}
+
+@media only screen and(min-width: 1000px) {
+    #fullscreen .fullscreen-content .title {
+        display: block;
+        width: 55%;
+        padding: 15px;
+        margin: 0 auto;
+        background-color: rgba(0, 0, 0, 0.5);
+        -webkit-border-radius: 20px;
+        border-radius: 20px;
+        color: #fff;
+    }
+}
+
 img {
-  width: 80%;
-  height: auto;
+    width: 80%;
+    height: auto;
 }

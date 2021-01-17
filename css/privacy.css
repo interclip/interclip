@@ -1,10 +1,11 @@
 .center {
     width: 80vw;
     margin: auto;
+    text-align: center;
 }
 
 @media only screen and (min-width: 800px) {
     .center {
-        width: 50vw;
+        width: 40vw;
     }
 }
