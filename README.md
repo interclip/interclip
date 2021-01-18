@@ -3,6 +3,7 @@
 
 ![clipboard](https://img.shields.io/badge/clipboard-copied-orange) ![Clipboard](https://img.shields.io/github/repo-size/aperta-principium/Interclip) [![Maintainability](https://api.codeclimate.com/v1/badges/0a72c92a0a2da0c79ba5/maintainability)](https://codeclimate.com/github/aperta-principium/Interclip/maintainability)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/aperta-principium/interclip/latest)
+
 ## Table of contents
 1. [Intro](#intro)
 2. [Built with](#dependencies)
@@ -17,6 +18,15 @@ A handy-dandy clipboard sharing tool to share URLs between devices and users
 [App](https://interclip.app)
 
 ![logo](https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png)
+
+
+<a name="clients"> </a>
+## Client apps
+Different apps for different platforms
+
+- Interclip mobile [Repo](https://github.com/filiptronicek/iclip-mobile), [Google Play](https://play.google.com/store/apps/details?id=com.filiptronicek.iclip)
+- Interclip desktop [Repo](https://github.com/aperta-principium/Interclip-desktop), [Downloads](https://github.com/aperta-principium/Interclip-desktop/releases)
+- Interclip browser extension [Repo](https://github.com/aperta-principium/iclip-ext)
 
 <a name="dependencies"> </a>
 ## Built with
