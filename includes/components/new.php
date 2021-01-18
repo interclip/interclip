@@ -18,12 +18,17 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-function gen_uid($len = 10)
-{
+function gen_uid($len = 10) {
     return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $len);
 }
 
 $usr = gen_uid(5);
+
+/* Expiry of clips */
+
+$startdate = strtotime("Today");
+$expires = strtotime("+1 month", $startdate);
+$expiryDate = date("Y-m-d", $expires);
 
 $sqlquery = "SELECT * FROM userurl WHERE url = '$url'";
 $result = $conn->query($sqlquery);
@@ -38,14 +43,12 @@ if ($result->num_rows > 0) {
     }
     $conn->query($sqlquery);
 } else {
-
     while ($duplicateCodeResult->num_rows > 0) {
         $usr = gen_uid(5);
         $duplicateCodeQuery = "SELECT * FROM `userurl` WHERE usr = '$usr'";
         $duplicateCodeResult = $conn->query($duplicateCodeQuery);
     }
-
-    $sqlquery = "INSERT INTO userurl (id, usr, url, date) VALUES (NULL, '$usr', '$url', NOW()) ";
+    $sqlquery = "INSERT INTO userurl (id, usr, url, date, expires) VALUES (NULL, '$usr', '$url', '$timestamp', '$expiryDate') ";
     if ($conn->query($sqlquery) === FALSE) {
         echo "Error: " . $sqlquery . "<br>" . $conn->error;
     }
