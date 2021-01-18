@@ -48,7 +48,7 @@ if ($result->num_rows > 0) {
         $duplicateCodeQuery = "SELECT * FROM `userurl` WHERE usr = '$usr'";
         $duplicateCodeResult = $conn->query($duplicateCodeQuery);
     }
-    $sqlquery = "INSERT INTO userurl (id, usr, url, date, expires) VALUES (NULL, '$usr', '$url', '$timestamp', '$expiryDate') ";
+    $sqlquery = "INSERT INTO userurl (id, usr, url, date, expires) VALUES (NULL, '$usr', '$url', NOW(), '$expiryDate') ";
     if ($conn->query($sqlquery) === FALSE) {
         echo "Error: " . $sqlquery . "<br>" . $conn->error;
     }
