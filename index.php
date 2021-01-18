@@ -17,7 +17,7 @@
 
     <form name="urlform" id="content" onsubmit="return validateForm()" action="./includes/new" method="POST">
 
-        <input type="url" name="input" class="input" id="search-input">
+        <input type="url" name="input" class="input" id="search-input" autofocus>
         <button type="reset" class="search" id="search-btn"></button>
 
     </form>
