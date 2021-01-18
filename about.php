@@ -98,7 +98,7 @@
     </style>
     <div class='madeBy center'>
         made with <i class="icon ion-heart"></i> and a little bit of code by &nbsp;
-        <span><a href="https://github.com/filiptronicek"><img src="http://github.com/filiptronicek.png"></a></span></div>
+        <span><a href="https://github.com/filiptronicek"><img src="https://github.com/filiptronicek.png"></a></span></div>
 
 
 </body>
