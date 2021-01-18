@@ -139,12 +139,12 @@ input {
   font-size: 16px;
   font-weight: 400;
   outline: 0;
-  -webkit-transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out,
+  -webkit-transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out,
     padding 0.2s;
-  transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out,
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out,
     padding 0.2s;
-  -webkit-transition-delay: 0.4s, 0s, 0.4s;
-  transition-delay: 0.4s, 0s, 0.4s;
+  -webkit-transition-delay: 0.2s, 0s, 0.2s;
+  transition-delay: 0.2s, 0s, 0.2s;
   -webkit-transform: translate(-100%, -50%);
   -ms-transform: translate(-100%, -50%);
   transform: translate(-100%, -50%);

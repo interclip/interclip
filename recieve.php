@@ -26,7 +26,7 @@
 
                     <div class="input-wrap">
                         <p class="title">Recieve link</p>
-                        <input type="text" name="user" maxlength="5" id="code" placeholder="h&amp;$h">
+                        <input type="text" name="user" minlength="5" maxlength="5" id="code" placeholder="h&amp;$h">
                         <br>
 
                         <br>

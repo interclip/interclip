@@ -138,6 +138,7 @@ h1.errheader {
 }
 
 span.url {
+  display: block;
   text-overflow: ellipsis !important;
   overflow: hidden !important;
 }

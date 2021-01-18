@@ -1,6 +1,9 @@
 <?php
 
 include_once "./db.php";
+include_once "./components/rate.php";
+
+noteLimit("set");
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $DBName);
@@ -20,7 +23,6 @@ function gen_uid($len = 10) {
 }
 
 $usr = gen_uid(5);
-$timestamp = date("Y-m-d H:i:s");
 
 /* Expiry of clips */
 
@@ -47,7 +49,6 @@ if ($result->num_rows > 0) {
         $duplicateCodeResult = $conn->query($duplicateCodeQuery);
     }
     $sqlquery = "INSERT INTO userurl (id, usr, url, date, expires) VALUES (NULL, '$usr', '$url', '$timestamp', '$expiryDate') ";
-
     if ($conn->query($sqlquery) === FALSE) {
         echo "Error: " . $sqlquery . "<br>" . $conn->error;
     }
