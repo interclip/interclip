@@ -1,12 +1,15 @@
 <?php
 
+include_once "./db.php";
+include_once "./salt.php";
+
 $GLOBALS['servername'] = $servername;
 $GLOBALS['username'] = $username;
 $GLOBALS['password'] = $password;
 $GLOBALS['dbname'] = $DBName;
+$GLOBALS['salt'] = $salt;
 
 function noteLimit($action) {
-    include_once "./db.php";
     
     //whether ip is from share internet
     if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -21,7 +24,7 @@ function noteLimit($action) {
         $ip = $_SERVER['REMOTE_ADDR'];
     }
 
-    $cryptIP = hash("sha512", $ip);
+    $cryptIP = hash("sha512", $GLOBALS['salt']."-".$ip);
 
     // Create connection
     $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
