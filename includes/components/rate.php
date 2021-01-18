@@ -43,6 +43,7 @@ function noteLimit($action) {
     
     if($count > 15) {
         die("Rate Limited");
+        http_response_code(429);
     }
 
     $sqlquery = "INSERT INTO hits (id, iphash, date, operation) VALUES (NULL, '$cryptIP', NOW(), '$action') ";
