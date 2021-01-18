@@ -34,7 +34,7 @@ function noteLimit($action) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $rateLimitCheck = "SELECT COUNT(*) FROM `hits` where `date` > (CURRENT_TIMESTAMP - 3600) AND `iphash` = '$cryptIP'";
+    $rateLimitCheck = "SELECT COUNT(*) FROM `hits` where `date` > (CURRENT_TIMESTAMP - 60) AND `iphash` = '$cryptIP'";
     $rateLimitCheckResult = $conn->query($rateLimitCheck);
     while ($row = $rateLimitCheckResult->fetch_assoc()) {
         $count = $row["COUNT(*)"];
