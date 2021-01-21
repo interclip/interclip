@@ -10,7 +10,13 @@ function writeDb($url)
       include "db.php";
       include_once "components/new.php";
     }
-    echo json_encode(['status' => 'success', 'result' => $usr]);
+    if(isset($usr) && $usr != null) {
+      echo json_encode(['status' => 'success', 'result' => $usr]);
+    } else {
+      http_response_code(400);
+      echo json_encode(['status' => 'error', 'result' => 'invalid URL specified']);
+    }
+
   } else {
     http_response_code(404);
     echo json_encode(['status' => 'error', 'result' => 'no URL provided']);
