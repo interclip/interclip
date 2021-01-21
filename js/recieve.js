@@ -3,15 +3,16 @@ function placeHolder() {
     .toString(36)
     .substr(2, 5);
 
-  ("#code").attr("placeholder", hash);
+  document.querySelector("#code").setAttribute("placeholder", hash);
 }
+
 function printOutText(text) {
-  $("#result").text = text;
+  document.querySelector("#result").innerText = text;
 }
 
 setInterval(() => {
     placeHolder();
-  }, 500);
+}, 500);
 
 function submit() {
   document.forms.form.submit();
