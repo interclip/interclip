@@ -81,26 +81,6 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="js/about.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-
-        .madeBy {
-            font-family: 'Open Sans', cursive;
-            text-transform: uppercase;
-            font-size: 1.2rem;
-        }
-
-        .madeBy>span>a {
-            font-weight: 600;
-            color: black;
-            text-decoration: none;
-        }
-
-        .madeBy>span>a>img {
-            border-radius: 250px;
-            width: 25px;
-        }
-    </style>
     <div class='madeBy center'>
         made with <i class="icon ion-heart"></i> and a little bit of code by &nbsp;
         <span><a href="https://github.com/filiptronicek"><img src="https://github.com/filiptronicek.png"></a></span></div>
