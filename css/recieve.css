@@ -30,6 +30,7 @@ input[type="text"] {
   width: 200px;
   font-size: 36px;
   background-color: #3cbcc3;
+  margin-bottom: 3rem;
 }
 
 .input-wrap {

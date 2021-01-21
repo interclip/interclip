@@ -28,10 +28,6 @@
                         <p class="title">Recieve link</p>
                         <input type="text" name="user" minlength="5" maxlength="5" id="code" placeholder="h&amp;$h">
                         <br>
-
-                        <br>
-
-                        <br>
                         <a class="btn" onClick="submit()" data-title="Make the magic happen"></a>
                         <div id="result"></div>
                         <div id="modalpage">
