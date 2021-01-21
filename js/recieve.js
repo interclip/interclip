@@ -3,11 +3,7 @@ function placeHolder() {
     .toString(36)
     .substr(2, 5);
 
-  if ($("#code").attr("placeholder", hash)) {
-    console.log("Placed holder");
-  } else {
-    console.log("fuck me");
-  }
+  ("#code").attr("placeholder", hash);
 }
 function printOutText(text) {
   $("#result").text = text;
