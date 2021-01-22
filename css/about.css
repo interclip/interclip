@@ -16,34 +16,6 @@ p {
     padding-left: 10vw;
 }
 
-div.nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-div.nav li {
-    float: left;
-}
-
-div.nav li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-div.nav li a:hover:not(.active) {
-    background-color: #111;
-}
-
-.active {
-    background-color: #673ab7;
-}
-
 #repoInfo {
     margin-top: 50px;
     margin-bottom: 100px;
