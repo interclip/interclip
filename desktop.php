@@ -12,19 +12,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
-<div class="nav">
-    <?php
-    include_once "includes/menu.php";
-    include_once "includes/getos.php";
-    $user_agent = $_SERVER['HTTP_USER_AGENT'];
-
-    $user_os = getOS();
-
-    ?>
-</div>
-<br>
-
 <body>
+    <div class="nav">
+        <?php
+        include_once "includes/menu.php";
+        include_once "includes/getos.php";
+        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+        $user_os = getOS();
+
+        ?>
+    </div>
     <div class="center">
         <h1>Interclip on the desktop</h1>
 
