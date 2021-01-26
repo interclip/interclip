@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
 
 <head>
     <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
