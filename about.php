@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/about.css">
     <link rel="stylesheet" href="./css/dark.css" media="(prefers-color-scheme: dark)">
     <link rel='stylesheet' type='text/css' href='//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' />
+    <link rel="stylesheet" href="./css/menu.css">
 
 </head>
 <div class="nav">

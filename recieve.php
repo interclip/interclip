@@ -10,6 +10,7 @@
     <link href="css/button.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/recieve.css">
     <link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="./css/menu.css">
 </head>
 
 <body>

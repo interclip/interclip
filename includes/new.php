@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="../css/new.css">
 <link rel="stylesheet" href="../css/dark.css" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../css/menu.css">
 <title> New clip - Interclip </title>
 
 <?php

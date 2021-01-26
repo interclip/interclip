@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="css/index.css">
 <link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)">
 <link rel="stylesheet" href="css/copy.css">
+<link rel="stylesheet" href="./css/menu.css">
 
 <head>
     <meta charset="UTF-8">

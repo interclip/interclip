@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/dark.css" media="(prefers-color-scheme: dark)">
     <link rel="stylesheet" href="./css/new.css">
     <link rel="stylesheet" href="./css/privacy.css">
-
+    <link rel="stylesheet" href="./css/menu.css">
 </head>
 <div class="nav">
     <?php
