@@ -39,6 +39,8 @@
             Total clips: 
             <?php
                 include_once "./includes/db.php";
+                include_once "./includes/components/rate.php";
+
                 $conn = new mysqli($servername, $username, $password, $DBName);
 
                 $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
@@ -47,6 +49,7 @@
                     $count = $row['id'];
                     break;
                 }
+                noteLimit("about");
                 echo $count;
             ?>
         </div>
