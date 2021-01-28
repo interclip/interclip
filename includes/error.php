@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="../css/index.css">
         <link rel="stylesheet" href="../css/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="./css/menu.css">
     </head>
 
     <?php
