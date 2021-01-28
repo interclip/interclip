@@ -10,13 +10,6 @@
     AddDefaultCharset UTF-8
     DefaultLanguage en-US
 
-    # REDIRECT FAVICON.ICO
-    <ifmodule mod_rewrite.c>
-    RewriteCond %{REQUEST_URI} !^/favicon\.ico [NC]
-    RewriteCond %{REQUEST_URI} favicon\.ico    [NC]
-    RewriteRule (.*) img/favicon.ico [R=301,L]
-    </ifmodule>
-
     # Prevent directory listings
     Options All -Indexes
 
