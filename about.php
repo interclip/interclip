@@ -32,8 +32,7 @@
         <div id="repoInfo">
             Read the <a href="https://aperta-principium.github.io/Interclip/">Documentation</a>
             <br />
-            Current release: <span id="version"></span>
-            <br />
+            <span id="release">Current release: <span id="version"></span><br /></span>
             Deployed from commit: <span id="commit"><a href="<?php echo $commit ?>"> <?php echo $hashShort ?> </a></span>
             <br />
             Total clips: 
