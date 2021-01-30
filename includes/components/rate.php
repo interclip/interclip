@@ -50,5 +50,8 @@ function noteLimit($action) {
     $result = $conn->query($sqlquery);
     if ($result === FALSE) {
         echo "Error: " . $sqlquery . "<br>" . $conn->error;
+        return false;
     }
+
+    return true;
 }
