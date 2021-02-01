@@ -7,8 +7,7 @@
 ## Table of contents
 1. [Intro](#intro)
 2. [Built with](#dependencies)
-3. [Developer tools](#dependencies)
-4. [Tutorial](#howto)
+3. [Tutorial](#howto)
 
 <a name="intro"> </a>
 
@@ -33,10 +32,6 @@ Different apps for different platforms
 - [aperta-principium/embed.js](https://github.com/aperta-principium/embed.js)
 - [filiptronicek/iclip-external](https://github.com/filiptronicek/iclip-external)
 - [aperta-principium/Interclip-proxy](https://github.com/aperta-principium/Interclip-proxy)
-
-<a name="libs"> </a>
-## Developer libraries
-* [Python wrapper](https://github.com/aperta-principium/Interclip-python)
 
 ## API
 There is a very simple API for anybody to use. You can use it for storing URLs in your To-do app, or as a connection between order IDs and their URLs. The possibilities are endless
