@@ -27,7 +27,6 @@ $salt = "aEk8szZcZRjDGUvnoJWT6ECcnHTGWXFKR3M7v63CL2GbmNYD4QEJz3Z2H9jdrGXe6Uigk";
 
 ## Setting up the database
 You can create the database and the tables by just executing the following SQL query:
-https://litter.catbox.moe/gf4n60.sql
 ```sql
 
 /* Rate limit table */
@@ -50,4 +49,13 @@ CREATE TABLE `userurl` (
   `expires` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1182 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+``` 
+
+### Setting up MySQL cron jobs
+```sql
+/* Delete expired clips (runs every hour) */
+CREATE EVENT `clean_expired` ON SCHEDULE EVERY 1 HOUR STARTS '2021-02-01 13:39:14' ON COMPLETION NOT PRESERVE ENABLE DO DELETE FROM userurl WHERE expires < CURDATE()
+
+/* Cleans the DB hits table with events older than 5 hours */ 
+CREATE EVENT `clean_hits` ON SCHEDULE EVERY 1 DAY STARTS '2014-01-18 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO DELETE FROM `hits` where `date` < (CURRENT_TIMESTAMP - 18000)
 ```
