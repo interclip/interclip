@@ -15,11 +15,6 @@ if (isset($user_code)) {
     die("Connection failed: " . $conn->connect_error);
   }
 
-  /* Delete expired clips */
-
-  $sql = "DELETE FROM userurl WHERE expires < CURDATE()";
-  $conn->query($sql);
-
   /* Prepare and execute SQL query to get clips */
 
   $sqlquery = "SELECT * FROM userurl WHERE usr = '$user_code'";
