@@ -7,7 +7,7 @@ ports:
 tasks:
 - name: Terminal
   command: >
-    mysql -e "CREATE DATABASE iclip; USE iclip;";
+    mysql -e "CREATE DATABASE iclip;";
     mysql < scripts/db.sql;
     bash scripts/secrets.sh;
 - name: Apache
