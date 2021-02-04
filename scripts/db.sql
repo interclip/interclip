@@ -20,10 +20,8 @@ CREATE TABLE `userurl` (
   `expires` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-``` 
 
 ### Setting up MySQL cron jobs
-```sql
 /* Delete expired clips (runs every hour) */
 CREATE EVENT `clean_expired` ON SCHEDULE EVERY 1 HOUR STARTS '2021-02-01 13:39:14' ON COMPLETION NOT PRESERVE ENABLE DO DELETE FROM userurl WHERE expires < CURDATE();
 
