@@ -8,11 +8,8 @@ tasks:
 - name: Terminal
   command: >
     echo "";
-    echo "Commands you can try:";
-    echo " * apachectl stop";
-    echo " * apachectl start";
-    echo " * gp open /var/log/apache2/access.log";
-    echo " * gp open /var/log/apache2/error.log";
+    mysql -e "CREATE DATABASE iclip; USE iclip;"
+    mysql < scripts/db.sql
 - name: Apache
   command: >
     apachectl start &&
