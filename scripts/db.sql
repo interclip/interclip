@@ -1,3 +1,5 @@
+USE iclip;
+
 /* Rate limit table */
 DROP TABLE IF EXISTS `hits`;
 CREATE TABLE `hits` (
