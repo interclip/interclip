@@ -1,6 +1,10 @@
 # Setting up Interclip locally
 Hi, thanks for considering contributing to Interclip! Here's a guide on how to get you set up.
 
+## The quick and easy way - GitPod
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/aperta-principium/Interclip)
+
+
 ## Prerequisites
 - Apache server (needed for the .htaccess redirections)
 - PHP 7.4+

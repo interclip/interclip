@@ -3,6 +3,7 @@
 
 ![clipboard](https://img.shields.io/badge/clipboard-copied-orange) ![Clipboard](https://img.shields.io/github/repo-size/aperta-principium/Interclip) [![Maintainability](https://api.codeclimate.com/v1/badges/0a72c92a0a2da0c79ba5/maintainability)](https://codeclimate.com/github/aperta-principium/Interclip/maintainability)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/aperta-principium/interclip/latest)
+[![GitPod badge](https://img.shields.io/badge/setup-automated-blue?logo=gitpod)](https://gitpod.io/#https://github.com/aperta-principium/Interclip)
 
 ## Table of contents
 1. [Intro](#intro)

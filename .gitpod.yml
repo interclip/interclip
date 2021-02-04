@@ -1,0 +1,16 @@
+image:
+  file: .gitpod.dockerfile
+ports:
+- port: 8080
+  onOpen: open-preview
+tasks:
+- name: Terminal
+  command: >
+    gp await-port 3306 &&
+    mysql -e "CREATE DATABASE iclip;";
+    mysql < scripts/db.sql;
+    bash scripts/secrets.sh;
+- name: Apache
+  command: >
+    apachectl start &&
+    multitail /var/log/apache2/access.log -I /var/log/apache2/error.log
