@@ -24,7 +24,7 @@ Different apps for different platforms
 
 - Interclip mobile [Repo](https://github.com/filiptronicek/iclip-mobile), [Google Play](https://play.google.com/store/apps/details?id=com.filiptronicek.iclip)
 - Interclip desktop [Repo](https://github.com/aperta-principium/Interclip-desktop), [Downloads](https://github.com/aperta-principium/Interclip-desktop/releases)
-- Interclip browser extension [Repo](https://github.com/aperta-principium/iclip-ext), [Firefox addon](https://addons.mozilla.org/en-US/firefox/addon/interclip/)
+- Interclip browser extension [Repo](https://github.com/aperta-principium/iclip-ext), [Firefox addon](https://addons.mozilla.org/en-US/firefox/addon/interclip/), [Chrome extension](https://chrome.google.com/webstore/detail/interclip-extension/mpgjjbeepoonaaeaodiadghpnaadnngg)
 
 <a name="dependencies"> </a>
 ## Built with
