@@ -9,6 +9,7 @@
 1. [Intro](#intro)
 2. [Built with](#dependencies)
 3. [Tutorial](#howto)
+<img src="https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png" alt="Interclip logo" width="150">
 
 <a name="intro"> </a>
 
@@ -16,9 +17,6 @@
 A handy-dandy clipboard sharing tool to share URLs between devices and users
 
 [App](https://interclip.app)
-
-![logo](https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png)
-
 
 <a name="clients"> </a>
 ## Client apps
