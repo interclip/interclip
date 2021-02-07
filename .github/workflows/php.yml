@@ -1,0 +1,19 @@
+name: PHP Composer
+
+on:
+  pull_request:
+    branches: [ main ]
+    types: [opened]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: unsplash/comment-on-pr@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        msg: Interclip has been deployed for review to [GitPod](https://gitpod.io/#https://github.com/aperta-principium/Interclip/pull/${{ github.event.number }}).
