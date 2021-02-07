@@ -36,6 +36,7 @@ Different apps for different platforms
 ## API
 There is a very simple API for anybody to use. Remember, that clips only last for one month! (as of [v3.2.4](https://github.com/aperta-principium/Interclip/releases/tag/v3.2.4))
 ### Create clips
+#### Example queries
 POST
 `https://interclip.app/includes/api`
 body:
@@ -47,7 +48,16 @@ body:
 GET
 `https://interclip.app/includes/api?url=https://flutter.dev/`
 
+#### Example responce
+```json
+{
+  "status": "success",
+  "result": "k02yl"
+}
+```
+
 ### Get a clip
+#### Example queries
 POST
 `https://interclip.app/includes/get-api`
 body:
@@ -59,6 +69,13 @@ body:
 GET
 `https://interclip.app/includes/get-api?code=tasks`
 
+#### Example responce
+```json
+{
+  "status": "success",
+  "result": "https://taskord.com/"
+}
+```
 <a name="contribute"> </a>
 ## Want to contribute?
 For a code of conduct, see [CONTRIBUTING.md](CONTRIBUTING.md) and for setting up your environment (local or remote), see [DEVELOPMENT.md](DEVELOPMENT.md).
