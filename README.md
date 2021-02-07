@@ -80,7 +80,7 @@ GET
 ```
 <a name="contribute"> </a>
 ## Want to contribute?
-For a code of conduct, see [CONTRIBUTING.md](CONTRIBUTING.md) and for setting up your environment (local or remote), see [DEVELOPMENT.md](DEVELOPMENT.md).
+For a code of conduct, see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and for setting up your environment (local or remote), see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 <a name="howto"> </a>
 ## How to clip?
