@@ -8,8 +8,9 @@
 ## Table of contents
 1. [Intro](#intro)
 2. [Built with](#dependencies)
-3. [Contributing](#contribute)
-4. [Tutorial](#howto)
+3. [API](#api)
+4. [Contributing](#contribute)
+5. [Tutorial](#howto)
 <img src="https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png" alt="Interclip logo" width="150">
 
 <a name="intro"> </a>
@@ -33,6 +34,7 @@ Different apps for different platforms
 - [filiptronicek/iclip-external](https://github.com/filiptronicek/iclip-external)
 - [aperta-principium/Interclip-proxy](https://github.com/aperta-principium/Interclip-proxy)
 
+<a name="api"> </a>
 ## API
 There is a very simple API for anybody to use. Remember, that clips only last for one month! (as of [v3.2.4](https://github.com/aperta-principium/Interclip/releases/tag/v3.2.4))
 ### Create clips
