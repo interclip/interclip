@@ -8,7 +8,8 @@
 ## Table of contents
 1. [Intro](#intro)
 2. [Built with](#dependencies)
-3. [Tutorial](#howto)
+3. [Contributing](#contribute)
+4. [Tutorial](#howto)
 <img src="https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png" alt="Interclip logo" width="150">
 
 <a name="intro"> </a>
@@ -47,6 +48,10 @@ body:
 ```
 GET
 `https://interclip.app/includes/api?url=https://flutter.dev/`
+
+<a name="contribute"> </a>
+## Want to contribute?
+For a code of conduct, see [CONTRIBUTING.md](CONTRIBUTING.md) and for setting up your environment (local or remote), see [DEVELOPMENT.md](DEVELOPMENT.md).
 
 <a name="howto"> </a>
 ## How to clip?
