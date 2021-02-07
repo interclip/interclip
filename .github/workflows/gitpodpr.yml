@@ -6,7 +6,7 @@ on:
     types: [ opened ]
 
 jobs:
-  build:
+  comment:
 
     runs-on: ubuntu-latest
 
