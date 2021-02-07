@@ -34,10 +34,8 @@ Different apps for different platforms
 - [aperta-principium/Interclip-proxy](https://github.com/aperta-principium/Interclip-proxy)
 
 ## API
-There is a very simple API for anybody to use. You can use it for storing URLs in your To-do app, or as a connection between order IDs and their URLs. The possibilities are endless
-The API endpoint is at ```https://interclip.app/includes/api```.
-
-
+There is a very simple API for anybody to use. Remember, that clips only last for one month! (as of [v3.2.4](https://github.com/aperta-principium/Interclip/releases/tag/v3.2.4))
+### Create clips
 POST
 `https://interclip.app/includes/api`
 body:
@@ -48,6 +46,18 @@ body:
 ```
 GET
 `https://interclip.app/includes/api?url=https://flutter.dev/`
+
+### Get a clip
+POST
+`https://interclip.app/includes/get-api`
+body:
+```json
+{
+  "code": "tasks"
+}
+```
+GET
+`https://interclip.app/includes/get-api?code=tasks`
 
 <a name="contribute"> </a>
 ## Want to contribute?
