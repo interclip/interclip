@@ -2,10 +2,13 @@
 
 header('Content-Type: application/json');
 
+include_once "./components/rate.php";
+
 // include composer autoload
 require "../vendor/autoload.php";
 
 $start = microtime(true);
+noteLimit("verify");
 
 use Iodev\Whois\Factory;
 
