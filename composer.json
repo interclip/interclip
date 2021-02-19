@@ -1,0 +1,5 @@
+{
+    "require-dev": {
+        "pestphp/pest": "^1.0"
+    }
+}
