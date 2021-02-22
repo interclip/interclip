@@ -1,7 +1,7 @@
 <?php
 
-include_once "./db.php";
-include_once "./salt.php";
+include_once "../db.php";
+include_once "../salt.php";
 
 $GLOBALS['servername'] = $servername;
 $GLOBALS['username'] = $username;
