@@ -69,7 +69,8 @@ function whois($domain) {
             //echo json_encode(['status' => 'success', 'result' => ['registered' => true, 'domain' => $domain, 'took' => microtime(true) - $start]]);
         }
     } else {
-        echo json_encode(['status' => 'error', 'result' => 'You must provide a URL parameter in the request.', 'took' => microtime(true) - $start]);
+        return false;
+        //echo json_encode(['status' => 'error', 'result' => 'You must provide a URL parameter in the request.', 'took' => microtime(true) - $start]);
     }
 
 }
