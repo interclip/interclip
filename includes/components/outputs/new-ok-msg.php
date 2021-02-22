@@ -1,7 +1,19 @@
-<p><span id="url" class="url"><?php echo $url ?> </span><br><br> was saved as</p>
-<h1 class="usrCode"><?php echo $usr ?></h1>
-<div id="embed"> </div>
-<div id="qrcode"></div>
+<?php
+    $createArray = createClip($url);
+    $usr = $createArray[0];
+    $err = $createArray[1];
+?>
+
+<?php if ($err === ""): ?>
+    <p><span id="url" class="url"><?php echo $url ?> </span><br><br> was saved as</p>
+    <h1 class="usrCode"><?php echo $usr ?></h1>
+    <div id="embed"> </div>
+    <div id="qrcode"></div>
+<?php else: ?>
+    <p><span id="url" class="url"><?php echo $url ?> </span><br></p>
+    <h1 class="usrCode"><?php echo $err ?></h1>
+<?php endif; ?>
+
 
 <script type="module">
     /* MIT  Copyright (c) Feross Aboukhadijeh */

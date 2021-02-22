@@ -4,63 +4,74 @@ include_once "./db.php";
 include_once "./components/rate.php";
 include_once "./verify-domain.php";
 
-noteLimit("set");
+$GLOBALS['servername'] = $servername;
+$GLOBALS['username'] = $username;
+$GLOBALS['password'] = $password;
+$GLOBALS['dbname'] = $DBName;
+$GLOBALS['salt'] = $salt;
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $DBName);
+function createClip($url) {
+    noteLimit("set");
 
-$url = str_replace("<", "&lt;", $url);
-$url = str_replace(">", "&gt;", $url);
+    $err = "";
 
-$url = mysqli_real_escape_string($conn, $url);
+    // Create connection
+    $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    $url = str_replace("<", "&lt;", $url);
+    $url = str_replace(">", "&gt;", $url);
 
-function gen_uid($len = 10) {
-    return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $len);
-}
+    $url = mysqli_real_escape_string($conn, $url);
 
-$usr = gen_uid(5);
-
-/* Expiry of clips */
-
-$startdate = strtotime("Today");
-$expires = strtotime("+1 month", $startdate);
-$expiryDate = date("Y-m-d", $expires);
-
-$sqlquery = "SELECT * FROM userurl WHERE url = '$url'";
-$result = $conn->query($sqlquery);
-
-$duplicateCodeQuery = "SELECT * FROM `userurl` WHERE usr = '$usr'";
-$duplicateCodeResult = $conn->query($duplicateCodeQuery);
-
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $usr = $row['usr'];
-        break;
-    }
-    $conn->query($sqlquery);
-} else {
-    while ($duplicateCodeResult->num_rows > 0) {
-        $usr = gen_uid(5);
-        $duplicateCodeQuery = "SELECT * FROM `userurl` WHERE usr = '$usr'";
-        $duplicateCodeResult = $conn->query($duplicateCodeQuery);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
 
+    function gen_uid($len = 10) {
+        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $len);
+    }
 
-    $domainOfURL = parse_url($url, PHP_URL_HOST);
+    $usr = gen_uid(5);
 
-    if (verify($domainOfURL)) {
-        $sqlquery = "INSERT INTO userurl (id, usr, url, date, expires) VALUES (NULL, '$usr', '$url', NOW(), '$expiryDate') ";
-        if ($conn->query($sqlquery) === FALSE) {
-            echo "Error: " . $sqlquery . "<br>" . $conn->error;
+    /* Expiry of clips */
+
+    $startdate = strtotime("Today");
+    $expires = strtotime("+1 month", $startdate);
+    $expiryDate = date("Y-m-d", $expires);
+
+    $sqlquery = "SELECT * FROM userurl WHERE url = '$url'";
+    $result = $conn->query($sqlquery);
+
+    $duplicateCodeQuery = "SELECT * FROM `userurl` WHERE usr = '$usr'";
+    $duplicateCodeResult = $conn->query($duplicateCodeQuery);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $usr = $row['usr'];
+            break;
         }
+        $conn->query($sqlquery);
     } else {
-        $usr = "Error: this domain is not accesible nor registered.";
-    }
-}
+        while ($duplicateCodeResult->num_rows > 0) {
+            $usr = gen_uid(5);
+            $duplicateCodeQuery = "SELECT * FROM `userurl` WHERE usr = '$usr'";
+            $duplicateCodeResult = $conn->query($duplicateCodeQuery);
+        }
 
-//$conn->close();
+
+        $domainOfURL = parse_url($url, PHP_URL_HOST);
+
+        if (verify($domainOfURL)) {
+            $sqlquery = "INSERT INTO userurl (id, usr, url, date, expires) VALUES (NULL, '$usr', '$url', NOW(), '$expiryDate') ";
+            if ($conn->query($sqlquery) === FALSE) {
+                $err = "Error: " . $sqlquery . "<br>" . $conn->error;
+            }
+        } else {
+            $err = "Error: this domain is not accesible nor registered.";
+        }
+    }
+
+    //$conn->close();
+    return [$usr, $err];
+}
