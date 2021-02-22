@@ -2,6 +2,7 @@
 
 include_once "./db.php";
 include_once "./components/rate.php";
+include_once "./verify-domain.php";
 
 noteLimit("set");
 
@@ -48,9 +49,17 @@ if ($result->num_rows > 0) {
         $duplicateCodeQuery = "SELECT * FROM `userurl` WHERE usr = '$usr'";
         $duplicateCodeResult = $conn->query($duplicateCodeQuery);
     }
-    $sqlquery = "INSERT INTO userurl (id, usr, url, date, expires) VALUES (NULL, '$usr', '$url', NOW(), '$expiryDate') ";
-    if ($conn->query($sqlquery) === FALSE) {
-        echo "Error: " . $sqlquery . "<br>" . $conn->error;
+
+
+    $domainOfURL = parse_url($url, PHP_URL_HOST);
+
+    if (verify($domainOfURL)) {
+        $sqlquery = "INSERT INTO userurl (id, usr, url, date, expires) VALUES (NULL, '$usr', '$url', NOW(), '$expiryDate') ";
+        if ($conn->query($sqlquery) === FALSE) {
+            echo "Error: " . $sqlquery . "<br>" . $conn->error;
+        }
+    } else {
+        $usr = "Error: this domain is not accesible nor registered.";
     }
 }
 
