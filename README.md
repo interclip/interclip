@@ -17,7 +17,7 @@
 <a name="intro"> </a>
 
 ## What is it?
-A handy-dandy clipboard sharing tool to share URLs between devices and users
+A handy-dandy clipboard sharing tool to share URLs between devices and users.
 
 [App](https://interclip.app)
 
@@ -37,7 +37,7 @@ Different apps for different platforms
 
 <a name="api"> </a>
 ## API
-For using the Interclip API, see the [API Docs](API.md)
+For using the Interclip API, see the [API Docs](API.md).
 <a name="contribute"> </a>
 ## Want to contribute?
 For a code of conduct, see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and for setting up your environment (local or remote), see [CONTRIBUTING.md](CONTRIBUTING.md).
