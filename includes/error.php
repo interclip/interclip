@@ -43,10 +43,14 @@
             }
             echo ('<h1 style="font-size: 5rem;margin-top: 30vh;">' . $errortitle . '</h1>');
             echo ('<p style="font-size: 2rem;">' . $message . '</p>');
+
+            $clipRegex = "/([a-z|0-9|A-Z]){5}/g";
+
             /* Check if requested string wasn't a code */
-            if (strlen(basename($_SERVER['REQUEST_URI'])) == 5) {
+            if (preg_match($clipRegex, basename($_SERVER['REQUEST_URI']))) {
                 $user_code = basename($_SERVER['REQUEST_URI']);
                 include_once "components/get.php";
+                
                 if (isset($url)) {
                     reDir($url);
                 }
