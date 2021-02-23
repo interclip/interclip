@@ -43,17 +43,17 @@
       <div class="title">
         <?php if (isset($url)): ?>
           <h1><a id="urlLink" href="<?php echo $url; ?>"><?php echo $url;?></a></h1>
-        <?php
-          echo "<p>... is the URL of the code " . $user_code . "</p>";
-        ?>
-        <div id="embed"> </div>
-        <img id="imgShow">
-        <div id="output"> </div>
+          <?php
+            echo "<p>... is the URL of the code " . $user_code . "</p>";
+          ?>
+          <div id="embed"> </div>
+          <img id="imgShow">
+          <div id="output"> </div>
         <?php else: ?>
-        <?php
-          http_response_code(404);
-          echo "<p>There was no url found for the code " . $user_code . "</p>";
-        ?>
+          <?php
+            http_response_code(404);
+            echo "<p>There was no url found for the code " . $user_code . "</p>";
+          ?>
         <?php endif; ?>
       </div>
     </div>
