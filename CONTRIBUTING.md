@@ -42,7 +42,7 @@ CREATE TABLE `hits` (
   `date` datetime NOT NULL,
   `operation` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4209 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /* Clips table */
 DROP TABLE IF EXISTS `userurl`;
@@ -53,7 +53,7 @@ CREATE TABLE `userurl` (
   `date` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `expires` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1182 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 ``` 
 
 ### Setting up MySQL cron jobs
