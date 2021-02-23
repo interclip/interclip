@@ -13,10 +13,6 @@
 </html>
 <?php 
 
-    ini_set("post_max_size", "10G");
-    ini_set("upload_max_filesize", "10G");
-
-
   if(!empty($_FILES['uploaded_file']))
   {
     function gen_uid($len = 10) {
