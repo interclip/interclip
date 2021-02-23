@@ -41,24 +41,20 @@
     <div class="fullscreen-content" id="resultSec">
 
       <div class="title">
-        <h1><a id="urlLink" href="<?php if (isset($url)) {
-                                    echo $url;
-                                  } ?>"><?php if (isset($url)) {
-                                        echo $url;
-                                      } ?></a></h1>
+        <?php if (isset($url)): ?>
+          <h1><a id="urlLink" href="<?php echo $url; ?>"><?php echo $url;?></a></h1>
         <?php
-        if (isset($url)) {
           echo "<p>... is the URL of the code " . $user_code . "</p>";
-        } else {
-          http_response_code(404);
-          echo "<p>There was no url found for the code " . $user_code . "</p>";
-          die();
-        }
         ?>
         <div id="embed"> </div>
         <img id="imgShow">
         <div id="output"> </div>
-
+        <?php else: ?>
+        <?php
+          http_response_code(404);
+          echo "<p>There was no url found for the code " . $user_code . "</p>";
+        ?>
+        <?php endif; ?>
       </div>
     </div>
   </div>
