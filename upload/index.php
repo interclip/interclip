@@ -4,7 +4,6 @@
   <title>Upload your files</title>
 </head>
 <body>
-  <form enctype="multipart/form-data" action="upload.php" method="POST">
   <form enctype="multipart/form-data" action="index.php" method="POST">
     <p>Upload your file</p>
     <input type="file" name="uploaded_file"></input><br />
