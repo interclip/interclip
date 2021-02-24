@@ -4,14 +4,14 @@
   <title>Upload your files</title>
 </head>
 <body>
-  <form enctype="multipart/form-data" action="index.php" method="POST">
+  <?php if(empty($_FILES['uploaded_file'])): ?>
+  <form enctype="multipart/form-data" action="./" method="POST">
     <p>Upload your file</p>
     <input type="file" name="uploaded_file"></input><br />
     <input type="submit" value="Upload"></input>
   </form>
-</body>
-</html>
-<?php 
+  <?php endif; ?>
+  <?php 
 
   if(!empty($_FILES['uploaded_file']))
   {
@@ -45,9 +45,14 @@
       echo "The file ".  basename( $_FILES['uploaded_file']['name']). " has been uploaded";
       echo "<br>Uploading to the file server...";
       exec("bash upload.sh " . $path . " > /dev/null &"); 
-      echo "<br>https://drives.filiptronicek.workers.dev/3:/iclip/".$id. "." . $ext;
+      $url = "https://drives.filiptronicek.workers.dev/3:/iclip/".$id. "." . strtolower($ext);
+      echo "<br>" . $url;
+      echo '<form id="clip" action="../includes/new" method="POST"><input type="url" name="input" value="'.$url.'"><input type="submit"></form>';
+      echo "<script>document.getElementById('clip').submit()</script>";
     } else{
         echo "There was an error uploading the file, please try again!";
     }
   }
 ?>
+</body>
+</html>
