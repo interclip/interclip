@@ -47,7 +47,7 @@
             $clipRegex = "/([a-z|0-9|A-Z]){5}/g";
 
             /* Check if requested string wasn't a code */
-            if (preg_match($clipRegex, basename($_SERVER['REQUEST_URI']))) {
+            if (strlen(basename($_SERVER['REQUEST_URI'])) == 5) {
                 $user_code = basename($_SERVER['REQUEST_URI']);
                 include_once "components/get.php";
                 
