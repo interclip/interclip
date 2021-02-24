@@ -31,7 +31,7 @@
     $fileSize = $_FILES['uploaded_file']['size'];
     $path = $path . $id . "." . $ext;
 
-    $fileSizeLimit = 52428800;
+    $fileSizeLimit = 104857600; // 100 MB
 
     if ($fileSize > $fileSizeLimit) {
       die("The file is too large. Upload a file that is smaller than ".formatBytes($fileSizeLimit)." (current size: " . formatBytes($fileSize) .")");
