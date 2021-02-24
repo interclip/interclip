@@ -138,7 +138,7 @@ let status="success";
           },
           (data, status = "success") => {
             console.log(`Data: ${data.result} \nStatus: ${status}`);
-            if (status == "success") {
+            if (status === "success") {
               $(".code").text(data.result);
               modal.style.display = "none";
               $(".copy").show();
