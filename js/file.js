@@ -80,6 +80,32 @@ fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
         uploadRe(putRe(files[i]));
       }
     });
+
+const paste = async () => {
+  try {
+      const clipboardItems = await navigator.clipboard.read();
+      for (const clipboardItem of clipboardItems) {
+          for (const type of clipboardItem.types) {
+              if (type !== "text/html") {
+                const blob = await clipboardItem.getType(type);
+                if (blob.size > fileSizeLimitInBytes) {
+                  alert(`File size over ${fileSizeLimitInMegabytes} MB.`);
+                  location.reload();
+                  break;
+                }
+                uploadRe(blob);
+              }
+          }
+      }
+  } catch (err) {
+      console.error(err.name, err.message);
+  }
+};
+
+document.onpaste = () => {
+    paste();
+};
+
 })(this);
 function putRe(file) {
   return file;
