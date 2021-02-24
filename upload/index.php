@@ -19,9 +19,6 @@
 
   if(!empty($_FILES['uploaded_file']))
   {
-    include '../includes/components/rate.php';
-
-    noteLimit("upload");
 
     function formatBytes($bytes) {
       if ($bytes > 0) {
