@@ -89,17 +89,16 @@ const paste = async () => {
               if (type !== "text/html") {
                 console.log(type);
                 const blob = await clipboardItem.getType(type);
-                Object.defineProperty(blob, 'name', {
-                  writable: true,
-                  value: "clipboard.png"
-                });
-                console.log(blob.name);
-                if (blob.size > fileSizeLimitInBytes) {
+                const theBlob = blob.slice(0, blob.size, type); 
+                const newBlob = new File([blob], 'clipboard.png', {type: type});
+
+                console.log(newBlob.name);
+                if (newBlob.size > fileSizeLimitInBytes) {
                   alert(`File size over ${fileSizeLimitInMegabytes} MB.`);
                   location.reload();
                   break;
                 }
-                uploadRe(blob);
+                uploadRe(newBlob);
               }
           }
       }
