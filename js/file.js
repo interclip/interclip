@@ -89,6 +89,7 @@ const paste = async () => {
               if (type !== "text/html") {
                 console.log(type);
                 const blob = await clipboardItem.getType(type);
+                console.log(blob.name);
                 if (blob.size > fileSizeLimitInBytes) {
                   alert(`File size over ${fileSizeLimitInMegabytes} MB.`);
                   location.reload();
