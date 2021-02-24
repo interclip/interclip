@@ -22,7 +22,7 @@ fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1000000;
   function makeDroppable(ele, callback) {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
-    input.setAttribute("multiple", true);
+    input.setAttribute("multiple", false);
     input.style.display = "none";
     input.addEventListener("change", (e) => {
         triggerCallback(e, callback);
