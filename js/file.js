@@ -87,6 +87,7 @@ const paste = async () => {
       for (const clipboardItem of clipboardItems) {
           for (const type of clipboardItem.types) {
               if (type !== "text/html") {
+                console.log(type);
                 const blob = await clipboardItem.getType(type);
                 if (blob.size > fileSizeLimitInBytes) {
                   alert(`File size over ${fileSizeLimitInMegabytes} MB.`);
