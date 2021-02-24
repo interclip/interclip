@@ -124,7 +124,7 @@ function copyTextToClipboard(text) {
 }
 function showCode(data) {
 
-  let status="success";
+  let status = "success";
   if (status == "success") {
     $.post(
       "includes/api.php",
