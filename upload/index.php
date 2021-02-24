@@ -44,7 +44,7 @@
 
     if(move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
       exec("bash upload.sh " . $path . " > /dev/null &"); 
-      $url = "https://iq.now.sh/f/".$id. "." . strtolower($ext);
+      $url = "https://files.interclip.app/".$id. "." . strtolower($ext);
       if (isset($_GET['api'])) {
         echo json_encode(['status' => 'success', 'result' => $url]);
       } else {
