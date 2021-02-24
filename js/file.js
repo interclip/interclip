@@ -4,7 +4,7 @@ const copyBtn = document.querySelector(".copy");
 
 const fileSizeLimitInMegabytes = 100;
 const 
-fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1000000;
+fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
 
 ((window) => {
   function triggerCallback(e, callback) {
