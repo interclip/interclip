@@ -43,6 +43,9 @@
 
     if(move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
       echo "The file ".  basename( $_FILES['uploaded_file']['name']). " has been uploaded";
+      echo "<br>Uploading to the file server...";
+      exec("bash upload.sh " . $path . " > /dev/null &"); 
+      echo "<br>https://drives.filiptronicek.workers.dev/3:/iclip/".$id. "." . $ext;
     } else{
         echo "There was an error uploading the file, please try again!";
     }
