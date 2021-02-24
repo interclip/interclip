@@ -19,11 +19,27 @@
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $len);
     }
     
+    function formatBytes($bytes) {
+      if ($bytes > 0) {
+          $i = floor(log($bytes) / log(1024));
+          $sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+          return sprintf('%.02F', round($bytes / pow(1024, $i),1)) * 1 . ' ' . @$sizes[$i];
+      } else {
+          return 0;
+      }
+    }
+
     $id = gen_uid(16);
     $path = "uploads/";
     $ext = pathinfo(basename( $_FILES['uploaded_file']['name']), PATHINFO_EXTENSION);
-
+    $fileSize = $_FILES['uploaded_file']['size'];
     $path = $path . $id . "." . $ext;
+
+    $fileSizeLimit = 52428800;
+
+    if ($fileSize > $fileSizeLimit) {
+      die("The file is too large. Upload a file that is smaller than ".formatBytes($fileSizeLimit)." (current size: " . formatBytes($fileSize) .")");
+    }
 
     if(move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
       echo "The file ".  basename( $_FILES['uploaded_file']['name']). " has been uploaded";
