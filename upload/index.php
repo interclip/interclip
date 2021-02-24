@@ -42,7 +42,10 @@
     $fileSizeLimit = 104857600; // 100 MB
 
     if ($fileSize > $fileSizeLimit) {
-      die("The file is too large. Upload a file that is smaller than ".formatBytes($fileSizeLimit)." (current size: " . formatBytes($fileSize) .")");
+      if(isset($_GET['api']))
+        die(json_encode(['status' => 'error', 'result' => "The file is too large. Upload a file that is smaller than ".formatBytes($fileSizeLimit)." (current size: " . formatBytes($fileSize) .")"]));
+      else 
+        die("The file is too large. Upload a file that is smaller than ".formatBytes($fileSizeLimit)." (current size: " . formatBytes($fileSize) .")");
     }
 
     if(move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
