@@ -16,7 +16,6 @@
 
   <?php 
 
-  header('Content-Type: application/json');
 
   if(!empty($_FILES['uploaded_file']))
   {
@@ -28,6 +27,10 @@
       } else {
           return 0;
       }
+    }
+
+    if(isset($_GET['api'])) {
+      header('Content-Type: application/json');
     }
 
     $id = substr(sha1(uniqid(substr(time().str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, 20))), 0, 10);
