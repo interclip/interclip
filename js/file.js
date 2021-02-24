@@ -89,7 +89,6 @@ const paste = async () => {
               if (type !== "text/html") {
                 console.log(type);
                 const blob = await clipboardItem.getType(type);
-                const theBlob = blob.slice(0, blob.size, type); 
                 const newBlob = new File([blob], 'clipboard.png', {type: type});
 
                 console.log(newBlob.name);
