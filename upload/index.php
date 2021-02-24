@@ -15,7 +15,6 @@
 
   if(!empty($_FILES['uploaded_file']))
   {
-
     function formatBytes($bytes) {
       if ($bytes > 0) {
           $i = floor(log($bytes) / log(1024));
@@ -42,7 +41,7 @@
       echo "The file ".  basename( $_FILES['uploaded_file']['name']). " has been uploaded";
       echo "<br>Uploading to the file server...";
       exec("bash upload.sh " . $path . " > /dev/null &"); 
-      $url = "https://drives.filiptronicek.workers.dev/3:/iclip/".$id. "." . strtolower($ext);
+      $url = "https://iq.now.sh/f/".$id. "." . strtolower($ext);
       echo "<br>" . $url;
       echo '<form id="clip" action="../includes/new" method="POST"><input type="url" name="input" value="'.$url.'"><input type="submit"></form>';
       echo "<script>document.getElementById('clip').submit()</script>";

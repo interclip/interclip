@@ -1,2 +1,1 @@
-rclone copy $1 iclip:
-rm $1
+rclone copy $1 iclip: && rm $1
