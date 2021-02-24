@@ -157,17 +157,17 @@ function uploadRe($files) {
   request.onreadystatechange = () => {
     if (request.readyState == XMLHttpRequest.DONE) {
       const data = (request.responseText);
+      const link = JSON.parse(data).result;
       //data.data.link = "https://iq.now.sh/s/" + data.data.name;
-      showCode(data);
+      showCode(link);
     }
   };
   // API Endpoint
   const apiUrl =
-    "https://cors-anywhere.herokuapp.com/https://catbox.moe/user/api.php";
+    "/upload/?api";
 
   const formData = new FormData();
-  formData.append("reqtype", "fileupload");
-  formData.append("fileToUpload", $files);
+  formData.append("uploaded_file", $files);
 
   request.open("POST", apiUrl);
   request.send(formData);

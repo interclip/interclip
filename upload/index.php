@@ -1,3 +1,4 @@
+<?php if(!isset($_GET['api'])): ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,11 @@
     <input type="submit" value="Upload"></input>
   </form>
   <?php endif; ?>
+  <?php endif; ?>
+
   <?php 
+
+  header('Content-Type: application/json');
 
   if(!empty($_FILES['uploaded_file']))
   {
@@ -25,7 +30,7 @@
       }
     }
 
-    $id = sha1(uniqid(substr(time().str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, 20)));
+    $id = substr(sha1(uniqid(substr(time().str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, 20))), 0, 10);
     $path = "uploads/";
     $ext = pathinfo(basename( $_FILES['uploaded_file']['name']), PATHINFO_EXTENSION);
     $fileSize = $_FILES['uploaded_file']['size'];
@@ -38,17 +43,26 @@
     }
 
     if(move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
-      echo "The file ".  basename( $_FILES['uploaded_file']['name']). " has been uploaded";
-      echo "<br>Uploading to the file server...";
       exec("bash upload.sh " . $path . " > /dev/null &"); 
       $url = "https://iq.now.sh/f/".$id. "." . strtolower($ext);
-      echo "<br>" . $url;
-      echo '<form id="clip" action="../includes/new" method="POST"><input type="url" name="input" value="'.$url.'"><input type="submit"></form>';
-      echo "<script>document.getElementById('clip').submit()</script>";
+      if (isset($_GET['api'])) {
+        echo json_encode(['status' => 'success', 'result' => $url]);
+      } else {
+        echo "The file ".  basename( $_FILES['uploaded_file']['name']). " has been uploaded";
+        echo "<br>" . $url;
+        echo '<form id="clip" action="../includes/new" method="POST"><input type="url" name="input" value="'.$url.'"><input type="submit"></form>';
+        echo "<script>document.getElementById('clip').submit()</script>";
+      }
     } else{
+      if (isset($_GET['api'])) {
+        echo json_encode(['status' => 'error', 'result' => 'Uknown error.']);
+      } else {
         echo "There was an error uploading the file, please try again!";
+      }
     }
   }
 ?>
+<?php if(!isset($_GET['api'])): ?>
 </body>
 </html>
+<?php endif; ?>
