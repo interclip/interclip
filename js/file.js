@@ -123,32 +123,27 @@ function copyTextToClipboard(text) {
   );
 }
 function showCode(data) {
-  /*
-  $.get(
-    `./includes/components/short-api.php?url=${encodeURI(
-      data
-    )}&keyword=${data}`,
-*/
-let status="success";
-      if (status == "success") {
-        $.post(
-          "includes/api.php",
-          {
-            url: data,
-          },
-          (data, status = "success") => {
-            console.log(`Data: ${data.result} \nStatus: ${status}`);
-            if (status === "success") {
-              $(".code").text(data.result);
-              modal.style.display = "none";
-              $(".copy").show();
-              copyBtn.addEventListener("click", () => {
-                copyTextToClipboard(data.result);
-              });
-            }
-          }
-        );
+
+  let status="success";
+  if (status == "success") {
+    $.post(
+      "includes/api.php",
+      {
+        url: data,
+      },
+      (data, status = "success") => {
+        console.log(`Data: ${data.result} \nStatus: ${status}`);
+        if (status === "success") {
+          $(".code").text(data.result);
+          modal.style.display = "none";
+          $(".copy").show();
+          copyBtn.addEventListener("click", () => {
+            copyTextToClipboard(data.result);
+          });
+        }
       }
+    );
+  }
 }
 
 function uploadRe($files) {
