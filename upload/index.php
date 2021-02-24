@@ -15,10 +15,7 @@
 
   if(!empty($_FILES['uploaded_file']))
   {
-    function gen_uid($len = 10) {
-        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $len);
-    }
-    
+
     function formatBytes($bytes) {
       if ($bytes > 0) {
           $i = floor(log($bytes) / log(1024));
@@ -29,7 +26,7 @@
       }
     }
 
-    $id = gen_uid(16);
+    $id = sha1(uniqid(substr(time().str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, 20)));
     $path = "uploads/";
     $ext = pathinfo(basename( $_FILES['uploaded_file']['name']), PATHINFO_EXTENSION);
     $fileSize = $_FILES['uploaded_file']['size'];
