@@ -6,11 +6,12 @@ ports:
 tasks:
 - name: Terminal
   command: >
+    curl https://rclone.org/install.sh | sudo bash;
+    composer install;
+    bash scripts/secrets.sh;
     gp await-port 3306 &&
     mysql -e "CREATE DATABASE iclip;";
     mysql < scripts/db.sql;
-    bash scripts/secrets.sh;
-    composer install;
 - name: Apache
   command: >
     apachectl start &&
