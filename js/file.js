@@ -136,7 +136,14 @@ function uploadRe($files) {
 
 })(this);
 
+function encodeHTML(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+}
+
 function showCode(data) {
+
+  data = encodeHTML(data);
+
   modal.style.display = "none";
   document.body.innerHTML += `
     <form id="clip" action="../includes/new" method="POST">
