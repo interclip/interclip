@@ -8,7 +8,7 @@ $index = 0;
 list($scriptPath) = get_included_files();
 $pages = array(
     'clip' => ['', 'Clip'],
-   /* 'file' => ['file', 'Send file'], */
+    'file' => ['file', 'File <span class="beta">beta</span>'],
     'recieve' => ['recieve', 'Recieve clip'],
     'desktop' => ['desktop', "Desktop"],
     'privacy' => ['privacy', 'Privacy policy'],

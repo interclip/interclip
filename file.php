@@ -19,7 +19,7 @@
 
 <body>
     <?php 
-        $fileUpload = false;
+        $fileUpload = true;
 
         if ($fileUpload) {
             include "includes/components/file-ok.php";
