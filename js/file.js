@@ -6,7 +6,7 @@ const
   fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
 
 function encodeHTML(s) {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 }
 
 function showCode(data) {
