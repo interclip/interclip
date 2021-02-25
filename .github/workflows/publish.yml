@@ -19,4 +19,4 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        script: cd /var/www/html && git pull
+        script: cd /var/www/html && git pull && composer install
