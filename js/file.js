@@ -124,7 +124,6 @@ function uploadRe($files) {
 
   document.onpaste = function(event){
     const items = (event.clipboardData || event.originalEvent.clipboardData).items;
-    console.log(JSON.stringify(items)); // will give you the mime types
     for (const item of items) {
       if (item.kind === 'file') {
         const blob = item.getAsFile();
