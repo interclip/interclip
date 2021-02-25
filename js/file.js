@@ -76,7 +76,7 @@ fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
           location.reload();
           break;
         }
-        uploadRe(putRe(files[i]));
+        uploadRe(files[i]);
       }
     });
 
@@ -110,10 +110,6 @@ fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
   };
 
 })(this);
-
-function putRe(file) {
-  return file;
-}
 
 function showCode(data) {
   modal.style.display = "none";
