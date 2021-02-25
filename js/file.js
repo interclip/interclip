@@ -127,7 +127,7 @@ function uploadRe($files) {
       const clipboardItems = await navigator.clipboard.read();
       for (const clipboardItem of clipboardItems) {
         for (const type of clipboardItem.types) {
-          if (type !== "text/html") {
+          if (type === "image/png" || type === "image/jpeg") {
             const blob = await clipboardItem.getType(type);
             const newBlob = new File([blob], "clipboard.png", { type });
 
