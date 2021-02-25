@@ -122,31 +122,15 @@ function uploadRe($files) {
     }
   });
 
-  const paste = async () => {
-    try {
-      const clipboardItems = await navigator.clipboard.read();
-      for (const clipboardItem of clipboardItems) {
-        for (const type of clipboardItem.types) {
-          if (type === "image/png" || type === "image/jpeg") {
-            const blob = await clipboardItem.getType(type);
-            const newBlob = new File([blob], "clipboard.png", { type });
-
-            if (newBlob.size > fileSizeLimitInBytes) {
-              alert(`File size over ${fileSizeLimitInMegabytes} MB.`);
-              location.reload();
-              break;
-            }
-            uploadRe(newBlob);
-          }
-        }
+  document.onpaste = function(event){
+    const items = (event.clipboardData || event.originalEvent.clipboardData).items;
+    console.log(JSON.stringify(items)); // will give you the mime types
+    for (const item of items) {
+      if (item.kind === 'file') {
+        const blob = item.getAsFile();
+        uploadRe(blob);
       }
-    } catch (err) {
-      console.error(err.name, err.message);
     }
-  };
-
-  document.onpaste = () => {
-    paste();
-  };
+  }
 
 })(this);
