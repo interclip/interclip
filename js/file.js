@@ -5,6 +5,17 @@ const fileSizeLimitInMegabytes = 100;
 const
   fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
 
+function showCode(data) {
+  data = encodeHTML(data);
+
+  modal.style.display = "none";
+  document.body.innerHTML += `
+    <form id="clip" action="../includes/new" method="POST">
+      <input type="url" name="input" value="${data}">
+      <input type="submit">
+    </form>`;
+  document.getElementById("clip").submit()
+} 
 
 function uploadRe($files) {
   // Begin file upload
@@ -138,17 +149,4 @@ function uploadRe($files) {
 
 function encodeHTML(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
-}
-
-function showCode(data) {
-
-  data = encodeHTML(data);
-
-  modal.style.display = "none";
-  document.body.innerHTML += `
-    <form id="clip" action="../includes/new" method="POST">
-      <input type="url" name="input" value="${data}">
-      <input type="submit">
-    </form>`;
-  document.getElementById("clip").submit()
 }
