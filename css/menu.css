@@ -11,6 +11,18 @@ li {
     list-style: none;
 }
 
+.beta {
+    border: 2px solid #dee2e6 !important;
+    border-color: #38c172 !important;
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+    border-radius: 50rem !important;
+    color: white;
+    font-size: 11px;
+    margin-left: 7px;
+    text-transform: uppercase;
+}
+
 li a {
     display: block;
     color: white;
