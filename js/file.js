@@ -18,8 +18,8 @@ function showCode(data) {
       <input type="url" name="input" value="${data}">
       <input type="submit">
     </form>`;
-  document.getElementById("clip").submit()
-} 
+  document.getElementById("clip").submit();
+}
 
 function uploadRe($files) {
   // Begin file upload
