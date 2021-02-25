@@ -1,6 +1,5 @@
 const modal = document.getElementById("modal");
 const output = document.querySelector(".output");
-const copyBtn = document.querySelector(".copy");
 
 const fileSizeLimitInMegabytes = 100;
 const 
@@ -81,99 +80,49 @@ fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
       }
     });
 
-const paste = async () => {
-  try {
-      const clipboardItems = await navigator.clipboard.read();
-      for (const clipboardItem of clipboardItems) {
-          for (const type of clipboardItem.types) {
-              if (type !== "text/html") {
-                console.log(type);
-                const blob = await clipboardItem.getType(type);
-                const newBlob = new File([blob], 'clipboard.png', {type: type});
+  const paste = async () => {
+    try {
+        const clipboardItems = await navigator.clipboard.read();
+        for (const clipboardItem of clipboardItems) {
+            for (const type of clipboardItem.types) {
+                if (type !== "text/html") {
+                  console.log(type);
+                  const blob = await clipboardItem.getType(type);
+                  const newBlob = new File([blob], 'clipboard.png', {type: type});
 
-                console.log(newBlob.name);
-                if (newBlob.size > fileSizeLimitInBytes) {
-                  alert(`File size over ${fileSizeLimitInMegabytes} MB.`);
-                  location.reload();
-                  break;
+                  console.log(newBlob.name);
+                  if (newBlob.size > fileSizeLimitInBytes) {
+                    alert(`File size over ${fileSizeLimitInMegabytes} MB.`);
+                    location.reload();
+                    break;
+                  }
+                  uploadRe(newBlob);
                 }
-                uploadRe(newBlob);
-              }
-          }
-      }
-  } catch (err) {
-      console.error(err.name, err.message);
-  }
-};
+            }
+        }
+    } catch (err) {
+        console.error(err.name, err.message);
+    }
+  };
 
-document.onpaste = () => {
-    paste();
-};
+  document.onpaste = () => {
+      paste();
+  };
 
 })(this);
+
 function putRe(file) {
   return file;
 }
 
-function fallbackCopyTextToClipboard(text) {
-  const textArea = document.createElement("textarea");
-  textArea.value = text;
-  textArea.style.position = "fixed"; //avoid scrolling to bottom
-  document.body.appendChild(textArea);
-  textArea.focus();
-  textArea.select();
-
-  try {
-    const successful = document.execCommand("copy");
-    const msg = successful ? "successful" : "unsuccessful";
-    console.log(`Fallback: Copying text command was ${msg}`);
-  } catch (err) {
-    console.error(`Fallback: Oops, unable to copy ${err}`);
-  }
-
-  document.body.removeChild(textArea);
-}
-function copyTextToClipboard(text) {
-  if (!navigator.clipboard) {
-    fallbackCopyTextToClipboard(text);
-    return;
-  }
-  navigator.clipboard.writeText(text).then(
-    () => {
-      console.log("Async: Copying to clipboard was successful!");
-      $(".copy").css("background", "#0db60d");
-      setTimeout(() => {
-          $(".copy").css("background", "#2463ac");
-        }, 3000);
-    },
-    (err) => {
-      console.error(`Async: Could not copy text: ${err}`);
-      $(".copy").css("background", "#f00");
-    }
-  );
-}
 function showCode(data) {
-
-  let status = "success";
-  if (status == "success") {
-    $.post(
-      "includes/api.php",
-      {
-        url: data,
-      },
-      (data, status = "success") => {
-        console.log(`Data: ${data.result} \nStatus: ${status}`);
-        if (status === "success") {
-          $(".code").text(data.result);
-          modal.style.display = "none";
-          $(".copy").show();
-          copyBtn.addEventListener("click", () => {
-            copyTextToClipboard(data.result);
-          });
-        }
-      }
-    );
-  }
+  modal.style.display = "none";
+  document.body.innerHTML += `
+    <form id="clip" action="../includes/new" method="POST">
+      <input type="url" name="input" value="${data}">
+      <input type="submit">
+    </form>`;
+  document.getElementById("clip").submit()
 }
 
 function uploadRe($files) {
@@ -183,7 +132,6 @@ function uploadRe($files) {
     if (request.readyState == XMLHttpRequest.DONE) {
       const data = (request.responseText);
       const link = JSON.parse(data).result;
-      //data.data.link = "https://iq.now.sh/s/" + data.data.name;
       showCode(link);
     }
   };
