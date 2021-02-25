@@ -1,4 +1,4 @@
-name: remote ssh command
+name: Remotely deploy code to the production server
 on:
   push:
     branches:
