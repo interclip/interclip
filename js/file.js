@@ -5,6 +5,10 @@ const fileSizeLimitInMegabytes = 100;
 const
   fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
 
+function encodeHTML(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+}
+
 function showCode(data) {
   data = encodeHTML(data);
 
@@ -146,7 +150,3 @@ function uploadRe($files) {
   };
 
 })(this);
-
-function encodeHTML(s) {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
-}
