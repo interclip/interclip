@@ -113,11 +113,9 @@ function uploadRe($files) {
       for (const clipboardItem of clipboardItems) {
         for (const type of clipboardItem.types) {
           if (type !== "text/html") {
-            console.log(type);
             const blob = await clipboardItem.getType(type);
             const newBlob = new File([blob], 'clipboard.png', { type: type });
 
-            console.log(newBlob.name);
             if (newBlob.size > fileSizeLimitInBytes) {
               alert(`File size over ${fileSizeLimitInMegabytes} MB.`);
               location.reload();
