@@ -94,7 +94,7 @@ function uploadRe($files) {
       }
       output.innerHTML += "<p>" + files[i].name + "</p>";
 
-      if (clickEnabled != false) {
+      if (clickEnabled !== false) {
         $(".note").fadeOut(500);
       }
 
