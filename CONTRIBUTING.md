@@ -10,6 +10,7 @@ Hi, thanks for considering contributing to Interclip! Here's a guide on how to g
 - PHP 7.4+
 - MySQL database server
 - Composer
+- Git
 
 ## Installing dependencies
 1. `composer install`
