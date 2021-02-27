@@ -19,7 +19,9 @@
         exec('git rev-parse --verify HEAD', $output);
         $hash = $output[0];
         $hashShort = substr($hash, 0, 7);
-        $commit = "https://github.com/aperta-principium/Interclip/commit/".$hash
+        $commit = "https://github.com/aperta-principium/Interclip/commit/".$hash;
+
+        exec('git describe --abbrev=0 --tags', $release);
     ?>
 </div>
 <br>
@@ -32,7 +34,7 @@
         <div id="repoInfo">
             Read the <a href="https://aperta-principium.github.io/Interclip/">Documentation</a>
             <br />
-            <span id="release">Current release: <span id="version"></span><br /></span>
+            <span id="release">Release: <span id="version"><?php echo $release[0]; ?> </span><br /></span>
             Deployed from commit: <span id="commit"><a href="<?php echo $commit ?>"> <?php echo $hashShort ?> </a></span>
             <br />
             Total clips: 
