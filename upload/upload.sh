@@ -1,2 +1,2 @@
 #!/bin/bash
-rclone copy "$1" iclip: && rm $1
+rclone copy --fast-list "$1" iclip: && rm $1
