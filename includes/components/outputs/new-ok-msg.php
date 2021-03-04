@@ -17,6 +17,7 @@
 
 <script type="module">
     /* MIT  Copyright (c) Feross Aboukhadijeh */
+
     function colorSchemeChange (onChange) {
         const media = window.matchMedia('(prefers-color-scheme: dark)')
 
@@ -35,6 +36,7 @@
             onChange(scheme)
         }
     }
+
     /* End of copyrighted code, code from https://github.com/feross/color-scheme-change */
 
     const style = window
@@ -42,15 +44,17 @@
         .getPropertyValue('content')
         .replace(/"/g, '')
 
+    const computedStyle = localStorage.getItem("dark-mode-toggle");
+    
     let options;
 
-    if (style == "" || style == "light") {
+    if (computedStyle === "" || computedStyle === "light") {
         options = {
             text: "https://iclip.netlify.com/r/<?php echo $usr ?>",
             background: "#ff9800",
             foreground: "#000000",
         }
-    } else if (style == "dark") {
+    } else if (computedStyle == "dark") {
         options = {
             text: "https://iclip.netlify.com/r/<?php echo $usr ?>",
             background: "#444444",
@@ -67,8 +71,6 @@
         }
         $('#qrcode').html("");
         $('#qrcode').qrcode(options);
-
-        // Prints either "Entering dark mode" or "Entering light mode"
     })
 
 </script>
