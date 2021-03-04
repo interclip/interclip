@@ -39,6 +39,17 @@
 
     /* End of copyrighted code, code from https://github.com/feross/color-scheme-change */
 
+    const update = (scheme) => {
+        options = {
+            text: "https://iclip.netlify.com/r/<?php echo $usr ?>",
+            background: scheme === 'dark' ? "#444444" : "#ff9800",
+            foreground: scheme === 'dark' ? "#e4e4e4" : "#000000",
+        }
+        $('#qrcode').html("");
+        $('#qrcode').qrcode(options);
+    }
+
+
     const style = window
         .getComputedStyle(document.documentElement)
         .getPropertyValue('content')
@@ -64,13 +75,14 @@
     $('#qrcode').qrcode(options);
 
     colorSchemeChange(colorScheme => {
-        options = {
-            text: "https://iclip.netlify.com/r/<?php echo $usr ?>",
-            background: colorScheme === 'dark' ? "#444444" : "#ff9800",
-            foreground: colorScheme === 'dark' ? "#e4e4e4" : "#000000",
-        }
-        $('#qrcode').html("");
-        $('#qrcode').qrcode(options);
+        const switcherScheme = localStorage.getItem("dark-mode-toggle");
+        update(switcherScheme ? colorScheme : switcherScheme);
     })
+
+    document.querySelector("#dark-mode-toggle-1").addEventListener('click', function() {
+        setTimeout(() => {
+            update(localStorage.getItem("dark-mode-toggle"));
+        }, 20);
+    });
 
 </script>
