@@ -1,4 +1,5 @@
 # Interclip
+
 <a href="https://www.producthunt.com/posts/interclip?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-interclip" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=174002&theme=light" alt="Interclip - Easy peasy clipboard cross-platform sharing | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
 
 ![clipboard](https://img.shields.io/badge/clipboard-copied-orange) ![Clipboard](https://img.shields.io/github/repo-size/aperta-principium/Interclip) [![Maintainability](https://api.codeclimate.com/v1/badges/0a72c92a0a2da0c79ba5/maintainability)](https://codeclimate.com/github/aperta-principium/Interclip/maintainability)
@@ -7,22 +8,26 @@
 [![Uptime](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Faperta-principium%2Fstatus%2FHEAD%2Fapi%2Fhomepage%2Fuptime.json)](https://status.interclip.app)
 
 ## Table of contents
-1. [Intro](#intro)
-2. [Built with](#dependencies)
-3. [API](#api)
-4. [Contributing](#contribute)
-5. [Tutorial](#howto)
-<img src="https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png" alt="Interclip logo" width="150">
+
+1.  [Intro](#intro)
+2.  [Built with](#dependencies)
+3.  [API](#api)
+4.  [Contributing](#contribute)
+5.  [Tutorial](#howto)
+   <img src="https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png" alt="Interclip logo" width="150">
 
 <a name="intro"> </a>
 
-## What is it?
+## What is it
+
 A handy-dandy clipboard sharing tool to share URLs between devices and users.
 
 [App](https://interclip.app)
 
 <a name="clients"> </a>
+
 ## Client apps
+
 Different apps for different platforms
 
 - Interclip mobile [Repo](https://github.com/filiptronicek/iclip-mobile), [Google Play](https://play.google.com/store/apps/details?id=com.filiptronicek.iclip)
@@ -30,20 +35,27 @@ Different apps for different platforms
 - Interclip browser extension [Repo](https://github.com/aperta-principium/iclip-ext), [Firefox addon](https://addons.mozilla.org/en-US/firefox/addon/interclip/), [Chrome extension](https://chrome.google.com/webstore/detail/interclip-extension/mpgjjbeepoonaaeaodiadghpnaadnngg)
 
 <a name="dependencies"> </a>
+
 ## Built with
+
 - [aperta-principium/embed.js](https://github.com/aperta-principium/embed.js)
 - [filiptronicek/iclip-external](https://github.com/filiptronicek/iclip-external)
 - [aperta-principium/Interclip-proxy](https://github.com/aperta-principium/Interclip-proxy)
 
 <a name="api"> </a>
+
 ## API
+
 For using the Interclip API, see the [API Docs](API.md).
 <a name="contribute"> </a>
-## Want to contribute?
+
+## Want to contribute
+
 For a code of conduct, see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and for setting up your environment (local or remote), see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 <a name="howto"> </a>
-## How to clip?
+
+## How to clip
 
 Clipping is easy. Just click on the magnifying glass and paste in your link!
 
@@ -53,7 +65,8 @@ Then press Enter and through the magic of code here is the code to your link!
 
 ![code-preview](https://s.put.re/Jwmoc8BV.png)
 
-## How to receive a clip?
+## How to receive a clip
+
 Receiving a clip is even easier than clipping. Just get out your phone or another device and paste the code into the input.
 ![recieve](https://s.put.re/M1jfZZRs.png)
 
