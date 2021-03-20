@@ -85,4 +85,6 @@
         }, 20);
     });
 
+    update(localStorage.getItem("dark-mode-toggle")) || style;
+
 </script>
