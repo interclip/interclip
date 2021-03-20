@@ -68,8 +68,7 @@ Then press Enter and through the magic of code here is the code to your link!
 ## How to receive a clip
 
 Receiving a clip is even easier than clipping. Just get out your phone or another device and paste the code into the input.
-![recieve](https://s.put.re/M1jfZZRs.png)
+![receive page](https://user-images.githubusercontent.com/29888641/111874110-f34c6500-8993-11eb-989e-928018279580.png)
 
 And now just click the button....
-
-![get URL](https://s.put.re/ZsgUEznc.35.png)
+![URL preview](https://user-images.githubusercontent.com/29888641/111874125-fe9f9080-8993-11eb-82b1-27642de9468a.png)
