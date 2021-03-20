@@ -1,24 +1,23 @@
 @charset "UTF-8";
 /* Mobile view */
 @media screen and (min-width: 300px) and (max-width: 700px) {
-
-.dropzone {
+  .dropzone {
     max-width: 80%;
-}
+  }
 
-.info {
+  .info {
     margin-top: 30%;
-}
+  }
 
-.status {
+  .status {
     width: 80%;
-}
+  }
 
-.image-url {
+  .image-url {
     width: 80%;
-}
+  }
 
-.loading-table {
+  .loading-table {
     margin: auto 50%;
-}
+  }
 }
