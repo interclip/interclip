@@ -42,3 +42,17 @@ GET
   "result": "https://taskord.com/"
 }
 ```
+
+
+## Get file upload stats
+### Example query
+GET
+`https://interclip.app/includes/size.json`
+
+### Example responce
+```json
+{
+  "count": 26,
+  "bytes": 163544872
+}
+```
