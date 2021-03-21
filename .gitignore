@@ -7,3 +7,4 @@ includes/mail_auth.php
 includes/salt.php
 .phpunit.result.cache
 upload/uploads/
+includes/size.json
