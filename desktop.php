@@ -27,7 +27,6 @@
         <h1>Interclip on the desktop</h1>
 
         <!-- Compiled and minified JavaScript -->
-        <script src='https://cdn.jsdelivr.net/gh/jquery/jquery/dist/jquery.min.js'></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="js/desktop.js"></script>
         <script>
