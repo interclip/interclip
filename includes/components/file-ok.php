@@ -17,7 +17,7 @@
     <div class="output"></div>
     <span id="code" class="code"></span>
     <br>
-    <button id="copy" class="copy">Copy code</button>
+    <button aria-label="Copy the code" id="copy" class="copy">Copy code</button>
 </div>
 
 <script>

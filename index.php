@@ -19,7 +19,7 @@
     <form name="urlform" id="content" onsubmit="return validateForm()" action="./includes/new" method="POST">
 
         <input type="url" name="input" class="input" id="search-input" autofocus>
-        <button type="reset" class="search" id="search-btn"></button>
+        <button aria-label="Reset content" type="reset" class="search" id="search-btn"></button>
 
     </form>
     <div id="modal" class="modal">
@@ -36,7 +36,7 @@
         <div class="output"></div>
         <span class="code"></span>
         <br>
-        <button class="copy">Copy code</button>
+        <button aria-label="Copy the code" class="copy">Copy code</button>
     </center>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
