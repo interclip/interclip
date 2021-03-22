@@ -56,3 +56,6 @@ body:
   "bytes": 163544872
 }
 ```
+
+## `curl` file upload
+Sample command: `curl -F "uploaded_file=@file.txt" https://interclip.app/upload/`, where `file.txt` is your file.
