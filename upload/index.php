@@ -1,11 +1,15 @@
-<?php if(!isset($_GET['api'])): ?>
+<?php
+  $curlHostRegex = "/curl\/\d{1,15}.\d{1,15}.\d{1,15}/";
+  $curl = preg_match($curlHostRegex, $_SERVER['HTTP_USER_AGENT']);
+?>
+<?php if(!isset($_GET['api']) && !$curl): ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Upload your files</title>
 </head>
 <body>
-  <?php if(empty($_FILES['uploaded_file'])): ?>
+<?php if(empty($_FILES['uploaded_file'])): ?>
   <form enctype="multipart/form-data" action="./" method="POST">
     <p>Upload your file</p>
     <input type="file" name="uploaded_file"></input><br />
@@ -13,13 +17,9 @@
   </form>
   <?php endif; ?>
   <?php endif; ?>
-
   <?php 
-
-
   if(!empty($_FILES['uploaded_file']))
   {
-
     function formatBytes($bytes) {
       if ($bytes > 0) {
           $i = floor(log($bytes) / log(1024));
@@ -54,6 +54,8 @@
       $url = "https://files.interclip.app/".$id. "." . strtolower($ext);
       if (isset($_GET['api'])) {
         echo json_encode(['status' => 'success', 'result' => $url]);
+      } else if ($curl) {
+        echo $url;
       } else {
         echo "The file ".  basename( $_FILES['uploaded_file']['name']). " has been uploaded";
         echo "<br>" . $url;
@@ -69,7 +71,7 @@
     }
   }
 ?>
-<?php if(!isset($_GET['api'])): ?>
+<?php if(!isset($_GET['api']) && !$curl): ?>
 </body>
 </html>
 <?php endif; ?>
