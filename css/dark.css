@@ -1,5 +1,8 @@
 body,
 html,
+.select,
+.select::after,
+#slct,
 .full-screen,
 #code {
   background: #444 !important;
@@ -17,4 +20,13 @@ img {
 .demo-droppable {
   background: #444 !important;
   color: #e4e4e4 !important;
+}
+
+.modal-content, .modal-content > p {
+  background: #373737 !important;
+  color: white !important;
+}
+
+.select::after {
+  background: #333 !important;
 }

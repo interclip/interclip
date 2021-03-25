@@ -72,7 +72,6 @@ foreach ($pages as $page) {
       <h2>Settings</h2>
       <p>Here you can change some of Interclip's settings.</p>
       <h3>Color scheme</h3>
-      <div id="colorScheme">
         <!-- Rounded switch -->
         <div class="select">
           <select name="slct" id="slct">
@@ -103,7 +102,6 @@ foreach ($pages as $page) {
           </label>
           <span class="toggleLabel">Show</span>
         </div>
-      </div>
     </div>
 
   </div>

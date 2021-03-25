@@ -9,7 +9,7 @@ const btn = document.getElementById("triggerModal");
 const span = document.getElementsByClassName("close")[0];
 
 // Get the toggle checkbox
-const checkbox = document.querySelector("#slct");
+const colorSchemePreference = document.querySelector("#slct");
 const toggle = document.querySelector("#hashanimation");
 const betaToggle = document.querySelector("#betafeatures");
 // Get the system value
@@ -31,7 +31,7 @@ btn.onclick = () => {
     settingsModal.style.display = "block";
 };
 
-checkbox.addEventListener("change", function () {
+colorSchemePreference.addEventListener("change", function () {
     if (this.value === "system") {
         const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         darkModeToggle.mode = isDark ? "dark" : "light";
@@ -63,7 +63,7 @@ betaToggle.addEventListener("change", function () {
 systemOpt.innerText = systemOpt.innerText += ` ${isTablet ? "📱" : isPhone ? "📱" : "💻"
     }`;
 
-checkbox.value = localStorage.getItem("dark-mode-toggle") || "system";
+colorSchemePreference.value = localStorage.getItem("dark-mode-toggle") || "system";
 
 toggle.checked = !localStorage.getItem("hideHashAnimation");
 
