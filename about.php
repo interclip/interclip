@@ -32,7 +32,7 @@
         <h1>About Interclip</h1>
 
         <div id="repoInfo">
-            Read the <a href="https://aperta-principium.github.io/Interclip/">Documentation</a>
+            Read the <a href="https://github.com/aperta-principium/Interclip#readme">Documentation</a>
             <br />
             <span id="release">Release: <span id="version"><?php echo $release[0]; ?> </span><br /></span>
             Deployed from commit: <span id="commit"><a href="<?php echo $commit ?>"> <?php echo $hashShort ?> </a></span>
