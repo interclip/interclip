@@ -12,7 +12,7 @@ function validateForm() {
       'Something\'s wrong here',
       'You have to enter a valid URL',
       'error'
-    )
+    );
     return false;
   }
 }

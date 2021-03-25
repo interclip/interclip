@@ -132,7 +132,7 @@ function formatBytes(bytes, decimals = 2) {
           'error'
         ).then(() => {
           location.reload();
-        })
+        });
         break;
       }
       uploadRe(files[i]);
