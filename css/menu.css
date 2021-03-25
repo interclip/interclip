@@ -51,6 +51,7 @@ li a:hover:not(.active) {
   cursor: pointer;
   float: right;
   margin-right: 15px;
+  color: white;
 }
 
 .themeLabel {
