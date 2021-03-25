@@ -14,12 +14,14 @@ $pages = array(
     'privacy' => ['privacy', 'Privacy policy'],
     'about' => ['about', 'About']
 );
+
 if (!isProd()) {
     $scriptNameArray = explode("\\", $scriptPath);
 } else {
     $scriptNameArray = explode("/", $scriptPath);
     include_once('analytics.php');
 }
+
 $currFile = end($scriptNameArray);
 
 if ($currFile == "get.php" || $currFile == "new.php") {
