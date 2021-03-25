@@ -45,10 +45,12 @@ li a:hover:not(.active) {
 
 
 .settingsIcon {
-  width: 50px;
-  height: 50px;
+  width: 32px;
+  height: 32px;
   transition-duration: 0.5s;
   cursor: pointer;
+  float: right;
+  margin-right: 15px;
 }
 
 .themeLabel {
