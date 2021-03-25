@@ -52,6 +52,7 @@
                     $count = $row['id'];
                     break;
                 }
+                if (!$count) $count = 0;
                 noteLimit("about");
                 echo $count;
             ?>
