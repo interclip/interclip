@@ -49,10 +49,15 @@
           <div id="embed"> </div>
           <img id="imgShow">
           <div id="output"> </div>
-        <?php else: ?>
+        <?php elseif (!empty($user_code)): ?>
           <?php
             http_response_code(404);
             echo "<p>There was no url found for the code " . $user_code . "</p>";
+          ?>
+        <?php else: ?>
+          <?php
+            http_response_code(400);
+            echo "<p>I hate to admin it, but there is no <i>null</i> code, is this a 404? No, because there was nothing to not-be-found. Weird, try again, and fill out the code next time.</p>";
           ?>
         <?php endif; ?>
       </div>
