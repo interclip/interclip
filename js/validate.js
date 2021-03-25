@@ -8,7 +8,11 @@ function isValidURL(string) {
 function validateForm() {
   const x = document.forms["urlform"]["input"].value;
   if (!isValidURL(x) || x == "") {
-    alert("You have to enter a valid URL");
+    Swal.fire(
+      'Something\'s wrong here',
+      'You have to enter a valid URL',
+      'error'
+    )
     return false;
   }
 }

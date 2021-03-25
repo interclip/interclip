@@ -59,4 +59,5 @@ foreach ($pages as $page) {
 
 <script src='https://cdn.jsdelivr.net/gh/jquery/jquery/dist/jquery.min.js'></script>
 <script type="module" src="https://cdn.pika.dev/dark-mode-toggle"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <dark-mode-toggle style="display: flex; justify-content: flex-end; margin-right: 15px;" id="dark-mode-toggle-1" appearance="toggle" permanent="true"></dark-mode-toggle>
