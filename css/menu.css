@@ -62,7 +62,7 @@ li a:hover:not(.active) {
   transform: rotate(90deg);
 }
 
-#settingsModal {
+#settingsModal, #settingsModal p {
   color: #000;
   text-align: left;
 }
