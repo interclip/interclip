@@ -36,7 +36,7 @@
             <br />
             Take a look at Interclip's <a href="https://github.com/aperta-principium/Interclip/blob/main/LEGAL.md">legal notices</a>
             <br />
-            <span id="release">Release: <span id="version"><?php echo $release[0]; ?> </span><br /></span>
+            <span id="release">Release: <span id="version"><?php echo $release[0]; ?> <a href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $release[0]; ?>">(what's new?)</a></span><br /></span>
             Deployed from commit: <span id="commit"><a href="<?php echo $commit ?>"> <?php echo $hashShort ?> </a></span>
             <br />
             Total clips: 
