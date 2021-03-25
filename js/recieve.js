@@ -10,9 +10,12 @@ function printOutText(text) {
   document.querySelector("#result").innerText = text;
 }
 
-setInterval(() => {
+if (!localStorage.getItem("hideHashAnimation")) {
+  setInterval(() => {
     placeHolder();
-}, 500);
+  }, 500);
+  placeHolder();
+}
 
 function submit() {
   document.forms.form.submit();
@@ -30,4 +33,3 @@ function validateForm() {
     return true;
   }
 }
-placeHolder();

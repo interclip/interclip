@@ -48,7 +48,6 @@ input[type="text"] {
   height: 1000px;
   background-color: #3cbcc3;
   transition: display 0.5s;
-  margin-top: -39px;
   position: absolute;
   display: block;
 }
