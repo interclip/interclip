@@ -7,14 +7,7 @@
 [![GitPod badge](https://img.shields.io/badge/setup-automated-blue?logo=gitpod)](https://gitpod.io/#https://github.com/aperta-principium/Interclip)
 [![Uptime](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Faperta-principium%2Fstatus%2FHEAD%2Fapi%2Fhomepage%2Fuptime.json)](https://status.interclip.app)
 
-## Table of contents
-
-1.  [Intro](#intro)
-2.  [Built with](#dependencies)
-3.  [API](#api)
-4.  [Contributing](#contribute)
-5.  [Tutorial](#howto)
-   <img src="https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png" alt="Interclip logo" width="150">
+<img src="https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png" alt="Interclip logo" width="150">
 
 <a name="intro"> </a>
 
