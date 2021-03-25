@@ -68,7 +68,7 @@ foreach ($pages as $page) {
 
     <!-- Modal content -->
     <div class="modal-content">
-      <span class="close">&times;</span>
+      <span class="closeBtn">&times;</span>
       <h2>Settings</h2>
       <p>Here you can change some of Interclip's settings.</p>
       <h3>Color scheme</h3>

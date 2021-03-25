@@ -30,3 +30,7 @@ img {
 .select::after {
   background: #333 !important;
 }
+
+.closeBtn:hover {
+  color: white !important;
+}

@@ -6,7 +6,7 @@ const darkModeToggle = document.querySelector("dark-mode-toggle");
 const btn = document.getElementById("triggerModal");
 
 // Get the <span> element that closes the modal
-const span = document.getElementsByClassName("close")[0];
+const span = document.getElementsByClassName("closeBtn")[0];
 
 // Get the toggle checkbox
 const colorSchemePreference = document.querySelector("#slct");
