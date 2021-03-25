@@ -16,60 +16,62 @@ const betaToggle = document.querySelector("#betafeatures");
 const systemOpt = document.getElementById("systemOption");
 
 const userAgent = navigator.userAgent.toLowerCase();
+
 const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(
-  userAgent
+    userAgent
 );
+
 const isPhone = !isTablet
-  ? "ontouchstart" in document.documentElement &&
+    ? "ontouchstart" in document.documentElement &&
     /mobi/i.test(navigator.userAgent)
-  : false;
+    : false;
 
 // When the user clicks the button, open the modal
 btn.onclick = () => {
-  settingsModal.style.display = "block";
+    settingsModal.style.display = "block";
 };
 
 checkbox.addEventListener("change", function () {
-  if (this.value === "system") {
-    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    darkModeToggle.mode = isDark ? "dark" : "light";
-    localStorage.removeItem("dark-mode-toggle");
-  } else {
-    darkModeToggle.mode = this.value;
-  }
+    if (this.value === "system") {
+        const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        darkModeToggle.mode = isDark ? "dark" : "light";
+        localStorage.removeItem("dark-mode-toggle");
+    } else {
+        darkModeToggle.mode = this.value;
+    }
 });
 
 toggle.addEventListener("change", function () {
-  if (this.checked) {
-    localStorage.removeItem("hideHashAnimation");
-  } else {
-    localStorage.setItem("hideHashAnimation", "true");
-  }
+    if (this.checked) {
+        localStorage.removeItem("hideHashAnimation");
+    } else {
+        localStorage.setItem("hideHashAnimation", "true");
+    }
 });
 
 betaToggle.addEventListener("change", function () {
-  if (this.checked) {
-    localStorage.setItem("betaMenu", "true");
-  } else {
-    localStorage.removeItem("betaMenu");
-  }
+    if (this.checked) {
+        localStorage.setItem("betaMenu", "true");
+    } else {
+        localStorage.removeItem("betaMenu");
+    }
+    updateMenu();
 });
 
 /* Initialization */
 
-systemOpt.innerText = systemOpt.innerText += ` ${
-  isTablet ? "📱" : isPhone ? "📱" : "💻"
-}`;
+systemOpt.innerText = systemOpt.innerText += ` ${isTablet ? "📱" : isPhone ? "📱" : "💻"
+    }`;
 
 checkbox.value = localStorage.getItem("dark-mode-toggle") || "system";
 
 toggle.checked = !localStorage.getItem("hideHashAnimation");
 
-betaToggle.checked = !localStorage.getItem("betaMenu");
+betaToggle.checked = localStorage.getItem("betaMenu");
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = () => {
-  settingsModal.style.display = "none";
+    settingsModal.style.display = "none";
 };
 
 // When the user clicks anywhere outside of the modal, close it
@@ -78,3 +80,13 @@ document.onclick = (event) => {
         settingsModal.style.display = "none";
     }
 };
+
+const updateMenu = () => {
+    for (const li of document.querySelectorAll("#menu li")) {
+        if (li?.children[0]?.children[0]?.classList.contains("beta")) {
+            li.style.display = localStorage.getItem("betaMenu") ? "block" : "none";
+        }
+    }
+}
+
+updateMenu();
