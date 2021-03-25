@@ -70,6 +70,7 @@ li a:hover:not(.active) {
 
 #settingsModal > * {
   padding-left: 5%;
+  padding-bottom: 50px;
 }
 
 /* The Modal (background) */
@@ -129,6 +130,7 @@ select {
   background:#DFDFDF;
   color: black;
   background-image: none;
+  font-size: medium;
 }
 
 /* Remove IE arrow */
