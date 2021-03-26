@@ -51,9 +51,9 @@ toggle.addEventListener("change", function () {
 
 betaToggle.addEventListener("change", function () {
     if (this.checked) {
-        localStorage.setItem("betaMenu", "true");
+        localStorage.removeItem("hideBetaMenu");
     } else {
-        localStorage.removeItem("betaMenu");
+        localStorage.setItem("hideBetaMenu", "true");
     }
     updateMenu();
 });
@@ -67,7 +67,7 @@ colorSchemePreference.value = localStorage.getItem("dark-mode-toggle") || "syste
 
 toggle.checked = !localStorage.getItem("hideHashAnimation");
 
-betaToggle.checked = localStorage.getItem("betaMenu");
+betaToggle.checked = !localStorage.getItem("hideBetaMenu");
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = () => {
@@ -84,7 +84,7 @@ document.onclick = (event) => {
 const updateMenu = () => {
     for (const li of document.querySelectorAll("#menu li")) {
         if (li?.children[0]?.children[0]?.classList.contains("beta")) {
-            li.style.display = localStorage.getItem("betaMenu") ? "block" : "none";
+            li.style.display = localStorage.getItem("hideBetaMenu") ? "none" : "block";
         }
     }
 }
