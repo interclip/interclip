@@ -4,7 +4,7 @@
 ?>
 <?php if(!isset($_GET['api']) && !$curl): ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Upload your files</title>
 </head>

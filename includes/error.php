@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
         <title><?php echo ("$errortitle"); ?></title>
         <meta charset="utf-8">
