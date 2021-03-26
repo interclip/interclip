@@ -42,7 +42,7 @@ Different apps for different platforms
 For using the Interclip API, see the [API Docs](API.md).
 <a name="contribute"> </a>
 
-## Want to contribute
+## Contributing
 
 For a code of conduct, see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and for setting up your environment (local or remote), see [CONTRIBUTING.md](CONTRIBUTING.md).
 
