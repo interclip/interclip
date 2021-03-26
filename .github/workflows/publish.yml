@@ -3,9 +3,10 @@ on:
   push:
     branches:
       - main
+  release:
+    types: [published]
 
 jobs:
-
   build:
     name: Publish
     runs-on: ubuntu-latest
