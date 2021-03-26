@@ -50,6 +50,26 @@ foreach ($pages as $page) {
 }
 
 ?>
+
+<!-- Primary Meta Tags -->
+<title>Interclip - easy peasy clipboard sharing</title>
+<meta name="title" content="Interclip - easy peasy clipboard sharing">
+<meta name="description" content="Interclip is a tool for easily sharing URLs between devices or users.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://interclip.app/">
+<meta property="og:title" content="Interclip - easy peasy clipboard sharing">
+<meta property="og:description" content="Interclip is a tool for easily sharing URLs between devices or users.">
+<meta property="og:image" content="https://interclip.app/img/header.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://interclip.app/">
+<meta property="twitter:title" content="Interclip - easy peasy clipboard sharing">
+<meta property="twitter:description" content="Interclip is a tool for easily sharing URLs between devices or users.">
+<meta property="twitter:image" content="https://interclip.app/img/header.png">
+
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
