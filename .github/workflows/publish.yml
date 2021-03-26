@@ -7,8 +7,8 @@ on:
     types: [published]
 
 jobs:
-  build:
-    name: Publish
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
     - name: Git pull on the server
@@ -19,6 +19,12 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: cd /var/www/html && sudo git pull --all && sudo composer install
+        
+  purge-cache:
+    name: Purge Cloudflare cache
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
     - name: Purge cache
       uses: jakejarvis/cloudflare-purge-action@master
       env:
