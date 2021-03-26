@@ -52,7 +52,6 @@ foreach ($pages as $page) {
 ?>
 
 <!-- Primary Meta Tags -->
-<title>Interclip - easy peasy clipboard sharing</title>
 <meta name="title" content="Interclip - easy peasy clipboard sharing">
 <meta name="description" content="Interclip is a tool for easily sharing URLs between devices or users.">
 
