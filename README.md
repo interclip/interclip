@@ -16,7 +16,7 @@
 
 A handy-dandy clipboard sharing tool to share URLs between devices and users.
 
-[App](https://interclip.app)
+Check it out at [interclip.app](https://interclip.app)
 
 <a name="clients"> </a>
 
