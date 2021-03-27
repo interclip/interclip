@@ -40,7 +40,7 @@ Different apps for different platforms
 
 ## API
 
-For using the Interclip API, see the [API Docs](API.md).
+For using the Interclip API, see the [API Docs](https://github.com/aperta-principium/Interclip/wiki/API).
 <a name="contribute"> </a>
 
 ## Contributing
