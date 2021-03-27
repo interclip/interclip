@@ -1,3 +1,5 @@
+<img src="https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png" alt="Interclip logo" width="150">
+
 # Interclip
 <a href="https://www.producthunt.com/posts/interclip?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-interclip" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=174002&theme=light" alt="Interclip - Easy peasy clipboard cross-platform sharing | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
 
@@ -7,7 +9,6 @@
 [![Uptime](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Faperta-principium%2Fstatus%2FHEAD%2Fapi%2Fhomepage%2Fuptime.json)](https://status.interclip.app)
 ***
 
-<img src="https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png" alt="Interclip logo" width="150">
 
 <a name="intro"> </a>
 
