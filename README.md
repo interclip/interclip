@@ -59,7 +59,7 @@ Then press Enter and through the magic of code here is the code to your link!
 ![code-preview](https://s.put.re/Jwmoc8BV.png)
 
 ## How to receive a clip
-
+**💡 ProTip: you can receive a clip even faster by scanning the QR code or going to `interclip.app/yourcode`**
 
 Receiving a clip is even easier than clipping. Just get out your phone or another device and paste the code into the input.
 ![receive page](https://user-images.githubusercontent.com/29888641/111874110-f34c6500-8993-11eb-989e-928018279580.png)
