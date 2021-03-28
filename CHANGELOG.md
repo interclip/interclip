@@ -1,3 +1,23 @@
+# v3.2.3
+## Security 🔒
+-  Update CORS header in API https://github.com/aperta-principium/Interclip/commit/d6ff3db191755810877facb12a5e54999ea9d9e1
+- Better sanitizing of SQL injections https://github.com/aperta-principium/Interclip/commit/596535a9e9f3f23be06e9c0319cc133d3bc238d5
+- Better RegEx for URLs https://github.com/aperta-principium/Interclip/commit/7a8ffc0e7ded44bd4d62990f1f4c7853c04b3c49
+
+## UI 💄
+- Fix the copy code button in file.php and index.php https://github.com/aperta-principium/Interclip/commit/b856ac2f117d924f1ba88d27c889f5f463300356
+- Hide loading animation with CSS instead of JS https://github.com/aperta-principium/Interclip/commit/95438e80b6aa80505abf32ccf72fcb5dccdddfb9
+- Fix dark mode bug in file.php https://github.com/aperta-principium/Interclip/commit/c004cd1dc15e4b0df1d7077bfdaaa56812e301fb
+- Fix modal colors on file upload https://github.com/aperta-principium/Interclip/commit/53e5aacb0734049737498f426ce622f9673cfbad
+
+## Documentation 📝
+- Delete ToDos section https://github.com/aperta-principium/Interclip/commit/d7122cd74b2257efecea1c20229f7b4ed2ba21cb
+- Update libraries section with new ones and update embed.js name https://github.com/aperta-principium/Interclip/commit/8c548c5982d93e79b2e6eb896ef7113f8eec648d
+
+## Bugs 🐛
+- Make it impossible to generate the same code twice https://github.com/aperta-principium/Interclip/commit/138bf2cf11369080b9c53ec8f159e80b6fef694c
+- Upgrade to APIv2 on file upload code copy https://github.com/aperta-principium/Interclip/commit/9ff2994cd1664fb00ab52d87105f23a9b7971caa
+
 # v3.2.2
 ## Bugs 🐛
 * Fix styling issues with menus on the receive and about pages https://github.com/aperta-principium/Interclip/commit/1612902ffec651663104d5e6fc4371f047792395
