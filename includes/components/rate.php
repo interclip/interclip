@@ -18,7 +18,7 @@ function noteLimit($action) {
         $ip = $_SERVER['REMOTE_ADDR'];
     }
 
-    $cryptIP = hash("sha512", $GLOBALS['salt']."-".$ip);
+    $cryptIP = hash("sha512", $_ENV['SALT']."-".$ip);
 
     // Create connection
     $conn = new mysqli($_ENV['SERVER_NAME'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
