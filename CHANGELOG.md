@@ -1,5 +1,13 @@
+# v3.1.1
+## Features ✨
+- CodeQL scanning Action
+- Added automatic changing themes for QR codes
+
+## Code 🎨
+- Reformatted code style
+
 # v3.1.0
-## Features✨
+## Features ✨
 - GitHub Actions - linter
 - CORS header
 - Made README.md look better
