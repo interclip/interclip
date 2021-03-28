@@ -34,7 +34,7 @@
         <div id="repoInfo">
             Read the <a href="https://github.com/aperta-principium/Interclip#readme">Documentation</a>
             <br />
-            Take a look at Interclip's <a href="https://github.com/aperta-principium/Interclip/blob/main/LEGAL.md">legal notices</a>
+            Take a look at Interclip's <a href="https://github.com/aperta-principium/Interclip/wiki/Legal-notices">legal notices</a>
             <br />
             <span id="release">Release: <span id="version"><?php echo $release[0]; ?> <a href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $release[0]; ?>">(what's new?)</a></span><br /></span>
             Deployed from commit: <span id="commit"><a href="<?php echo $commit ?>"> <?php echo $hashShort ?> </a></span>
