@@ -9,3 +9,4 @@ includes/salt.php
 upload/uploads/
 includes/size.json
 diff.txt
+.env
