@@ -1,3 +1,13 @@
+# v3.1.0
+## Features✨
+- GitHub Actions - linter
+- CORS header
+- Made README.md look better
+- Interclip Desktop download page
+## Code 🎨
+- A lot of formatting
+- A lot of indentation changes
+
 # v3.0.6
 ## Features ✨
 * Automatic QR code generation upon clip creation
@@ -24,7 +34,7 @@
 * Added embedding also to the [new clip](https://github.com/aperta-principium/Interclip/blob/master/includes/new.php) section
 * Moved the whole embedding process to [aperta-principium/Embed](https://github.com/aperta-principium/Embed)
 
-## Code ♻
+## Code 🎨
 * Redid the whole embed script
 * Checked if the argument passed to api.php is an URL
 
