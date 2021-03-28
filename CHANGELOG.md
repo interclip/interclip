@@ -1,3 +1,7 @@
+# v3.0.6
+## Features ✨
+* Automatic QR code generation upon clip creation
+
 # v3.0.5
 ## Features ✨
 * We got an MIT license.
