@@ -1,12 +1,13 @@
 <?php
 
-define('ROOT_DIR', realpath(__DIR__.'/..'));
+define('ROOT_DIR', realpath(__DIR__ . '/..'));
 
-  require ROOT_DIR."/vendor/autoload.php";
-
+require ROOT_DIR . "/vendor/autoload.php";
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '../.env');
 $dotenv->safeLoad();
+
+define("ROOT", $_ENV['ROOT']);
 
 if (!isset($prodvar)) {
   include('prod.php');
@@ -134,4 +135,4 @@ foreach ($pages as $page) {
 
 </div>
 
-<script src="/js/menu.js"></script>
+<script src="<?php echo ROOT ?>/js/menu.js"></script>
