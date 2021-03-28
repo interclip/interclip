@@ -125,4 +125,4 @@ foreach ($pages as $page) {
 
   </div>
 
-<script src="js/menu.js"></script>
+<script src="/js/menu.js"></script>
