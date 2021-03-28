@@ -1,7 +1,6 @@
 <?php
 
 include_once "../db.php";
-include_once "../salt.php";
 
 function noteLimit($action) {
     
