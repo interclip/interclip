@@ -1,3 +1,21 @@
+# v3.2.4
+## UI 💄
+- Make the site-wide font match https://github.com/aperta-principium/Interclip/commit/5f533bc277a2cc2c651b789456be9a64a186f36c
+- Removed the mobile.php page and make the new catch-all index.php more responsive https://github.com/aperta-principium/Interclip/commit/94ed8ad6b448dc3b21d1218e6e83d55bfc092432
+- Make the URL input autofocus to reduce the time to clip yo' stuff https://github.com/aperta-principium/Interclip/commit/593daf82903cbc1ba38041fd58fb03aee07ac87e
+- Make the code input field have a min length of 5 https://github.com/aperta-principium/Interclip/commit/9e00f1e14cd4af0f35ca8476e41d157dc98eee45
+
+## Security 🔒
+- Fix HTTP image https://github.com/aperta-principium/Interclip/commit/9c1e351a7c26b1888d48f8795d21da487655b912
+- **Add rate limiting https://github.com/aperta-principium/Interclip/commit/29b5872d5b38093d004c57675d2ab66fbf10b8c5**
+
+## Features ✨
+- **Expiring clips - clips now last just a month to keep everything running well https://github.com/aperta-principium/Interclip/commit/f3d912888e9d45b2c1c4393e6e86477481db624fl**
+
+## Documentation 📝
+- Add client apps to README https://github.com/aperta-principium/Interclip/commit/64c64cfb325fc4ec8cbcc61e958b459b0a720873
+- Add Firefox add-on link to the README https://github.com/aperta-principium/Interclip/commit/10a19b716c96ad94579817429dfa2f68144c6415
+
 # v3.2.3
 ## Security 🔒
 -  Update CORS header in API https://github.com/aperta-principium/Interclip/commit/d6ff3db191755810877facb12a5e54999ea9d9e1
