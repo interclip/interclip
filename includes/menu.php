@@ -50,11 +50,11 @@ foreach ($pages as $page) {
     echo '<li><a class="active" href="#">' . $page[1] . '</a></li>';
   } else {
     if ($page[0] == "about") {
-      echo '<li style="float:right"><a href="' . $urlPrefix . 'about">About</a></li></ul>';
+      echo '<li style="float:right"><a href="' . ROOT . '/about">About</a></li></ul>';
     } elseif ($page[0] == "desktop") {
-      echo '<li id="desktopMenuItem" style="display: none;"><a href="' . $urlPrefix . $page[0] . '">' . $page[1] . '</a></li> ';
+      echo '<li id="desktopMenuItem" style="display: none;"><a href="' . ROOT . "/" . $page[0] . '">' . $page[1] . '</a></li> ';
     } else {
-      echo '<li><a href="' . $urlPrefix . $page[0] . '">' . $page[1] . '</a></li> ';
+      echo '<li><a href="' . ROOT . "/" . $page[0] . '">' . $page[1] . '</a></li> ';
     }
   }
 }
@@ -83,6 +83,8 @@ foreach ($pages as $page) {
 <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="<?php echo ROOT ?>/css/menu.css">
 
 <script src='https://cdn.jsdelivr.net/gh/jquery/jquery/dist/jquery.min.js'></script>
 <script type="module" src="https://cdn.pika.dev/dark-mode-toggle"></script>

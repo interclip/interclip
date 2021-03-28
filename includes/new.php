@@ -10,7 +10,6 @@
     <link href="css/button.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/new.css">
     <link rel="stylesheet" href="../css/dark.css" media="(prefers-color-scheme: dark)">
-    <link rel="stylesheet" href="../css/menu.css">
 </head>
 <body>
   <?php

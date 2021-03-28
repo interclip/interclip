@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="./css/about.css">
     <link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)">
     <link rel="stylesheet" href="./css/desktop.css">
-    <link rel="stylesheet" href="./css/menu.css">
 </head>
 <body>
     <div class="nav">
