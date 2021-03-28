@@ -30,6 +30,7 @@ jobs:
       with:
         fetch-depth: 0
     - run: git diff --name-only HEAD^ > diff.txt
+    - run: python3 scripts/arrayify.py
     - run: FILES=$(python3 scripts/arrayify.py)
     - run: echo $FILES
     - name: Purge cache
