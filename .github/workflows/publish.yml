@@ -26,7 +26,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Purge cache
+    - run: git diff --name-only HEAD^ > diff.txt
+    - run: FILES=$(python3 scripts/arrayify.py)
       uses: jakejarvis/cloudflare-purge-action@master
       env:
         CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
         CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
+        PURGE_URLS: ${{ $FILES }}

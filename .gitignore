@@ -8,3 +8,4 @@ includes/salt.php
 .phpunit.result.cache
 upload/uploads/
 includes/size.json
+diff.txt
