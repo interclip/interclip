@@ -1,4 +1,19 @@
-# v3.2.0
+# v3.2.2
+## Bugs 🐛
+* Fix styling issues with menus on the receive and about pages https://github.com/aperta-principium/Interclip/commit/1612902ffec651663104d5e6fc4371f047792395
+## Code 🎨
+* Make the button on the receive page smaller and better https://github.com/aperta-principium/Interclip/commit/2fbdc33197d8f3d40ac185ebf69fb3907132cccd https://github.com/aperta-principium/Interclip/commit/00ecd9f7f152ed6bf75f1a034a716af1b9211f3e
+* Update input bubble #34 https://github.com/aperta-principium/Interclip/commit/d2d9c43e05702b6f94cfa987f8d82b87320b93fa
+* Update the sitemap https://github.com/aperta-principium/Interclip/commit/cfa5c228eb1fc5215392f83d5ba559a794f358ea
+* Delete some files that are not needed anymore https://github.com/aperta-principium/Interclip/commit/70224f6a8373dc29eff8f0c3776a789ae672a9e5 https://github.com/aperta-principium/Interclip/commit/b6158676717a663bedd05e93335ef441f178aa1a
+* Some CSS formatting https://github.com/aperta-principium/Interclip/commit/6af15e26fd3bc66ca672090802d4a41cf69003f4 https://github.com/aperta-principium/Interclip/commit/3f8ed51ac00a0d6767b5eed2e965e0eaa08ceb17
+
+## Docs
+* Updated privacy policy - just removed some stuff because Interclip doesn't collect any data about the user https://github.com/aperta-principium/Interclip/commit/217dacbaa67c710addff86792ecd62e15f1b802c
+* Fix more non-interclip.app references https://github.com/aperta-principium/Interclip/commit/c33a63d2b2d1c7e4b766a2e76c71ca216d284073 https://github.com/aperta-principium/Interclip/commit/94581d78939d948c6c559e22397e8026a3c6ba3c
+
+
+# v3.2.1
 ## Features ✨
 - change most references to interclip.app https://github.com/aperta-principium/Interclip/commit/5066c4d3c921a0698618bd3dff06167c4e3bda3c  https://github.com/aperta-principium/Interclip/commit/39ea54348a8569375d3f70009abaca3e10c77101
 - update the embed.js library https://github.com/aperta-principium/Interclip/commit/5bcc30ea19da7ad66803185db7bf8bbcf067cd6e
