@@ -3,12 +3,10 @@
     <head>
         <title><?php echo ("$errortitle"); ?></title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="../css/index.css">
-        <link rel="stylesheet" href="../css/dark.css" media="(prefers-color-scheme: dark)">
-    </head>
 
     <?php
         include("menu.php");
+        
         $status = $_SERVER['REDIRECT_STATUS'];
         $codes = array(
             400 => array('400 Bad Request', 'The request cannot be fulfilled due to bad syntax.'),
@@ -32,7 +30,9 @@
         }
 
     ?>
-
+        <link rel="stylesheet" href="<?php echo ROOT ?>/css/index.css">
+        <link rel="stylesheet" href="<?php echo ROOT ?>/css/dark.css" media="(prefers-color-scheme: dark)">
+    </head>
     <body style="text-align: center;">
         <?php
             function reDir($url)
