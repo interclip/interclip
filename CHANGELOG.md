@@ -1,3 +1,21 @@
+# v3.2.0
+## Features ✨
+- change most references to interclip.app https://github.com/aperta-principium/Interclip/commit/5066c4d3c921a0698618bd3dff06167c4e3bda3c  https://github.com/aperta-principium/Interclip/commit/39ea54348a8569375d3f70009abaca3e10c77101
+- update the embed.js library https://github.com/aperta-principium/Interclip/commit/5bcc30ea19da7ad66803185db7bf8bbcf067cd6e
+- add a number of total clips to the about page https://github.com/aperta-principium/Interclip/commit/ece0bf48b517dd0982e00d735e53add5b36fcd85
+- make the privacy page less wide on desktop https://github.com/aperta-principium/Interclip/commit/c03a9a00182458bfe126841c7c1db5c696ea7b08
+- change dark mode toggle styling https://github.com/aperta-principium/Interclip/commit/faaadcd5388a74b8e8acbbcb6fa3dd1aeb088a3c
+- delete old hosting service ad tag https://github.com/aperta-principium/Interclip/commit/5f9452155104608d641d4de518b45ee6f946dd23
+## Bugs 🐛
+- fix an uploading bug in `file.js` https://github.com/aperta-principium/Interclip/commit/7c07ace51fe8ea59669ae6a41b1c683d7c9d5946
+- fix file menu margin https://github.com/aperta-principium/Interclip/commit/ab5bd5563c7cb9b9b27deda8961227a01ee16e96
+
+# v3.2.0
+## Features ✨
+- API now returns JSON cause it's the future (although it's about 20 years old)
+## Bugs 🐛
+- Made the page not so large in height with no content
+
 # v3.1.1
 ## Features ✨
 - CodeQL scanning Action
