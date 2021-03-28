@@ -31,10 +31,10 @@ jobs:
         fetch-depth: 0
     - run: git diff --name-only HEAD^ > diff.txt
     - run: FILES=$(python3 scripts/arrayify.py)
-    - run: echo '$FILES'
+    - run: echo $FILES
     - name: Purge cache
       uses: jakejarvis/cloudflare-purge-action@master
       env:
         CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
         CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
-        PURGE_URLS: '$FILES'
+        PURGE_URLS: $FILES
