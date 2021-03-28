@@ -1,4 +1,4 @@
-# v3.3.1
+# v3.3.1 (March 26, 2021)
 ## Features ✨ 
 - Added support for a lot more browsers in image pasting https://github.com/aperta-principium/Interclip/commit/5b472757f3030217225e5f521d81bd9705824c1d
 - Made the release display on the about page more reliable with server-side rendering instead of requesting the GitHub API https://github.com/aperta-principium/Interclip/commit/bc85a31a73113349a7e3242997626882f6a32313
@@ -33,7 +33,7 @@
 - Added git as an installation prerequisite https://github.com/aperta-principium/Interclip/commit/4d06783c503a75b2563207b79a469a3db26a3b65
 - Changed wording in the API doc https://github.com/aperta-principium/Interclip/commit/21fbd321b97a42e5fc8f0aec016e7854407e2d20
 
-# v3.3.0
+# v3.3.0 (February 25, 2021)
 ## Docs 📝
 - Stripped some things from the privacy policy https://github.com/aperta-principium/Interclip/commit/77976e1b9c16b083d47fe11eecfa567b933b2170
 - Updated some instructions in the CONTRIBUTING.md doc https://github.com/aperta-principium/Interclip/commit/3a45b2c377a5520a1336951298b86122fab807fe
@@ -45,7 +45,7 @@
 ## Features ✨ 
 - new file upload tool! https://github.com/aperta-principium/Interclip/commit/9961059c8936f291bb0aff434940ab4e34f5889e
 
-# v3.2.6
+# v3.2.6 (February 23, 2021)
 ## Bug fixes 🐛
 - When the client IP reaches GitHub's API limit, don't even bother showing the info in the layout https://github.com/aperta-principium/Interclip/commit/0e83560448d80d20c7d29f155a20ac4db9d6dfa4
 
@@ -72,7 +72,7 @@
 - Add a link to the Firefox Interclip extension to the README https://github.com/aperta-principium/Interclip/commit/e93f708d5dc767ceac570bd4be620b9496fbb16f
 - Add MySQL cron jobs to the Dev setup docs https://github.com/aperta-principium/Interclip/commit/5034ce3c842fec681fde6fa11266c276e962f090
 
-# v3.2.5
+# v3.2.5 (January 29, 2021)
 ## Features ✨
 - get the id of the commit from which Interclip is currently deployed https://github.com/aperta-principium/Interclip/commit/3e24720ac107ca4f4046fb65fc49ca73b12ce92d
 
@@ -98,7 +98,7 @@
 - delete external sources that were unused or duplicate https://github.com/aperta-principium/Interclip/commit/103a2bb5b157b6c2ebd297623ed9c1d315ea250e
 
 
-# v3.2.4
+# v3.2.4 (January 19, 2021)
 ## UI 💄
 - Make the site-wide font match https://github.com/aperta-principium/Interclip/commit/5f533bc277a2cc2c651b789456be9a64a186f36c
 - Removed the mobile.php page and make the new catch-all index.php more responsive https://github.com/aperta-principium/Interclip/commit/94ed8ad6b448dc3b21d1218e6e83d55bfc092432
@@ -116,7 +116,7 @@
 - Add client apps to README https://github.com/aperta-principium/Interclip/commit/64c64cfb325fc4ec8cbcc61e958b459b0a720873
 - Add Firefox add-on link to the README https://github.com/aperta-principium/Interclip/commit/10a19b716c96ad94579817429dfa2f68144c6415
 
-# v3.2.3
+# v3.2.3 (January 17, 2021)
 ## Security 🔒
 -  Update CORS header in API https://github.com/aperta-principium/Interclip/commit/d6ff3db191755810877facb12a5e54999ea9d9e1
 - Better sanitizing of SQL injections https://github.com/aperta-principium/Interclip/commit/596535a9e9f3f23be06e9c0319cc133d3bc238d5
@@ -136,7 +136,7 @@
 - Make it impossible to generate the same code twice https://github.com/aperta-principium/Interclip/commit/138bf2cf11369080b9c53ec8f159e80b6fef694c
 - Upgrade to APIv2 on file upload code copy https://github.com/aperta-principium/Interclip/commit/9ff2994cd1664fb00ab52d87105f23a9b7971caa
 
-# v3.2.2
+# v3.2.2 (January 16, 2021)
 ## Bugs 🐛
 * Fix styling issues with menus on the receive and about pages https://github.com/aperta-principium/Interclip/commit/1612902ffec651663104d5e6fc4371f047792395
 ## Code 🎨
@@ -151,7 +151,7 @@
 * Fix more non-interclip.app references https://github.com/aperta-principium/Interclip/commit/c33a63d2b2d1c7e4b766a2e76c71ca216d284073 https://github.com/aperta-principium/Interclip/commit/94581d78939d948c6c559e22397e8026a3c6ba3c
 
 
-# v3.2.1
+# v3.2.1 (January 15, 2021)
 ## Features ✨
 - change most references to interclip.app https://github.com/aperta-principium/Interclip/commit/5066c4d3c921a0698618bd3dff06167c4e3bda3c  https://github.com/aperta-principium/Interclip/commit/39ea54348a8569375d3f70009abaca3e10c77101
 - update the embed.js library https://github.com/aperta-principium/Interclip/commit/5bcc30ea19da7ad66803185db7bf8bbcf067cd6e
@@ -163,13 +163,13 @@
 - fix an uploading bug in `file.js` https://github.com/aperta-principium/Interclip/commit/7c07ace51fe8ea59669ae6a41b1c683d7c9d5946
 - fix file menu margin https://github.com/aperta-principium/Interclip/commit/ab5bd5563c7cb9b9b27deda8961227a01ee16e96
 
-# v3.2.0
+# v3.2.0 (November 23, 2020)
 ## Features ✨
 - API now returns JSON cause it's the future (although it's about 20 years old)
 ## Bugs 🐛
 - Made the page not so large in height with no content
 
-# v3.1.1
+# v3.1.1 (September 11, 2020)
 ## Features ✨
 - CodeQL scanning Action
 - Added automatic changing themes for QR codes
@@ -177,7 +177,7 @@
 ## Code 🎨
 - Reformatted code style
 
-# v3.1.0
+# v3.1.0 (September 7, 2020)
 ## Features ✨
 - GitHub Actions - linter
 - CORS header
@@ -187,11 +187,11 @@
 - A lot of formatting
 - A lot of indentation changes
 
-# v3.0.6
+# v3.0.6 (August 10, 2020)
 ## Features ✨
 * Automatic QR code generation upon clip creation
 
-# v3.0.5
+# v3.0.5 (October 16, 2019)
 ## Features ✨
 * We got an MIT license.
 * We got error pages
@@ -205,7 +205,7 @@
 * Got a site-wide dark mode (see #16 and #18)
 * Moved favicon to the img subfolder 
 
-# v3.0.4
+# v3.0.4 (October 6, 2019)
 ## Features ✨
 * Made a function which automatically redirects you to the desired URL of a code
 * Added a smart menu, which houses the list of all pages and updates on a page-basis
@@ -220,7 +220,7 @@
 ## Bugs 🐛
 * Fixed a bug with embedding files with uppercase file extensions 
 
-# v3.0.3
+# v3.0.3 (September 27, 2019)
 ## Features ✨
 - Added a logo
 - Better mobile menu
@@ -228,17 +228,17 @@
 ## Bugs 🐛
 - Fixed a bug with the YouTube embed
 
-# v3.0.2
+# v3.0.2 (Semptember 27, 2019)
 ## Features ✨
 - This version added everything about embedding
 - Videos, Vimeo videos, Documents, Sound files and Images can all be embedded
 
-# v3.0.1
+# v3.0.1 (September 7, 2019)
 ## Features ✨
 - In version 3.0.1 there has been added the ability to upload images and directly get a code.
 - Also, when you then go to the receive link page and enter a code that contains a link to jpeg, jpg, gif or a png (this might get changed in the future) there is an image preview
 
-# v3.0.0
+# v3.0.0 (August 10, 2019)
 ## Features ✨
 - Redesigned the whole thing
 - Added random alphanumeric codes to every URL
