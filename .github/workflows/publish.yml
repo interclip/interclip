@@ -36,4 +36,4 @@ jobs:
       env:
         CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
         CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
-        PURGE_URLS: "$(python3 scripts/arrayify.py)"
+        PURGE_URLS: "\"$(python3 scripts/arrayify.py)\""
