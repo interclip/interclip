@@ -10,7 +10,7 @@ $dotenv->safeLoad();
 define("ROOT", $_ENV['ROOT']);
 
 if (!isset($prodvar)) {
-  include('prod.php');
+  include 'prod.php';
 }
 
 $relative_path = $_SERVER['PHP_SELF'];
@@ -28,7 +28,7 @@ if (!isProd()) {
   $scriptNameArray = explode("\\", $scriptPath);
 } else {
   $scriptNameArray = explode("/", $scriptPath);
-  include_once('analytics.php');
+  include_once 'analytics.php';
 }
 $currFile = end($scriptNameArray);
 
