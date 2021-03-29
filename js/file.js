@@ -45,6 +45,18 @@ function uploadRe($files) {
   $(".demo-droppable").hide();
 }
 
+function formatBytes(bytes, decimals = 2) {
+    if (bytes === 0) return '0 Bytes';
+
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
+
 ((window) => {
   function triggerCallback(e, callback) {
     if (!callback || typeof callback !== "function") {
@@ -116,8 +128,13 @@ function uploadRe($files) {
     }
 
     if (file.size > fileSizeLimitInBytes) {
-      alert(`File size over ${fileSizeLimitInMegabytes} MB.`);
-      location.reload();
+        Swal.fire(
+          'Something\'s went wrong',
+          `Your file is ${formatBytes(files[i].size)}, which is over the limit of ${fileSizeLimitInMegabytes}MB`,
+          'error'
+        ).then(() => {
+          location.reload();
+        });
     }
     uploadRe(file);
 
