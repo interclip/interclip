@@ -12,10 +12,13 @@
     <link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)">
     <link rel="stylesheet" href="./css/menu.css">
 </head>
+
 <body>
 
     <?php
-      include("includes/menu.php");
+    include "includes/anti-csrf.php";
+    store();
+    include "includes/menu.php";
     ?>
 
     <div class="wrapper">
@@ -26,6 +29,7 @@
 
                     <div class="input-wrap">
                         <p class="title">Recieve link</p>
+                        <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>" />
                         <input type="text" name="user" minlength="5" maxlength="5" id="code" placeholder="h&amp;$h">
                         <br>
                         <a class="btn" onClick="submit()" data-title="Make the magic happen"></a>
@@ -44,4 +48,5 @@
     </div>
 
 </body>
+
 </html>
