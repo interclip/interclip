@@ -11,13 +11,19 @@
     <meta name="google-site-verification" content="-YbUutUgfmvMugp0SOLLwef8BKdDcRvSoOvlQVJx4oM" />
 </head>
 <?php
+    session_start();
+    $_SESSION['token'] = bin2hex(random_bytes(32));
+ 
+    // (A3) TOKEN EXPIRY
+    $_SESSION['token-expire'] = time() + 7200; // 2 hours
+
     include("includes/menu.php");
 ?>
 
 <body>
 
     <form name="urlform" id="content" onsubmit="return validateForm()" action="./includes/new" method="POST">
-
+        <input type="hidden" name="token" value="<?=$_SESSION['token']?>"/>
         <input type="url" name="input" class="input" id="search-input" autofocus>
         <button aria-label="Reset content" type="reset" class="search" id="search-btn"></button>
 
