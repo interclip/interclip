@@ -1,3 +1,26 @@
+# v3.3.2 (Match 29, 2021)
+## Features ✨ 
+- Added metatags for better social previews https://github.com/aperta-principium/Interclip/commit/d586a8dc108ace7f6d7ab2b36f3090868d5dd255
+
+## Bug fixes 🐛
+- Fixed a bug where the favicon wouldn't display on Firefox https://github.com/aperta-principium/Interclip/commit/9aabc1b56aa208a9cc383e0f36023721c40d1c6e
+- Fixed a bug with a non-working menu, which may still break on some local installations, but this will be resolved in the next version https://github.com/aperta-principium/Interclip/commit/3757872641005c8355543268cef6e4374a5ec208
+- Made the Beta features shown by default https://github.com/aperta-principium/Interclip/commit/7a1bc7cc2fd6867925f105f7612ac62451869ed3
+
+## Code 🎨
+- Purge Cloudflare cache on every deployment https://github.com/aperta-principium/Interclip/commit/97b3a533f8d85a9c3243759b9365ad5e5541b7ae
+- Deploy code also when a new release is published https://github.com/aperta-principium/Interclip/commit/29ecde7ef732e2d47c1734818ceb4f6c31b4b78d
+- Delete the local copy of jQuery QR code https://github.com/aperta-principium/Interclip/commit/528b938498224abc45bc2fe3cf35a0b1542b2d0c
+
+## Security 🔒
+- Hide `.git/` for visitors https://github.com/aperta-principium/Interclip/commit/a0692b7a2282aa55171f8b61d8b498645dd79c4d
+
+## Docs 📝
+- Added [docs.interclip.app](https://docs.interclip.app/) https://github.com/aperta-principium/Interclip/commit/9551ed5b2c13528823d7782a6ac0e8a2e85106c7
+- Add a CHANGELOG.md https://github.com/aperta-principium/Interclip/commit/1cef3387acfaa24f36451ea02e191459ebb73d64
+- A ProTip in the README.md https://github.com/aperta-principium/Interclip/commit/0116f8378b6072d0483f67c67d21fa56118c9f01
+- Changed logo position in the README.md https://github.com/aperta-principium/Interclip/commit/2015d75f076647ddf8cfe37af847bc38ab4f6695
+
 # v3.3.1 (March 26, 2021)
 ## Features ✨ 
 - Added support for a lot more browsers in image pasting https://github.com/aperta-principium/Interclip/commit/5b472757f3030217225e5f521d81bd9705824c1d
