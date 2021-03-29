@@ -20,6 +20,9 @@
   <?php
     if (isset($_POST['input'])) {
       $url = $_POST['input'];
+      $url = str_replace("<", "&lt;", $url);
+      $url = str_replace(">", "&gt;", $url);
+      
       include_once "./components/new.php";
     }
   ?>
