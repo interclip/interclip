@@ -15,19 +15,8 @@
 
 <body>
   <?php
-  // Start the session
-  session_start();
-
-  if ($_SESSION['token'] === $_POST['token']) {
-    if (time() >= $_SESSION['token-expire']) {
-      exit("Token expired. Please reload form.");
-    } else {
-      unset($_SESSION['token']);
-      unset($_SESSION['token-expire']);
-    }
-  } else {
-    exit("INVALID ANTI-CSRF TOKEN, sending you back. <script>location.href='../';</script>");
-  }
+  include "anti-csrf.php";
+  validate();
 
   include_once "menu.php";
   ?>

@@ -11,13 +11,9 @@
     <meta name="google-site-verification" content="-YbUutUgfmvMugp0SOLLwef8BKdDcRvSoOvlQVJx4oM" />
 </head>
 <?php
-    session_start();
-    $_SESSION['token'] = bin2hex(random_bytes(32));
- 
-    // (A3) TOKEN EXPIRY
-    $_SESSION['token-expire'] = time() + 7200; // 2 hours
-
-    include("includes/menu.php");
+    include "includes/anti-csrf.php";
+    store();
+    include "includes/menu.php";
 ?>
 
 <body>
