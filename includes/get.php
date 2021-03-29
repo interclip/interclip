@@ -22,7 +22,7 @@
   if (!empty($_POST['user'])) {
     $user_code = $_POST['user'];
     $user_code = str_replace("<", "&lt;", $user_code);
-    $user_code = str_replace(">", "&gt;", $uuser_coderl);
+    $user_code = str_replace(">", "&gt;", $user_code);
 
     include_once "./db.php";
     include_once "components/get.php";
