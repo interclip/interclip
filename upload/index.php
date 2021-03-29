@@ -4,7 +4,7 @@
 ?>
 <?php if(!isset($_GET['api']) && !$curl): ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Upload your files</title>
 </head>
@@ -51,13 +51,13 @@
 
     if(move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
       exec("bash upload.sh " . $path . " > /dev/null &"); 
-      $url = "https://files.interclip.app/".$id. "." . strtolower($ext);
+      $url = "https://files.interclip.app/" . $id . "." . htmlspecialchars(strtolower($ext));
       if (isset($_GET['api'])) {
         echo json_encode(['status' => 'success', 'result' => $url]);
       } else if ($curl) {
         echo $url;
       } else {
-        echo "The file ".  basename( $_FILES['uploaded_file']['name']). " has been uploaded";
+        echo "The file ". htmlspecialchars(basename( $_FILES['uploaded_file']['name'])) . " has been uploaded";
         echo "<br>" . $url;
         echo '<form id="clip" action="../includes/new" method="POST"><input type="url" name="input" value="'.$url.'"><input type="submit"></form>';
         echo "<script>document.getElementById('clip').submit()</script>";

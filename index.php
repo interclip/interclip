@@ -26,7 +26,7 @@
 
         <!-- Modal content -->
         <div class="modal-content">
-            <p><img height="250" src="css/loading-spin.svg" alt=""></p>
+            <p><img height="250" src="css/loading-spin.svg" alt="Loading"></p>
         </div>
 
     </div>

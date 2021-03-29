@@ -1,20 +1,14 @@
-# Interclip
+<img src="https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png" alt="Interclip logo" width="150">
 
+# Interclip
 <a href="https://www.producthunt.com/posts/interclip?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-interclip" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=174002&theme=light" alt="Interclip - Easy peasy clipboard cross-platform sharing | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
 
 ![clipboard](https://img.shields.io/badge/clipboard-copied-orange) ![Clipboard](https://img.shields.io/github/repo-size/aperta-principium/Interclip) [![Maintainability](https://api.codeclimate.com/v1/badges/0a72c92a0a2da0c79ba5/maintainability)](https://codeclimate.com/github/aperta-principium/Interclip/maintainability)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/aperta-principium/interclip/latest)
 [![GitPod badge](https://img.shields.io/badge/setup-automated-blue?logo=gitpod)](https://gitpod.io/#https://github.com/aperta-principium/Interclip)
 [![Uptime](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Faperta-principium%2Fstatus%2FHEAD%2Fapi%2Fhomepage%2Fuptime.json)](https://status.interclip.app)
+***
 
-## Table of contents
-
-1.  [Intro](#intro)
-2.  [Built with](#dependencies)
-3.  [API](#api)
-4.  [Contributing](#contribute)
-5.  [Tutorial](#howto)
-   <img src="https://github.com/filiptronicek/Interclip/raw/master/img/interclip_logo.png" alt="Interclip logo" width="150">
 
 <a name="intro"> </a>
 
@@ -22,7 +16,7 @@
 
 A handy-dandy clipboard sharing tool to share URLs between devices and users.
 
-[App](https://interclip.app)
+Check it out at [interclip.app](https://interclip.app).
 
 <a name="clients"> </a>
 
@@ -46,10 +40,10 @@ Different apps for different platforms
 
 ## API
 
-For using the Interclip API, see the [API Docs](API.md).
+For using the Interclip API, see the [API Docs](https://github.com/aperta-principium/Interclip/wiki/API).
 <a name="contribute"> </a>
 
-## Want to contribute
+## Contributing
 
 For a code of conduct, see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and for setting up your environment (local or remote), see [CONTRIBUTING.md](CONTRIBUTING.md).
 
@@ -66,6 +60,7 @@ Then press Enter and through the magic of code here is the code to your link!
 ![code-preview](https://s.put.re/Jwmoc8BV.png)
 
 ## How to receive a clip
+**💡 ProTip: you can receive a clip even faster by scanning the QR code or going to `interclip.app/yourcode`**
 
 Receiving a clip is even easier than clipping. Just get out your phone or another device and paste the code into the input.
 ![receive page](https://user-images.githubusercontent.com/29888641/111874110-f34c6500-8993-11eb-989e-928018279580.png)

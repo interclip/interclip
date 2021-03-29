@@ -20,11 +20,12 @@
   <?php
     if (isset($_POST['input'])) {
       $url = $_POST['input'];
+      $url = htmlspecialchars($url);
+
       include_once "./components/new.php";
     }
   ?>
 
-  <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js"> </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"> </script>
 
   <div id="fullscreen">

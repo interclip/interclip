@@ -3,11 +3,12 @@ on:
   push:
     branches:
       - main
+  release:
+    types: [published]
 
 jobs:
-
-  build:
-    name: Publish
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
     - name: Git pull on the server
@@ -18,3 +19,21 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: cd /var/www/html && sudo git pull --all && sudo composer install
+        
+  purge-cache:
+    name: Purge Cloudflare cache
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - run: git diff --name-only HEAD^ > diff.txt
+    - run: echo "Purging \"$(python3 scripts/arrayify.py)\""
+    - name: Purge cache
+      uses: jakejarvis/cloudflare-purge-action@master
+      env:
+        CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
+        CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
+        #PURGE_URLS: "\"$(python3 scripts/arrayify.py)\""

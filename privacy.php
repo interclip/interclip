@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
 
 <head>
     <title>Privacy Policy | Interclip</title>

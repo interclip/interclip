@@ -10,6 +10,8 @@
     AddDefaultCharset UTF-8
     DefaultLanguage en-US
 
+    RedirectMatch 404 /\.git
+
     # Prevent directory listings
     Options All -Indexes
 
