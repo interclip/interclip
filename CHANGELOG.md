@@ -1,4 +1,4 @@
-# v3.3.2 (Match 29, 2021)
+# v3.3.2 (March 29, 2021)
 ## Features ✨ 
 - Added metatags for better social previews https://github.com/aperta-principium/Interclip/commit/d586a8dc108ace7f6d7ab2b36f3090868d5dd255
 
