@@ -130,7 +130,7 @@ function formatBytes(bytes, decimals = 2) {
     if (file.size > fileSizeLimitInBytes) {
         Swal.fire(
           'Something\'s went wrong',
-          `Your file is ${formatBytes(files[i].size)}, which is over the limit of ${fileSizeLimitInMegabytes}MB`,
+          `Your file is ${formatBytes(file.size)}, which is over the limit of ${fileSizeLimitInMegabytes}MB`,
           'error'
         ).then(() => {
           location.reload();
