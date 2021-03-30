@@ -22,5 +22,6 @@
 
 <script>
     clickEnabled = true;
+    const csrfToken = "<?=$_SESSION['token']?>";
 </script>
 <script src="js/file.js"></script>

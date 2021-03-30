@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="./css/menu.css">
 </head>
 <?php
+    include "includes/anti-csrf.php";
+    store();
     include("includes/menu.php");
 ?>
 
