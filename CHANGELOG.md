@@ -1,3 +1,17 @@
+# v3.3.3 (March 29, 2021)
+## Features ✨
+- Added new alerts https://github.com/aperta-principium/Interclip/commit/7dfd3e9ed3d7f795ba966ddd46544493b6382978
+- Alt text for a loading GIF https://github.com/aperta-principium/Interclip/commit/b0430105c0c89e7ecf5e54692126b4a448455819
+
+## Performance ⚡️
+- Deleted 50kB of icons https://github.com/aperta-principium/Interclip/commit/3ca7cef7fe280dc9e37378f5c0608790dbb0515a
+
+## Security 🔒
+- Prevent Generic Object Injection Sinks https://github.com/aperta-principium/Interclip/commit/3ca7cef7fe280dc9e37378f5c0608790dbb0515a
+- Prevent request XSS on backend https://github.com/aperta-principium/Interclip/commit/3755a565cb09438062075617ca77e81e857ef4b1
+- **Add Anti-CSRF tokens https://github.com/aperta-principium/Interclip/commit/8ca382d5a96c7094f697ef59617066df541f311d**
+- Better way to escape HTML chars https://github.com/aperta-principium/Interclip/commit/e1b8f23a097f34ef8d0c68e2ed0f86f80614e007
+
 # v3.3.2 (March 29, 2021)
 ## Features ✨ 
 - Added metatags for better social previews https://github.com/aperta-principium/Interclip/commit/d586a8dc108ace7f6d7ab2b36f3090868d5dd255
