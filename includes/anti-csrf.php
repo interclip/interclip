@@ -30,6 +30,6 @@ function validate()
         }
     } else {
         http_response_code(400);
-        exit("All went well... just kidding, something went wrong, and it looks like it's something on your end. Either you're here since like 1995 or yoU're trying to steal our requests, either way, don't do that!");  
+        exit("All went well... just kidding, something went wrong, and it looks like it's something on your end. Either you're here since like 1995 or you're trying to steal our requests, either way, don't do that!");  
     }
 }
