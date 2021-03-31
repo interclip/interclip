@@ -43,6 +43,7 @@
     </div>
     <script>
         clickEnabled = false;
+        const csrfToken = "<?=$_SESSION['token']?>";
     </script>
     <script src="js/index.js"> </script>
     <script src="js/validate.js"> </script>
