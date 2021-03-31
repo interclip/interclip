@@ -254,3 +254,7 @@ input:checked + .slider:before {
 .toggleLabel {
   display: inline-block;
 }
+
+h1:nth-child(1) {
+  margin-top: 55px;
+}
