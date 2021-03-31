@@ -59,7 +59,7 @@
     </div>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="js/about.js"></script>
+
     <div class='madeBy center'>
         made with ❤️  <i class="icon ion-heart"></i> and a little bit of code by &nbsp;
         <span><a href="https://github.com/filiptronicek"><img src="https://github.com/filiptronicek.png"></a></span></div>
