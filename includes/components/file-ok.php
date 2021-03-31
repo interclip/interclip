@@ -15,9 +15,6 @@
 
     </div>
     <div class="output"></div>
-    <span id="code" class="code"></span>
-    <br>
-    <button aria-label="Copy the code" id="copy" class="copy">Copy code</button>
 </div>
 
 <script>
