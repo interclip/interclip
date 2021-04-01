@@ -28,8 +28,19 @@ function uploadRe($files) {
   request.onreadystatechange = () => {
     if (request.readyState == XMLHttpRequest.DONE) {
       const data = (request.responseText);
-      const link = JSON.parse(data).result;
+      const jsonData = JSON.parse(data);
+      if (jsonData.status === "error") {
+        Swal.fire(
+          'Something\'s went wrong',
+          jsonData.result,
+          'error'
+        ).then(() => {
+          location.reload();
+        });
+      } else {
+      const link = jsonData.result;
       showCode(link);
+      }
     }
   };
   // API Endpoint
