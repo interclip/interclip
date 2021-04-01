@@ -1,3 +1,4 @@
+
 image:
   file: .gitpod.dockerfile
 ports:
@@ -17,3 +18,7 @@ tasks:
   command: >
     apachectl start &&
     multitail /var/log/apache2/access.log -I /var/log/apache2/error.log
+
+vscode:
+  extensions:
+    - bmewburn.vscode-intelephense-client
