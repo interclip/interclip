@@ -15,6 +15,7 @@ function showCode(data) {
   modal.style.display = "none";
   document.body.innerHTML += `
     <form id="clip" action="../includes/new" method="POST">
+      <input type="hidden" name="token" value="${csrfToken}"/>
       <input type="url" name="input" value="${data}">
       <input type="submit">
     </form>`;
@@ -27,8 +28,19 @@ function uploadRe($files) {
   request.onreadystatechange = () => {
     if (request.readyState == XMLHttpRequest.DONE) {
       const data = (request.responseText);
-      const link = JSON.parse(data).result;
+      const jsonData = JSON.parse(data);
+      if (jsonData.status === "error") {
+        Swal.fire(
+          'Something\'s went wrong',
+          jsonData.result,
+          'error'
+        ).then(() => {
+          location.reload();
+        });
+      } else {
+      const link = jsonData.result;
       showCode(link);
+      }
     }
   };
   // API Endpoint
@@ -43,6 +55,18 @@ function uploadRe($files) {
 
   modal.style.display = "block";
   $(".demo-droppable").hide();
+}
+
+function formatBytes(bytes, decimals = 2) {
+    if (bytes === 0) return '0 Bytes';
+
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
 
 ((window) => {
@@ -101,28 +125,34 @@ function uploadRe($files) {
   makeDroppable(window.document.querySelector(".demo-droppable"), (files) => {
     $("#content").hide();
     output.innerHTML = "";
-    for (let i = 0; i < files.length; i++) {
-      if (files[i].type.indexOf("image/") === 0) {
-        output.innerHTML += `<img width="200" src="${URL.createObjectURL(
-          files[i]
-        )}" />`;
-      }
-      output.innerHTML += "<p>" + files[i].name + "</p>";
 
-      if (clickEnabled !== false) {
-        $(".note").fadeOut(500);
-      }
+    const file = files[0];
 
-      if (files[i].size > fileSizeLimitInBytes) {
-        alert(`File size over ${fileSizeLimitInMegabytes} MB.`);
-        location.reload();
-        break;
-      }
-      uploadRe(files[i]);
+    if (file.type.indexOf("image/") === 0) {
+      output.innerHTML += `<img width="200" src="${URL.createObjectURL(
+        file
+      )}" />`;
     }
+    output.innerHTML += `<p>${file.name}</p>`;
+
+    if (clickEnabled !== false) {
+      $(".note").fadeOut(500);
+    }
+
+    if (file.size > fileSizeLimitInBytes) {
+        Swal.fire(
+          'Something\'s went wrong',
+          `Your file is ${formatBytes(file.size)}, which is over the limit of ${fileSizeLimitInMegabytes}MB`,
+          'error'
+        ).then(() => {
+          location.reload();
+        });
+    }
+    uploadRe(file);
+
   });
 
-  document.onpaste = function(event){
+  document.onpaste = function (event) {
     const items = (event.clipboardData || event.originalEvent.clipboardData).items;
     for (const item of items) {
       if (item.kind === 'file') {

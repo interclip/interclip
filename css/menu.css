@@ -50,7 +50,7 @@ li a:hover:not(.active) {
   transition-duration: 0.5s;
   cursor: pointer;
   float: right;
-  margin-right: 15px;
+  margin: 10px;
   color: white;
 }
 
@@ -253,4 +253,8 @@ input:checked + .slider:before {
 
 .toggleLabel {
   display: inline-block;
+}
+
+h1:nth-child(1) {
+  margin-top: 55px;
 }

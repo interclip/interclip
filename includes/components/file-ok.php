@@ -15,12 +15,10 @@
 
     </div>
     <div class="output"></div>
-    <span id="code" class="code"></span>
-    <br>
-    <button aria-label="Copy the code" id="copy" class="copy">Copy code</button>
 </div>
 
 <script>
     clickEnabled = true;
+    const csrfToken = "<?=$_SESSION['token']?>";
 </script>
 <script src="js/file.js"></script>

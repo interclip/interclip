@@ -8,7 +8,6 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="./css/about.css">
     <link rel="stylesheet" href="./css/dark.css" media="(prefers-color-scheme: dark)">
-    <link rel='stylesheet' type='text/css' href='//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' />
 
 </head>
 <div class="nav">
@@ -57,9 +56,9 @@
     </div>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="js/about.js"></script>
+
     <div class='madeBy center'>
-        made with <i class="icon ion-heart"></i> and a little bit of code by &nbsp;
+        made with ❤️  <i class="icon ion-heart"></i> and a little bit of code by &nbsp;
         <span><a href="https://github.com/filiptronicek"><img src="https://github.com/filiptronicek.png"></a></span></div>
 
 

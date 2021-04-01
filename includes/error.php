@@ -5,6 +5,23 @@
         <meta charset="utf-8">
 
     <?php
+        function reDir($url)
+        {
+                header("Location: " . $url . "");
+                die();
+        }
+        $clipRegex = "/([a-z|0-9|A-Z]){5}/g";
+
+        /* Check if requested string wasn't a code */
+        if (strlen(basename($_SERVER['REQUEST_URI'])) == 5) {
+            $user_code = basename($_SERVER['REQUEST_URI']);
+            include_once "components/get.php";
+            
+            if (isset($url)) {
+                reDir($url);
+            }
+        }
+
         include("menu.php");
         
         $status = $_SERVER['REDIRECT_STATUS'];
@@ -35,25 +52,8 @@
     </head>
     <body style="text-align: center;">
         <?php
-            function reDir($url)
-            {
-                header("Location: " . $url . "");
-                die();
-            }
             echo ('<h1 style="font-size: 5rem;margin-top: 30vh;">' . $errortitle . '</h1>');
             echo ('<p style="font-size: 2rem;">' . $message . '</p>');
-
-            $clipRegex = "/([a-z|0-9|A-Z]){5}/g";
-
-            /* Check if requested string wasn't a code */
-            if (strlen(basename($_SERVER['REQUEST_URI'])) == 5) {
-                $user_code = basename($_SERVER['REQUEST_URI']);
-                include_once "components/get.php";
-                
-                if (isset($url)) {
-                    reDir($url);
-                }
-            }
         ?>
     </body>
 </html>

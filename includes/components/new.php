@@ -11,9 +11,8 @@ function createClip($url) {
 
     // Create connection
     $conn = new mysqli($_ENV['SERVER_NAME'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
-
-    $url = str_replace("<", "&lt;", $url);
-    $url = str_replace(">", "&gt;", $url);
+    
+    $url = htmlspecialchars($url);
 
     $url = mysqli_real_escape_string($conn, $url);
 

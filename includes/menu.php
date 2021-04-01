@@ -24,12 +24,14 @@ $pages = array(
   'privacy' => ['privacy', 'Privacy policy'],
   'about' => ['about', 'About']
 );
+
 if (!isProd()) {
   $scriptNameArray = explode("\\", $scriptPath);
 } else {
   $scriptNameArray = explode("/", $scriptPath);
   include_once 'analytics.php';
 }
+
 $currFile = end($scriptNameArray);
 
 if ($currFile == "get.php" || $currFile == "new.php") {
@@ -88,6 +90,7 @@ foreach ($pages as $page) {
 
 <script src='https://cdn.jsdelivr.net/gh/jquery/jquery/dist/jquery.min.js'></script>
 <script type="module" src="https://cdn.pika.dev/dark-mode-toggle"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <dark-mode-toggle id="dark-mode-toggle-1" permanent="true"></dark-mode-toggle>
 <svg id="triggerModal" class="settingsIcon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

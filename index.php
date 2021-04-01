@@ -10,13 +10,15 @@
     <meta name="google-site-verification" content="-YbUutUgfmvMugp0SOLLwef8BKdDcRvSoOvlQVJx4oM" />
 </head>
 <?php
-    include("includes/menu.php");
+    include "includes/anti-csrf.php";
+    store();
+    include "includes/menu.php";
 ?>
 
 <body>
 
     <form name="urlform" id="content" onsubmit="return validateForm()" action="./includes/new" method="POST">
-
+        <input type="hidden" name="token" value="<?=$_SESSION['token']?>"/>
         <input type="url" name="input" class="input" id="search-input" autofocus>
         <button aria-label="Reset content" type="reset" class="search" id="search-btn"></button>
 
@@ -25,7 +27,7 @@
 
         <!-- Modal content -->
         <div class="modal-content">
-            <p><img height="250" src="css/loading-spin.svg" alt=""></p>
+            <p><img height="250" src="css/loading-spin.svg" alt="Loading"></p>
         </div>
 
     </div>
@@ -33,13 +35,11 @@
     </div>
     <center>
         <div class="output"></div>
-        <span class="code"></span>
-        <br>
-        <button aria-label="Copy the code" class="copy">Copy code</button>
     </center>
     </div>
     <script>
         clickEnabled = false;
+        const csrfToken = "<?=$_SESSION['token']?>";
     </script>
     <script src="js/index.js"> </script>
     <script src="js/validate.js"> </script>

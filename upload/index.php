@@ -38,6 +38,16 @@
     $path = "uploads/";
     $ext = pathinfo(basename( $_FILES['uploaded_file']['name']), PATHINFO_EXTENSION);
     $fileSize = $_FILES['uploaded_file']['size'];
+
+    $extRegex = "/^[a-zA-Z0-9]+$/"; // regexr.com/5prtv
+
+    if(!preg_match($extRegex, $ext)) {
+      if(isset($_GET['api']))
+        die(json_encode(['status' => 'error', 'result' => "A file with an invalid file extension was submitted."]));
+      else 
+        die("A file with an invalid file extension was submitted.");
+    }
+
     $path = $path . $id . "." . $ext;
 
     $fileSizeLimit = 104857600; // 100 MB
@@ -51,13 +61,13 @@
 
     if(move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
       exec("bash upload.sh " . $path . " > /dev/null &"); 
-      $url = "https://files.interclip.app/".$id. "." . strtolower($ext);
+      $url = "https://files.interclip.app/" . $id . "." . htmlspecialchars(strtolower($ext));
       if (isset($_GET['api'])) {
         echo json_encode(['status' => 'success', 'result' => $url]);
       } else if ($curl) {
         echo $url;
       } else {
-        echo "The file ".  basename( $_FILES['uploaded_file']['name']). " has been uploaded";
+        echo "The file ". htmlspecialchars(basename( $_FILES['uploaded_file']['name'])) . " has been uploaded";
         echo "<br>" . $url;
         echo '<form id="clip" action="../includes/new" method="POST"><input type="url" name="input" value="'.$url.'"><input type="submit"></form>';
         echo "<script>document.getElementById('clip').submit()</script>";
