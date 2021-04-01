@@ -11,7 +11,7 @@ function reDir($url)
 
 if (isset($_GET['c'])) {
     $user_code = $_GET['c'];
-    $conn = new mysqli($servername, $username, $password, $DBName);
+    $conn = new mysqli($_ENV['SERVER_NAME'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
 
     // Check connection
     if ($conn->connect_error) {

@@ -4,19 +4,14 @@ include_once "./db.php";
 include_once "./components/rate.php";
 include_once "./verify-domain.php";
 
-$GLOBALS['servername'] = $servername;
-$GLOBALS['username'] = $username;
-$GLOBALS['password'] = $password;
-$GLOBALS['dbname'] = $DBName;
-$GLOBALS['salt'] = $salt;
-
 function createClip($url) {
     noteLimit("set");
 
     $err = "";
 
     // Create connection
-    $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
+    $conn = new mysqli($_ENV['SERVER_NAME'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
+    
     $url = htmlspecialchars($url);
 
     $url = mysqli_real_escape_string($conn, $url);

@@ -10,7 +10,6 @@
   <!-- styles -->
   <link rel="stylesheet" href="../css/get.css">
   <link rel="stylesheet" href="../css/dark.css" media="(prefers-color-scheme: dark)">
-  <link rel="stylesheet" href="../css/menu.css">
 
 </head>
 
@@ -25,7 +24,6 @@
     $user_code = $_POST['user'];
     $user_code = htmlspecialchars($user_code);
 
-    include_once "./db.php";
     include_once "components/get.php";
   }
 

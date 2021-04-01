@@ -1,13 +1,5 @@
-# Generate salt file
+#!/bin/bash
 
-salt=$(date +"%s")
-echo "<?php" > includes/salt.php
-echo '$salt = "'$salt'";' >> includes/salt.php
+# Copy the sample GitPod .env
 
-# Generate DB file
-
-echo "<?php" > includes/db.php
-echo '$servername = "localhost:3306";'>> includes/db.php
-echo '$DBName = "iclip";' >> includes/db.php
-echo '$username = "root";' >> includes/db.php
-echo '$password = "";' >> includes/db.php
+cp scripts/.gitpod.env .env

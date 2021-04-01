@@ -8,7 +8,6 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="./css/about.css">
     <link rel="stylesheet" href="./css/dark.css" media="(prefers-color-scheme: dark)">
-    <link rel="stylesheet" href="./css/menu.css">
 
 </head>
 <div class="nav">
@@ -40,10 +39,8 @@
             <br />
             Total clips: 
             <?php
-                include_once "./includes/db.php";
                 include_once "./includes/components/rate.php";
-
-                $conn = new mysqli($servername, $username, $password, $DBName);
+                $conn = new mysqli($_ENV['SERVER_NAME'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
 
                 $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
                 $result = $conn->query($sqlquery);
