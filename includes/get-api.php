@@ -9,6 +9,10 @@ if (!empty($_POST['code'])) {
   $user_code = $_GET['code'];
 }
 
+require "../vendor/autoload.php";
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '../.env');
+$dotenv->safeLoad();
 include_once "components/get.php";
 
 if (isset($url)) {
