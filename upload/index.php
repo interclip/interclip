@@ -38,6 +38,16 @@
     $path = "uploads/";
     $ext = pathinfo(basename( $_FILES['uploaded_file']['name']), PATHINFO_EXTENSION);
     $fileSize = $_FILES['uploaded_file']['size'];
+
+    $extRegex = "/^[a-zA-Z0-9]+$/"; // regexr.com/5prtv
+
+    if(!preg_match($extRegex, $ext)) {
+      if(isset($_GET['api']))
+        die(json_encode(['status' => 'error', 'result' => "A file with an invalid file extension was submitted."]));
+      else 
+        die("A file with an invalid file extension was submitted.");
+    }
+
     $path = $path . $id . "." . $ext;
 
     $fileSizeLimit = 104857600; // 100 MB
