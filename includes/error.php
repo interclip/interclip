@@ -15,6 +15,11 @@
         /* Check if requested string wasn't a code */
         if (strlen(basename($_SERVER['REQUEST_URI'])) == 5) {
             $user_code = basename($_SERVER['REQUEST_URI']);
+
+            require "../vendor/autoload.php";
+
+            $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '../.env');
+            $dotenv->safeLoad();
             include_once "components/get.php";
             
             if (isset($url)) {

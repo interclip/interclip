@@ -1,7 +1,5 @@
 <?php
 
-include_once "../db.php";
-
 function noteLimit($action) {
     
     //whether ip is from share internet

@@ -1,6 +1,5 @@
 <?php
 
-include_once "./db.php";
 include_once "./components/rate.php";
 
 if (isset($user_code)) {

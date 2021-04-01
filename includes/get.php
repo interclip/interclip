@@ -24,7 +24,6 @@
     $user_code = $_POST['user'];
     $user_code = htmlspecialchars($user_code);
 
-    include_once "./db.php";
     include_once "components/get.php";
   }
 
