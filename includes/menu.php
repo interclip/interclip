@@ -51,12 +51,16 @@ foreach ($pages as $page) {
   if ($page[0] == $currFile) {
     echo '<li><a class="active" href="#">' . $page[1] . '</a></li>';
   } else {
-    if ($page[0] == "about") {
-      echo '<li style="float:right"><a href="' . ROOT . '/about">About</a></li></ul>';
-    } elseif ($page[0] == "desktop") {
-      echo '<li id="desktopMenuItem" style="display: none;"><a href="' . ROOT . "/" . $page[0] . '">' . $page[1] . '</a></li> ';
+    if (strpos($page[1], '<span class="beta">') === false) {
+      if ($page[0] == "about") {
+        echo '<li style="float:right"><a href="' . ROOT . '/about">About</a></li></ul>';
+      } elseif ($page[0] == "desktop") {
+        echo '<li id="desktopMenuItem" style="display: none;"><a href="' . ROOT . "/" . $page[0] . '">' . $page[1] . '</a></li> ';
+      } else {
+        echo '<li><a href="' . ROOT . "/" . $page[0] . '">' . $page[1] . '</a></li> ';
+      }
     } else {
-      echo '<li><a href="' . ROOT . "/" . $page[0] . '">' . $page[1] . '</a></li> ';
+      echo '<li style="display: none"><a href="' . ROOT . "/" . $page[0] . '">' . $page[1] . '</a></li> ';
     }
   }
 }
