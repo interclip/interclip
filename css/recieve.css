@@ -24,6 +24,10 @@ body {
   background-color: #3cbcc3;
 }
 
+#code::placeholder {
+  color:#ddd !important;
+}
+
 input[type="text"] {
   border: none;
   border-bottom: 1px solid #555;
