@@ -19,7 +19,7 @@ list($scriptPath) = get_included_files();
 $pages = array(
   'clip' => ['', 'Clip'],
   'file' => ['file', 'File <span class="beta">beta</span>'],
-  'recieve' => ['recieve', 'Recieve clip'],
+  'receive' => ['receive', 'receive clip'],
   'desktop' => ['desktop', "Desktop"],
   'privacy' => ['privacy', 'Privacy policy'],
   'about' => ['about', 'About']
