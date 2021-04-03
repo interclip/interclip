@@ -25,6 +25,13 @@ function showCode(data) {
 function uploadRe($files) {
   // Begin file upload
   const request = new XMLHttpRequest();
+  request.upload.onprogress = (event) => {
+    const progressBar = document.getElementById("progressBar");  
+    console.log(`${(event.loaded / event.total) * 100}%`);
+    progressBar.max = event.total;
+    progressBar.value = event.loaded;  
+  };
+
   request.onreadystatechange = () => {
     if (request.readyState == XMLHttpRequest.DONE) {
       const data = (request.responseText);
