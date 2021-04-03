@@ -1,9 +1,13 @@
 const modal = document.getElementById("modal");
 const output = document.querySelector(".output");
+const fact = document.getElementById("fact");
+
+fetch("https://interclips.filiptronicek.workers.dev/").then((res) => res.text()).then((res) => {
+  fact.innerText = res;
+});
 
 const fileSizeLimitInMegabytes = 100;
-const
-  fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
+const fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
 
 function encodeHTML(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
@@ -22,9 +26,17 @@ function showCode(data) {
   document.getElementById("clip").submit();
 }
 
+const progressBar = document.getElementById("progressBar");
+const progressValue = document.getElementById("progressPercent");
+
 function uploadRe($files) {
   // Begin file upload
   const request = new XMLHttpRequest();
+  request.upload.onprogress = (event) => {
+    progressValue.innerText = `${Math.round((event.loaded / event.total) * 100)}%`;
+    progressBar.value = (event.loaded / event.total) * 100;
+  };
+
   request.onreadystatechange = () => {
     if (request.readyState == XMLHttpRequest.DONE) {
       const data = (request.responseText);
@@ -38,8 +50,8 @@ function uploadRe($files) {
           location.reload();
         });
       } else {
-      const link = jsonData.result;
-      showCode(link);
+        const link = jsonData.result;
+        showCode(link);
       }
     }
   };
@@ -58,15 +70,15 @@ function uploadRe($files) {
 }
 
 function formatBytes(bytes, decimals = 2) {
-    if (bytes === 0) return '0 Bytes';
+  if (bytes === 0) return '0 Bytes';
 
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
 
 ((window) => {
@@ -140,13 +152,13 @@ function formatBytes(bytes, decimals = 2) {
     }
 
     if (file.size > fileSizeLimitInBytes) {
-        Swal.fire(
-          'Something\'s went wrong',
-          `Your file is ${formatBytes(file.size)}, which is over the limit of ${fileSizeLimitInMegabytes}MB`,
-          'error'
-        ).then(() => {
-          location.reload();
-        });
+      Swal.fire(
+        'Something\'s went wrong',
+        `Your file is ${formatBytes(file.size)}, which is over the limit of ${fileSizeLimitInMegabytes}MB`,
+        'error'
+      ).then(() => {
+        location.reload();
+      });
     }
     uploadRe(file);
 
