@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/file.css">
     <link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)">
     <link rel="stylesheet" href="css/copy.css">
+    <link rel="stylesheet" href="css/progressbar.css">
 </head>
 <?php
     include "includes/anti-csrf.php";

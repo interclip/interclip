@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="css/index.css">
 <link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)">
 <link rel="stylesheet" href="css/copy.css">
+<link rel="stylesheet" href="css/progressbar.css">
 
 <head>
     <meta charset="UTF-8">
@@ -27,7 +28,16 @@
 
         <!-- Modal content -->
         <div class="modal-content">
-            <p><img height="250" src="css/loading-spin.svg" alt="Loading"></p>
+            <p>
+                <progress id="progressBar" value="0" max="100"></progress>
+                <br>
+                <span id="progressPercent">
+                    0%
+                </span>
+                <div id="fact">
+                    Inter-clippin' good!
+                </div>
+            </p>
         </div>
 
     </div>
