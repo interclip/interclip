@@ -5,13 +5,19 @@
     <div class="demo-droppable">
         <p>Drag files here or click to upload</p>
     </div>
-            
+
     <div id="modal" class="modal">
 
-    <!-- Modal content -->
-    <div class="modal-content">
-        <p> <progress id="progressBar" value="0" max="100"></progress><span id="progressPercent">0%</span></p>
-    </div>
+        <!-- Modal content -->
+        <div class="modal-content">
+            <p>
+                <progress id="progressBar" value="0" max="100"></progress>
+                <br>
+                <span id="progressPercent">
+                    0%
+                </span>
+            </p>
+        </div>
 
     </div>
     <div class="output"></div>
@@ -19,6 +25,6 @@
 
 <script>
     clickEnabled = true;
-    const csrfToken = "<?=$_SESSION['token']?>";
+    const csrfToken = "<?= $_SESSION['token'] ?>";
 </script>
 <script src="js/file.js"></script>
