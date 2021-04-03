@@ -1,9 +1,13 @@
 const modal = document.getElementById("modal");
 const output = document.querySelector(".output");
+const fact = document.getElementById("fact");
+
+fetch("https://interclips.filiptronicek.workers.dev/").then(res => res.text()).then(res => {
+  fact.innerText = res;
+})
 
 const fileSizeLimitInMegabytes = 100;
-const
-  fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
+const fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
 
 function encodeHTML(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");

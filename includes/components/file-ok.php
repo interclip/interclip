@@ -16,6 +16,9 @@
                 <span id="progressPercent">
                     0%
                 </span>
+                <div id="fact">
+                    Inter-clippin' good!
+                </div>
             </p>
         </div>
 
