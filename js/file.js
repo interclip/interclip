@@ -22,14 +22,15 @@ function showCode(data) {
   document.getElementById("clip").submit();
 }
 
+const progressBar = document.getElementById("progressBar");  
+const progressValue = document.getElementById("progressPercent");
+
 function uploadRe($files) {
   // Begin file upload
   const request = new XMLHttpRequest();
   request.upload.onprogress = (event) => {
-    const progressBar = document.getElementById("progressBar");  
-    console.log(`${(event.loaded / event.total) * 100}%`);
-    progressBar.max = event.total;
-    progressBar.value = event.loaded;  
+    progressValue.innerText = `${Math.round((event.loaded / event.total) * 100)}%`;
+    progressBar.value = (event.loaded / event.total) * 100;  
   };
 
   request.onreadystatechange = () => {

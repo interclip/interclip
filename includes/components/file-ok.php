@@ -10,7 +10,7 @@
 
     <!-- Modal content -->
     <div class="modal-content">
-        <p> <progress id="progressBar" value="0" max="100"></progress></p>
+        <p> <progress id="progressBar" value="0" max="100"></progress><span id="progressPercent">0%</span></p>
     </div>
 
     </div>
