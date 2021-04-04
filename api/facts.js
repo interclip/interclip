@@ -1,6 +1,6 @@
 addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
-})
+  event.respondWith(handleRequest(event.request));
+});
 
 /**
  * Respond to the request
@@ -13,5 +13,5 @@ async function handleRequest(request) {
   const messageArray = result.split("\n"); // Split the text lines to an arrray
   const randomItem = messageArray[Math.floor(Math.random() * messageArray.length)]; // Get a random item from the array
 
-  return new Response(randomItem, {headers: {"Access-Control-Allow-Origin": "*"}, status: 200})
+  return new Response(randomItem, {headers: {"Access-Control-Allow-Origin": "*"}, status: 200});
 }
