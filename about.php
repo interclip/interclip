@@ -5,8 +5,6 @@
         include_once "includes/header.php";
     ?>
     <title>About | Interclip</title>
-
-    <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="./css/about.css">
 
 </head>
