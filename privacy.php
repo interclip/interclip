@@ -1,12 +1,12 @@
 <html lang="en">
 
 <head>
+    <?php
+        include_once "includes/header.php";
+    ?>
+    
     <title>Privacy Policy | Interclip</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="./css/dark.css" media="(prefers-color-scheme: dark)">
     <link rel="stylesheet" href="./css/new.css">
     <link rel="stylesheet" href="./css/privacy.css">
 </head>

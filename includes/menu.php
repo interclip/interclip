@@ -1,20 +1,5 @@
 <?php
 
-define('ROOT_DIR', realpath(__DIR__ . '/..'));
-
-require ROOT_DIR . "/vendor/autoload.php";
-
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '../.env');
-$dotenv->safeLoad();
-
-define("ROOT", $_ENV['ROOT']);
-
-if (!isset($prodvar)) {
-  include 'prod.php';
-}
-
-header("X-Frame-Options: DENY");
-
 $relative_path = $_SERVER['PHP_SELF'];
 $index = 0;
 list($scriptPath) = get_included_files();
@@ -26,6 +11,10 @@ $pages = array(
   'privacy' => ['privacy', 'Privacy policy'],
   'about' => ['about', 'About']
 );
+
+if (!isset($prodvar)) {
+  include 'prod.php';
+}
 
 if (!isProd()) {
   $scriptNameArray = explode("\\", $scriptPath);
@@ -68,35 +57,6 @@ foreach ($pages as $page) {
 }
 
 ?>
-
-<!-- Primary Meta Tags -->
-<meta name="title" content="Interclip - easy peasy clipboard sharing">
-<meta name="description" content="Interclip is a tool for easily sharing URLs between devices or users.">
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://interclip.app/">
-<meta property="og:title" content="Interclip - easy peasy clipboard sharing">
-<meta property="og:description" content="Interclip is a tool for easily sharing URLs between devices or users.">
-<meta property="og:image" content="https://interclip.app/img/header.png">
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://interclip.app/">
-<meta property="twitter:title" content="Interclip - easy peasy clipboard sharing">
-<meta property="twitter:description" content="Interclip is a tool for easily sharing URLs between devices or users.">
-<meta property="twitter:image" content="https://interclip.app/img/header.png">
-
-<link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-
-<link rel="stylesheet" href="<?php echo ROOT ?>/css/menu.css">
-
-<script src='https://cdn.jsdelivr.net/gh/jquery/jquery/dist/jquery.min.js'></script>
-<script type="module" src="https://cdn.pika.dev/dark-mode-toggle"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <dark-mode-toggle id="dark-mode-toggle-1" permanent="true"></dark-mode-toggle>
 <svg id="triggerModal" class="settingsIcon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
