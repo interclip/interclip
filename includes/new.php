@@ -5,6 +5,7 @@
         include_once "header.php";
     ?>
     <title>New clip | Interclip</title>
+    
     <link href="css/button.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/new.css">
 </head>

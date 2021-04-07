@@ -4,10 +4,11 @@
     <?php
         include_once "includes/header.php";
     ?>
+    <title>Interclip - easy peasy clipboard sharing</title>
+
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/copy.css">
     <link rel="stylesheet" href="css/progressbar.css">
-    <title>Interclip - easy peasy clipboard sharing</title>
 </head>
 
 <?php

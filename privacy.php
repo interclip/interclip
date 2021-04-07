@@ -4,12 +4,12 @@
     <?php
         include_once "includes/header.php";
     ?>
-    
     <title>Privacy Policy | Interclip</title>
-    <!-- Compiled and minified CSS -->
+    
     <link rel="stylesheet" href="./css/new.css">
     <link rel="stylesheet" href="./css/privacy.css">
 </head>
+
 <div class="nav">
     <?php
     include "includes/menu.php";

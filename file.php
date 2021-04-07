@@ -6,6 +6,7 @@
         include_once "includes/header.php";
     ?>
     <title>Upload a file | Interclip</title>
+    
     <link href="./css/style.css" rel="stylesheet" media="screen">
     <link href="./css/mobile-style.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="css/image.css">
