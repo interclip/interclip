@@ -3,7 +3,7 @@
         order allow,deny
         deny from all
     </Files>
-    <Files db.php>
+    <Files .env>
         order allow,deny
         deny from all
     </Files>
