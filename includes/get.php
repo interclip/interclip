@@ -6,8 +6,8 @@
         include_once "header.php";
   ?>
   <title>Get your link | Interclip</title>
-  
-  <link rel="stylesheet" href="../css/get.css">
+
+  <link rel="stylesheet" type="text/css" href="../css/get.css">
 </head>
 
 <body>

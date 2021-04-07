@@ -5,9 +5,9 @@
         include_once "includes/header.php";
     ?>
     <title>Privacy Policy | Interclip</title>
-    
-    <link rel="stylesheet" href="./css/new.css">
-    <link rel="stylesheet" href="./css/privacy.css">
+
+    <link rel="stylesheet" type="text/css" href="./css/new.css">
+    <link rel="stylesheet" type="text/css" href="./css/privacy.css">
 </head>
 
 <div class="nav">

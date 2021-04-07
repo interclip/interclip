@@ -5,8 +5,8 @@
         include_once "includes/header.php";
     ?>
     <title>Receive link | Interclip</title>
-    
-    <link href="css/button.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="css/button.css">
     <link rel="stylesheet" type="text/css" href="css/receive.css">
 </head>
 

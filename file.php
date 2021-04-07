@@ -6,13 +6,13 @@
         include_once "includes/header.php";
     ?>
     <title>Upload a file | Interclip</title>
-    
-    <link href="./css/style.css" rel="stylesheet" media="screen">
-    <link href="./css/mobile-style.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="css/image.css">
-    <link rel="stylesheet" href="css/file.css">
-    <link rel="stylesheet" href="css/copy.css">
-    <link rel="stylesheet" href="css/progressbar.css">
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./css/mobile-style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/image.css">
+    <link rel="stylesheet" type="text/css" href="css/file.css">
+    <link rel="stylesheet" type="text/css" href="css/copy.css">
+    <link rel="stylesheet" type="text/css" href="css/progressbar.css">
 </head>
 <?php
     include "includes/anti-csrf.php";

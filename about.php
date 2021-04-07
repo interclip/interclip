@@ -5,8 +5,8 @@
         include_once "includes/header.php";
     ?>
     <title>About | Interclip</title>
-    
-    <link rel="stylesheet" href="./css/about.css">
+
+    <link rel="stylesheet" type="text/css" href="./css/about.css">
 </head>
 <div class="nav">
     <?php

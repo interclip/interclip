@@ -6,9 +6,9 @@
     ?>
     <title>Interclip - easy peasy clipboard sharing</title>
 
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/copy.css">
-    <link rel="stylesheet" href="css/progressbar.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/copy.css">
+    <link rel="stylesheet" type="text/css" href="css/progressbar.css">
 </head>
 
 <?php
