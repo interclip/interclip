@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)">
-<link rel="stylesheet" href="css/copy.css">
-<link rel="stylesheet" href="css/progressbar.css">
 
 <head>
-    <meta charset="UTF-8">
+    <?php
+        include_once "includes/header.php";
+    ?>
     <title>Interclip - easy peasy clipboard sharing</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="-YbUutUgfmvMugp0SOLLwef8BKdDcRvSoOvlQVJx4oM" />
+
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/copy.css">
+    <link rel="stylesheet" type="text/css" href="css/progressbar.css">
 </head>
+
 <?php
     include "includes/anti-csrf.php";
     store();
