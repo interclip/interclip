@@ -2,7 +2,7 @@
 
 <head>
     <?php
-        include_once "includes/header.php";
+    include_once "includes/header.php";
     ?>
     <title>Privacy Policy | Interclip</title>
 
@@ -10,14 +10,14 @@
     <link rel="stylesheet" type="text/css" href="./css/privacy.css">
 </head>
 
-<div class="nav">
-    <?php
-    include "includes/menu.php";
-    ?>
-</div>
-<br>
-
 <body>
+
+    <div class="nav">
+        <?php
+        include "includes/menu.php";
+        ?>
+    </div>
+    <br>
 
     <div class="center">
         <h1>Privacy Policy for Interclip</h1>
