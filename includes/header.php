@@ -37,10 +37,12 @@
 <link rel="stylesheet" href="<?php echo ROOT ?>/css/menu.css">
 <link rel="stylesheet" href="<?php echo ROOT ?>/css/dark.css" media="(prefers-color-scheme: dark)">
 
+<!-- External JS libraries -->
 <script src='https://cdn.jsdelivr.net/gh/jquery/jquery/dist/jquery.min.js'></script>
 <script type="module" src="https://cdn.pika.dev/dark-mode-toggle"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+<!-- Meta tags -->
 <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
