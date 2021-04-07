@@ -5,7 +5,6 @@
         include_once "header.php";
     ?>
     <title>New clip | Interclip</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link href="css/button.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/new.css">
 </head>
