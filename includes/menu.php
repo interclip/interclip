@@ -13,6 +13,8 @@ if (!isset($prodvar)) {
   include 'prod.php';
 }
 
+header("X-Frame-Options: DENY");
+
 $relative_path = $_SERVER['PHP_SELF'];
 $index = 0;
 list($scriptPath) = get_included_files();
