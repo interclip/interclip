@@ -1,6 +1,5 @@
 <?php
 
-include_once "./db.php";
 include_once "./components/rate.php";
 include_once "./verify-domain.php";
 
