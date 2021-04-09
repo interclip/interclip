@@ -2,9 +2,10 @@
 <html lang="en">
     <head>
         <title><?php echo ("$errortitle"); ?></title>
-        <meta charset="utf-8">
-
     <?php
+
+        include_once "header.php";
+
         function reDir($url)
         {
                 header("Location: " . $url . "");
@@ -15,11 +16,6 @@
         /* Check if requested string wasn't a code */
         if (strlen(basename($_SERVER['REQUEST_URI'])) == 5) {
             $user_code = basename($_SERVER['REQUEST_URI']);
-
-            require "../vendor/autoload.php";
-
-            $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '../.env');
-            $dotenv->safeLoad();
             include_once "components/get.php";
             
             if (isset($url)) {
@@ -27,8 +23,6 @@
             }
         }
 
-        include("menu.php");
-        
         $status = $_SERVER['REDIRECT_STATUS'];
         $codes = array(
             400 => array('400 Bad Request', 'The request cannot be fulfilled due to bad syntax.'),
@@ -57,6 +51,8 @@
     </head>
     <body style="text-align: center;">
         <?php
+            include "menu.php";
+            
             echo ('<h1 style="font-size: 5rem;margin-top: 30vh;">' . $errortitle . '</h1>');
             echo ('<p style="font-size: 2rem;">' . $message . '</p>');
         ?>
