@@ -1,16 +1,13 @@
 <html lang="en">
 
 <head>
-    <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php
+        include_once "includes/header.php";
+    ?>
+    <title>Receive link | Interclip</title>
 
-    <title>Recieve link | Interclip</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link href="css/button.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="css/recieve.css">
-    <link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)">
-    <link rel="stylesheet" href="./css/menu.css">
+    <link rel="stylesheet" type="text/css" href="css/button.css">
+    <link rel="stylesheet" type="text/css" href="css/receive.css">
 </head>
 
 <body>
@@ -28,7 +25,7 @@
                 <div class="full-screen">
 
                     <div class="input-wrap">
-                        <p class="title">Recieve link</p>
+                        <p class="title">Receive link</p>
                         <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>" />
                         <input type="text" name="user" minlength="5" maxlength="5" id="code" placeholder="h&amp;$h">
                         <br>
@@ -42,7 +39,7 @@
 
             </form>
 
-            <script type="text/javascript" src="js/recieve.js"></script>
+            <script type="text/javascript" src="js/receive.js"></script>
         </div>
 
     </div>

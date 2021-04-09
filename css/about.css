@@ -2,7 +2,6 @@
 
 img {
   max-width: 80%;
-  margin-top: 50px;
   height: auto;
 }
 
@@ -32,6 +31,8 @@ body {
 .madeBy {
   text-transform: uppercase;
   font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
 }
 
 .madeBy > span > a {
@@ -43,4 +44,15 @@ body {
 .madeBy > span > a > img {
   border-radius: 250px;
   width: 25px;
+  margin-top: 8px;
+}
+
+@media only screen and (max-width: 600px) {
+  .madeBy {
+    display: block !important;
+  }
+  .madeBy > span > a > img {
+    width: 20px;
+  }
+
 }

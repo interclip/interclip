@@ -3,13 +3,32 @@
     <head>
         <title><?php echo ("$errortitle"); ?></title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="../css/index.css">
-        <link rel="stylesheet" href="../css/dark.css" media="(prefers-color-scheme: dark)">
-        <link rel="stylesheet" href="./css/menu.css">
-    </head>
 
     <?php
+        function reDir($url)
+        {
+                header("Location: " . $url . "");
+                die();
+        }
+        $clipRegex = "/([a-z|0-9|A-Z]){5}/g";
+
+        /* Check if requested string wasn't a code */
+        if (strlen(basename($_SERVER['REQUEST_URI'])) == 5) {
+            $user_code = basename($_SERVER['REQUEST_URI']);
+
+            require "../vendor/autoload.php";
+
+            $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '../.env');
+            $dotenv->safeLoad();
+            include_once "components/get.php";
+            
+            if (isset($url)) {
+                reDir($url);
+            }
+        }
+
         include("menu.php");
+        
         $status = $_SERVER['REDIRECT_STATUS'];
         $codes = array(
             400 => array('400 Bad Request', 'The request cannot be fulfilled due to bad syntax.'),
@@ -33,28 +52,13 @@
         }
 
     ?>
-
+        <link rel="stylesheet" href="<?php echo ROOT ?>/css/index.css">
+        <link rel="stylesheet" href="<?php echo ROOT ?>/css/dark.css" media="(prefers-color-scheme: dark)">
+    </head>
     <body style="text-align: center;">
         <?php
-            function reDir($url)
-            {
-                header("Location: " . $url . "");
-                die();
-            }
             echo ('<h1 style="font-size: 5rem;margin-top: 30vh;">' . $errortitle . '</h1>');
             echo ('<p style="font-size: 2rem;">' . $message . '</p>');
-
-            $clipRegex = "/([a-z|0-9|A-Z]){5}/g";
-
-            /* Check if requested string wasn't a code */
-            if (strlen(basename($_SERVER['REQUEST_URI'])) == 5) {
-                $user_code = basename($_SERVER['REQUEST_URI']);
-                include_once "components/get.php";
-                
-                if (isset($url)) {
-                    reDir($url);
-                }
-            }
         ?>
     </body>
 </html>

@@ -50,8 +50,10 @@ li a:hover:not(.active) {
   transition-duration: 0.5s;
   cursor: pointer;
   float: right;
-  margin-right: 15px;
+  margin: 10px;
   color: white;
+  position: relative;
+  z-index: 1;
 }
 
 .themeLabel {
@@ -71,6 +73,7 @@ li a:hover:not(.active) {
 #settingsModal > * {
   padding-left: 5%;
   padding-bottom: 50px;
+  overflow-y: initial !important;
 }
 
 /* The Modal (background) */
@@ -78,7 +81,7 @@ li a:hover:not(.active) {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  padding-top: 100px;  /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -95,11 +98,16 @@ li a:hover:not(.active) {
   padding: 20px;
   border: 1px solid #888;
   width: 40%;
+  overflow-y: auto;
 }
 
 @media only screen and (max-width: 1000px) {
   .modal-content {
     width: 90%;
+  }
+
+  .modal {
+      padding-top: 0;
   }
 }
 
@@ -253,4 +261,8 @@ input:checked + .slider:before {
 
 .toggleLabel {
   display: inline-block;
+}
+
+h1:nth-child(1) {
+  margin-top: 55px;
 }

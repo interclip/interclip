@@ -1,24 +1,23 @@
 <html lang="en">
 
 <head>
-    <title>Privacy Policy | Interclip</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="./css/dark.css" media="(prefers-color-scheme: dark)">
-    <link rel="stylesheet" href="./css/new.css">
-    <link rel="stylesheet" href="./css/privacy.css">
-    <link rel="stylesheet" href="./css/menu.css">
-</head>
-<div class="nav">
     <?php
-    include "includes/menu.php";
+    include_once "includes/header.php";
     ?>
-</div>
-<br>
+    <title>Privacy Policy | Interclip</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/new.css">
+    <link rel="stylesheet" type="text/css" href="./css/privacy.css">
+</head>
 
 <body>
+
+    <div class="nav">
+        <?php
+        include "includes/menu.php";
+        ?>
+    </div>
+    <br>
 
     <div class="center">
         <h1>Privacy Policy for Interclip</h1>

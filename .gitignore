@@ -1,11 +1,9 @@
-db.php
 .vscode/
 desktop.ini
 upload.py
 vendor/
-includes/mail_auth.php
-includes/salt.php
 .phpunit.result.cache
 upload/uploads/
 includes/size.json
 diff.txt
+.env

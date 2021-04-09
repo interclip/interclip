@@ -5,23 +5,29 @@
     <div class="demo-droppable">
         <p>Drag files here or click to upload</p>
     </div>
-            
+
     <div id="modal" class="modal">
 
-    <!-- Modal content -->
-    <div class="modal-content">
-        <p><img height="250" src="css/loading-spin.svg" alt=""></p>
-    </div>
+        <!-- Modal content -->
+        <div class="modal-content">
+            <p>
+                <progress id="progressBar" value="0" max="100"></progress>
+                <br>
+                <span id="progressPercent">
+                    0%
+                </span>
+                <div id="fact">
+                    Inter-clippin' good!
+                </div>
+            </p>
+        </div>
 
     </div>
     <div class="output"></div>
-    <span id="code" class="code"></span>
-    <br>
-    <button aria-label="Copy the code" id="copy" class="copy">Copy code</button>
 </div>
 
 <script>
     clickEnabled = true;
-    const csrfToken = "<?=$_SESSION['token']?>";
+    const csrfToken = "<?= $_SESSION['token'] ?>";
 </script>
 <script src="js/file.js"></script>

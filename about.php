@@ -1,15 +1,12 @@
 <html lang="en">
 
 <head>
+    <?php
+        include_once "includes/header.php";
+    ?>
     <title>About | Interclip</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="./css/about.css">
-    <link rel="stylesheet" href="./css/dark.css" media="(prefers-color-scheme: dark)">
-    <link rel="stylesheet" href="./css/menu.css">
-
+    <link rel="stylesheet" type="text/css" href="./css/about.css">
 </head>
 <div class="nav">
     <?php
@@ -40,10 +37,8 @@
             <br />
             Total clips: 
             <?php
-                include_once "./includes/db.php";
                 include_once "./includes/components/rate.php";
-
-                $conn = new mysqli($servername, $username, $password, $DBName);
+                $conn = new mysqli($_ENV['SERVER_NAME'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
 
                 $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
                 $result = $conn->query($sqlquery);
@@ -59,10 +54,15 @@
     </div>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="js/about.js"></script>
+
     <div class='madeBy center'>
         made with ❤️  <i class="icon ion-heart"></i> and a little bit of code by &nbsp;
-        <span><a href="https://github.com/filiptronicek"><img src="https://github.com/filiptronicek.png"></a></span></div>
+        <span>
+            <a href="https://github.com/filiptronicek">
+                <img src="https://github.com/filiptronicek.png">
+            </a>
+        </span>
+    </div>
 
 
 </body>
