@@ -7,9 +7,9 @@ if (navigator.share) {
 function share() {
     if (navigator.share) {
         navigator.share({
-            url: url,
-            title: 'Interclip',
-            text: 'A URL shared with Interclip',
+            url,
+            title: "Interclip",
+            text: "A URL shared with Interclip",
         })
             .catch((error) => console.log('Sharing failed', error));
     } else {
