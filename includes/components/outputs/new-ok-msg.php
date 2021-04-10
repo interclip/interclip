@@ -5,7 +5,7 @@
 ?>
 
 <?php if ($err === ""): ?>
-    <button onclick="share()">
+    <button style="display: none;" onclick="share()" id="shareBtn">
         Share this!
     </button>
 

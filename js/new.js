@@ -1,3 +1,9 @@
+const shareButton = document.getElementById("shareBtn");
+
+if(navigator.share) {
+    shareButton.style.display = "block";
+}
+
 function share() {
     if (navigator.share) {
         navigator.share({
