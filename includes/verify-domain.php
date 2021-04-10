@@ -24,7 +24,6 @@ function ping($domain) {
     $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     curl_close($ch);
-    echo $httpcode;
 
     if ($httpcode >= 200 && $httpcode < 402)
         return true;
