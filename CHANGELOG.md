@@ -1,3 +1,57 @@
+
+# v3.3.5 (April 9, 2021)
+## Bugs 🐛
+- Made the <kbd>BETA</kbd> items in the menu not flash so much https://github.com/aperta-principium/Interclip/commit/46446cda74bb129897daf0775773cec0e0a4acee
+- Vertically align avatar on the about page https://github.com/aperta-principium/Interclip/commit/cad075a59f9e65b73e43e595f208004a601340a8
+- Fix weird scrolling in the settings modal on mobile viewports https://github.com/aperta-principium/Interclip/commit/f7f79fd56f37994b76a99dbd3ef9ee3116747c1c
+- Fixed a bug where the cog icon was under the content on the receive page https://github.com/aperta-principium/Interclip/commit/5a97da7f3da6a048321c7b1b30a5c87fad7c850e
+- Fixed the placeholder color on the receive page https://github.com/aperta-principium/Interclip/commit/9b2455179a53e514b4f3f48a8ccf45f3526243fa
+- Fixed a bug with a cursor stuck in the magnifying glass on the home page https://github.com/aperta-principium/Interclip/commit/ef7f93eeb09b59159dcf1cfd0ed19c270d060bd0
+
+## Features ✨ 
+- Added a progress bar in the file uploading screen instead of a weird loading screen https://github.com/aperta-principium/Interclip/commit/c728167b434a2ca13c47f12ada1c4d1db77c5a98
+
+## Code 🎨
+- Small indentation of CSS https://github.com/aperta-principium/Interclip/commit/4960f84528c210ae6c6dbe3a326f4988409920ef
+- Added some magical JS semicolons https://github.com/aperta-principium/Interclip/commit/c9309250272317894303dbfbed52dd6bab91185b
+- Moved the header code to its own file https://github.com/aperta-principium/Interclip/commit/5610d6a3811f37ca67bb3e0036b0594419a0736f
+- Removed references to `db.php` https://github.com/aperta-principium/Interclip/commit/2ed9e6217939d5ead260803eb4b3e63831278bbf
+
+## Security 🔒 
+- Reject requests to the `.env` file https://github.com/aperta-principium/Interclip/commit/469f70bc80e10e337b2bd94c78b646e967241ea1
+- Set an X-Frame-Options header https://github.com/aperta-principium/Interclip/commit/52b6e1405849663e9ea75e27d85bf078fb59a221
+
+## Docs 📝 
+- Add a link back to GitPod in `CONTRIBUTING.md` https://github.com/aperta-principium/Interclip/commit/ea7078928652e00f639165cc1db18c6cf300a1ff
+
+
+# v3.3.4 (April 1, 2021)
+## Features ✨
+- Added security.txt, because it's awesome! Check it out: https://securitytxt.org/ https://github.com/aperta-principium/Interclip/commit/d686c00f58233dc4628675303a85e97187c4af55
+- Made the cursor a pointer when hovering over the file upload box https://github.com/aperta-principium/Interclip/commit/7c6954e4eff0d855cf98286b05d4bff3e57a7f5c
+- Made setup a lot easier using a single .env file https://github.com/aperta-principium/Interclip/commit/3c0b377ddf24d876209e5b6ba6bc454f7a34e4fd
+- File uploading now reports errors in popups https://github.com/aperta-principium/Interclip/commit/161acd3f13ef14af1572101f492eba3739495e8b
+
+## Bug fixes 🐛
+- Fixed `/customcode`, which returned a 404 https://github.com/aperta-principium/Interclip/commit/3048805fb605efc8e0c0e598d59ac903b013a62f
+- Fixed the file upload error message https://github.com/aperta-principium/Interclip/commit/199cb846e8f45be45659e13fe91dff9d0dbd1932
+- Fix undefined anti-CSRF token on the homepage preventing file upload to succeed https://github.com/aperta-principium/Interclip/commit/1b2c81d957cdb407d2900b1d67a9ce2481d0921f
+- Fix a bug with headings being not centered, [GL#8](https://gitlab.com/filiptronicek/Interclip/-/issues/8) for details https://github.com/aperta-principium/Interclip/commit/0e6e1267984683e88d0be53f0314449fdd26feb5
+- Fixed the margin of the settings icon, [GL#7](https://gitlab.com/filiptronicek/Interclip/-/issues/7) for more details https://github.com/aperta-principium/Interclip/commit/36315212cbb3fe5d15eb9ea320ee72c6802471b0
+- Fixed the CodeQL scanning workflow https://github.com/aperta-principium/Interclip/commit/fbb68bb34e2a7ca422f04f66d99c50181d1a55e4
+- Fixed anti-CSRF https://github.com/aperta-principium/Interclip/commit/56c700c89ca5f4f8c6b3c1272de4f1ed1ba71b84
+
+## Code 🎨
+- Remove some unused HTML https://github.com/aperta-principium/Interclip/commit/d0a85189429c16854a3b1f506d2daf67b42f6087 https://github.com/aperta-principium/Interclip/commit/c42516ddc66ee959b1a7dbac821e0bcf3b9aed0e
+- Remove deleted JS script https://github.com/aperta-principium/Interclip/commit/f5cc0505d6d3cb62a3417958a313947072ba308b
+- Added a PHP IntelliSense GitPod extension https://github.com/aperta-principium/Interclip/commit/cac7d3d4132072125c2c89fac6af72f8656761b0
+
+## Security 🔒 
+- Fixed a security vulnerability that allowed RCE from the file upload page (`/upload/`) when using a malformed file extension https://github.com/aperta-principium/Interclip/commit/e5dba737def936b61b539526dcb1523ecc1dbd28
+
+## Acknowledgments ❤️  
+Special thanks to [@yo](https://gitlab.com/yo) over at the [GitLab repo](https://gitlab.com/filiptronicek/Interclip) for reporting a lot of bugs, here is a list of bugs he reported so far: https://gitlab.com/filiptronicek/Interclip/-/issues?scope=all&utf8=%E2%9C%93&state=all&author_username=yo
+
 # v3.3.3 (March 29, 2021)
 ## Features ✨
 - Added new alerts https://github.com/aperta-principium/Interclip/commit/7dfd3e9ed3d7f795ba966ddd46544493b6382978
