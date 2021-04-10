@@ -15,9 +15,9 @@ function share() {
             .catch((error) => console.log('Sharing failed', error));
     } else {
         Swal.fire(
-            'Yikes!',
-            `Your system doesn't support sharing files.`,
-            'error'
-        )
+            "Yikes!",
+            "Your system doesn't support sharing files.",
+            "error"
+        );
     }
 }
