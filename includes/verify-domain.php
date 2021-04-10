@@ -1,7 +1,7 @@
 <?php
 
 // include composer autoload
-require "../vendor/autoload.php";
+require "./vendor/autoload.php";
 use Iodev\Whois\Factory;
 
 function ping($domain) {
@@ -15,6 +15,7 @@ function ping($domain) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // return the transfer as a string
     curl_setopt($ch, CURLOPT_VERBOSE, false); // disable output verbose information
     curl_setopt($ch, CURLOPT_TIMEOUT, 5); // max number of seconds to allow cURL function to execute
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
     // execute
     curl_exec($ch);
@@ -23,6 +24,7 @@ function ping($domain) {
     $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     curl_close($ch);
+    echo $httpcode;
 
     if ($httpcode >= 200 && $httpcode < 402)
         return true;
