@@ -11,7 +11,7 @@ function share() {
             title: "Interclip",
             text: "A URL shared with Interclip",
         })
-            .catch((error) => console.log('Sharing failed', error));
+            .catch((error) => console.log("Sharing failed", error));
     } else {
         Swal.fire(
             "Yikes!",
