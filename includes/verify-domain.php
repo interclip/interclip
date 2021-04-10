@@ -33,8 +33,6 @@ function ping($domain) {
 
 function whois($domain) {
 
-    $start = microtime(true);
-
     // Creating default configured client
     $whois = Factory::get()->createWhois();
 
@@ -43,14 +41,11 @@ function whois($domain) {
         // Checking availability
         if ($whois->isDomainAvailable($domain)) {
             return false;
-            //echo json_encode(['status' => 'success', 'result' => ['registered' => false, 'domain' => $domain, 'took' => microtime(true) - $start]]);
         } else {
             return true;
-            //echo json_encode(['status' => 'success', 'result' => ['registered' => true, 'domain' => $domain, 'took' => microtime(true) - $start]]);
         }
     } else {
         return false;
-        //echo json_encode(['status' => 'error', 'result' => 'You must provide a URL parameter in the request.', 'took' => microtime(true) - $start]);
     }
 
 }
