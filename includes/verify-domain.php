@@ -1,7 +1,7 @@
 <?php
 
 // include composer autoload
-require "./vendor/autoload.php";
+require "../vendor/autoload.php";
 use Iodev\Whois\Factory;
 
 function ping($domain) {
