@@ -1,6 +1,6 @@
 const shareButton = document.getElementById("shareBtn");
 
-if(navigator.share) {
+if (navigator.share) {
     shareButton.style.display = "block";
 }
 
@@ -14,6 +14,10 @@ function share() {
             .then(() => console.log('Share was successful.'))
             .catch((error) => console.log('Sharing failed', error));
     } else {
-        console.log(`Your system doesn't support sharing files.`);
+        Swal.fire(
+            'Yikes!',
+            `Your system doesn't support sharing files.`,
+            'error'
+        )
     }
 }
