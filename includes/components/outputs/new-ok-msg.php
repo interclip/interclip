@@ -41,7 +41,7 @@
 
     const update = (scheme) => {
         options = {
-            text: "https://iclip.netlify.com/r/<?php echo $usr ?>",
+            text: "https://interclip.app/<?php echo $usr ?>",
             background: scheme === 'dark' ? "#444444" : "#ff9800",
             foreground: scheme === 'dark' ? "#e4e4e4" : "#000000",
         }
@@ -61,13 +61,13 @@
 
     if (computedStyle === "" || computedStyle === "light") {
         options = {
-            text: "https://iclip.netlify.com/r/<?php echo $usr ?>",
+            text: "https://https://interclip.app/<?php echo $usr ?>",
             background: "#ff9800",
             foreground: "#000000",
         }
     } else if (computedStyle == "dark") {
         options = {
-            text: "https://iclip.netlify.com/r/<?php echo $usr ?>",
+            text: "https://interclip.app/<?php echo $usr ?>",
             background: "#444444",
             foreground: "#e4e4e4",
         }
