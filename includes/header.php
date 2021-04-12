@@ -10,8 +10,7 @@
     define("ROOT", $_ENV['ROOT']);
     header("X-Frame-Options: DENY");
 
-    $redirURI = $_ENV['PROTOCOL']. "://" . $_SERVER['HTTP_HOST'] . "/login";
-    
+    $redirURI = $_ENV['PROTOCOL']. "://" . $_SERVER['HTTP_HOST'] . ROOT . "/login";
     use Auth0\SDK\Auth0;
     $auth0 = new Auth0([
         'domain'        => $_ENV['AUTH0_DOMAIN'],
