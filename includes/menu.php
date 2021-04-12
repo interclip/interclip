@@ -31,6 +31,44 @@ if ($currFile == "get.php" || $currFile == "new.php") {
   $urlPrefix = "./";
 }
 
+if ($auth0->getUser()) {
+
+  exec('git rev-parse --verify HEAD', $output);
+  $hash = $output[0];
+  $hashShort = substr($hash, 0, 7);
+  $commit = "https://github.com/aperta-principium/Interclip/commit/" . $hash;
+
+  exec('git describe --abbrev=0 --tags', $release);
+
+  include_once "./components/rate.php";
+  $conn = new mysqli($_ENV['SERVER_NAME'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
+
+  $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
+  $result = $conn->query($sqlquery);
+  while ($row = $result->fetch_assoc()) {
+    $count = $row['id'];
+    break;
+  }
+  if (!$count) $count = 0;
+
+  $systemLoad = sys_getloadavg()[0];
+}
+?>
+<?php if ($user = $auth0->getUser()) : ?>
+  <div id="adminbar">
+    <span id="load" style="display: none;">Load: extremely fast</span>
+    <span id="render" style="display: none;">Render: Instant</span>
+    <span>Server render: <?php echo number_format((microtime(true) - $beginLoad) * 1000, 2) ?>ms</span>
+    <span>Clips: <?php echo $count ?></span>
+    <span>Deployed from: <?php echo $release[0] . "@" . $hashShort ?></span>
+    <span>Total files: 92 (350MB)</span>
+    <span>Server load: <?php echo $systemLoad ?></span>
+    <span class="ending">Signed in as: <?php echo $user["name"] ?></span>
+  </div>
+<?php endif; ?>
+
+<?php
+
 // Render the menu
 echo '<ul id="menu">';
 

@@ -89,4 +89,11 @@ const updateMenu = () => {
     }
 }
 
+const timingAPI = window.performance.timing;
+const loadTime = timingAPI.loadEventEnd - timingAPI.loadEventStart;
+const renderTime = timingAPI.domContentLoadedEventEnd - timingAPI.domContentLoadedEventStart;
+
+document.getElementById("load").innerText = `Load: ${loadTime}ms`;
+document.getElementById("render").innerText = `Render: ${renderTime}ms`;
+
 updateMenu();

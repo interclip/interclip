@@ -1,4 +1,5 @@
 <?php
+    $beginLoad = microtime(true);
     define('ROOT_DIR', realpath(__DIR__ . '/..'));
 
     require ROOT_DIR . "/vendor/autoload.php";
@@ -8,6 +9,19 @@
 
     define("ROOT", $_ENV['ROOT']);
     header("X-Frame-Options: DENY");
+
+    use Auth0\SDK\Auth0;
+    $auth0 = new Auth0([
+        // The values below are found on the Application settings tab.
+        'domain'        => $_ENV['AUTH0_DOMAIN'],
+        'client_id'     => $_ENV['AUTH0_CLIENT_ID'],
+        'client_secret' => $_ENV['AUTH0_CLIENT_SECRET'],
+    
+        // This is your application URL that will be used to process the login.
+        // Save this URL in the "Allowed Callback URLs" field on the Application settings tab
+        'redirect_uri' => 'https://8080-coral-sole-tiw38xbb.ws-eu03.gitpod.io/login',
+    ]);
+
 ?>
 
 
