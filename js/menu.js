@@ -89,11 +89,29 @@ const updateMenu = () => {
     }
 }
 
-const timingAPI = window.performance.timing;
-const loadTime = timingAPI.loadEventEnd - timingAPI.loadEventStart;
-const renderTime = timingAPI.domContentLoadedEventEnd - timingAPI.domContentLoadedEventStart;
+if (loggedIn) {
+    const timingAPI = window.performance.timing;
+    const loadTime = timingAPI.loadEventEnd - timingAPI.loadEventStart;
+    const renderTime = timingAPI.domContentLoadedEventEnd - timingAPI.domContentLoadedEventStart;
 
-document.getElementById("load").innerText = `Load: ${loadTime}ms`;
-document.getElementById("render").innerText = `Render: ${renderTime}ms`;
+    function formatBytes(bytes, decimals = 2) {
+        if (bytes === 0) return '0 Bytes';
+
+        const k = 1024;
+        const dm = decimals < 0 ? 0 : decimals;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+    }
+
+    document.getElementById("load").innerText = `Load: ${loadTime}ms`;
+    document.getElementById("render").innerText = `Render: ${renderTime}ms`;
+
+    fetch("https://interclip.app/includes/size.json").then(res => res.json()).then(res => {
+        document.getElementById("files").innerText = `Total files: ${res.count} (${formatBytes(res.bytes)})`; 
+    });
+}
 
 updateMenu();

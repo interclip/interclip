@@ -15,7 +15,6 @@
 
     use Auth0\SDK\Auth0;
     $auth0 = new Auth0([
-        // The values below are found on the Application settings tab.
         'domain'        => $_ENV['AUTH0_DOMAIN'],
         'client_id'     => $_ENV['AUTH0_CLIENT_ID'],
         'client_secret' => $_ENV['AUTH0_CLIENT_SECRET'],

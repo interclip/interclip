@@ -61,7 +61,7 @@ if ($auth0->getUser()) {
     <span>Server render: <?php echo number_format((microtime(true) - $beginLoad) * 1000, 2) ?>ms</span>
     <span>Clips: <?php echo $count ?></span>
     <span>Deployed from: <?php echo $release[0] . "@" . $hashShort ?></span>
-    <span>Total files: 92 (350MB)</span>
+    <span id="files">Total files: 0 (0B)</span>
     <span>Server load: <?php echo $systemLoad ?></span>
     <span class="ending">Signed in as: <?php echo $user["name"] ?></span>
   </div>
@@ -144,4 +144,5 @@ foreach ($pages as $page) {
 
 </div>
 
+<script> const loggedIn = <?php echo $auth0->getUser() ? "true" : "false" ?> </script>
 <script src="<?php echo ROOT ?>/js/menu.js"></script>
