@@ -32,46 +32,64 @@ if ($currFile == "get.php" || $currFile == "new.php") {
 }
 
 if ($auth0->getUser()) {
+    $user = $auth0->getUser();
 
-  exec('git rev-parse --verify HEAD', $output);
-  $hash = $output[0];
-  $hashShort = substr($hash, 0, 7);
-  $commit = "https://github.com/aperta-principium/Interclip/commit/" . $hash;
+    $conn = new mysqli($_ENV['SERVER_NAME'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
 
-  exec('git describe --abbrev=0 --tags', $release);
+    $sqlquery = "SELECT * FROM `accounts` WHERE email = 'filip.tronicek@seznam.cz'";
+    $accResult = $conn->query($sqlquery);
+    while ($row = $accResult->fetch_assoc()) {
+        $account = $row['role'];
+        break;
+    }
 
-  include_once "./components/rate.php";
-  $conn = new mysqli($_ENV['SERVER_NAME'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
+    $isStaff = $account === "staff";
 
-  $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
-  $result = $conn->query($sqlquery);
-  while ($row = $result->fetch_assoc()) {
-    $count = $row['id'];
-    break;
-  }
-  if (!$count) $count = 0;
+    if (!isset($account)) {
+        $email = $user['email'];
+        $sqlquery = "INSERT INTO accounts VALUES('$email', 'visitor',NULL)";
+        $accResult = $conn->query($sqlquery);
+    } elseif ($isStaff) {
+        exec('git rev-parse --verify HEAD', $output);
+        $hash = $output[0];
+        $hashShort = substr($hash, 0, 7);
+        $commit = "https://github.com/aperta-principium/Interclip/commit/" . $hash;
+
+        exec('git describe --abbrev=0 --tags', $release);
 
 
-  //By default, we assume that PHP is NOT running on windows.
-  $isWindows = false;
 
-  //If the first three characters PHP_OS are equal to "WIN",
-  //then PHP is running on a Windows operating system.
-  if (strcasecmp(substr(PHP_OS, 0, 3), 'WIN') === 0) {
-    $isWindows = true;
-  }
+        $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
+        $result = $conn->query($sqlquery);
+        while ($row = $result->fetch_assoc()) {
+            $count = $row['id'];
+            break;
+        }
+        if (!$count) {
+            $count = 0;
+        }
 
-  if (!$isWindows) {
-    $systemLoad = sys_getloadavg()[0];
-  } else {
-    $systemLoad = "unavailable";
-  }
+
+        //By default, we assume that PHP is NOT running on windows.
+        $isWindows = false;
+
+        //If the first three characters PHP_OS are equal to "WIN",
+        //then PHP is running on a Windows operating system.
+        if (strcasecmp(substr(PHP_OS, 0, 3), 'WIN') === 0) {
+            $isWindows = true;
+        }
+
+        if (!$isWindows) {
+            $systemLoad = sys_getloadavg()[0];
+        } else {
+            $systemLoad = "unavailable";
+        }
+    }
 }
 $renderTimeMicro = microtime(true) - $beginLoad;
 $renderTime = number_format($renderTimeMicro * 1000, 2);
-
 ?>
-<?php if ($user = $auth0->getUser()) : ?>
+<?php if ($user && $isStaff) : ?>
   <div id="adminbar">
     <span id="load">Load: Instant</span>
     <span title="<?php echo number_format($renderTimeMicro * 1_000_000_000) ?> ns">Server render: <?php echo $renderTime ?>ms</span>
