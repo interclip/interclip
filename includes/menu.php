@@ -53,11 +53,15 @@ if ($auth0->getUser()) {
 
   $systemLoad = sys_getloadavg()[0];
 }
+
+$renderTimeMicro = microtime(true) - $beginLoad;
+$renderTime = number_format($renderTimeMicro * 1000, 2);
+
 ?>
 <?php if ($user = $auth0->getUser()) : ?>
   <div id="adminbar">
     <span id="load">Load: Instant</span>
-    <span>Server render: <?php echo number_format((microtime(true) - $beginLoad) * 1000, 2) ?>ms</span>
+    <span title="<?php echo number_format($renderTimeMicro * 1_000_000_000) ?> ns">Server render: <?php echo $renderTime ?>ms</span>
     <span>Clips: <?php echo $count ?></span>
     <span>
       Deployed from: 
