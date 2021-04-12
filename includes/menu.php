@@ -75,7 +75,7 @@ $renderTime = number_format($renderTimeMicro * 1000, 2);
     </span>
     <span id="files">Total files: 0 (0B)</span>
     <span>Server load: <?php echo $systemLoad ?></span>
-    <span class="ending">Signed in as: <?php echo $user["name"] ?></span>
+    <span class="ending">Hi, <?php echo $user["name"] ? $user['name'] : $user["nickname"]  ?></span>
   </div>
 <?php endif; ?>
 
