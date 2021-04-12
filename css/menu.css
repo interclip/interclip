@@ -279,6 +279,10 @@ h1:nth-child(1) {
   padding-right: 9px;
 }
 
+#adminbar span a {
+  color: white;
+}
+
 #adminbar span {
   padding-left: 7px;
   padding-right: 15px;

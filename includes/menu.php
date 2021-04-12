@@ -59,7 +59,7 @@ if ($auth0->getUser()) {
     <span id="load">Load: Instant</span>
     <span>Server render: <?php echo number_format((microtime(true) - $beginLoad) * 1000, 2) ?>ms</span>
     <span>Clips: <?php echo $count ?></span>
-    <span>Deployed from: <?php echo $release[0] . "@" . $hashShort ?></span>
+    <span>Deployed from: <a href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $release[0]; ?>"><?php echo $release[0] ?></a>@<a href="https://github.com/aperta-principium/Interclip/commit/<?php echo $hash ?>"><?php echo $hashShort ?></a></span>
     <span id="files">Total files: 0 (0B)</span>
     <span>Server load: <?php echo $systemLoad ?></span>
     <span class="ending">Signed in as: <?php echo $user["name"] ?></span>
