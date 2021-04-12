@@ -10,7 +10,7 @@
     </Files>
     
     <Files size.json>
-	    Access-control-allow-origin: *
+	    Access-control-allow-origin: "*"
     </Files>
     
     AddDefaultCharset UTF-8
