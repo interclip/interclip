@@ -56,8 +56,7 @@ if ($auth0->getUser()) {
 ?>
 <?php if ($user = $auth0->getUser()) : ?>
   <div id="adminbar">
-    <span id="load" style="display: none;">Load: extremely fast</span>
-    <span id="render" style="display: none;">Render: Instant</span>
+    <span id="load">Load: Instant</span>
     <span>Server render: <?php echo number_format((microtime(true) - $beginLoad) * 1000, 2) ?>ms</span>
     <span>Clips: <?php echo $count ?></span>
     <span>Deployed from: <?php echo $release[0] . "@" . $hashShort ?></span>

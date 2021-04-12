@@ -90,10 +90,6 @@ const updateMenu = () => {
 }
 
 if (loggedIn) {
-    const timingAPI = window.performance.timing;
-    const loadTime = timingAPI.loadEventEnd - timingAPI.loadEventStart;
-    const renderTime = timingAPI.domContentLoadedEventEnd - timingAPI.domContentLoadedEventStart;
-
     function formatBytes(bytes, decimals = 2) {
         if (bytes === 0) return '0 Bytes';
 
@@ -106,8 +102,7 @@ if (loggedIn) {
         return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
     }
 
-    document.getElementById("load").innerText = `Load: ${loadTime}ms`;
-    document.getElementById("render").innerText = `Render: ${renderTime}ms`;
+    document.getElementById("load").innerText = `Load: ${performance.now()}ms`;
 
     /* Retrieve data from the Interclip file API */
     if (!localStorage.getItem("file_stat_expires") || parseInt(localStorage.getItem("file_stat_expires")) > Date.now()) {
