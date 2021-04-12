@@ -3,10 +3,16 @@
         order allow,deny
         deny from all
     </Files>
+    
     <Files .env>
         order allow,deny
         deny from all
     </Files>
+    
+    <Files includes/size.json>
+	    Access-control-allow-origin: *
+    </Files>
+    
     AddDefaultCharset UTF-8
     DefaultLanguage en-US
 
