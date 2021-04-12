@@ -275,8 +275,8 @@ h1:nth-child(1) {
   background: #588D6A;
   justify-content: start;
   flex-direction: row;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 9px;
+  padding-right: 9px;
 }
 
 #adminbar span {
