@@ -102,8 +102,6 @@ if (loggedIn) {
         return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
     }
 
-    document.getElementById("load").innerText = `Load: ${performance.now()}ms`;
-
     /* Retrieve data from the Interclip file API */
     if (!localStorage.getItem("file_stat_expires") || parseInt(localStorage.getItem("file_stat_expires")) > Date.now()) {
         fetch("https://interclip.app/includes/size.json").then(res => res.json()).then(res => {
@@ -119,3 +117,7 @@ if (loggedIn) {
 }
 
 updateMenu();
+
+window.addEventListener('load', () => {
+    document.getElementById("load").innerText = `Load: ${performance.now()}ms`;
+});
