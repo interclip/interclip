@@ -51,9 +51,22 @@ if ($auth0->getUser()) {
   }
   if (!$count) $count = 0;
 
-  $systemLoad = sys_getloadavg()[0];
-}
 
+  //By default, we assume that PHP is NOT running on windows.
+  $isWindows = false;
+
+  //If the first three characters PHP_OS are equal to "WIN",
+  //then PHP is running on a Windows operating system.
+  if (strcasecmp(substr(PHP_OS, 0, 3), 'WIN') == 0) {
+    $isWindows = true;
+  }
+
+  if (!$isWindows) {
+    $systemLoad = sys_getloadavg()[0];
+  } else {
+    $systemLoad = "unavailible";
+  }
+}
 $renderTimeMicro = microtime(true) - $beginLoad;
 $renderTime = number_format($renderTimeMicro * 1000, 2);
 
@@ -64,7 +77,7 @@ $renderTime = number_format($renderTimeMicro * 1000, 2);
     <span title="<?php echo number_format($renderTimeMicro * 1_000_000_000) ?> ns">Server render: <?php echo $renderTime ?>ms</span>
     <span>Clips: <?php echo $count ?></span>
     <span>
-      Deployed from: 
+      Deployed from:
       <a title="View tag on GitHub" href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $release[0]; ?>">
         <?php echo $release[0] ?>
       </a>
@@ -156,5 +169,7 @@ foreach ($pages as $page) {
 
 </div>
 
-<script> const loggedIn = <?php echo $auth0->getUser() ? "true" : "false" ?> </script>
+<script>
+  const loggedIn = <?php echo $auth0->getUser() ? "true" : "false" ?>
+</script>
 <script src="<?php echo ROOT ?>/js/menu.js"></script>
