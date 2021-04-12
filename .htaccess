@@ -9,7 +9,7 @@
         deny from all
     </Files>
     
-    <Files includes/size.json>
+    <Files size.json>
 	    Access-control-allow-origin: *
     </Files>
     
