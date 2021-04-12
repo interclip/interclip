@@ -64,7 +64,7 @@ if ($auth0->getUser()) {
   if (!$isWindows) {
     $systemLoad = sys_getloadavg()[0];
   } else {
-    $systemLoad = "unavailible";
+    $systemLoad = "unavailable";
   }
 }
 $renderTimeMicro = microtime(true) - $beginLoad;
