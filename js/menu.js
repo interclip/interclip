@@ -111,7 +111,7 @@ const updateMenu = () => {
 if (loggedIn && isAdmin) {
     const filesSpan = document.getElementById("files");
 
-    document.onkeydown((e) => {
+    document.addEventListener('keydown', (e) => {
         e.preventDefault();
         if (e.shiftKey && e.keyCode === 66) {
             const displayStatus = adminbar.style.display === "flex" ? "none" : "flex";
@@ -139,7 +139,7 @@ if (loggedIn && isAdmin) {
         document.getElementById("load").innerText = `Load: ${performance.now()}ms`;
     });
 } else if(loggedIn && !isAdmin) {
-    document.onkeydown((e) => {
+    document.addEventListener('keydown', (e) => {
         e.preventDefault();
         if (e.shiftKey && e.keyCode === 66) {
             Swal.fire(
