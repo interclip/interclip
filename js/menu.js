@@ -111,8 +111,8 @@ const updateMenu = () => {
 if (loggedIn && isAdmin) {
     const filesSpan = document.getElementById("files");
 
-    document.addEventListener('keydown', (e) => {
-        if (e.shiftKey && e.keyCode === 66) {
+    document.addEventListener("keydown", (e) => {
+        if (e.shiftKey && e.code === "KeyB") {
             e.preventDefault();
             const displayStatus = adminbar.style.display === "flex" ? "none" : "flex";
             adminbar.style.display = displayStatus;
