@@ -26,12 +26,9 @@ DROP TABLE IF EXISTS `accounts`;
 CREATE TABLE `accounts` (
   `email` varchar(128) NOT NULL,
   `role` varchar(64) NOT NULL,
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-ALTER TABLE `accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
-COMMIT;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0;
 
 ### Setting up MySQL cron jobs
 /* Delete expired clips (runs every hour) */
