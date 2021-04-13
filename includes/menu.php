@@ -93,7 +93,7 @@ $renderTime = number_format($renderTimeMicro * 1000, 2);
 ?>
 <?php if (isset($user) && $isStaff) : ?>
   <div id="adminbar">
-    <span id="load">Load: Instant</span>
+    <span id="load">Load: TBD</span>
     <span title="<?php echo number_format($renderTimeMicro * 1_000_000_000) ?> ns">Server render: <?php echo $renderTime ?>ms</span>
     <span>Clips: <?php echo $count ?></span>
     <span>
