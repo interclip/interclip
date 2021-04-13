@@ -1,5 +1,16 @@
 <?php
 
+function formatBytes($bytes, $precision = 0) { 
+  $units = array('B', 'KB', 'MB', 'GB', 'TB'); 
+
+  $bytes = max($bytes, 0); 
+  $pow = floor(($bytes ? log($bytes) : 0) / log(1024)); 
+  $pow = min($pow, count($units) - 1);  
+  $bytes /= pow(1024, $pow);
+
+  return round($bytes, $precision) . ' ' . $units[$pow]; 
+} 
+
 $relative_path = $_SERVER['PHP_SELF'];
 $index = 0;
 list($scriptPath) = get_included_files();
@@ -96,6 +107,7 @@ $renderTime = number_format($renderTimeMicro * 1000, 2);
     <span id="load">Load: TBD</span>
     <span title="<?php echo number_format($renderTimeMicro * 1_000_000_000) ?> ns">Server render: <?php echo $renderTime ?>ms</span>
     <span>Clips: <?php echo $count ?></span>
+    <span id="files">Files: 0 (0B)</span>
     <span>
       Deployed from:
       <a title="View tag on GitHub" href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $release[0]; ?>">
@@ -106,8 +118,9 @@ $renderTime = number_format($renderTimeMicro * 1000, 2);
         <?php echo $hashShort ?>
       </a>
     </span>
-    <span id="files">Total files: 0 (0B)</span>
+    <span>Memory: <?php echo formatBytes(memory_get_usage()) ?></span>
     <span>Server load: <?php echo $systemLoad ?></span>
+    <span>PHP <?php echo phpversion(); ?></span>
     <span class="ending">Hi, <?php echo $user["name"] ? $user['name'] : $user["nickname"]  ?></span>
   </div>
 <?php endif; ?>

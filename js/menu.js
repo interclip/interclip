@@ -123,7 +123,7 @@ if (loggedIn && isAdmin) {
     /* Retrieve data from the Interclip file API */
     if (!localStorage.getItem("file_stat_expires") || parseInt(localStorage.getItem("file_stat_expires")) > Date.now()) {
         fetch("https://interclip.app/includes/size.json").then((res) => res.json()).then((res) => {
-            filesSpan.innerText = `Total files: ${res.count} (${formatBytes(res.bytes)})`;
+            filesSpan.innerText = `Files: ${res.count} (${formatBytes(res.bytes)})`;
             filesSpan.setAttribute("title", `Average file size: ${formatBytes(res.bytes / res.count)}`);
             localStorage.setItem("file_stat_expires", new Date() + (60 * 60));
             localStorage.setItem("file_stat", JSON.stringify(res));
@@ -131,7 +131,7 @@ if (loggedIn && isAdmin) {
         /* Retrieving API data from cache */
     } else {
         const fileStat = JSON.parse(localStorage.getItem("file_stat"));
-        filesSpan.innerText = `Total files: ${fileStat.count} (${formatBytes(fileStat.bytes)})`;
+        filesSpan.innerText = `Files: ${fileStat.count} (${formatBytes(fileStat.bytes)})`;
         filesSpan.setAttribute("title", `Average file size: ${formatBytes(fileStat.bytes / fileStat.count)}`);
     }
 
