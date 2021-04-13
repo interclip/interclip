@@ -134,10 +134,10 @@ if (loggedIn && isAdmin) {
         filesSpan.innerText = `Total files: ${fileStat.count} (${formatBytes(fileStat.bytes)})`;
         filesSpan.setAttribute("title", `Average file size: ${formatBytes(fileStat.bytes / fileStat.count)}`);
     }
+
+    window.addEventListener("load", () => {
+        document.getElementById("load").innerText = `Load: ${performance.now()}ms`;
+    });
 }
 
 updateMenu();
-
-window.addEventListener("load", () => {
-    document.getElementById("load").innerText = `Load: ${performance.now()}ms`;
-});
