@@ -104,8 +104,16 @@ const updateMenu = () => {
 }
 
 if (loggedIn) {
-
     const filesSpan = document.getElementById("files");
+
+    $(document).keypress(function(e){
+        e.preventDefault();
+
+        const adminbar = document.querySelector("#adminbar");
+        if(e.shiftKey && e.keyCode === 66) {
+          adminbar.style.display = (adminbar.style.display === "flex" ? "none" : "flex");
+        }
+      });
 
     /* Retrieve data from the Interclip file API */
     if (!localStorage.getItem("file_stat_expires") || parseInt(localStorage.getItem("file_stat_expires")) > Date.now()) {
