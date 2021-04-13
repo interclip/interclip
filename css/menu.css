@@ -272,7 +272,7 @@ h1:nth-child(1) {
   border: 1px solid black;
   display: flex;
   color: white;
-  background: #588D6a;
+  background: #588d6a;
   justify-content: start;
   flex-direction: row;
   padding-left: 9px;
