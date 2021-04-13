@@ -9,7 +9,6 @@
 
     <link rel="stylesheet" type="text/css" href="./css/style.css" media="screen">
     <link rel="stylesheet" type="text/css" href="./css/mobile-style.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="css/image.css">
     <link rel="stylesheet" type="text/css" href="css/file.css">
     <link rel="stylesheet" type="text/css" href="css/copy.css">
     <link rel="stylesheet" type="text/css" href="css/progressbar.css">
