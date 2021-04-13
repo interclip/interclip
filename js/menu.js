@@ -21,6 +21,11 @@ const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch
     userAgent
 );
 
+if (loggedIn) {
+    const adminbar = document.querySelector("#adminbar");
+    adminbar.style.display = localStorage.getItem("adminbarVisible") || "flex";
+}
+
 const isPhone = !isTablet
     ? "ontouchstart" in document.documentElement &&
     /mobi/i.test(navigator.userAgent)
@@ -106,14 +111,14 @@ const updateMenu = () => {
 if (loggedIn) {
     const filesSpan = document.getElementById("files");
 
-    $(document).keypress(function(e){
+    $(document).keypress(function (e) {
         e.preventDefault();
-
-        const adminbar = document.querySelector("#adminbar");
-        if(e.shiftKey && e.keyCode === 66) {
-          adminbar.style.display = (adminbar.style.display === "flex" ? "none" : "flex");
+        if (e.shiftKey && e.keyCode === 66) {
+            const displayStatus = adminbar.style.display === "flex" ? "none" : "flex";
+            adminbar.style.display = displayStatus;
+            localStorage.setItem("adminbarVisible", displayStatus);
         }
-      });
+    });
 
     /* Retrieve data from the Interclip file API */
     if (!localStorage.getItem("file_stat_expires") || parseInt(localStorage.getItem("file_stat_expires")) > Date.now()) {
