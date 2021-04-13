@@ -30,6 +30,10 @@ CREATE TABLE `accounts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0;
 
+/* Add the mocked admin account as an admin on the site */
+INSERT INTO accounts VALUES('admin@example.org', 'staff', NULL);
+
+
 ### Setting up MySQL cron jobs
 /* Delete expired clips (runs every hour) */
 CREATE EVENT `clean_expired` ON SCHEDULE EVERY 1 HOUR STARTS '2021-02-01 13:39:14' ON COMPLETION NOT PRESERVE ENABLE DO DELETE FROM userurl WHERE expires < CURDATE();
