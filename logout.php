@@ -3,7 +3,7 @@ require "vendor/autoload.php";
 require "includes/header.php";
 
 // Do we have an authenticated session available?
-if ($user = $auth0->getUser()) {
+if ($auth0->getUser()) {
     // Logout the user
     $auth0->logout();
 } else {
