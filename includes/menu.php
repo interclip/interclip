@@ -190,6 +190,7 @@ foreach ($pages as $page) {
 </div>
 
 <script>
-  const loggedIn = <?php echo $user ? "true" : "false" ?>
+  const loggedIn = <?php echo $user ? "true" : "false" ?>;
+  const isAdmin = <?php echo $isAdmin ? "true" : "false" ?>;
 </script>
 <script src="<?php echo ROOT ?>/js/menu.js"></script>

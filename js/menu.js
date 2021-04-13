@@ -21,7 +21,7 @@ const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch
     userAgent
 );
 
-if (loggedIn) {
+if (loggedIn && isAdmin) {
     const adminbar = document.querySelector("#adminbar");
     adminbar.style.display = localStorage.getItem("adminbarVisible") || "flex";
 }
@@ -108,7 +108,7 @@ const updateMenu = () => {
     }
 }
 
-if (loggedIn) {
+if (loggedIn && isAdmin) {
     const filesSpan = document.getElementById("files");
 
     $(document).keypress(function (e) {
