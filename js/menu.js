@@ -108,6 +108,17 @@ const updateMenu = () => {
     }
 }
 
+console.log(`%c
+    ▄▄▄ ▄▄    ▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄▄▄ ▄▄▄     ▄▄▄ ▄▄▄▄▄▄▄ 
+    █   █  █  █ █       █       █   ▄  █ █       █   █   █   █       █
+    █   █   █▄█ █▄     ▄█    ▄▄▄█  █ █ █ █       █   █   █   █    ▄  █
+    █   █       █ █   █ █   █▄▄▄█   █▄▄█▄█     ▄▄█   █   █   █   █▄█ █
+    █   █  ▄    █ █   █ █    ▄▄▄█    ▄▄  █    █  █   █▄▄▄█   █    ▄▄▄█
+    █   █ █ █   █ █   █ █   █▄▄▄█   █  █ █    █▄▄█       █   █   █    
+    █▄▄▄█▄█  █▄▄█ █▄▄▄█ █▄▄▄▄▄▄▄█▄▄▄█  █▄█▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄▄▄█▄▄▄█    %c ${version}`,
+    "color:#FF9800",
+    "color:green;font-weight:bold");
+
 if (loggedIn && isAdmin) {
     const filesSpan = document.getElementById("files");
 
@@ -138,7 +149,7 @@ if (loggedIn && isAdmin) {
     window.addEventListener("load", () => {
         document.getElementById("load").innerText = `Client: ${performance.now()}ms`;
     });
-} else if(loggedIn && !isAdmin) {
+} else if (loggedIn && !isAdmin) {
     document.addEventListener('keydown', (e) => {
         e.preventDefault();
         if (e.shiftKey && e.keyCode === 66) {
@@ -146,7 +157,7 @@ if (loggedIn && isAdmin) {
                 'Permission error',
                 'Yikes! It seems you have to be an admin to view the admin bar. Want to be an admin? Tweet me @filiptronicek',
                 'error'
-              );
+            );
         }
     });
 }
