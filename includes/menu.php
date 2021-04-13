@@ -31,9 +31,11 @@ if ($currFile == "get.php" || $currFile == "new.php") {
   $urlPrefix = "./";
 }
 
-if ($auth0->getUser()) {
-    $user = $auth0->getUser();
+if(!empty($auth0->getUser())) {
+  $user = $auth0->getUser();
+}
 
+if ($auth0->getUser()) {
     $conn = new mysqli($_ENV['SERVER_NAME'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
 
     $sqlquery = "SELECT * FROM `accounts` WHERE email = 'filip.tronicek@seznam.cz'";
@@ -89,7 +91,7 @@ if ($auth0->getUser()) {
 $renderTimeMicro = microtime(true) - $beginLoad;
 $renderTime = number_format($renderTimeMicro * 1000, 2);
 ?>
-<?php if ($user && $isStaff) : ?>
+<?php if (isset($user) && $isStaff) : ?>
   <div id="adminbar">
     <span id="load">Load: Instant</span>
     <span title="<?php echo number_format($renderTimeMicro * 1_000_000_000) ?> ns">Server render: <?php echo $renderTime ?>ms</span>
