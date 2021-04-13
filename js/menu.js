@@ -112,8 +112,8 @@ if (loggedIn && isAdmin) {
     const filesSpan = document.getElementById("files");
 
     document.addEventListener('keydown', (e) => {
-        e.preventDefault();
         if (e.shiftKey && e.keyCode === 66) {
+            e.preventDefault();
             const displayStatus = adminbar.style.display === "flex" ? "none" : "flex";
             adminbar.style.display = displayStatus;
             localStorage.setItem("adminbarVisible", displayStatus);
