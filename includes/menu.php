@@ -36,7 +36,6 @@ if(empty($user) && !empty($auth0->getUser())) {
 }
 
 if (isset($user)) {
-    print_r($user['email']);
     $conn = new mysqli($_ENV['SERVER_NAME'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
 
     $usrEmail = $user['email'];
