@@ -266,3 +266,28 @@ input:checked + .slider:before {
 h1:nth-child(1) {
   margin-top: 55px;
 }
+
+#adminbar {
+  width: calc(100% - 20px);
+  border: 1px solid black;
+  display: flex;
+  color: white;
+  background: #588d6a;
+  justify-content: start;
+  flex-direction: row;
+  padding-left: 9px;
+  padding-right: 9px;
+}
+
+#adminbar span a {
+  color: white;
+}
+
+#adminbar span {
+  padding-left: 7px;
+  padding-right: 15px;
+}
+
+.ending {
+  margin-left: auto;
+}

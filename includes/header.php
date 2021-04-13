@@ -1,4 +1,5 @@
 <?php
+    $beginLoad = microtime(true);
     define('ROOT_DIR', realpath(__DIR__ . '/..'));
 
     require ROOT_DIR . "/vendor/autoload.php";
@@ -8,6 +9,20 @@
 
     define("ROOT", $_ENV['ROOT']);
     header("X-Frame-Options: DENY");
+
+
+    use Auth0\SDK\Auth0;
+    if($_ENV['AUTH_TYPE'] === "account") {
+        $redirURI = $_ENV['PROTOCOL']. "://" . $_SERVER['HTTP_HOST'] . ROOT . "/login";
+        $auth0 = new Auth0([
+            'domain'        => $_ENV['AUTH0_DOMAIN'],
+            'client_id'     => $_ENV['AUTH0_CLIENT_ID'],
+            'client_secret' => $_ENV['AUTH0_CLIENT_SECRET'],
+            'redirect_uri' => $redirURI,
+        ]);
+    } elseif($_ENV['AUTH_TYPE'] === "mock") {
+        $user = ["nickname" => "Admin", "email" => "admin@example.org"];
+    }
 ?>
 
 

@@ -31,6 +31,89 @@ if ($currFile == "get.php" || $currFile == "new.php") {
   $urlPrefix = "./";
 }
 
+if(empty($user) && !empty($auth0->getUser())) {
+  $user = $auth0->getUser();
+}
+
+if (isset($user)) {
+    $conn = new mysqli($_ENV['SERVER_NAME'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
+
+    $usrEmail = $user['email'];
+    $sqlquery = "SELECT * FROM `accounts` WHERE email = '$usrEmail'";
+    $accResult = $conn->query($sqlquery);
+    while ($row = $accResult->fetch_assoc()) {
+        $account = $row['role'];
+        break;
+    }
+
+    $isStaff = $account === "staff";
+
+    if (!isset($account)) {
+        $sqlquery = "INSERT INTO accounts VALUES('$usrEmail', 'visitor',NULL)";
+        $accResult = $conn->query($sqlquery);
+    } elseif ($isStaff) {
+        exec('git rev-parse --verify HEAD', $output);
+        $hash = $output[0];
+        $hashShort = substr($hash, 0, 7);
+        $commit = "https://github.com/aperta-principium/Interclip/commit/" . $hash;
+
+        exec('git describe --abbrev=0 --tags', $release);
+
+
+
+        $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
+        $result = $conn->query($sqlquery);
+        while ($row = $result->fetch_assoc()) {
+            $count = $row['id'];
+            break;
+        }
+        if (!$count) {
+            $count = 0;
+        }
+
+
+        //By default, we assume that PHP is NOT running on windows.
+        $isWindows = false;
+
+        //If the first three characters PHP_OS are equal to "WIN",
+        //then PHP is running on a Windows operating system.
+        if (strcasecmp(substr(PHP_OS, 0, 3), 'WIN') === 0) {
+            $isWindows = true;
+        }
+
+        if (!$isWindows) {
+            $systemLoad = sys_getloadavg()[0];
+        } else {
+            $systemLoad = "unavailable";
+        }
+    }
+}
+$renderTimeMicro = microtime(true) - $beginLoad;
+$renderTime = number_format($renderTimeMicro * 1000, 2);
+?>
+<?php if (isset($user) && $isStaff) : ?>
+  <div id="adminbar">
+    <span id="load">Load: TBD</span>
+    <span title="<?php echo number_format($renderTimeMicro * 1_000_000_000) ?> ns">Server render: <?php echo $renderTime ?>ms</span>
+    <span>Clips: <?php echo $count ?></span>
+    <span>
+      Deployed from:
+      <a title="View tag on GitHub" href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $release[0]; ?>">
+        <?php echo $release[0] ?>
+      </a>
+      @
+      <a title="View commit on GitHub" href="https://github.com/aperta-principium/Interclip/commit/<?php echo $hash ?>">
+        <?php echo $hashShort ?>
+      </a>
+    </span>
+    <span id="files">Total files: 0 (0B)</span>
+    <span>Server load: <?php echo $systemLoad ?></span>
+    <span class="ending">Hi, <?php echo $user["name"] ? $user['name'] : $user["nickname"]  ?></span>
+  </div>
+<?php endif; ?>
+
+<?php
+
 // Render the menu
 echo '<ul id="menu">';
 
@@ -106,4 +189,7 @@ foreach ($pages as $page) {
 
 </div>
 
+<script>
+  const loggedIn = <?php echo $user ? "true" : "false" ?>
+</script>
 <script src="<?php echo ROOT ?>/js/menu.js"></script>
