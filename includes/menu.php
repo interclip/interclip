@@ -104,12 +104,11 @@ $renderTime = number_format($renderTimeMicro * 1000, 2);
 ?>
 <?php if (isset($user) && $isStaff) : ?>
   <div id="adminbar">
-    <span id="load">Load: TBD</span>
-    <span title="<?php echo number_format($renderTimeMicro * 1_000_000_000) ?> ns">Server render: <?php echo $renderTime ?>ms</span>
+    <span id="load">Client: TBD</span>
+    <span title="<?php echo number_format($renderTimeMicro * 1_000_000_000) ?> ns">Server: <?php echo $renderTime ?>ms</span>
     <span>Clips: <?php echo $count ?></span>
     <span id="files">Files: 0 (0B)</span>
     <span>
-      Deployed from:
       <a title="View tag on GitHub" href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $release[0]; ?>">
         <?php echo $release[0] ?>
       </a>

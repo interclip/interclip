@@ -136,7 +136,7 @@ if (loggedIn && isAdmin) {
     }
 
     window.addEventListener("load", () => {
-        document.getElementById("load").innerText = `Load: ${performance.now()}ms`;
+        document.getElementById("load").innerText = `Client: ${performance.now()}ms`;
     });
 } else if(loggedIn && !isAdmin) {
     document.addEventListener('keydown', (e) => {
