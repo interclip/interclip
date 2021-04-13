@@ -111,7 +111,7 @@ const updateMenu = () => {
 if (loggedIn && isAdmin) {
     const filesSpan = document.getElementById("files");
 
-    $(document).keypress(function (e) {
+    document.keypress((e) => {
         e.preventDefault();
         if (e.shiftKey && e.keyCode === 66) {
             const displayStatus = adminbar.style.display === "flex" ? "none" : "flex";
@@ -137,6 +137,17 @@ if (loggedIn && isAdmin) {
 
     window.addEventListener("load", () => {
         document.getElementById("load").innerText = `Load: ${performance.now()}ms`;
+    });
+} else if(loggedIn && !isAdmin) {
+    document.keypress((e) => {
+        e.preventDefault();
+        if (e.shiftKey && e.keyCode === 66) {
+            Swal.fire(
+                'Permission error',
+                'Yikes! It seems you have to be an admin to view the admin bar. Want to be an admin? Tweet me @filiptronicek',
+                'error'
+              );
+        }
     });
 }
 
