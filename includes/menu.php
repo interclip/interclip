@@ -99,13 +99,15 @@ if (isset($user)) {
         }
     }
 }
-$renderTimeMicro = microtime(true) - $beginLoad;
+
+$renderTimeMicro = microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'];
 $renderTime = number_format($renderTimeMicro * 1000, 2);
+
 ?>
 <?php if (isset($user) && $isStaff) : ?>
   <div id="adminbar">
-    <span id="load">Client: TBD</span>
-    <span title="<?php echo number_format($renderTimeMicro * 1_000_000_000) ?> ns">Server: <?php echo $renderTime ?>ms</span>
+    <span title="The total time it took the client to render the DOM and fetch all the neccesary resources" id="load">Client: TBD</span>
+    <span title="The total time it took the server to process the request">Server: <?php echo $renderTime ?>ms</span>
     <span>Clips: <?php echo $count ?></span>
     <span id="files">Files: 0 (0B)</span>
     <span>
