@@ -26,6 +26,20 @@ const isPhone = !isTablet
     /mobi/i.test(navigator.userAgent)
     : false;
 
+function formatBytes(bytes, decimals = 2) {
+    if (bytes === 0) {
+        return '0 Bytes';
+    }
+
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+}
+
 // When the user clicks the button, open the modal
 btn.onclick = () => {
     settingsModal.style.display = "block";
@@ -93,18 +107,6 @@ if (loggedIn) {
 
     const filesSpan = document.getElementById("files");
 
-    function formatBytes(bytes, decimals = 2) {
-        if (bytes === 0) return '0 Bytes';
-
-        const k = 1024;
-        const dm = decimals < 0 ? 0 : decimals;
-        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-    }
-
     /* Retrieve data from the Interclip file API */
     if (!localStorage.getItem("file_stat_expires") || parseInt(localStorage.getItem("file_stat_expires")) > Date.now()) {
         fetch("https://interclip.app/includes/size.json").then(res => res.json()).then(res => {
@@ -113,7 +115,7 @@ if (loggedIn) {
             localStorage.setItem("file_stat_expires", new Date() + (60 * 60));
             localStorage.setItem("file_stat", JSON.stringify(res));
         });
-    /* Retrieving API data from cache */
+        /* Retrieving API data from cache */
     } else {
         const fileStat = JSON.parse(localStorage.getItem("file_stat"));
         filesSpan.innerText = `Total files: ${fileStat.count} (${formatBytes(fileStat.bytes)})`;
@@ -123,6 +125,6 @@ if (loggedIn) {
 
 updateMenu();
 
-window.addEventListener('load', () => {
+window.addEventListener("load", () => {
     document.getElementById("load").innerText = `Load: ${performance.now()}ms`;
 });
