@@ -283,7 +283,7 @@ h1:nth-child(1) {
   color: white;
 }
 
-#adminbar span {
+#adminbar span:not(:last-child):not(:first-child) {
   padding-left: 7px;
   padding-right: 15px;
 }
