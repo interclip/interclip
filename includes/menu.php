@@ -31,14 +31,16 @@ if ($currFile == "get.php" || $currFile == "new.php") {
   $urlPrefix = "./";
 }
 
-if(!empty($auth0->getUser())) {
+if(empty($user) && !empty($auth0->getUser())) {
   $user = $auth0->getUser();
 }
 
-if ($auth0->getUser()) {
+if (isset($user)) {
+    print_r($user['email']);
     $conn = new mysqli($_ENV['SERVER_NAME'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
 
-    $sqlquery = "SELECT * FROM `accounts` WHERE email = 'filip.tronicek@seznam.cz'";
+    $usrEmail = $user['email'];
+    $sqlquery = "SELECT * FROM `accounts` WHERE email = '$usrEmail'";
     $accResult = $conn->query($sqlquery);
     while ($row = $accResult->fetch_assoc()) {
         $account = $row['role'];
@@ -48,8 +50,7 @@ if ($auth0->getUser()) {
     $isStaff = $account === "staff";
 
     if (!isset($account)) {
-        $email = $user['email'];
-        $sqlquery = "INSERT INTO accounts VALUES('$email', 'visitor',NULL)";
+        $sqlquery = "INSERT INTO accounts VALUES('$usrEmail', 'visitor',NULL)";
         $accResult = $conn->query($sqlquery);
     } elseif ($isStaff) {
         exec('git rev-parse --verify HEAD', $output);
@@ -190,6 +191,6 @@ foreach ($pages as $page) {
 </div>
 
 <script>
-  const loggedIn = <?php echo $auth0->getUser() ? "true" : "false" ?>
+  const loggedIn = <?php echo $user ? "true" : "false" ?>
 </script>
 <script src="<?php echo ROOT ?>/js/menu.js"></script>
