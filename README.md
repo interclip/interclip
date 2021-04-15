@@ -58,8 +58,7 @@ Clipping is easy. Just click on the magnifying glass and paste in your link!
 
 Then press Enter and through the magic of code here is the code to your link!
 
-![code-preview](https://s.put.re/Jwmoc8BV.png)
-
+![code-preview](https://user-images.githubusercontent.com/29888641/114938778-d0e92280-9e3f-11eb-811e-c1b8abc3567e.png)
 ## How to receive a clip
 **💡 ProTip: you can receive a clip even faster by scanning the QR code or going to `interclip.app/yourcode`**
 
