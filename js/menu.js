@@ -57,6 +57,7 @@ colorSchemePreference.addEventListener("change", function () {
         localStorage.removeItem("dark-mode-toggle");
     } else {
         darkModeToggle.mode = this.value;
+        localStorage.setItem("dark-mode-toggle", this.value);
     }
 });
 
