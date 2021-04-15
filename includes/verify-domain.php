@@ -3,6 +3,7 @@
 // include composer autoload
 require "../vendor/autoload.php";
 use Iodev\Whois\Factory;
+use Utopia\Domains\Domain;
 
 function ping($domain) {
     $agent = "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_8; pt-pt) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27";
@@ -37,7 +38,6 @@ function whois($domain) {
     $whois = Factory::get()->createWhois();
 
     if (isset($domain)) {
-
         // Checking availability
         if ($whois->isDomainAvailable($domain)) {
             return false;
@@ -50,7 +50,9 @@ function whois($domain) {
 
 }
 
-function verify($domain) {
-    $ping = ping($domain);
-    return $ping ? $ping : whois($domain);
+function verify($url) {
+    $pingable = parse_url($url, PHP_URL_HOST);
+    $domain = new Domain($pingable);
+    $ping = ping($pingable);
+    return $ping ? $ping : whois($domain->getRegisterable());
 }

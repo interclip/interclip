@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9cb112c120e4646ffc2f1ef19de1f699",
+    "content-hash": "37c054c5834b4e0a9b93275dcadb61f9",
     "packages": [
         {
             "name": "auth0/auth0-php",
@@ -996,6 +996,56 @@
                 "punycode"
             ],
             "time": "2016-11-16T10:37:54+00:00"
+        },
+        {
+            "name": "utopia-php/domains",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/utopia-php/domains.git",
+                "reference": "1665e1d9932afa3be63b5c1e0dcfe01fe77d8e73"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/utopia-php/domains/zipball/1665e1d9932afa3be63b5c1e0dcfe01fe77d8e73",
+                "reference": "1665e1d9932afa3be63b5c1e0dcfe01fe77d8e73",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Utopia\\Domains\\": "src/Domains"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eldad Fux",
+                    "email": "eldad@appwrite.io"
+                }
+            ],
+            "description": "Utopia Domains library is simple and lite library for parsing web domains. This library is aiming to be as simple and easy to learn and use.",
+            "keywords": [
+                "domains",
+                "framework",
+                "icann",
+                "php",
+                "public suffix",
+                "tld",
+                "tld extract",
+                "upf",
+                "utopia"
+            ],
+            "time": "2020-02-23T07:40:02+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
