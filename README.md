@@ -54,7 +54,7 @@ For a code of conduct, see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and for sett
 
 Clipping is easy. Just click on the magnifying glass and paste in your link!
 
-![how-to](https://github.com/aperta-principium/Interclip/raw/master/img/interclip-home.gif)
+![how-to](https://github.com/aperta-principium/Interclip/raw/HEAD/img/interclip-home.gif)
 
 Then press Enter and through the magic of code here is the code to your link!
 
