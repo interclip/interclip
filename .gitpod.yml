@@ -20,7 +20,7 @@ tasks:
 - name: Apache
   command: >
     sudo cp apache.conf /etc/apache2/apache2.conf
-    sudo service apache2 restart
+    sudo service apache2 restart &&
     apachectl start &&
     multitail /var/log/apache2/access.log -I /var/log/apache2/error.log
 
