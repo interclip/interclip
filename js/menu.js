@@ -143,7 +143,7 @@ if (loggedIn && isAdmin) {
         /* Retrieving API data from cache */
     } else {
         const fileStat = JSON.parse(localStorage.getItem("file_stat"));
-        filesSpan.innerText = `Files: ${fileStat.count} (${formatBytes(fileStat.bytes)})`;
+        filesSpan.innerHTML = `Files: ${fileStat.count} <span class="lg">(${formatBytes(fileStat.bytes)})</span>`;
         filesSpan.setAttribute("title", `Average file size: ${formatBytes(fileStat.bytes / fileStat.count)}`);
     }
 
