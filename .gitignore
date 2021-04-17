@@ -1,9 +1,15 @@
+# Development
 .vscode/
 desktop.ini
+
 upload.py
+diff.txt
+
+# PHP
 vendor/
 .phpunit.result.cache
+
+# Production
 upload/uploads/
 includes/size.json
-diff.txt
 .env
