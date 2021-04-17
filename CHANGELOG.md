@@ -1,3 +1,28 @@
+# v3.3.7 (April 17, 2021)
+## Bug fixes 🐛 
+- Typo in the admin bar: thanks, Grammarly! https://github.com/aperta-principium/Interclip/commit/0fd3d0f0a653dfcc260695e928f613e820c28137
+- Fixed a domain resolution issue with some domains https://github.com/aperta-principium/Interclip/commit/04aca79340f5e777dea91fc570f949d65d9d9464
+- Fix a bug with the saved color scheme not being loaded correctly https://github.com/aperta-principium/Interclip/commit/7909dc6930c8323f6633ffe2ad4cc7df729bcd50
+- Round the paint time in the admin bar https://github.com/aperta-principium/Interclip/commit/3f71a4030ae0603830c07f5cf67a7608a4014b58
+
+## Features ✨ 
+- Hide some admin bar metrics on mobile https://github.com/aperta-principium/Interclip/commit/921d22bf6531be849cca0ddb9bdb4b0f7792a2a4 https://github.com/aperta-principium/Interclip/commit/f4ae0ffffa7ea6a9f8e1899c043eaffb2e2929dd https://github.com/aperta-principium/Interclip/commit/992918ef7cc6f655408e4600a564a8daa788f5ff https://github.com/aperta-principium/Interclip/commit/f0a9e72936a646a2c959d38399a6db4a93f6d34d
+- Make the client metric more reliable - rename it to paint and use the Pain API https://github.com/aperta-principium/Interclip/commit/c11fc28ff5e7f3717723139ba32fb238e3d961ac
+
+## Dependencies ⬆️
+- Updated Pest PHP (thanks, Dependabot!) https://github.com/aperta-principium/Interclip/commit/e9ec2c4fd64bfe24464edfdbe838b4437457e259
+
+## Docs 📝 
+- Fix README.md images https://github.com/aperta-principium/Interclip/commit/bfd3a15829bc5c014b407a73c67f4792bc333caa https://github.com/aperta-principium/Interclip/commit/50cf5d38dfd12a6f2c38f5ba4e2050e7eb88fe05
+
+## Code 🎨 
+- Fix the Apache startup script for GitPod https://github.com/aperta-principium/Interclip/commit/946ff3f24c525f2856c6a55f44c64e91630da02d https://github.com/aperta-principium/Interclip/commit/9e03e1d57139afd64a3b0f945839d18d0c3ef3f6
+- Make the `.gitignore` look awesome https://github.com/aperta-principium/Interclip/commit/6c3b85bcd6ad708396d30b9286dfbd8c168cbc60
+- Delete some blank lines in the PHP https://github.com/aperta-principium/Interclip/commit/922b72d3685ae9a7a6a0ff672abaa628151fa301
+- Delete some `.svg` animations that are not used anymore https://github.com/aperta-principium/Interclip/commit/d67d0c4a45e85b94ff6e2727f98bea2a2c67dbb3
+
+## Performance ⚡️
+- Improve the load by ~400ms by changing the CDN of `dark-mode-toggle` https://github.com/aperta-principium/Interclip/commit/0ff28cd4eb8a0ae88a5e85d7b2d04d948745aa60
 
 # v3.3.6 (April 14, 2021)
 ## Features ✨ 
