@@ -6,7 +6,6 @@
     ?>
     <title>New clip | Interclip</title>
 
-    <link rel="stylesheet" type="text/css" href="css/button.css">
     <link rel="stylesheet" type="text/css" href="../css/new.css">
 </head>
 
