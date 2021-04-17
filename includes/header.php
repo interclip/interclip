@@ -52,7 +52,7 @@
 <link rel="stylesheet" href="<?php echo ROOT ?>/css/dark.css" media="(prefers-color-scheme: dark)">
 
 <!-- External JS libraries -->
-<script src='https://cdn.jsdelivr.net/gh/jquery/jquery/dist/jquery.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
 <script type="module" src="https://cdn.skypack.dev/pin/dark-mode-toggle@v0.8.0-8sz7Rv9Ou4431j6B2ucG/mode=imports,min/optimized/dark-mode-toggle.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 

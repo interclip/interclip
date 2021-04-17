@@ -59,7 +59,7 @@
     
     let options;
 
-    if (computedStyle === "" || computedStyle === "light") {
+    if (computedStyle === null || computedStyle === "light") {
         options = {
             text: "https://https://interclip.app/<?php echo $usr ?>",
             background: "#ff9800",

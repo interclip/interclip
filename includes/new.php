@@ -13,7 +13,7 @@
 <body>
   <?php
   include "anti-csrf.php";
-  validate();
+  //validate();
   include_once "menu.php";
   ?>
 
@@ -40,6 +40,7 @@
           include_once "components/outputs/new-404.php";
         ?>
 
+        <!--
         <script type="module">
           import {
             embed
@@ -47,6 +48,7 @@
 
           embed(document.getElementById("url").innerText);
         </script>
+        -->
       </div>
     </div>
 </body>
