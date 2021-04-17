@@ -80,6 +80,15 @@ if (isset($user)) {
             $count = 0;
         }
 
+        $totalLinesQuery = "SELECT SUM(TABLE_ROWS) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'iclip'";
+        $totalLinesResult = $conn->query($totalLinesQuery);
+        while ($row = $totalLinesResult->fetch_assoc()) {
+            $totalLines = $row['SUM(TABLE_ROWS)'];
+            break;
+        }
+        if (!$totalLines) {
+            $totalLines = 0;
+        }
 
         //By default, we assume that PHP is NOT running on windows.
         $isWindows = false;
@@ -107,6 +116,7 @@ $renderTime = number_format($renderTimeMicro * 1000, 2);
     <span title="The total time it took the client to render the DOM and fetch all the necessary resources" id="load">Client: TBD</span>
     <span title="The total time it took the server to process the request">Server: <?php echo $renderTime ?>ms</span>
     <span class="lg">Clips: <?php echo $count ?></span>
+    <span class="lg">DB rows: <?php echo $totalLines ?></span>
     <span id="files">Files: 0 (0B)</span>
     <span>
       <a title="View tag on GitHub" href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $release[0]; ?>">
