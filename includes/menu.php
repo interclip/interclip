@@ -70,8 +70,6 @@ if (isset($user)) {
 
         exec('git describe --abbrev=0 --tags', $release);
 
-
-
         $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
         $result = $conn->query($sqlquery);
         while ($row = $result->fetch_assoc()) {
