@@ -45,6 +45,23 @@ function formatBytes(bytes, decimals = 2) {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
 }
 
+function showPaintTimings() {
+    if (!loggedIn) {
+        return null;
+    } 
+    if (window.performance) {
+        const performance = window.performance;
+        const performanceEntries = performance.getEntriesByType('paint');
+        performanceEntries.forEach((performanceEntry) => {
+            if (performanceEntry.name === "first-contentful-paint") {
+                document.getElementById("load").innerText = `Paint: ${performanceEntry.startTime}ms`;
+            }
+        });
+    } else {
+        console.log('Performance timing isn\'t supported.');
+    }
+}
+
 // When the user clicks the button, open the modal
 btn.onclick = () => {
     settingsModal.style.display = "block";
@@ -146,10 +163,6 @@ if (loggedIn && isAdmin) {
         filesSpan.innerHTML = `Files: ${fileStat.count} <span class="lg">(${formatBytes(fileStat.bytes)})</span>`;
         filesSpan.setAttribute("title", `Average file size: ${formatBytes(fileStat.bytes / fileStat.count)}`);
     }
-
-    window.addEventListener("load", () => {
-        document.getElementById("load").innerText = `Client: ${performance.now()}ms`;
-    });
 } else if (loggedIn && !isAdmin) {
     document.addEventListener('keydown', (e) => {
         e.preventDefault();
@@ -164,3 +177,7 @@ if (loggedIn && isAdmin) {
 }
 
 updateMenu();
+
+window.addEventListener("load", () => {
+    showPaintTimings();
+});
