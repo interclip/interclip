@@ -54,7 +54,8 @@ function showPaintTimings() {
         const performanceEntries = performance.getEntriesByType('paint');
         performanceEntries.forEach((performanceEntry) => {
             if (performanceEntry.name === "first-contentful-paint") {
-                document.getElementById("load").innerText = `Paint: ${performanceEntry.startTime}ms`;
+                const paintTime = performanceEntry.startTime;
+                document.getElementById("load").innerText = `Paint: ${Math.round(paintTime)}ms`;
             }
         });
     } else {
