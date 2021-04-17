@@ -45,7 +45,7 @@
             embed
           } from "https://cdn.jsdelivr.net/gh/aperta-principium/embed.js/embed.min.js";
 
-          embed($("#url").text());
+          embed(document.getElementById("url").innerText);
         </script>
       </div>
     </div>

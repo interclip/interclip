@@ -66,7 +66,7 @@ function uploadRe($files) {
   request.send(formData);
 
   modal.style.display = "block";
-  $(".demo-droppable").hide();
+  document.querySelector(".demo-droppable").style.display = "none";
 }
 
 function formatBytes(bytes, decimals = 2) {
@@ -135,7 +135,7 @@ function formatBytes(bytes, decimals = 2) {
 
 ((window) => {
   makeDroppable(window.document.querySelector(".demo-droppable"), (files) => {
-    $("#content").hide();
+    document.getElementById("content").style.display = "none";
     output.innerHTML = "";
 
     const file = files[0];
@@ -146,10 +146,6 @@ function formatBytes(bytes, decimals = 2) {
       )}" />`;
     }
     output.innerHTML += `<p>${file.name}</p>`;
-
-    if (clickEnabled !== false) {
-      $(".note").fadeOut(500);
-    }
 
     if (file.size > fileSizeLimitInBytes) {
       Swal.fire(

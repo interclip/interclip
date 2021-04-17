@@ -45,7 +45,7 @@
             background: scheme === 'dark' ? "#444444" : "#ff9800",
             foreground: scheme === 'dark' ? "#e4e4e4" : "#000000",
         }
-        $('#qrcode').html("");
+        document.getElementById('qrcode').innerHTML = "";
         $('#qrcode').qrcode(options);
     }
 
