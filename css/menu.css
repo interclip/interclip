@@ -109,6 +109,10 @@ li a:hover:not(.active) {
   .modal {
       padding-top: 0;
   }
+
+  .lg {
+    display: none;
+  }
 }
 
 /* The Close Button */

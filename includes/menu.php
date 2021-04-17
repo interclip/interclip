@@ -117,9 +117,9 @@ $renderTime = number_format($renderTimeMicro * 1000, 2);
         <?php echo $hashShort ?>
       </a>
     </span>
-    <span>Memory: <?php echo formatBytes(memory_get_usage()) ?></span>
-    <span>Server load: <?php echo $systemLoad ?></span>
-    <span>PHP <?php echo phpversion(); ?></span>
+    <span class="lg">Memory: <?php echo formatBytes(memory_get_usage()) ?></span>
+    <span class="lg">Server load: <?php echo $systemLoad ?></span>
+    <span class="lg">PHP <?php echo phpversion(); ?></span>
     <span class="ending">Hi, <?php echo $user["name"] ? $user['name'] : $user["nickname"]  ?></span>
   </div>
 <?php endif; ?>
