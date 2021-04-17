@@ -62,6 +62,7 @@
     </div>
   </div>
   <script src="../js/get.js"></script>
+  <!--
   <script type="module">
     import {
       embed
@@ -69,7 +70,7 @@
 
     embed("<?php echo $realUrl ?>");
   </script>
-
+  -->
 </body>
 
 </html>
