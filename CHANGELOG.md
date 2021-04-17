@@ -1,4 +1,30 @@
 
+# v3.3.6 (April 14, 2021)
+## Features ✨ 
+- Admin bar https://github.com/aperta-principium/Interclip/commit/751f798c0fd7dde573f922def5b20ff019fcea66
+- Login with Auth0 (doesn't provide any features asides from the admin bar for staff) https://github.com/aperta-principium/Interclip/commit/751f798c0fd7dde573f922def5b20ff019fcea66
+- Add a very nice ASCII art in the browser console https://github.com/aperta-principium/Interclip/commit/fc2f0fb428ec8cace24a092222901d8c7a7b3747
+
+## Bugs 🐛 
+- Fix a bug where ping request to files.interclip.app would fail https://github.com/aperta-principium/Interclip/commit/929f564af8c26d75f613c6e31aba2975584de47f
+- Fix places with iclip.netlify.app, because that doesn't work anymore https://github.com/aperta-principium/Interclip/commit/a13939a88389b256621a23e8818d1716f8c26d1a
+- Add CORS header to the size API https://github.com/aperta-principium/Interclip/commit/22945309a2e655e26667c6a0fee943d0d3ba2524
+
+## Code 🎨 
+- Make GitPod ignore MySQL port when it opens https://github.com/aperta-principium/Interclip/commit/12ccf9094ec890036e0e6bad96cea865b2749298
+- Change the GitPod deploy Action message https://github.com/aperta-principium/Interclip/commit/f77a24d9e50f0a777d081376c2b9f5938a1dc928
+- Delete a very old CSS file reference https://github.com/aperta-principium/Interclip/commit/e1d0e64bc144e48b2ee182143ffb3b40754a47d6
+
+## Docs 📝 
+- Fix a broken Interclip logo in the README https://github.com/aperta-principium/Interclip/commit/36680e9f76af2d24a85b757c8db581b22b78c6af
+
+## Screenshots 📷 
+The new admin bar
+![image](https://user-images.githubusercontent.com/29888641/114776334-a67d6380-9d72-11eb-8c84-281f6079bbb1.png)
+
+The browser console ASCII art
+![image](https://user-images.githubusercontent.com/29888641/114776656-01af5600-9d73-11eb-88d7-0625e1655f28.png)
+
 # v3.3.5 (April 9, 2021)
 ## Bugs 🐛
 - Made the <kbd>BETA</kbd> items in the menu not flash so much https://github.com/aperta-principium/Interclip/commit/46446cda74bb129897daf0775773cec0e0a4acee
