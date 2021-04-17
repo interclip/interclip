@@ -157,8 +157,8 @@ if (loggedIn && isAdmin) {
             localStorage.setItem("file_stat_expires", new Date() + (60 * 60));
             localStorage.setItem("file_stat", JSON.stringify(res));
         });
-        /* Retrieving API data from cache */
     } else {
+        /* Retrieving API data from cache */
         const fileStat = JSON.parse(localStorage.getItem("file_stat"));
         filesSpan.innerHTML = `Files: ${fileStat.count} <span class="lg">(${formatBytes(fileStat.bytes)})</span>`;
         filesSpan.setAttribute("title", `Average file size: ${formatBytes(fileStat.bytes / fileStat.count)}`);
