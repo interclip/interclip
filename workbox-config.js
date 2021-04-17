@@ -10,6 +10,14 @@ module.exports = {
 				expiration: { maxEntries: 10 },
 				cacheName: "images",
 			}
+		},
+		{
+			urlPattern: /\.(?:js|css)$/,
+			handler: "StaleWhileRevalidate",
+			options: {
+				expiration: { maxEntries: 10 },
+				cacheName: "css&js",
+			}
 		}
 	],
 	ignoreURLParametersMatching: [
