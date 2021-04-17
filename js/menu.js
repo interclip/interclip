@@ -166,7 +166,7 @@ if (loggedIn && isAdmin) {
 } else if (loggedIn && !isAdmin) {
     document.addEventListener('keydown', (e) => {
         e.preventDefault();
-        if (e.shiftKey && e.keyCode === 66) {
+        if (e.shiftKey && e.code === "KeyB") {
             Swal.fire(
                 'Permission error',
                 'Yikes! It seems you have to be an admin to view the admin bar. Want to be an admin? Tweet me @filiptronicek',
@@ -181,3 +181,14 @@ updateMenu();
 window.addEventListener("load", () => {
     showPaintTimings();
 });
+
+// Check that service workers are supported
+if ('serviceWorker' in navigator) {
+    // Use the window load event to keep the page load performant
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js');
+    });
+  } else {
+      console.log(navigator.serviceWorker)
+  }
+  
