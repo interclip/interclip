@@ -55,6 +55,11 @@ input {
   transform: translate(-100%, -50%);
 }
 
+input::placeholder {
+  color: #fff;
+  opacity: 0.7;
+}
+
 .search {
   background: none;
   position: absolute;
