@@ -7,7 +7,7 @@ if (isset($user_code)) {
   noteLimit("get");
 
   // Create connection
-  $conn = new mysqli($_ENV['SERVER_NAME'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
+  $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
 
   /* Check DB connection */
   if ($conn->connect_error) {

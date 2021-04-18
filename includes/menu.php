@@ -47,7 +47,7 @@ if(empty($user) && !empty($auth0->getUser())) {
 }
 
 if (isset($user)) {
-    $conn = new mysqli($_ENV['SERVER_NAME'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
+    $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
 
     $usrEmail = $user['email'];
     $sqlquery = "SELECT * FROM `accounts` WHERE email = '$usrEmail'";

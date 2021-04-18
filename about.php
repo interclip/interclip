@@ -36,7 +36,7 @@
             Total clips: 
             <?php
                 include_once "./includes/components/rate.php";
-                $conn = new mysqli($_ENV['SERVER_NAME'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
+                $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
 
                 $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
                 $result = $conn->query($sqlquery);
