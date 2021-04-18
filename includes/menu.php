@@ -50,7 +50,7 @@ if(empty($user) && !empty($auth0->getUser())) {
 
 exec('git describe --abbrev=0 --tags', $release);
 
-if (is_bool($user)) {
+if (!is_bool($user)) {
     $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
 
     $usrEmail = $user['email'];
@@ -115,7 +115,7 @@ $renderTimeMicro = microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'];
 $renderTime = number_format($renderTimeMicro * 1000, 2);
 
 ?>
-<?php if (is_bool($user) && $isStaff) : ?>
+<?php if (!is_bool($user) && $isStaff) : ?>
   <div id="adminbar">
     <span title="The total time it took the client to render the DOM and fetch all the necessary resources" id="load">Client: TBD</span>
     <span title="The total time it took the server to process the request">Server: <?php echo $renderTime ?>ms</span>
