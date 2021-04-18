@@ -103,8 +103,8 @@ if (isset($user)) {
             $systemLoad = sys_getloadavg()[0];
             $uptime = explode(',', explode(' up ', shell_exec('uptime'))[1])[0];
         } else {
-            $systemLoad = "unavailable";
-            $uptime = "unavailable";
+            $systemLoad = "n/a";
+            $uptime = "n/a";
         }
     }
 }
