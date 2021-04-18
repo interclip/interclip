@@ -101,8 +101,10 @@ if (isset($user)) {
 
         if (!$isWindows) {
             $systemLoad = sys_getloadavg()[0];
+            $uptime = explode(',', explode(' up ', shell_exec('uptime'))[1])[0];
         } else {
             $systemLoad = "unavailable";
+            $uptime = "unavailable";
         }
     }
 }
@@ -130,7 +132,7 @@ $renderTime = number_format($renderTimeMicro * 1000, 2);
     <span class="lg">PHP <?php echo phpversion(); ?></span>
     <span class="lg">Memory: <?php echo formatBytes(memory_get_usage()) ?></span>
     <span class="lg">Server load: <?php echo $systemLoad ?></span>
-    <span class="lg">Uptime: <?php echo explode(',', explode(' up ', shell_exec('uptime'))[1])[0] ?></span>
+    <span class="lg">Uptime: <?php echo $uptime ?></span>
     <span class="lg">Storage: <?php echo (formatBytes(disk_total_space('/') - disk_free_space('/'))) ."/". (formatBytes(disk_total_space('/'))) ?></span>
     <span class="ending lg">Hi, <?php echo $user["name"] ? $user['name'] : $user["nickname"]  ?></span>
   </div>
