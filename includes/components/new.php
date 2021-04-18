@@ -51,7 +51,6 @@ function createClip($url) {
             $duplicateCodeResult = $conn->query($duplicateCodeQuery);
         }
 
-        echo $url;
         if (verify($url)) {
             $sqlquery = "INSERT INTO userurl (id, usr, url, date, expires) VALUES (NULL, '$usr', '$url', NOW(), '$expiryDate') ";
             if ($conn->query($sqlquery) === FALSE) {
