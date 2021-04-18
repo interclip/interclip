@@ -46,6 +46,8 @@ if(empty($user) && !empty($auth0->getUser())) {
   $user = $auth0->getUser();
 }
 
+exec('git describe --abbrev=0 --tags', $release);
+
 if (isset($user)) {
     $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
 
@@ -67,8 +69,6 @@ if (isset($user)) {
         $hash = $output[0];
         $hashShort = substr($hash, 0, 7);
         $commit = "https://github.com/aperta-principium/Interclip/commit/" . $hash;
-
-        exec('git describe --abbrev=0 --tags', $release);
 
         $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
         $result = $conn->query($sqlquery);
