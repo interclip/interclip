@@ -44,6 +44,8 @@ if ($currFile == "get.php" || $currFile == "new.php") {
 
 if(empty($user) && !empty($auth0->getUser())) {
   $user = $auth0->getUser();
+} else {
+  $user = false;
 }
 
 exec('git describe --abbrev=0 --tags', $release);
