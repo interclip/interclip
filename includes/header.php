@@ -1,7 +1,9 @@
 <?php
-    define('ROOT_DIR', realpath(__DIR__ . '/..'));
+    define('ROOT_DIR', realpath(__DIR__ . '/..')); // Set the root directory of where Interclip sits
 
     require ROOT_DIR . "/vendor/autoload.php";
+
+    /* Load the app config from .env */
 
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '../.env');
     $dotenv->safeLoad();
@@ -12,6 +14,8 @@
 
     header("X-Frame-Options: DENY");
     header("Cross-Origin-Opener-Policy: same-origin");
+
+    /* Authentication */
 
     use Auth0\SDK\Auth0;
     if($_ENV['AUTH_TYPE'] === "account") {
