@@ -12,43 +12,46 @@
     <link rel="stylesheet" type="text/css" href="css/progressbar.css">
 </head>
 
-<?php
-include "includes/anti-csrf.php";
-store();
-include "includes/menu.php";
-?>
-
 <body>
 
-    <form name="urlform" id="content" onsubmit="return validateForm()" action="./includes/new" method="POST">
-        <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>" />
-        <input type="url" name="input" class="input" id="search-input" autofocus>
-        <button aria-label="Reset content" type="reset" class="search" id="search-btn"></button>
+    <a class="skip-link" href="#maincontent">Skip to main</a>
 
-    </form>
-    <div id="modal" class="modal">
+    <?php
+    include "includes/anti-csrf.php";
+    store();
+    include "includes/menu.php";
+    ?>
+    <main id="maincontent">
+        <form name="urlform" id="content" onsubmit="return validateForm()" action="./includes/new" method="POST">
+            <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>" />
+            <input type="url" name="input" class="input" id="search-input" autofocus>
+            <button aria-label="Reset content" type="reset" class="search" id="search-btn"></button>
 
-        <!-- Modal content -->
-        <div class="modal-content">
-            <p>
-                <progress id="progressBar" value="0" max="100"></progress>
-                <br>
-                <span id="progressPercent">
-                    0%
-                </span>
-            <div id="fact">
-                Inter-clippin' good!
+        </form>
+        <div id="modal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <p>
+                    <progress id="progressBar" value="0" max="100"></progress>
+                    <br>
+                    <span id="progressPercent">
+                        0%
+                    </span>
+                <div id="fact">
+                    Inter-clippin' good!
+                </div>
+                </p>
             </div>
-            </p>
-        </div>
 
-    </div>
-    <div class="demo-droppable">
-    </div>
-    <center>
-        <div class="output"></div>
-    </center>
-    </div>
+        </div>
+        <div class="demo-droppable">
+        </div>
+        <center>
+            <div class="output"></div>
+        </center>
+        </div>
+    </main>
     <script>
         clickEnabled = false;
         const csrfToken = "<?= $_SESSION['token'] ?>";

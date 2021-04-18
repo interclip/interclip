@@ -295,3 +295,18 @@ h1:nth-child(1) {
 .ending {
   margin-left: auto;
 }
+
+/* style.css */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: #000000;
+  color: white;
+  padding: 8px;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+}
