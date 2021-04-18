@@ -10,6 +10,11 @@
 
     define("ROOT", $_ENV['ROOT']);
 
+    /* Sentry */
+    if (!empty($_ENV['SENTRY_URL'])) {
+        \Sentry\init(['dsn' => $_ENV['SENTRY_URL'] ]);
+    }
+
     /* Headers */
 
     header("X-Frame-Options: DENY");

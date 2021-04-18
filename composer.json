@@ -6,6 +6,7 @@
         "io-developer/php-whois": "^4.0",
         "vlucas/phpdotenv": "^5.3",
         "auth0/auth0-php": "^7.7",
-        "utopia-php/domains": "^1.1"
+        "utopia-php/domains": "^1.1",
+        "sentry/sdk": "^3.1"
     }
 }
