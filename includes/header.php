@@ -7,8 +7,11 @@
     $dotenv->safeLoad();
 
     define("ROOT", $_ENV['ROOT']);
-    header("X-Frame-Options: DENY");
 
+    /* Headers */
+
+    header("X-Frame-Options: DENY");
+    header("Cross-Origin-Opener-Policy: same-origin");
 
     use Auth0\SDK\Auth0;
     if($_ENV['AUTH_TYPE'] === "account") {
