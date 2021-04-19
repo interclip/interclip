@@ -61,8 +61,9 @@ if (!is_bool($user)) {
         $account = $row['role'];
         break;
     }
-
-    $isStaff = $account === "staff";
+    if (isset($account)) {
+      $isStaff = $account === "staff";
+    }
 
     if (!isset($account)) {
         $sqlquery = "INSERT INTO accounts VALUES('$usrEmail', 'visitor',NULL)";
