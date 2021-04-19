@@ -39,6 +39,7 @@ jobs:
         #PURGE_URLS: "\"$(python3 scripts/arrayify.py)\""
     
   audit:
+    needs: purge-cache
     name: Audit the site with Lighthouse
     runs-on: ubuntu-latest
     steps:
