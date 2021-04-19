@@ -14,6 +14,4 @@ const expand = () => {
 
 searchBtn.addEventListener("click", expand);
 
-window.onload = () => {
-  expand();
-}
+expand();
