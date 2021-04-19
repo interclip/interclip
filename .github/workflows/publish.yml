@@ -37,3 +37,17 @@ jobs:
         CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
         CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
         #PURGE_URLS: "\"$(python3 scripts/arrayify.py)\""
+    
+  audit:
+    name: Audit the site with Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+    - name: Audit live URL
+      uses: jakejarvis/lighthouse-action@master
+      with:
+        url: 'https://interclip.app/'
+    - name: Upload results as an artifact
+      uses: actions/upload-artifact@master
+      with:
+        name: report
+        path: './report'
