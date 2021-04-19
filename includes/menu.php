@@ -61,6 +61,7 @@ if (!is_bool($user)) {
         $account = $row['role'];
         break;
     }
+    
     if (isset($account)) {
       $isStaff = $account === "staff";
     }
