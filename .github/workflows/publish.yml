@@ -40,15 +40,17 @@ jobs:
     
   audit:
     needs: purge-cache
-    name: Audit the site with Lighthouse
     runs-on: ubuntu-latest
     steps:
-    - name: Audit live URL
-      uses: jakejarvis/lighthouse-action@master
-      with:
-        url: 'https://interclip.app/'
-    - name: Upload results as an artifact
-      uses: actions/upload-artifact@master
-      with:
-        name: report
-        path: './report'
+      - uses: actions/checkout@v2
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v7
+        with:
+          urls: |
+            https://interclip.app/
+            https://interclip.app/file
+            https://interclip.app/receive
+            https://interclip.app/privacy
+            https://interclip.app/about
+          uploadArtifacts: true # save results as an action artifacts
+          temporaryPublicStorage: true # upload lighthouse report to the temporary storage
