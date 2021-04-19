@@ -16,7 +16,7 @@
     if (!empty($_ENV['SENTRY_URL'])) {
         \Sentry\init([
             'dsn' => $_ENV['SENTRY_URL'],
-            'release' => $sentryRelease, 
+            'release' => $sentryRelease[0], 
         ]);
     }
 
