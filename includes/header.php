@@ -10,9 +10,14 @@
 
     define("ROOT", $_ENV['ROOT']);
 
+    exec('git describe --abbrev=0 --tags', $sentryRelease);
+
     /* Sentry */
     if (!empty($_ENV['SENTRY_URL'])) {
-        \Sentry\init(['dsn' => $_ENV['SENTRY_URL'] ]);
+        \Sentry\init([
+            'dsn' => $_ENV['SENTRY_URL'],
+            'release' => $sentryRelease, 
+        ]);
     }
 
     /* Headers */
