@@ -13,5 +13,3 @@ const expand = () => {
 };
 
 searchBtn.addEventListener("click", expand);
-
-expand();

@@ -17,6 +17,11 @@
     <a class="skip-link" href="#maincontent">Skip to main</a>
 
     <?php
+
+    function isMobile() {
+        return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+    }
+
     include "includes/anti-csrf.php";
     store();
     include "includes/menu.php";
@@ -24,12 +29,10 @@
     <main id="maincontent">
         <form name="urlform" id="content" onsubmit="return validateForm()" action="./includes/new" method="POST">
             <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>" />
-            <input type="url" name="input" class="input" id="search-input" autofocus>
-            <button aria-label="Reset content" type="reset" class="search" id="search-btn"></button>
-
+            <input type="url" name="input" class="input square" placeholder="Paste your link here" id="search-input" autofocus>
+            <button aria-label="Reset content" type="reset" class="close search" id="search-btn"></button>
         </form>
         <div id="modal" class="modal">
-
             <!-- Modal content -->
             <div class="modal-content">
                 <p>
@@ -43,7 +46,6 @@
                 </div>
                 </p>
             </div>
-
         </div>
         <div class="demo-droppable">
         </div>
@@ -55,6 +57,7 @@
     <script>
         clickEnabled = false;
         const csrfToken = "<?= $_SESSION['token'] ?>";
+        const isMobile = <?php echo isMobile() ? "true" : "false" ?>;
     </script>
     <script src="js/index.js"> </script>
     <script src="js/validate.js"> </script>
