@@ -12,8 +12,8 @@
 
     exec('git rev-parse --verify HEAD', $sentryOutput);
     $sentryHash = $sentryOutput[0];
-    $sentryRelease = substr($hash, 0, 7);
-    
+    $sentryRelease = substr($sentryHash, 0, 7);
+
     /* Sentry */
     if (!empty($_ENV['SENTRY_URL'])) {
         \Sentry\init([
