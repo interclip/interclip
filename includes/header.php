@@ -84,6 +84,9 @@
 <link rel="stylesheet" href="<?php echo ROOT ?>/css/menu.css">
 <link rel="stylesheet" href="<?php echo ROOT ?>/css/dark.css" media="(prefers-color-scheme: dark)">
 
+<link rel="preconnect" href="https://fonts.gstatic.com/">
+<link rel="preconnect" href="https://cdn.jsdelivr.net/">
+
 <!-- External JS libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
 <script type="module" src="https://cdn.skypack.dev/pin/dark-mode-toggle@v0.8.0-8sz7Rv9Ou4431j6B2ucG/mode=imports,min/optimized/dark-mode-toggle.js"></script>
