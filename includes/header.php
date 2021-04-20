@@ -10,8 +10,10 @@
 
     define("ROOT", $_ENV['ROOT']);
 
-    exec('git describe --abbrev=0 --tags', $sentryRelease);
-
+    exec('git rev-parse --verify HEAD', $sentryOutput);
+    $sentryHash = $sentryOutput[0];
+    $sentryRelease = substr($hash, 0, 7);
+    
     /* Sentry */
     if (!empty($_ENV['SENTRY_URL'])) {
         \Sentry\init([
