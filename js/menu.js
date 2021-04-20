@@ -155,7 +155,7 @@ if (loggedIn && isAdmin) {
         fetch("https://interclip.app/includes/size.json").then((res) => res.json()).then((res) => {
             filesSpan.innerText = `Files: ${res.count} (${formatBytes(res.bytes)})`;
             filesSpan.setAttribute("title", `Average file size: ${formatBytes(res.bytes / res.count)}`);
-            localStorage.setItem("file_stat_expires", new Date() + (60 * 60));
+            localStorage.setItem("file_stat_expires", new Date() + (60 * 60 * 1000));
             localStorage.setItem("file_stat", JSON.stringify(res));
         });
     } else {
