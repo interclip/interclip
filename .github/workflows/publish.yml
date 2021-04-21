@@ -53,5 +53,6 @@ jobs:
             https://interclip.app/receive
             https://interclip.app/privacy
             https://interclip.app/about
+            https://interclip.app/desktop
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true # upload lighthouse report to the temporary storage
