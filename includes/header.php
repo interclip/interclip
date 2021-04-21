@@ -18,7 +18,7 @@
     if (!empty($_ENV['SENTRY_URL'])) {
         \Sentry\init([
             'dsn' => $_ENV['SENTRY_URL'],
-            'release' => $sentryRelease[0], 
+            'release' => $sentryRelease, 
             'traces_sample_rate' => floatval($_ENV['TRACES_SAMPLE_RATE'])
         ]);
     }
