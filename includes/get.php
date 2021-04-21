@@ -68,7 +68,7 @@
       embed
     } from "https://cdn.jsdelivr.net/gh/aperta-principium/embed.js/embed.min.js";
 
-    embed("<?php echo $realUrl ?>");
+    embed("<?php // echo $realUrl ?>");
   </script>
   -->
 </body>
