@@ -15,7 +15,12 @@
         <?php
         include_once "includes/menu.php";
         include_once "includes/getos.php";
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+        $user_agent = "";
+
+        if (!empty($_SERVER['HTTP_USER_AGENT'])) {
+            $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        }
 
         $user_os = getOS();
 
