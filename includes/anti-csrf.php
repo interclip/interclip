@@ -19,7 +19,7 @@ function validate()
         session_start();
     }
     
-    if (isset($_POST['token'])) {
+    if (isset($_POST['token']) && isset($_SESSION['token'])) {
         if ($_SESSION['token'] === $_POST['token']) {
             if (time() >= $_SESSION['token-expire']) {
                 exit("Token expired. Please reload go back and repeat the action.");
