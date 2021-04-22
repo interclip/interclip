@@ -300,7 +300,7 @@ h1:nth-child(1) {
   display: none;
 }
 
-#adminbar:hover .subitem, #adminbar:focus {
+.ending:hover .subitem, #adminbar:focus {
   display: inline-block;
 }
 
