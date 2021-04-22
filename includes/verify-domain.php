@@ -5,6 +5,12 @@ require "../vendor/autoload.php";
 use Iodev\Whois\Factory;
 use Utopia\Domains\Domain;
 
+/**
+ * Tries to ping the domain destination
+ *
+ * @param  mixed $domain
+ * @return boolean
+ */
 function ping($domain) {
     $agent = "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_8; pt-pt) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27";
 
@@ -32,6 +38,12 @@ function ping($domain) {
         return false;   
 }
 
+/**
+ * Queries whois with its response indicating whether the domain specified is registered
+ *
+ * @param  mixed $domain
+ * @return boolean
+ */
 function whois($domain) {
 
     // Creating default configured client
@@ -50,6 +62,12 @@ function whois($domain) {
 
 }
 
+/**
+ * Tries to first ping the URL, if that fails it asks whois() and outputs a XOR of these values
+ *
+ * @param  mixed $url
+ * @return boolean
+ */
 function verify($url) {
     $pingable = parse_url($url, PHP_URL_HOST);
     $domain = new Domain($pingable);

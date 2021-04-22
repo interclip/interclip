@@ -5,7 +5,13 @@
     <?php
 
         include_once "header.php";
-
+        
+        /**
+         * Redirect the user to a specific URL
+         *
+         * @param  mixed $url
+         * @return void
+         */
         function reDir($url)
         {
                 header("Location: " . $url . "");
