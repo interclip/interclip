@@ -3,6 +3,12 @@
 include_once "./components/rate.php";
 include_once "./verify-domain.php";
 
+/**
+ * Creates a new clip in the database
+ *
+ * @param  mixed $url
+ * @return void
+ */
 function createClip($url) {
     noteLimit("set");
 
@@ -19,7 +25,13 @@ function createClip($url) {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-
+    
+    /**
+     * Creates a 
+     *
+     * @param  mixed $len
+     * @return string
+     */
     function gen_uid($len = 10) {
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $len);
     }
