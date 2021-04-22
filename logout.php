@@ -6,7 +6,6 @@ require "includes/header.php";
 if ($auth0->getUser()) {
     // Logout the user
     $auth0->logout();
-} else {
-    // No session was available, so redirect to Universal Login page
-    $auth0->login();
 }
+
+header("Location: " . ROOT . "/");
