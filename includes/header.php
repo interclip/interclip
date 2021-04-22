@@ -84,8 +84,10 @@
 <link rel="stylesheet" href="<?php echo ROOT ?>/css/menu.css">
 <link rel="stylesheet" href="<?php echo ROOT ?>/css/dark.css" media="(prefers-color-scheme: dark)">
 
+<!-- Preconnects -->
 <link rel="preconnect" href="https://fonts.gstatic.com/">
 <link rel="preconnect" href="https://cdn.jsdelivr.net/">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com/">
 
 <!-- External JS libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
