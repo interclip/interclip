@@ -76,10 +76,10 @@
 <meta property="twitter:description" content="Interclip is a tool for easily sharing URLs between devices or users.">
 <meta property="twitter:image" content="https://interclip.app/img/header.png">
 
-<link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="<?php echo ROOT ?>/img/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="<?php echo ROOT ?>/img/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="<?php echo ROOT ?>/img/icons/favicon-16x16.png">
+<link rel="manifest" href="<?php echo ROOT ?>/site.webmanifest">
 
 <link rel="stylesheet" href="<?php echo ROOT ?>/css/menu.css">
 <link rel="stylesheet" href="<?php echo ROOT ?>/css/dark.css" media="(prefers-color-scheme: dark)">
