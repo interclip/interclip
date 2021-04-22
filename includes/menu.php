@@ -225,4 +225,6 @@ foreach ($pages as $page) {
   const isAdmin = <?php echo $isStaff ? "true" : "false" ?>;
   const version = "<?php echo $release[0] ?>";
 </script>
+
+<script src="<?php echo ROOT ?>/js/formatter.js"></script>
 <script src="<?php echo ROOT ?>/js/menu.js"></script>
