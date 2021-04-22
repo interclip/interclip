@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Store the CSRF token in the session
+ *
+ * @return void
+ */
 function store()
 {
     if (session_status() !== 2) {
@@ -11,6 +16,12 @@ function store()
     $_SESSION['token-expire'] = time() + 7200; // 2 hours
 
 }
+
+/**
+ * Validate the CSRF token
+ *
+ * @return void+
+ */
 
 function validate()
 {

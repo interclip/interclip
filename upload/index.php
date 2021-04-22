@@ -20,6 +20,13 @@
   <?php 
   if(!empty($_FILES['uploaded_file']))
   {
+        
+    /**
+     * Formats a value in bytes to its appropriate prefix
+     *
+     * @param  mixed $bytes
+     * @return string
+     */
     function formatBytes($bytes) {
       if ($bytes > 0) {
           $i = floor(log($bytes) / log(1024));
