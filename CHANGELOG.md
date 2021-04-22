@@ -1,3 +1,37 @@
+# v3.3.8 (April 20, 2021)
+## Bug fixes 🐛 
+- Disable echoing of `$url` where it is not needed https://github.com/aperta-principium/Interclip/commit/6564ad2882885e935e537270fe291e90a1e7623f 
+- Add better `<HTML>` structure to the home page https://github.com/aperta-principium/Interclip/commit/3702fec2bf4eb9878e5a434dd7cf8cc396276793
+- Fix an overflow issue on the receive page https://github.com/aperta-principium/Interclip/commit/797e5734d0243ec344b7022a30a01a46bab4220f
+- Don't start multiple PHP sessions if one is already active https://github.com/aperta-principium/Interclip/commit/2efc793749e41e49af46cf6cefa5f5300c3d343c
+- Prevent undefined `$release` https://github.com/aperta-principium/Interclip/commit/5aae7dae5a3ed109d92b632ac43bb1798d6c2007
+- Prevent undefined `$user` https://github.com/aperta-principium/Interclip/commit/32e2fc484d181db0c0d159e2ce88a699ac72c50e
+- Add a default value to `$isStaff` https://github.com/aperta-principium/Interclip/commit/6c1ccf955875f50634da36bf07644146703196c1
+- Change the name of the env var `SERVER_NAME` to `DB_SERVER` because Apache didn't really like the name https://github.com/aperta-principium/Interclip/commit/59d4ac1cd2a4f662cf402cef8dc320758929e743
+
+## Features ✨ 
+- Add a server storage field to the admin bar https://github.com/aperta-principium/Interclip/commit/9322d42a4798c5d3b249995d535628fdc3987209
+- Add a sum of all DB rows to the admin bar https://github.com/aperta-principium/Interclip/commit/d922774f83f7d8e7186be95bca3a54a91c39de9f
+- Added a skip-link for better accessibility https://github.com/aperta-principium/Interclip/commit/9f82561a87ccc5d7b6e1d837144eb4ee95b82e3e
+- **Added Sentry to monitor errors** https://github.com/aperta-principium/Interclip/commit/01c5d47aebefe138c1b074336d3f646ee2b57896
+- Added a Lighthouse CI Action https://github.com/aperta-principium/Interclip/commit/cd32cde9e756c656775c12e26b6596d85254fc43
+
+## Code 🎨 
+- Refactored `desktop.js` to migrate jQuery get to native `window.fetch()` https://github.com/aperta-principium/Interclip/commit/8511e6b8cbf108bf96d2ec12a080c7edaf3d9dba
+- Removed jQuery from more places https://github.com/aperta-principium/Interclip/commit/2d794894bcad110ac22df1bc75eaef7911ac35bb
+- Disabled non-working embed.js for now https://github.com/aperta-principium/Interclip/commit/257af42d12b5a9b712330d28de6df145e8d3d6c2
+
+## Docs 📝 
+- Updated the sitemap https://github.com/aperta-principium/Interclip/commit/0650abd83019f4c1d1a705b588fe000fbb4f93ac
+- Deleted the Google Play link from the README https://github.com/aperta-principium/Interclip/commit/43f68c4713b2c8d83aab4e1be0b0177f46979417
+
+## Performance ⚡ 
+- Make the LCP faster https://github.com/aperta-principium/Interclip/commit/9c0a6064f17813ea8e817f7a27bb7ea514a52399
+- Disable the initial animation on mobile https://github.com/aperta-principium/Interclip/commit/bd0f99b475147ce0e5ba1bbb495fa62f3386f0d0
+
+## Security 🔒 
+- Add the Cross-Origin-Opener-Policy header https://github.com/aperta-principium/Interclip/commit/a20aabeb57aeb1057fc1e78b9367ce66449fb4ae
+
 # v3.3.7 (April 17, 2021)
 ## Bug fixes 🐛 
 - Typo in the admin bar: thanks, Grammarly! https://github.com/aperta-principium/Interclip/commit/0fd3d0f0a653dfcc260695e928f613e820c28137
