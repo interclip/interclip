@@ -26,7 +26,7 @@
           $sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
           return sprintf('%.02F', round($bytes / pow(1024, $i),1)) * 1 . ' ' . @$sizes[$i];
       } else {
-          return 0;
+          return '0 B';
       }
     }
 
