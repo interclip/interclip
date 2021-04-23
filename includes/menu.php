@@ -162,7 +162,7 @@ $renderTime = number_format($renderTimeMicro * 1000, 2);
         <select id="branch-select">
           <?php
           $currBranch = $branches["current"];
-          echo "<option value='$currBranch'>$currBranch</option>";
+          echo "<option value='-'>$currBranch</option>";
           foreach ($branches["all"] as $branch) {
             echo "<option value='$branch'>$branch</option>";
           }

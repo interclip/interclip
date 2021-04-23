@@ -127,6 +127,13 @@ console.log(`%c
 if (loggedIn && isAdmin) {
     const filesSpan = document.getElementById("files");
 
+    document.getElementById("branch-select").addEventListener("change", (e) => {
+        const targetBranch = e.target.value;
+        if (targetBranch !== "-") {
+            console.log(targetBranch);
+        }
+    });
+
     document.addEventListener("keydown", (e) => {
         if (e.shiftKey && e.code === "KeyB") {
             e.preventDefault();
