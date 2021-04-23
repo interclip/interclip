@@ -12,6 +12,12 @@ function formatBytes($bytes, $precision = 0)
   return round($bytes, $precision) . ' ' . $units[$pow];
 }
 
+if (!function_exists('str_starts_with')) {
+  function str_starts_with($haystack, $needle)
+  {
+    return (string)$needle !== '' && strncmp($haystack, $needle, strlen($needle)) === 0;
+  }
+}
 
 function getBranches()
 {
@@ -149,10 +155,19 @@ $renderTime = number_format($renderTimeMicro * 1000, 2);
     <span class="lg">Clips: <?php echo $count ?></span>
     <span class="lg">DB rows: <?php echo $totalLines ?></span>
     <span id="files">Files: 0 (0B)</span>
-    <?php if($_ENV['ENVIRONMENT'] === "staging"): ?>
-    <?php $branches = getBranches(); ?>
-    <span>Current branch: <?php echo $branches["current"] ?>
-    </span>
+    <?php if ($_ENV['ENVIRONMENT'] === "staging") : ?>
+      <?php $branches = getBranches(); ?>
+      <span>Current branch:
+        <select id="branch-select">
+          <?php
+          $currBranch = $branches["current"];
+          echo "<option value='$currBranch'>$currBranch</option>";
+          foreach ($branches["all"] as $branch) {
+            echo "<option value='$branch'>$branch</option>";
+          }
+          ?>
+        </select>
+      </span>
     <?php endif; ?>
     <span>
       <a title="View tag on GitHub" href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $release[0]; ?>">
