@@ -9,9 +9,9 @@ ports:
 
 tasks:
 - name: Terminal
+  before: curl https://rclone.org/install.sh | sudo bash
+  init: composer install
   command: >
-    curl https://rclone.org/install.sh | sudo bash;
-    composer install;
     bash scripts/secrets.sh;
     mkdir upload/uploads;
     gp await-port 3306 &&
