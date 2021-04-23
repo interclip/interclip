@@ -21,14 +21,14 @@ if (!function_exists('str_starts_with')) {
 
 function getBranches()
 {
-  exec("git branch -a", $gamer);
+  exec("git branch -a", $gitOutput);
 
   $branches = [
     "all" => [],
     "current" => ''
   ];
 
-  foreach ($gamer as $branchString) {
+  foreach ($gitOutput as $branchString) {
     if (str_starts_with($branchString, "*")) {
       $current = substr($branchString, 2);
       $branches["current"] = $current;
