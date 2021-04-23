@@ -41,7 +41,7 @@ if ($currFile == "get.php" || $currFile == "new.php") {
 } else {
   $urlPrefix = "./";
 }
-print_r($user);
+
 if(empty($user)) {
   if ($_ENV['AUTH_TYPE'] === "account") {
     if ($auth0->getUser()) {
@@ -53,7 +53,6 @@ if(empty($user)) {
   }
 }
 
-echo $user;
 exec('git describe --abbrev=0 --tags', $release);
 if ($user !== false ) {
     $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
