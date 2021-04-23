@@ -325,3 +325,7 @@ h1:nth-child(1) {
 .skip-link:focus {
   top: 0;
 }
+
+#branch-select {
+  width: 8em;
+}
