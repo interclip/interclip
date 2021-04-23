@@ -128,7 +128,7 @@ if (loggedIn && isAdmin) {
     const filesSpan = document.getElementById("files");
 
     document.getElementById("branch-select").addEventListener("change", (e) => {
-        const targetBranch = e.target.value.replace(/\s/g, '');;
+        const targetBranch = e.target.value.replace(/\s/g, "");
         if (targetBranch !== "-") {
             fetch(`/includes/change-branch?branch=${targetBranch}`).then(res => res.json()).then(res => {
                 console.log(res);
