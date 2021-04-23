@@ -33,7 +33,8 @@ function getBranches()
       $current = substr($branchString, 2);
       $branches["current"] = $current;
     } else {
-      array_push($branches["all"], $branchString);
+      $currentBranchClean = str_replace("remotes/", "", $branchString);
+      array_push($branches["all"], $currentBranchClean);
     }
   }
   return $branches;
