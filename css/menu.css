@@ -131,7 +131,7 @@ li a:hover:not(.active) {
 }
 
 /* Reset Select */
-select {
+#slct {
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -146,7 +146,7 @@ select {
 }
 
 /* Remove IE arrow */
-select::-ms-expand {
+#slct::-ms-expand {
   display: none;
 }
 
@@ -163,7 +163,7 @@ select::-ms-expand {
   border-radius: 0.25em;
 }
 
-select {
+#slct {
   flex: 1;
   padding: 0 0.5em;
   cursor: pointer;
