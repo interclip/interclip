@@ -25,6 +25,11 @@ tasks:
     apachectl start &&
     multitail /var/log/apache2/access.log -I /var/log/apache2/error.log
 
+github:
+  prebuilds:
+    branches: true
+    addLabel: gitpod-prebuilt
+
 vscode:
   extensions:
     - bmewburn.vscode-intelephense-client
