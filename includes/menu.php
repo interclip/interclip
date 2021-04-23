@@ -41,17 +41,21 @@ if ($currFile == "get.php" || $currFile == "new.php") {
 } else {
   $urlPrefix = "./";
 }
-
-if(empty($user) && !empty($auth0->getUser())) {
-  $user = $auth0->getUser();
-} else {
-  $user = false;
-  $isStaff = false;
+print_r($user);
+if(empty($user)) {
+  if ($_ENV['AUTH_TYPE'] === "account") {
+    if ($auth0->getUser()) {
+      $user = $auth0->getUser();
+    } else {
+      $user = false;
+      $isStaff = false;
+    }
+  }
 }
 
+echo $user;
 exec('git describe --abbrev=0 --tags', $release);
-
-if (!is_bool($user)) {
+if ($user !== false ) {
     $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
 
     $usrEmail = $user['email'];
