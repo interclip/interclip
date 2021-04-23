@@ -7,5 +7,5 @@ if (!empty($_GET['branch'])) {
     exec("git checkout $targetBranch");
     echo json_encode(["status" => "success", "result" => "Executed checkout to $targetBranch"]);
 } else {
-    echo json_encode(["status" => "error"]);
+    echo json_encode(["status" => "error", "result" => "You need to provide a branch name :("]);
 }
