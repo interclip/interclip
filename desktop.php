@@ -14,7 +14,7 @@
     <div class="nav">
         <?php
         include_once "includes/menu.php";
-        include_once "includes/getos.php";
+        include_once "includes/lib/functions.php";
 
         $user_agent = "";
 
