@@ -56,11 +56,23 @@ if (!isset($prodvar)) {
   include 'prod.php';
 }
 
-if (!isProd()) {
+if ($_ENV['ENVIRONMENT'] === "production") {
+  include_once 'analytics.php';
+}
+
+//By default, we assume that PHP is NOT running on windows.
+$isWindows = false;
+
+//If the first three characters PHP_OS are equal to "WIN",
+//then PHP is running on a Windows operating system.
+if (strcasecmp(substr(PHP_OS, 0, 3), 'WIN') === 0) {
+  $isWindows = true;
+}
+
+if ($isWindows) {
   $scriptNameArray = explode("\\", $scriptPath);
 } else {
   $scriptNameArray = explode("/", $scriptPath);
-  include_once 'analytics.php';
 }
 
 $currFile = end($scriptNameArray);
@@ -108,15 +120,6 @@ if ($user !== false) {
     }
     if (!$totalLines) {
       $totalLines = 0;
-    }
-
-    //By default, we assume that PHP is NOT running on windows.
-    $isWindows = false;
-
-    //If the first three characters PHP_OS are equal to "WIN",
-    //then PHP is running on a Windows operating system.
-    if (strcasecmp(substr(PHP_OS, 0, 3), 'WIN') === 0) {
-      $isWindows = true;
     }
 
     if (!$isWindows) {
@@ -255,7 +258,7 @@ foreach ($pages as $page) {
   const loggedIn = <?php echo $user ? "true" : "false" ?>;
   const isAdmin = <?php echo $isStaff ? "true" : "false" ?>;
   const version = "<?php echo $release[0] ?>";
-  
+
   const root = "<?php echo ROOT ?>";
 </script>
 
