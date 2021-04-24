@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Formats a value in bytes to its appropriate prefix
+ *
+ * @param  mixed $bytes
+ * @return string
+ */
 function formatBytes($bytes, $precision = 0)
 {
   $units = array('B', 'KB', 'MB', 'GB', 'TB');
@@ -11,6 +18,7 @@ function formatBytes($bytes, $precision = 0)
   return round($bytes, $precision) . ' ' . $units[$pow];
 }
 
+/* str_starts_with pollyfill */
 if (!function_exists('str_starts_with')) {
   function str_starts_with($haystack, $needle)
   {
@@ -18,6 +26,11 @@ if (!function_exists('str_starts_with')) {
   }
 }
 
+/**
+ * Gets all the local git branches and returns an arrray of them.
+ *
+ * @return array
+ */
 function getBranches()
 {
   exec("git branch", $gitOutput);
@@ -39,6 +52,12 @@ function getBranches()
   return $branches;
 }
 
+/**
+ * Redirects the user to a specified URL
+ *
+ * @param mixed $url
+ * @return void
+ */
 function reDir($url)
 {
     header("Location: " . $url . "");
