@@ -52,10 +52,6 @@ $pages = array(
   'about' => ['about', 'About']
 );
 
-if (!isset($prodvar)) {
-  include 'prod.php';
-}
-
 if ($_ENV['ENVIRONMENT'] === "production") {
   include_once 'analytics.php';
 }
