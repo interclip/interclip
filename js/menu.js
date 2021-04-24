@@ -111,7 +111,7 @@ const updateMenu = () => {
             li.style.display = localStorage.getItem("hideBetaMenu") ? "none" : "block";
         }
     }
-}
+};
 
 console.log(`%c
     ▄▄▄ ▄▄    ▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄▄▄ ▄▄▄     ▄▄▄ ▄▄▄▄▄▄▄ 
@@ -126,6 +126,22 @@ console.log(`%c
 
 if (loggedIn && isAdmin) {
     const filesSpan = document.getElementById("files");
+    if (document.getElementById("adminbar").classList.contains("staging")) {
+        document.getElementById("branch-select").addEventListener("change", (e) => {
+            const targetBranch = e.target.value.replace(/\s/g, "");
+            if (targetBranch !== "-") {
+                fetch(`${root}/includes/change-branch?branch=${targetBranch}`).then((res) => res.json()).then(() => {
+                    location.reload();
+                }).catch(err => {
+                    Swal.fire(
+                        "Something\'s went wrong",
+                        err.toString(),
+                        "error"
+                    );
+                });
+            }
+        });
+    }
 
     document.addEventListener("keydown", (e) => {
         if (e.shiftKey && e.code === "KeyB") {

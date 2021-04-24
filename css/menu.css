@@ -131,7 +131,7 @@ li a:hover:not(.active) {
 }
 
 /* Reset Select */
-select {
+#slct {
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -146,7 +146,7 @@ select {
 }
 
 /* Remove IE arrow */
-select::-ms-expand {
+#slct::-ms-expand {
   display: none;
 }
 
@@ -163,7 +163,7 @@ select::-ms-expand {
   border-radius: 0.25em;
 }
 
-select {
+#slct {
   flex: 1;
   padding: 0 0.5em;
   cursor: pointer;
@@ -275,12 +275,19 @@ h1:nth-child(1) {
   width: calc(100% - 20px);
   border: 1px solid black;
   display: flex;
-  color: white;
-  background: #588d6a;
   justify-content: start;
   flex-direction: row;
   padding-left: 9px;
   padding-right: 9px;
+  color: white;
+}
+
+#adminbar:not(.staging) {
+  background: #588d6a;
+}
+
+#adminbar.staging {
+  background: #f15922;
 }
 
 #adminbar span a {
@@ -317,4 +324,8 @@ h1:nth-child(1) {
 
 .skip-link:focus {
   top: 0;
+}
+
+#branch-select {
+  width: 8em;
 }

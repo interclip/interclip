@@ -1,15 +1,44 @@
 <?php
 
-function formatBytes($bytes, $precision = 0) { 
-  $units = array('B', 'KB', 'MB', 'GB', 'TB'); 
+function formatBytes($bytes, $precision = 0)
+{
+  $units = array('B', 'KB', 'MB', 'GB', 'TB');
 
-  $bytes = max($bytes, 0); 
-  $pow = floor(($bytes ? log($bytes) : 0) / log(1024)); 
-  $pow = min($pow, count($units) - 1);  
+  $bytes = max($bytes, 0);
+  $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+  $pow = min($pow, count($units) - 1);
   $bytes /= pow(1024, $pow);
 
-  return round($bytes, $precision) . ' ' . $units[$pow]; 
-} 
+  return round($bytes, $precision) . ' ' . $units[$pow];
+}
+
+if (!function_exists('str_starts_with')) {
+  function str_starts_with($haystack, $needle)
+  {
+    return (string)$needle !== '' && strncmp($haystack, $needle, strlen($needle)) === 0;
+  }
+}
+
+function getBranches()
+{
+  exec("git branch", $gitOutput);
+
+  $branches = [
+    "all" => [],
+    "current" => ''
+  ];
+
+  foreach ($gitOutput as $branchString) {
+    if (str_starts_with($branchString, "*")) {
+      $current = substr($branchString, 2);
+      $branches["current"] = $current;
+    } else {
+      $currentBranchClean = str_replace("remotes/", "", $branchString);
+      array_push($branches["all"], $currentBranchClean);
+    }
+  }
+  return $branches;
+}
 
 $relative_path = $_SERVER['PHP_SELF'];
 $index = 0;
@@ -42,7 +71,7 @@ if ($currFile == "get.php" || $currFile == "new.php") {
   $urlPrefix = "./";
 }
 
-if(empty($user)) {
+if (empty($user)) {
   if ($_ENV['AUTH_TYPE'] === "account") {
     if ($auth0->getUser()) {
       $user = $auth0->getUser();
@@ -54,80 +83,76 @@ if(empty($user)) {
 }
 
 exec('git describe --abbrev=0 --tags', $release);
-if ($user !== false ) {
-    $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
+if ($user !== false) {
+  if ($isStaff) {
+    exec('git rev-parse --verify HEAD', $output);
+    $hash = $output[0];
+    $hashShort = substr($hash, 0, 7);
+    $commit = "https://github.com/aperta-principium/Interclip/commit/" . $hash;
 
-    $usrEmail = $user['email'];
-    $sqlquery = "SELECT * FROM `accounts` WHERE email = '$usrEmail'";
-    $accResult = $conn->query($sqlquery);
-    while ($row = $accResult->fetch_assoc()) {
-        $account = $row['role'];
-        break;
+    $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
+    $result = $conn->query($sqlquery);
+    while ($row = $result->fetch_assoc()) {
+      $count = $row['id'];
+      break;
     }
-    
-    if (isset($account)) {
-      $isStaff = $account === "staff";
+    if (!$count) {
+      $count = 0;
     }
 
-    if (!isset($account)) {
-        $sqlquery = "INSERT INTO accounts VALUES('$usrEmail', 'visitor',NULL)";
-        $accResult = $conn->query($sqlquery);
-    } elseif ($isStaff) {
-        exec('git rev-parse --verify HEAD', $output);
-        $hash = $output[0];
-        $hashShort = substr($hash, 0, 7);
-        $commit = "https://github.com/aperta-principium/Interclip/commit/" . $hash;
-
-        $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
-        $result = $conn->query($sqlquery);
-        while ($row = $result->fetch_assoc()) {
-            $count = $row['id'];
-            break;
-        }
-        if (!$count) {
-            $count = 0;
-        }
-
-        $totalLinesQuery = "SELECT SUM(TABLE_ROWS) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'iclip'";
-        $totalLinesResult = $conn->query($totalLinesQuery);
-        while ($row = $totalLinesResult->fetch_assoc()) {
-            $totalLines = $row['SUM(TABLE_ROWS)'];
-            break;
-        }
-        if (!$totalLines) {
-            $totalLines = 0;
-        }
-
-        //By default, we assume that PHP is NOT running on windows.
-        $isWindows = false;
-
-        //If the first three characters PHP_OS are equal to "WIN",
-        //then PHP is running on a Windows operating system.
-        if (strcasecmp(substr(PHP_OS, 0, 3), 'WIN') === 0) {
-            $isWindows = true;
-        }
-
-        if (!$isWindows) {
-            $systemLoad = sys_getloadavg()[0];
-            $uptime = explode(',', explode(' up ', shell_exec('uptime'))[1])[0];
-        } else {
-            $systemLoad = "n/a";
-            $uptime = "n/a";
-        }
+    $totalLinesQuery = "SELECT SUM(TABLE_ROWS) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'iclip'";
+    $totalLinesResult = $conn->query($totalLinesQuery);
+    while ($row = $totalLinesResult->fetch_assoc()) {
+      $totalLines = $row['SUM(TABLE_ROWS)'];
+      break;
     }
+    if (!$totalLines) {
+      $totalLines = 0;
+    }
+
+    //By default, we assume that PHP is NOT running on windows.
+    $isWindows = false;
+
+    //If the first three characters PHP_OS are equal to "WIN",
+    //then PHP is running on a Windows operating system.
+    if (strcasecmp(substr(PHP_OS, 0, 3), 'WIN') === 0) {
+      $isWindows = true;
+    }
+
+    if (!$isWindows) {
+      $systemLoad = sys_getloadavg()[0];
+      $uptime = explode(',', explode(' up ', shell_exec('uptime'))[1])[0];
+    } else {
+      $systemLoad = "n/a";
+      $uptime = "n/a";
+    }
+  }
 }
 
 $renderTimeMicro = microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'];
 $renderTime = number_format($renderTimeMicro * 1000, 2);
-
 ?>
 <?php if (!is_bool($user) && $isStaff) : ?>
-  <div id="adminbar">
+  <div id="adminbar" <?php echo $_ENV['ENVIRONMENT'] === "staging" ? "class='staging'" : "" ?>>
     <span title="The total time it took the client to render the DOM and fetch all the necessary resources" id="load">Client: TBD</span>
     <span title="The total time it took the server to process the request">Server: <?php echo $renderTime ?>ms</span>
     <span class="lg">Clips: <?php echo $count ?></span>
     <span class="lg">DB rows: <?php echo $totalLines ?></span>
     <span id="files">Files: 0 (0B)</span>
+    <?php if ($_ENV['ENVIRONMENT'] === "staging") : ?>
+      <?php $branches = getBranches(); ?>
+      <span>Current branch:
+        <select id="branch-select">
+          <?php
+          $currBranch = $branches["current"];
+          echo "<option value='-'>$currBranch</option>";
+          foreach ($branches["all"] as $branch) {
+            echo "<option value='$branch'>$branch</option>";
+          }
+          ?>
+        </select>
+      </span>
+    <?php endif; ?>
     <span>
       <a title="View tag on GitHub" href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $release[0]; ?>">
         <?php echo $release[0] ?>
@@ -141,7 +166,7 @@ $renderTime = number_format($renderTimeMicro * 1000, 2);
     <span class="lg">Memory: <?php echo formatBytes(memory_get_usage()) ?></span>
     <span class="lg">Server load: <?php echo $systemLoad ?></span>
     <span class="lg">Uptime: <?php echo $uptime ?></span>
-    <span class="lg">Storage: <?php echo (formatBytes(disk_total_space('/') - disk_free_space('/'))) ."/". (formatBytes(disk_total_space('/'))) ?></span>
+    <span class="lg">Storage: <?php echo (formatBytes(disk_total_space('/') - disk_free_space('/'))) . "/" . (formatBytes(disk_total_space('/'))) ?></span>
     <span class="ending lg">
       Hi, <?php echo $user["name"] ? $user['name'] : $user["nickname"]  ?>
       <a class="subitem" href="<?php echo ROOT ?>/logout">Log out</a>
@@ -230,6 +255,8 @@ foreach ($pages as $page) {
   const loggedIn = <?php echo $user ? "true" : "false" ?>;
   const isAdmin = <?php echo $isStaff ? "true" : "false" ?>;
   const version = "<?php echo $release[0] ?>";
+  
+  const root = "<?php echo ROOT ?>";
 </script>
 
 <script src="<?php echo ROOT ?>/js/formatter.js"></script>
