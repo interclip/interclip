@@ -131,7 +131,13 @@ if (loggedIn && isAdmin) {
         const targetBranch = e.target.value.replace(/\s/g, "");
         if (targetBranch !== "-") {
             fetch(`/includes/change-branch?branch=${targetBranch}`).then(res => res.json()).then(res => {
-                console.log(res);
+                location.reload();
+            }).catch(err => {
+                Swal.fire(
+                    'Something\'s went wrong',
+                    err.toString(),
+                    'error'
+                  );
             });
         }
     });
