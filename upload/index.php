@@ -1,57 +1,44 @@
 <?php
-  $curlHostRegex = "/curl\/\d{1,15}.\d{1,15}.\d{1,15}/";
-  $curl = preg_match($curlHostRegex, $_SERVER['HTTP_USER_AGENT']);
+$curlHostRegex = "/curl\/\d{1,15}.\d{1,15}.\d{1,15}/";
+$curl = preg_match($curlHostRegex, $_SERVER['HTTP_USER_AGENT']);
 ?>
-<?php if(!isset($_GET['api']) && !$curl): ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Upload your files</title>
-</head>
-<body>
-<?php if(empty($_FILES['uploaded_file'])): ?>
-  <form enctype="multipart/form-data" action="./" method="POST">
-    <p>Upload your file</p>
-    <input type="file" name="uploaded_file"></input><br />
-    <input type="submit" value="Upload"></input>
-  </form>
-  <?php endif; ?>
-  <?php endif; ?>
-  <?php 
-  if(!empty($_FILES['uploaded_file']))
-  {
-        
-    /**
-     * Formats a value in bytes to its appropriate prefix
-     *
-     * @param  mixed $bytes
-     * @return string
-     */
-    function formatBytes($bytes) {
-      if ($bytes > 0) {
-          $i = floor(log($bytes) / log(1024));
-          $sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
-          return sprintf('%.02F', round($bytes / pow(1024, $i),1)) * 1 . ' ' . @$sizes[$i];
-      } else {
-          return '0 B';
-      }
-    }
+<?php if (!isset($_GET['api']) && !$curl) : ?>
+  <!DOCTYPE html>
+  <html lang="en">
 
-    if(isset($_GET['api'])) {
+  <head>
+    <title>Upload your files</title>
+  </head>
+
+  <body>
+    <?php if (empty($_FILES['uploaded_file'])) : ?>
+      <form enctype="multipart/form-data" action="./" method="POST">
+        <p>Upload your file</p>
+        <input type="file" name="uploaded_file"></input><br />
+        <input type="submit" value="Upload"></input>
+      </form>
+    <?php endif; ?>
+  <?php endif; ?>
+  <?php
+  if (!empty($_FILES['uploaded_file'])) {
+
+    include_once "../includes/lib/functions.php";
+
+    if (isset($_GET['api'])) {
       header('Content-Type: application/json');
     }
 
-    $id = substr(sha1(uniqid(substr(time().str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, 20))), 0, 10);
+    $id = substr(sha1(uniqid(substr(time() . str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, 20))), 0, 10);
     $path = "uploads/";
-    $ext = pathinfo(basename( $_FILES['uploaded_file']['name']), PATHINFO_EXTENSION);
+    $ext = pathinfo(basename($_FILES['uploaded_file']['name']), PATHINFO_EXTENSION);
     $fileSize = $_FILES['uploaded_file']['size'];
 
     $extRegex = "/^[a-zA-Z0-9]+$/"; // regexr.com/5prtv
 
-    if(!preg_match($extRegex, $ext)) {
-      if(isset($_GET['api']))
+    if (!preg_match($extRegex, $ext)) {
+      if (isset($_GET['api']))
         die(json_encode(['status' => 'error', 'result' => "A file with an invalid file extension was submitted."]));
-      else 
+      else
         die("A file with an invalid file extension was submitted.");
     }
 
@@ -60,26 +47,26 @@
     $fileSizeLimit = 104857600; // 100 MB
 
     if ($fileSize > $fileSizeLimit) {
-      if(isset($_GET['api']))
-        die(json_encode(['status' => 'error', 'result' => "The file is too large. Upload a file that is smaller than ".formatBytes($fileSizeLimit)." (current size: " . formatBytes($fileSize) .")"]));
-      else 
-        die("The file is too large. Upload a file that is smaller than ".formatBytes($fileSizeLimit)." (current size: " . formatBytes($fileSize) .")");
+      if (isset($_GET['api']))
+        die(json_encode(['status' => 'error', 'result' => "The file is too large. Upload a file that is smaller than " . formatBytes($fileSizeLimit) . " (current size: " . formatBytes($fileSize) . ")"]));
+      else
+        die("The file is too large. Upload a file that is smaller than " . formatBytes($fileSizeLimit) . " (current size: " . formatBytes($fileSize) . ")");
     }
 
-    if(move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
-      exec("bash upload.sh " . $path . " > /dev/null &"); 
+    if (move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
+      exec("bash upload.sh " . $path . " > /dev/null &");
       $url = "https://files.interclip.app/" . $id . "." . htmlspecialchars(strtolower($ext));
       if (isset($_GET['api'])) {
         echo json_encode(['status' => 'success', 'result' => $url]);
       } else if ($curl) {
         echo $url;
       } else {
-        echo "The file ". htmlspecialchars(basename( $_FILES['uploaded_file']['name'])) . " has been uploaded";
+        echo "The file " . htmlspecialchars(basename($_FILES['uploaded_file']['name'])) . " has been uploaded";
         echo "<br>" . $url;
-        echo '<form id="clip" action="../includes/new" method="POST"><input type="url" name="input" value="'.$url.'"><input type="submit"></form>';
+        echo '<form id="clip" action="../includes/new" method="POST"><input type="url" name="input" value="' . $url . '"><input type="submit"></form>';
         echo "<script>document.getElementById('clip').submit()</script>";
       }
-    } else{
+    } else {
       if (isset($_GET['api'])) {
         echo json_encode(['status' => 'error', 'result' => 'Uknown error.']);
       } else {
@@ -87,8 +74,9 @@
       }
     }
   }
-?>
-<?php if(!isset($_GET['api']) && !$curl): ?>
-</body>
-</html>
+  ?>
+  <?php if (!isset($_GET['api']) && !$curl) : ?>
+  </body>
+
+  </html>
 <?php endif; ?>
