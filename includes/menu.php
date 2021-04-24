@@ -13,10 +13,6 @@ $pages = array(
   'about' => ['about', 'About']
 );
 
-if ($_ENV['ENVIRONMENT'] === "production") {
-  include_once 'components/html/analytics.php';
-}
-
 //By default, we assume that PHP is NOT running on windows.
 $isWindows = false;
 
