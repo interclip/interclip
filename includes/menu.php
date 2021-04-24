@@ -2,9 +2,8 @@
 
 include_once "lib/functions.php";
 
-$relative_path = $_SERVER['PHP_SELF'];
 $index = 0;
-list($scriptPath) = get_included_files();
+
 $pages = array(
   'clip' => ['', 'Clip'],
   'file' => ['file', 'File <span class="beta">beta</span>'],
@@ -27,14 +26,6 @@ if (strcasecmp(substr(PHP_OS, 0, 3), 'WIN') === 0) {
   $isWindows = true;
 }
 
-if ($isWindows) {
-  $scriptNameArray = explode("\\", $scriptPath);
-} else {
-  $scriptNameArray = explode("/", $scriptPath);
-}
-
-$currFile = end($scriptNameArray);
-
 include_once "components/html/adminbar.php";
 
 // Render the menu
@@ -43,20 +34,17 @@ echo '<ul id="menu">';
 foreach ($pages as $page) {
 
   $index++;
-  if ($page[0] == $currFile) {
-    echo '<li><a class="active" href="#">' . $page[1] . '</a></li>';
-  } else {
-    if (strpos($page[1], '<span class="beta">') === false) {
-      if ($page[0] == "about") {
-        echo '<li style="float:right"><a href="' . ROOT . '/about">About</a></li></ul>';
-      } elseif ($page[0] == "desktop") {
-        echo '<li id="desktopMenuItem" style="display: none;"><a href="' . ROOT . "/" . $page[0] . '">' . $page[1] . '</a></li> ';
-      } else {
-        echo '<li><a href="' . ROOT . "/" . $page[0] . '">' . $page[1] . '</a></li> ';
-      }
+
+  if (strpos($page[1], '<span class="beta">') === false) {
+    if ($page[0] == "about") {
+      echo '<li style="float:right"><a href="' . ROOT . '/about">About</a></li></ul>';
+    } elseif ($page[0] == "desktop") {
+      echo '<li id="desktopMenuItem" style="display: none;"><a href="' . ROOT . "/" . $page[0] . '">' . $page[1] . '</a></li> ';
     } else {
-      echo '<li style="display: none"><a href="' . ROOT . "/" . $page[0] . '">' . $page[1] . '</a></li> ';
+      echo '<li><a href="' . ROOT . "/" . $page[0] . '">' . $page[1] . '</a></li> ';
     }
+  } else {
+    echo '<li style="display: none"><a href="' . ROOT . "/" . $page[0] . '">' . $page[1] . '</a></li> ';
   }
 }
 
