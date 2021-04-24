@@ -134,9 +134,9 @@ if (loggedIn && isAdmin) {
                 location.reload();
             }).catch(err => {
                 Swal.fire(
-                    'Something\'s went wrong',
+                    "Something\'s went wrong",
                     err.toString(),
-                    'error'
+                    "error"
                   );
             });
         }
