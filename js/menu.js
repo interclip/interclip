@@ -130,7 +130,7 @@ if (loggedIn && isAdmin) {
     document.getElementById("branch-select").addEventListener("change", (e) => {
         const targetBranch = e.target.value.replace(/\s/g, "");
         if (targetBranch !== "-") {
-            fetch(`/Interclip/includes/change-branch?branch=${targetBranch}`).then((res) => res.json()).then(() => {
+            fetch(`${root}/includes/change-branch?branch=${targetBranch}`).then((res) => res.json()).then(() => {
                 location.reload();
             }).catch(err => {
                 Swal.fire(

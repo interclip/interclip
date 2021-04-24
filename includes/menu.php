@@ -255,6 +255,8 @@ foreach ($pages as $page) {
   const loggedIn = <?php echo $user ? "true" : "false" ?>;
   const isAdmin = <?php echo $isStaff ? "true" : "false" ?>;
   const version = "<?php echo $release[0] ?>";
+  
+  const root = "<?php echo ROOT ?>";
 </script>
 
 <script src="<?php echo ROOT ?>/js/formatter.js"></script>
