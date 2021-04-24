@@ -5,18 +5,8 @@
     <?php
 
         include_once "header.php";
-        
-        /**
-         * Redirect the user to a specific URL
-         *
-         * @param  mixed $url
-         * @return void
-         */
-        function reDir($url)
-        {
-                header("Location: " . $url . "");
-                die();
-        }
+        include_once "lib/functions.php";
+
         $clipRegex = "/([a-z|0-9|A-Z]){5}/g";
 
         /* Check if requested string wasn't a code */
