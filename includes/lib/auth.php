@@ -1,5 +1,7 @@
 <?php
 
+include_once "init.php";
+
 use Auth0\SDK\Auth0;
 
 if ($_ENV['AUTH_TYPE'] === "account") {
