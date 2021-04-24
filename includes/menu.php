@@ -35,12 +35,6 @@ if ($isWindows) {
 
 $currFile = end($scriptNameArray);
 
-if ($currFile == "get.php" || $currFile == "new.php") {
-  $urlPrefix = "../";
-} else {
-  $urlPrefix = "./";
-}
-
 include_once "components/html/adminbar.php";
 
 // Render the menu
