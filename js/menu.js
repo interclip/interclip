@@ -111,7 +111,7 @@ const updateMenu = () => {
             li.style.display = localStorage.getItem("hideBetaMenu") ? "none" : "block";
         }
     }
-}
+};
 
 console.log(`%c
     ▄▄▄ ▄▄    ▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄▄▄ ▄▄▄     ▄▄▄ ▄▄▄▄▄▄▄ 
@@ -132,7 +132,7 @@ if (loggedIn && isAdmin) {
         if (targetBranch !== "-") {
             fetch(`/includes/change-branch?branch=${targetBranch}`).then(res => res.json()).then(res => {
                 console.log(res);
-            })
+            });
         }
     });
 
