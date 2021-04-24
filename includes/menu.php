@@ -40,11 +40,9 @@ include_once "components/html/adminbar.php";
 // Render the menu
 echo '<ul id="menu">';
 
-//echo sizeof($pages);
 foreach ($pages as $page) {
 
   $index++;
-  //  echo $page;
   if ($page[0] == $currFile) {
     echo '<li><a class="active" href="#">' . $page[1] . '</a></li>';
   } else {
