@@ -38,3 +38,9 @@ function getBranches()
   }
   return $branches;
 }
+
+function reDir($url)
+{
+    header("Location: " . $url . "");
+    die();
+}
