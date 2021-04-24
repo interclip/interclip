@@ -6,24 +6,23 @@
  * @param  mixed $bytes
  * @return string
  */
-function formatBytes($bytes, $precision = 0)
+function formatBytes($bytes)
 {
-  $units = array('B', 'KB', 'MB', 'GB', 'TB');
-
-  $bytes = max($bytes, 0);
-  $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
-  $pow = min($pow, count($units) - 1);
-  $bytes /= pow(1024, $pow);
-
-  return round($bytes, $precision) . ' ' . $units[$pow];
+    if ($bytes > 0) {
+        $i = floor(log($bytes) / log(1024));
+        $sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+        return sprintf('%.02F', round($bytes / pow(1024, $i), 1)) * 1 . ' ' . @$sizes[$i];
+    } else {
+        return '0 B';
+    }
 }
 
 /* str_starts_with pollyfill */
 if (!function_exists('str_starts_with')) {
-  function str_starts_with($haystack, $needle)
-  {
-    return (string)$needle !== '' && strncmp($haystack, $needle, strlen($needle)) === 0;
-  }
+    function str_starts_with($haystack, $needle)
+    {
+        return (string)$needle !== '' && strncmp($haystack, $needle, strlen($needle)) === 0;
+    }
 }
 
 /**
@@ -33,23 +32,23 @@ if (!function_exists('str_starts_with')) {
  */
 function getBranches()
 {
-  exec("git branch", $gitOutput);
+    exec("git branch", $gitOutput);
 
-  $branches = [
-    "all" => [],
-    "current" => ''
-  ];
+    $branches = [
+        "all" => [],
+        "current" => ''
+    ];
 
-  foreach ($gitOutput as $branchString) {
-    if (str_starts_with($branchString, "*")) {
-      $current = substr($branchString, 2);
-      $branches["current"] = $current;
-    } else {
-      $currentBranchClean = str_replace("remotes/", "", $branchString);
-      array_push($branches["all"], $currentBranchClean);
+    foreach ($gitOutput as $branchString) {
+        if (str_starts_with($branchString, "*")) {
+            $current = substr($branchString, 2);
+            $branches["current"] = $current;
+        } else {
+            $currentBranchClean = str_replace("remotes/", "", $branchString);
+            array_push($branches["all"], $currentBranchClean);
+        }
     }
-  }
-  return $branches;
+    return $branches;
 }
 
 /**
