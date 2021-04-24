@@ -26,3 +26,36 @@ if ($_ENV['AUTH_TYPE'] === "account") {
 } elseif ($_ENV['AUTH_TYPE'] === "mock") {
     $user = ["nickname" => "Admin", "email" => "admin@example.org"];
 }
+
+if (empty($user)) {
+    if ($_ENV['AUTH_TYPE'] === "account") {
+        if ($auth0->getUser()) {
+            $user = $auth0->getUser();
+        } else {
+            $user = false;
+            $isStaff = false;
+        }
+    }
+}
+
+$conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
+
+$usrEmail = $user['email'];
+$sqlquery = "SELECT * FROM `accounts` WHERE email = '$usrEmail'";
+$accResult = $conn->query($sqlquery);
+while ($row = $accResult->fetch_assoc()) {
+    $account = $row['role'];
+    break;
+}
+
+if (isset($account)) {
+    $isStaff = $account === "staff";
+}
+
+
+if ($user !== false) {
+    if (!isset($account)) {
+        $sqlquery = "INSERT INTO accounts VALUES('$usrEmail', 'visitor',NULL)";
+        $accResult = $conn->query($sqlquery);
+    }
+}

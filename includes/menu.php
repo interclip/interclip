@@ -84,24 +84,7 @@ if (empty($user)) {
 
 exec('git describe --abbrev=0 --tags', $release);
 if ($user !== false) {
-  $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
-
-  $usrEmail = $user['email'];
-  $sqlquery = "SELECT * FROM `accounts` WHERE email = '$usrEmail'";
-  $accResult = $conn->query($sqlquery);
-  while ($row = $accResult->fetch_assoc()) {
-    $account = $row['role'];
-    break;
-  }
-
-  if (isset($account)) {
-    $isStaff = $account === "staff";
-  }
-
-  if (!isset($account)) {
-    $sqlquery = "INSERT INTO accounts VALUES('$usrEmail', 'visitor',NULL)";
-    $accResult = $conn->query($sqlquery);
-  } elseif ($isStaff) {
+  if ($isStaff) {
     exec('git rev-parse --verify HEAD', $output);
     $hash = $output[0];
     $hashShort = substr($hash, 0, 7);
