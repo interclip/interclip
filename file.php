@@ -26,9 +26,9 @@
         $fileUpload = true;
 
         if ($fileUpload) {
-            include "includes/components/file-ok.php";
+            include "includes/components/html/file-ok.php";
         } else {
-            include "includes/components/file-disabled.php";
+            include "includes/components/html/file-disabled.php";
         }
         ?>
     </main>
