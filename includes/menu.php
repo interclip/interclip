@@ -21,7 +21,7 @@ if (!function_exists('str_starts_with')) {
 
 function getBranches()
 {
-  exec("git branch -a", $gitOutput);
+  exec("git branch", $gitOutput);
 
   $branches = [
     "all" => [],
