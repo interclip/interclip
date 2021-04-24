@@ -9,7 +9,7 @@ html,
   color: #e4e4e4 !important;
 }
 
-a:not(#adminbar a) {
+a:not(#adminbar a):not(.btn) {
   color: #e39777 !important;
 }
 
