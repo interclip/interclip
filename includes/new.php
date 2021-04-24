@@ -34,9 +34,9 @@
       <div class="title">
         <?php
         if (isset($_POST['input']))
-          include_once "components/outputs/new-ok-msg.php";
+          include_once "components/html/new/ok-msg.php";
         else
-          include_once "components/outputs/new-404.php";
+          include_once "components/html/new/ok-msg.php";
         ?>
 
         <!--
