@@ -26,7 +26,7 @@
   }
   ?>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"> </script>
+  <script src="https://cdn.jsdelivr.net/gh/englishextra/qrjs2@latest/js/qrjs2.min.js"> </script>
 
   <div id="fullscreen">
     <div class="fullscreen-content">

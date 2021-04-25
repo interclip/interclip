@@ -115,8 +115,9 @@ span.url {
   overflow: hidden !important;
 }
 
-#qrcode > canvas {
+#qrcode > svg {
   max-width: 50vw;
+  width: 320px;
 }
 
 html {
