@@ -19,7 +19,7 @@ body {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
-  max-width: 100vw !important;
+  max-width: 90vw !important;
 }
 
 #fullscreen .fullscreen-content .title {
