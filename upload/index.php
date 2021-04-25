@@ -56,7 +56,6 @@ include_once "../includes/lib/init.php";
     }
 
     if (move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
-      echo "bash upload.sh '$path' ".$_ENV['RCLONE_REMOTE_NAME']." > /dev/null &";
       exec("bash upload.sh '$path' ".$_ENV['RCLONE_REMOTE_NAME']." > /dev/null &");
       $url = "https://files.interclip.app/" . $id . "." . htmlspecialchars(strtolower($ext));
       if (isset($_GET['api'])) {
