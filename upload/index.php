@@ -56,7 +56,8 @@ include_once "../includes/lib/init.php";
     }
 
     if (move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
-      exec("bash upload.sh " . $path . " > /dev/null &");
+      echo "bash upload.sh '$path' ".$_ENV['RCLONE_REMOTE_NAME']." > /dev/null &";
+      exec("bash upload.sh '$path' ".$_ENV['RCLONE_REMOTE_NAME']." > /dev/null &");
       $url = "https://files.interclip.app/" . $id . "." . htmlspecialchars(strtolower($ext));
       if (isset($_GET['api'])) {
         echo json_encode(['status' => 'success', 'result' => $url]);
@@ -66,7 +67,7 @@ include_once "../includes/lib/init.php";
         echo "The file " . htmlspecialchars(basename($_FILES['uploaded_file']['name'])) . " has been uploaded";
         echo "<br>" . $url;
         echo '<form id="clip" action="../includes/new" method="POST"><input type="url" name="input" value="' . $url . '"><input type="submit"></form>';
-        echo "<script>document.getElementById('clip').submit()</script>";
+        //echo "<script>document.getElementById('clip').submit()</script>";
       }
     } else {
       if (isset($_GET['api'])) {
