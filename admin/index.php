@@ -10,11 +10,34 @@ include_once "../includes/lib/sentry.php";
 include_once "../includes/lib/functions.php";
 
 if (!$isWindows) {
+    $osinfo = getOSInformation();
     $systemLoad = sys_getloadavg()[0];
     $uptime = explode(',', explode(' up ', shell_exec('uptime'))[1])[0];
 } else {
     $systemLoad = "n/a";
     $uptime = "n/a";
+}
+
+$sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
+$result = $conn->query($sqlquery);
+while ($row = $result->fetch_assoc()) {
+  $count = $row['id'];
+  break;
+}
+
+if (!$count) {
+  $count = 0;
+}
+
+$totalLinesQuery = "SELECT SUM(TABLE_ROWS) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'iclip'";
+$totalLinesResult = $conn->query($totalLinesQuery);
+while ($row = $totalLinesResult->fetch_assoc()) {
+  $totalLines = $row['SUM(TABLE_ROWS)'];
+  break;
+}
+
+if (!$totalLines) {
+  $totalLines = 0;
 }
 
 ?>
@@ -52,6 +75,18 @@ if (!$isWindows) {
                 <h3>Runtime details</h3>
                 <p>Used memory: <strong><?php echo formatBytes(memory_get_usage()) ?></strong></p>
                 <p>PHP version: <strong><?php echo phpversion(); ?></strong></p>
+            </aside>
+            <aside>
+                <img alt="An image of HTML, CSS and JavaScript" src="https://files.catbox.moe/szaqt9.svg" height="150" />
+                <h3>Service stats</h3>
+                <p>Total clips: <strong><?php echo $count ?></strong></p>
+                <p>Total database rows: <strong><?php echo $totalLines ?></strong></p>
+            </aside>
+            <aside>
+                <img alt="An image of HTML, CSS and JavaScript" src="https://files.catbox.moe/smolnu.svg" height="150" />
+                <h3>System info</h3>
+                <p>OS: <strong><?php echo PHP_OS ?></strong></p>
+                <p>OS version: <strong><?php print_r($osinfo['version']) ?></strong></p>
             </aside>
         </section>
     </main>
