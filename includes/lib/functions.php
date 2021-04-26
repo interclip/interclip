@@ -108,6 +108,11 @@ function getOS()
     return $os_platform;
 }
 
+/**
+ * Get an array of various OS info
+ *
+ * @return array
+ */
 function getOSInformation()
 {
     if (false == function_exists("shell_exec") || false == is_readable("/etc/os-release")) {
