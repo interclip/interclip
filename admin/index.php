@@ -100,15 +100,16 @@ if ($isStaff) {
         <?php elseif ($user !== false) : ?>
             <section id="intro">
                 <header>
-                    <h1>Hi, <?php echo $user["name"] ? $user['name'] : $user["nickname"] ?></h1>
-                    <p>Hey, mr. unauthenticated, this page is not for you</p>
+                    <h1>Yikes ¯\_(ツ)_/¯</h1>
+                    <p>Sorry, but you don't have the permissions to access this resource.</p>
                 </header>
+
             </section>
         <?php else : ?>
             <section id="intro">
                 <header>
-                    <h1>Yikes ¯\_(ツ)_/¯ <?php echo $user["name"] ? $user['name'] : $user["nickname"] ?></h1>
-                    <p>Sorry, but you don't have the permissions to access this resource.</p>
+                    <h1>Bummer</h1>
+                    <p>Hey, mr. unauthenticated, this page is not for you.</p>
                 </header>
             </section>
         <?php endif; ?>
