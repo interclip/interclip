@@ -125,7 +125,6 @@ console.log(`%c
     "color:green;font-weight:bold");
 
 if (loggedIn && isAdmin) {
-    const filesSpan = document.getElementById("files");
     if (document.getElementById("adminbar").classList.contains("staging")) {
         document.getElementById("branch-select").addEventListener("change", (e) => {
             const targetBranch = e.target.value.replace(/\s/g, "");
@@ -152,20 +151,6 @@ if (loggedIn && isAdmin) {
         }
     });
 
-    /* Retrieve data from the Interclip file API */
-    if (!localStorage.getItem("file_stat_expires") || parseInt(localStorage.getItem("file_stat_expires")) < Date.now()) {
-        fetch("https://interclip.app/includes/size.json").then((res) => res.json()).then((res) => {
-            filesSpan.innerText = `Files: ${res.count} (${formatBytes(res.bytes)})`;
-            filesSpan.setAttribute("title", `Average file size: ${formatBytes(res.bytes / res.count)}`);
-            localStorage.setItem("file_stat_expires", (new Date().getTime() + (60 * 60 * 1000)));
-            localStorage.setItem("file_stat", JSON.stringify(res));
-        });
-    } else {
-        /* Retrieving API data from cache */
-        const fileStat = JSON.parse(localStorage.getItem("file_stat"));
-        filesSpan.innerHTML = `Files: ${fileStat.count} <span class="lg">(${formatBytes(fileStat.bytes)})</span>`;
-        filesSpan.setAttribute("title", `Average file size: ${formatBytes(fileStat.bytes / fileStat.count)}`);
-    }
 } else if (loggedIn && !isAdmin) {
     document.addEventListener('keydown', (e) => {
         e.preventDefault();

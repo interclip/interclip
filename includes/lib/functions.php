@@ -107,3 +107,32 @@ function getOS()
 
     return $os_platform;
 }
+
+/**
+ * Get an array of various OS info
+ *
+ * @return array
+ */
+function getOSInformation()
+{
+    if (false == function_exists("shell_exec") || false == is_readable("/etc/os-release")) {
+        return null;
+    }
+
+    $osInfo = shell_exec('cat /etc/os-release');
+    $listIds = preg_match_all('/.*=/', $osInfo, $matchListIds);
+    $listIds    = $matchListIds[0];
+
+    $listVal = preg_match_all('/=.*/', $osInfo, $matchListVal);
+    $listVal = $matchListVal[0];
+
+    array_walk($listIds, function (&$v) {
+        $v = strtolower(str_replace('=', '', $v));
+    });
+
+    array_walk($listVal, function (&$v) {
+        $v = preg_replace('/=|"/', '', $v);
+    });
+
+    return array_combine($listIds, $listVal);
+}
