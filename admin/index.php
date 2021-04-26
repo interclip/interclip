@@ -56,7 +56,7 @@ if (!$totalLines) {
         <section id="intro">
             <header>
                 <h1>Hi, <?php echo $user["name"] ? $user['name'] : $user["nickname"] ?></h1>
-                <p>Welcome to the Interclip admin dashboard!<sup>BETA</sup></p>
+                <p>Welcome to the Interclip admin dashboard!<sup>ALPHA</sup></p>
             </header>
             <aside>
                 <img alt="An image of HTML, CSS and JavaScript" src="https://files.catbox.moe/fbdwm0.svg" height="150" />
