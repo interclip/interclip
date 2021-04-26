@@ -68,8 +68,8 @@ if ($isStaff) {
                 <aside>
                     <img alt="A lady sitting on a table" src="https://files.catbox.moe/fbdwm0.svg" height="150" />
                     <h3>Interclip files</h3>
-                    <p>Total files: <strong>56</strong></p>
-                    <p>Total size: <strong>5GB</strong></p>
+                    <p>Total files: <strong id="files">56</strong></p>
+                    <p>Total size: <strong id="filesize">5GB</strong></p>
                 </aside>
                 <aside>
                     <img alt="A server cluster" src="https://files.catbox.moe/1ahd5p.svg" height="150" />
@@ -117,5 +117,6 @@ if ($isStaff) {
         <?php endif; ?>
     </main>
 </body>
-
+    <script src="<?php echo ROOT; ?>/js/formatter.js"></script>
+    <script src="<?php echo ROOT; ?>/js/admin.js"></script>
 </html>
