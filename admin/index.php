@@ -11,6 +11,7 @@ include_once "../includes/lib/functions.php";
 
 if (!$isWindows) {
     $osinfo = getOSInformation();
+    exec("uname -srm", $kernel);
     $systemLoad = sys_getloadavg()[0];
     $uptime = explode(',', explode(' up ', shell_exec('uptime'))[1])[0];
 } else {
@@ -83,10 +84,11 @@ if (!$totalLines) {
                 <p>Total database rows: <strong><?php echo $totalLines ?></strong></p>
             </aside>
             <aside>
-                <img alt="An image of HTML, CSS and JavaScript" src="https://files.catbox.moe/smolnu.svg" height="150" />
-                <h3>System info</h3>
+                <img alt="An image of HTML, CSS and JavaScript" src="https://files.catbox.moe/agmx1d.svg" height="150" />
+                <h3>Service status</h3>
                 <p>OS: <strong><?php echo PHP_OS ?></strong></p>
                 <p>OS version: <strong><?php print_r($osinfo['version']) ?></strong></p>
+                <p>Kernel: <strong><?php echo $kernel[0] ?></strong></p>
             </aside>
         </section>
     </main>
