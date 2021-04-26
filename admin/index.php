@@ -55,6 +55,7 @@ if ($isStaff) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | Interclip</title>
     <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <link rel="stylesheet" href="<?php echo ROOT ?>/css/admin.css">
 </head>
 
 <body>
