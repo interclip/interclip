@@ -12,6 +12,8 @@ include_once "../includes/lib/functions.php";
 if (!$isWindows) {
     $osinfo = getOSInformation();
     exec("uname -srm", $kernel);
+    exec("mysql -V", $mysqlVerOut);
+    $mysqlVer = explode(" ", $mysqlVerOut[0])[3];
     $systemLoad = sys_getloadavg()[0];
     $uptime = explode(',', explode(' up ', shell_exec('uptime'))[1])[0];
 } else {
@@ -76,6 +78,7 @@ if (!$totalLines) {
                 <h3>Runtime details</h3>
                 <p>Used memory: <strong><?php echo formatBytes(memory_get_usage()) ?></strong></p>
                 <p>PHP version: <strong><?php echo phpversion(); ?></strong></p>
+                <p>MySQL version: <strong><?php echo $mysqlVer ?></strong></p>
             </aside>
             <aside>
                 <img alt="An image of HTML, CSS and JavaScript" src="https://files.catbox.moe/szaqt9.svg" height="150" />
