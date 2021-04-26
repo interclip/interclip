@@ -21,7 +21,7 @@ if (!$isWindows) {
     $uptime = "n/a";
 }
 
-if (isStaff) {
+if ($isStaff) {
 
     $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
     $result = $conn->query($sqlquery);
