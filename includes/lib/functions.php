@@ -126,11 +126,11 @@ function getOSInformation()
     $listVal = preg_match_all('/=.*/', $osInfo, $matchListVal);
     $listVal = $matchListVal[0];
 
-    array_walk($listIds, function (&$v, $k) {
+    array_walk($listIds, function (&$v) {
         $v = strtolower(str_replace('=', '', $v));
     });
 
-    array_walk($listVal, function (&$v, $k) {
+    array_walk($listVal, function (&$v) {
         $v = preg_replace('/=|"/', '', $v);
     });
 
