@@ -13,6 +13,7 @@ if (!localStorage.getItem("file_stat_expires") || parseInt(localStorage.getItem(
 } else {
     /* Retrieving API data from cache */
     const fileStat = JSON.parse(localStorage.getItem("file_stat"));
-    filesSpan.innerHTML = `Files: ${fileStat.count} <span class="lg">(${formatBytes(fileStat.bytes)})</span>`;
-    filesSpan.setAttribute("title", `Average file size: ${formatBytes(fileStat.bytes / fileStat.count)}`);
+    filesSpan.innerText = `${fileStat.count}`;
+    filesSizeSpan.innerText = `${formatBytes(rfileStates.bytes)}`;
+    filesSizeSpan.setAttribute("title", `Average file size: ${formatBytes(fileStat.bytes / fileStat.count)}`);
 }
