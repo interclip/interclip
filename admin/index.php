@@ -17,6 +17,8 @@ if (!$isWindows) {
     $systemLoad = sys_getloadavg()[0];
     $uptime = explode(',', explode(' up ', shell_exec('uptime'))[1])[0];
 } else {
+    $mysqlVer = "n/a";
+    $kernel = "n/a";
     $systemLoad = "n/a";
     $uptime = "n/a";
 }
