@@ -1,3 +1,42 @@
+# v3.3.9 (April 25, 2021)
+## Bug fixes 🐛
+- Prevent undefined session token https://github.com/aperta-principium/Interclip/commit/3aca9ff7385c2d5b0f9f795589b69deecd37eca9
+- Use the whole commit hash for the sentry release https://github.com/aperta-principium/Interclip/commit/df55fc61ddf9f3bfe915b9c3473cf335250f0e74
+- Prevent an undefined user agent https://github.com/aperta-principium/Interclip/commit/8f9500278186fc30fde9fe7e587b17523a5af64a
+- Fix duplicate URL on the new clip page https://github.com/aperta-principium/Interclip/commit/a4aec49ef704b7fcbb433898c6edd14c3233c99a
+- Fix weird logout logic https://github.com/aperta-principium/Interclip/commit/8fcbc37c432dc822a9b527ab8170220ccd9ac11a
+- Fix submenu hover https://github.com/aperta-principium/Interclip/commit/25f196a67257c029a21051656e68aad4f5c26d98
+- Fix broken alt icons https://github.com/aperta-principium/Interclip/commit/74841e3210060263f437cf1d0caab1f2b600743c
+- Fix mocking account login https://github.com/aperta-principium/Interclip/commit/ba44390f8e4c23fda7db70d8ff427e6ea69a76e4
+
+## Features ✨ 
+- Add Sentry performance monitoring https://github.com/aperta-principium/Interclip/commit/90cd064609fa3649dcc90b7e243e6db202ee6ad7
+- Add the ability to log out from the admin bar https://github.com/aperta-principium/Interclip/commit/c23746f4da4ebc08caa8b25f4d6405a624021b62
+- Add a staging admin bar https://github.com/aperta-principium/Interclip/commit/f52f2efe4300ca2b6f5e347365c364d9223c7fe4
+- Give the link color in the admin bar more contrast https://github.com/aperta-principium/Interclip/commit/29c15eab16fcc66337711b1ee5fda3a329452482
+- Make the receive button's text white in dark mode https://github.com/aperta-principium/Interclip/commit/febd9857f0bd7859e85b25c0502280d372dd61e4
+
+## Performance ⚡ 
+- Add HTTP pre-connects https://github.com/aperta-principium/Interclip/commit/66c632804e3b7168a49a5c4ee51c34c7631c8033 https://github.com/aperta-principium/Interclip/commit/2a77de5420b82f218266ecb2745c47c198d8624d
+- Add a non-jQuery dependent QR code generation https://github.com/aperta-principium/Interclip/commit/0da2dc25fa659e3d34e7990fded736786011602a
+
+## Code 🎨 
+- Add GitPod prebuilds https://github.com/aperta-principium/Interclip/commit/75a848e552a6561444a49c36d92a9b5d03bb2cf8 https://github.com/aperta-principium/Interclip/commit/2efd144f90db978e91054c3884d2954c99bb99f0
+- Delete unused code https://github.com/aperta-principium/Interclip/commit/e47e3384c372797f98f8528cc76743ca2805dfe7
+### Refactors ♻️ 
+- https://github.com/aperta-principium/Interclip/commit/7cf04464fc641876043729e8ce880741c5752f49
+- https://github.com/aperta-principium/Interclip/commit/20511c73bc7dc6caf2e06aadf90ad9b10976272f
+- https://github.com/aperta-principium/Interclip/commit/0eeb5eca7ed7c8888577089f60866d82c06dae24
+- https://github.com/aperta-principium/Interclip/commit/dc7103b1e920750f4b2abe70e64e5f1eb7bc3cd6
+- https://github.com/aperta-principium/Interclip/commit/f41f38504f1d2fcc57d878a5a80811c23834515b
+- https://github.com/aperta-principium/Interclip/commit/6c165d551665a5b905205b92b610e6026ba7d04b
+- https://github.com/aperta-principium/Interclip/commit/eb48078c5a93ccf8459b6dcb05a780080e72400b
+- https://github.com/aperta-principium/Interclip/commit/4231995f764b79f237b5993b04dc994986bceff9
+- https://github.com/aperta-principium/Interclip/commit/7990ead816bb12f4f5b521627189479bcc917065
+- https://github.com/aperta-principium/Interclip/commit/3118f42875b75a46574f12d69ca77be597e4e098
+- https://github.com/aperta-principium/Interclip/commit/16f0dc068db5b6cd6cfdbeb7d7319198d6786f2c
+- https://github.com/aperta-principium/Interclip/commit/614e47dfac0e8c22e56b8405a43608808efdd42a
+
 # v3.3.8 (April 20, 2021)
 ## Bug fixes 🐛 
 - Disable echoing of `$url` where it is not needed https://github.com/aperta-principium/Interclip/commit/6564ad2882885e935e537270fe291e90a1e7623f 
