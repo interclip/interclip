@@ -16,6 +16,15 @@
 <meta property="twitter:description" content="Interclip is a tool for easily sharing URLs between devices or users.">
 <meta property="twitter:image" content="https://interclip.app/img/header.png">
 
+
+<!-- Preconnects -->
+<link rel="preconnect" href="https://fonts.gstatic.com/">
+<link rel="preconnect" href="https://cdn.jsdelivr.net/">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com"> 
+
+<!-- Vendor-specific icons -->
+
 <link rel="apple-touch-icon" sizes="180x180" href="<?php echo ROOT ?>/img/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="<?php echo ROOT ?>/img/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="<?php echo ROOT ?>/img/icons/favicon-16x16.png">
@@ -23,11 +32,7 @@
 
 <link rel="stylesheet" href="<?php echo ROOT ?>/css/menu.css">
 <link rel="stylesheet" href="<?php echo ROOT ?>/css/dark.css" media="(prefers-color-scheme: dark)">
-
-<!-- Preconnects -->
-<link rel="preconnect" href="https://fonts.gstatic.com/">
-<link rel="preconnect" href="https://cdn.jsdelivr.net/">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com/">
+<link href="https://fonts.googleapis.com/css2?family=Palanquin&display=swap" rel="stylesheet"> 
 
 <!-- External JS libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
