@@ -3,6 +3,8 @@ $curlHostRegex = "/curl\/\d{1,15}.\d{1,15}.\d{1,15}/";
 $curl = preg_match($curlHostRegex, $_SERVER['HTTP_USER_AGENT']);
 
 include_once "../includes/lib/init.php";
+include_once "../includes/lib/sentry.php";
+
 ?>
 <?php if (!isset($_GET['api']) && !$curl) : ?>
   <!DOCTYPE html>
