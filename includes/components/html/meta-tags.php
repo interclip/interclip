@@ -18,10 +18,9 @@
 
 
 <!-- Preconnects -->
-<link rel="preconnect" href="https://fonts.gstatic.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com"> 
 <link rel="preconnect" href="https://cdn.jsdelivr.net/">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com/">
-<link rel="preconnect" href="https://fonts.gstatic.com"> 
 
 <!-- Vendor-specific icons -->
 
