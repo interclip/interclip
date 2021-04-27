@@ -35,7 +35,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Palanquin&display=swap" rel="stylesheet"> 
 
 <!-- External JS libraries -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
 <script type="module" src="https://cdn.skypack.dev/pin/dark-mode-toggle@v0.8.0-8sz7Rv9Ou4431j6B2ucG/mode=imports,min/optimized/dark-mode-toggle.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
