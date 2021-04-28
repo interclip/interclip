@@ -4,6 +4,7 @@
         deny from all
     </Files>
     
+    # Hide the .env file
     <Files .env>
         order allow,deny
         deny from all
@@ -16,21 +17,19 @@
     AddDefaultCharset UTF-8
     DefaultLanguage en-US
 
+    # Hide the .git/ folder
     RedirectMatch 404 /\.git
 
     # Prevent directory listings
     Options All -Indexes
 
-    #remove php file extension
+    # Remove php file extension
     RewriteEngine on 
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}\.php -f
     RewriteRule ^(.*)$ $1.php [NC,L]
-    #Add Trailing slash for end of the URL
-    #RewriteCond %{REQUEST_FILENAME} !-f
-    #RewriteRule ^(.*[^/])$ /$1/ [L,R]
 
-    #Error handling
+    # Error handling
     ErrorDocument 400 /includes/error.php
     ErrorDocument 401 /includes/error.php
     ErrorDocument 402 /includes/error.php
@@ -47,7 +46,7 @@
     ErrorDocument 504 /includes/error.php
 
     <IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Origin "*"
     </IfModule>
 
     php_value upload_max_filesize 150M
