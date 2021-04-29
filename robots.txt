@@ -1,1 +1,5 @@
-User-agent: *
+User-Agent: *
+Disallow: /includes/new
+Disallow: /includes/get
+
+Sitemap: sitemap.xml 
