@@ -1,5 +1,6 @@
 User-Agent: *
 Disallow: /includes/new
 Disallow: /includes/get
+Disallow: /admin/
 
 Sitemap: sitemap.xml 
