@@ -69,5 +69,11 @@ SimpleRouter::match(['get', 'post'],'/includes/get-api', function() {
     include_once "public/api/get.php";
 });
 
+/* Internal behavior */
+
+SimpleRouter::get('/staging/change-branch', function() {
+    include_once "public/change-branch.php";
+});
+
 // Start the routing
 SimpleRouter::start();
