@@ -6,7 +6,7 @@ use Pecee\SimpleRouter\SimpleRouter;
 
 /* Dynamic pages */
 
-SimpleRouter::get('/index', function() {
+SimpleRouter::get('/', function() {
     $content = include_once "public/index.php";
     return $content;
 });

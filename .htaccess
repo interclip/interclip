@@ -17,6 +17,8 @@
     AddDefaultCharset UTF-8
     DefaultLanguage en-US
 
+    DirectoryIndex router.php
+
     # Hide the .git/ folder
     RedirectMatch 404 /\.git
 
