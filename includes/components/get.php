@@ -1,6 +1,6 @@
 <?php
 
-include_once "./components/rate.php";
+include_once "includes/components/rate.php";
 
 if (isset($user_code)) {
 

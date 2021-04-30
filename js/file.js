@@ -14,7 +14,7 @@ function showCode(data) {
 
   modal.style.display = "none";
   document.body.innerHTML += `
-    <form id="clip" action="../includes/new" method="POST">
+    <form id="clip" action="/set" method="POST">
       <input type="hidden" name="token" value="${csrfToken}"/>
       <input type="url" name="input" value="${data}">
       <input type="submit">

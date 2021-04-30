@@ -6,11 +6,11 @@ header('Access-Control-Allow-Origin: *');
 function writeDb($url)
 {
   if (filter_var($url, FILTER_VALIDATE_URL)) {
-    require "../vendor/autoload.php";
+    require "vendor/autoload.php";
 
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '../.env');
     $dotenv->safeLoad();
-    include_once "components/new.php";
+    include_once "includes/components/new.php";
   }
   
   $createArray = createClip($url);

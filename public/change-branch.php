@@ -1,7 +1,7 @@
 <?php
 
-include_once "lib/init.php";
-include_once "lib/auth.php";
+include_once "includes/lib/init.php";
+include_once "includes/lib/auth.php";
 
 header('Content-Type: application/json');
 

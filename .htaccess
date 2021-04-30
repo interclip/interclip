@@ -17,6 +17,8 @@
     AddDefaultCharset UTF-8
     DefaultLanguage en-US
 
+    DirectoryIndex router.php
+
     # Hide the .git/ folder
     RedirectMatch 404 /\.git
 
@@ -24,10 +26,11 @@
     Options All -Indexes
 
     # Remove php file extension
-    RewriteEngine on 
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME}\.php -f
-    RewriteRule ^(.*)$ $1.php [NC,L]
+    RewriteEngine on
+    RewriteCond %{SCRIPT_FILENAME} !-f
+    RewriteCond %{SCRIPT_FILENAME} !-d
+    RewriteCond %{SCRIPT_FILENAME} !-l
+    RewriteRule ^(.*)$ router.php/$1
 
     # Error handling
     ErrorDocument 400 /includes/error.php

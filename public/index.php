@@ -36,7 +36,7 @@
     include "includes/menu.php";
     ?>
     <main id="maincontent">
-        <form name="urlform" id="content" onsubmit="return validateForm()" action="./includes/new" method="POST">
+        <form name="urlform" id="content" onsubmit="return validateForm()" action="/set" method="POST">
             <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>" />
             <input type="url" name="input" class="input square" placeholder="Paste your link here" id="search-input" autofocus>
             <button aria-label="Reset content" type="reset" class="close search" id="search-btn"></button>

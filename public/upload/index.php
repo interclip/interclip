@@ -2,8 +2,8 @@
 $curlHostRegex = "/curl\/\d{1,15}.\d{1,15}.\d{1,15}/";
 $curl = preg_match($curlHostRegex, $_SERVER['HTTP_USER_AGENT']);
 
-include_once "../includes/lib/init.php";
-include_once "../includes/lib/sentry.php";
+include_once "includes/lib/init.php";
+include_once "includes/lib/sentry.php";
 
 ?>
 <?php if (!isset($_GET['api']) && !$curl) : ?>
@@ -26,14 +26,14 @@ include_once "../includes/lib/sentry.php";
   <?php
   if (!empty($_FILES['uploaded_file'])) {
 
-    include_once "../includes/lib/functions.php";
+    include_once "includes/lib/functions.php";
 
     if (isset($_GET['api'])) {
       header('Content-Type: application/json');
     }
 
     $id = substr(sha1(uniqid(substr(time() . str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, 20))), 0, 10);
-    $path = "uploads/";
+    $path = "public/upload/uploads/";
     $ext = pathinfo(basename($_FILES['uploaded_file']['name']), PATHINFO_EXTENSION);
     $fileSize = $_FILES['uploaded_file']['size'];
 
