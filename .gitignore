@@ -10,6 +10,6 @@ vendor/
 .phpunit.result.cache
 
 # Production
-upload/uploads/
+public/upload/uploads/
 includes/size.json
 .env

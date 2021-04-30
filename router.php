@@ -18,6 +18,10 @@ SimpleRouter::get('/file/', function() {
     include_once "public/file.php";
 });
 
+SimpleRouter::form('/upload/', function() {
+    include_once "public/upload/index.php";
+});
+
 SimpleRouter::get('/admin/', function() {
     include_once "public/admin.php";
 });
