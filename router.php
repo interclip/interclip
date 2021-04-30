@@ -1,6 +1,7 @@
 <?php
 
 include_once "includes/lib/init.php";
+include_once "includes/lib/sentry.php";
 
 use Pecee\SimpleRouter\SimpleRouter;
 
