@@ -36,6 +36,16 @@ SimpleRouter::form('/set', function() {
     include_once "public/core/set.php";
 });
 
+SimpleRouter::get('/{user_code}', function ($user_code) {
+    include_once "includes/lib/functions.php";
+    include_once "includes/components/get.php";
+    
+    if (isset($url)) {
+        header("Location: $url");
+    } else {
+        header("Location: ");
+    }
+})->where(['user_code' => '([a-z|0-9|A-Z]){5}']);
 
 /* Static pages */
 
