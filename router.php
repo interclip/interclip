@@ -39,8 +39,8 @@ SimpleRouter::form('/set', function() {
 
 /* Static pages */
 
-SimpleRouter::get('/privacy/', function() {
-    include_once "public/privacy.php";
+SimpleRouter::get('/desktop/', function() {
+    include_once "public/desktop.php";
 });
 
 SimpleRouter::get('/about/', function() {
@@ -54,6 +54,10 @@ SimpleRouter::get('/login/', function() {
 
 SimpleRouter::get('/logout/', function() {
     include_once "public/logout.php";
+});
+
+SimpleRouter::get('/privacy/', function() {
+    include_once "public/privacy.php";
 });
 
 /* API */
