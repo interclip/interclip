@@ -3,7 +3,7 @@
 
 <head>
   <?php
-        include_once "header.php";
+        include_once "includes/header.php";
   ?>
   <title>Get your link | Interclip</title>
 
@@ -13,15 +13,15 @@
 <body>
 
   <?php
-  include "anti-csrf.php";
+  include "includes/anti-csrf.php";
   validate();
-  include_once "menu.php";
+  include_once "includes/menu.php";
 
   if (!empty($_POST['user'])) {
     $user_code = $_POST['user'];
     $user_code = htmlspecialchars($user_code);
 
-    include_once "components/get.php";
+    include_once "includes/components/get.php";
   }
 
   if (!empty($url)) {

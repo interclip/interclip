@@ -6,7 +6,7 @@ use Pecee\SimpleRouter\SimpleRouter;
 
 /* Dynamic pages */
 
-SimpleRouter::get('/', function() {
+SimpleRouter::get('/index', function() {
     $content = include_once "public/index.php";
     return $content;
 });
@@ -25,6 +25,19 @@ SimpleRouter::get('/admin/', function() {
     $content = include_once "public/admin.php";
     return $content;
 });
+
+/* Clip manipulation */
+
+SimpleRouter::form('/get', function() {
+    $content = include_once "public/core/get.php";
+    return $content;
+});
+
+SimpleRouter::form('/set', function() {
+    $content = include_once "public/core/set.php";
+    return $content;
+});
+
 
 /* Static pages */
 

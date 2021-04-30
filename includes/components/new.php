@@ -1,7 +1,7 @@
 <?php
 
-include_once "./components/rate.php";
-include_once "./verify-domain.php";
+include_once "includes/components/rate.php";
+include_once "includes/verify-domain.php";
 
 /**
  * Creates a new clip in the database

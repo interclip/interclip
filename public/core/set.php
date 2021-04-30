@@ -2,7 +2,7 @@
 
 <head>
     <?php
-        include_once "header.php";
+        include_once "includes/header.php";
     ?>
     <title>New clip | Interclip</title>
 
@@ -11,9 +11,9 @@
 
 <body>
   <?php
-  include "anti-csrf.php";
+  include "includes/anti-csrf.php";
   validate();
-  include_once "menu.php";
+  include_once "includes/menu.php";
   ?>
 
   <?php
@@ -22,7 +22,7 @@
     $url = $_POST['input'];
     $url = htmlspecialchars($url);
 
-    include_once "./components/new.php";
+    include_once "includes/components/new.php";
   }
   ?>
 
@@ -34,9 +34,9 @@
       <div class="title">
         <?php
         if (isset($_POST['input']))
-          include_once "components/html/new/ok-msg.php";
+          include_once "includes/components/html/new/ok-msg.php";
         else
-          include_once "components/html/new/ok-msg.php";
+          include_once "includes/components/html/new/ok-msg.php";
         ?>
 
         <!--
