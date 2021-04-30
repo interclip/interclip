@@ -3,11 +3,11 @@
 
 <?php
 
-include_once "../includes/lib/init.php";
-include_once "../includes/lib/auth.php";
+include_once "includes/lib/init.php";
+include_once "includes/lib/auth.php";
 
-include_once "../includes/lib/sentry.php";
-include_once "../includes/lib/functions.php";
+include_once "includes/lib/sentry.php";
+include_once "includes/lib/functions.php";
 
 if (!$isWindows) {
     $osinfo = getOSInformation();
