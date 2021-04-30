@@ -62,13 +62,13 @@ SimpleRouter::get('/logout/', function() {
     return $content;
 });
 
-/* Auth */
-SimpleRouter::form('/includes/api', function() {
+/* API */
+SimpleRouter::match(['get', 'post'],'/includes/api', function() {
     $content = include_once "public/api/set.php";
     return $content;
 });
 
-SimpleRouter::form('/includes/get-api', function() {
+SimpleRouter::match(['get', 'post'],'/includes/get-api', function() {
     $content = include_once "public/api/get.php";
     return $content;
 });
