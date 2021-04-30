@@ -62,5 +62,16 @@ SimpleRouter::get('/logout/', function() {
     return $content;
 });
 
+/* Auth */
+SimpleRouter::form('/includes/api', function() {
+    $content = include_once "public/api/set.php";
+    return $content;
+});
+
+SimpleRouter::form('/includes/get-api', function() {
+    $content = include_once "public/api/get.php";
+    return $content;
+});
+
 // Start the routing
 SimpleRouter::start();
