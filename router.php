@@ -7,70 +7,58 @@ use Pecee\SimpleRouter\SimpleRouter;
 /* Dynamic pages */
 
 SimpleRouter::get('/', function() {
-    $content = include_once "public/index.php";
-    return $content;
+    include_once "public/index.php";
 });
 
 SimpleRouter::get('/receive/', function() {
-    $content = include_once "public/receive.php";
-    return $content;
+    include_once "public/receive.php";
 });
 
 SimpleRouter::get('/file/', function() {
-    $content = include_once "public/file.php";
-    return $content;
+    include_once "public/file.php";
 });
 
 SimpleRouter::get('/admin/', function() {
-    $content = include_once "public/admin.php";
-    return $content;
+    include_once "public/admin.php";
 });
 
 /* Clip manipulation */
 
 SimpleRouter::form('/get', function() {
-    $content = include_once "public/core/get.php";
-    return $content;
+    include_once "public/core/get.php";
 });
 
 SimpleRouter::form('/set', function() {
-    $content = include_once "public/core/set.php";
-    return $content;
+    include_once "public/core/set.php";
 });
 
 
 /* Static pages */
 
 SimpleRouter::get('/privacy/', function() {
-    $content = include_once "public/privacy.php";
-    return $content;
+    include_once "public/privacy.php";
 });
 
 SimpleRouter::get('/about/', function() {
-    $content = include_once "public/about.php";
-    return $content;
+    include_once "public/about.php";
 });
 
 /* Auth */
 SimpleRouter::get('/login/', function() {
-    $content = include_once "public/login.php";
-    return $content;
+    include_once "public/login.php";
 });
 
 SimpleRouter::get('/logout/', function() {
-    $content = include_once "public/logout.php";
-    return $content;
+    include_once "public/logout.php";
 });
 
 /* API */
 SimpleRouter::match(['get', 'post'],'/includes/api', function() {
-    $content = include_once "public/api/set.php";
-    return $content;
+    include_once "public/api/set.php";
 });
 
 SimpleRouter::match(['get', 'post'],'/includes/get-api', function() {
-    $content = include_once "public/api/get.php";
-    return $content;
+    include_once "public/api/get.php";
 });
 
 // Start the routing
