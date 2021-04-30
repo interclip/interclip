@@ -36,6 +36,12 @@ SimpleRouter::form('/set', function() {
     include_once "public/core/set.php";
 });
 
+use Pecee\Http\Request;
+SimpleRouter::error(function (Request $request, \Exception $exception) {
+    $statusCode = $exception->getCode();
+    include_once "includes/error.php";
+});
+
 SimpleRouter::get('/{user_code}', function ($user_code) {
     include_once "includes/lib/functions.php";
     include_once "includes/components/get.php";

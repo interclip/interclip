@@ -18,8 +18,13 @@
                 reDir($url);
             }
         }
+        
+        if ($statusCode) {
+            $status = $statusCode;
+        } else {
+            $status = $_SERVER['REDIRECT_STATUS'];
+        }
 
-        $status = $_SERVER['REDIRECT_STATUS'];
         $codes = array(
             400 => array('400 Bad Request', 'The request cannot be fulfilled due to bad syntax.'),
             401 => array('401 Login Error', 'It appears that the password and/or user-name you entered was incorrect.'),
