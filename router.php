@@ -51,5 +51,16 @@ SimpleRouter::get('/about/', function() {
     return $content;
 });
 
+/* Auth */
+SimpleRouter::get('/login/', function() {
+    $content = include_once "public/login.php";
+    return $content;
+});
+
+SimpleRouter::get('/logout/', function() {
+    $content = include_once "public/logout.php";
+    return $content;
+});
+
 // Start the routing
 SimpleRouter::start();
