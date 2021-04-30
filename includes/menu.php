@@ -8,7 +8,6 @@ $pages = array(
   'clip' => ['', 'Clip'],
   'file' => ['file', 'File <span class="beta">beta</span>'],
   'receive' => ['receive', 'Receive clip'],
-  'desktop' => ['desktop', "Desktop"],
   'privacy' => ['privacy', 'Privacy policy'],
   'about' => ['about', 'About']
 );
@@ -22,11 +21,13 @@ foreach ($pages as $page) {
 
   $index++;
 
+  if ($page[0] !== "") {
+    $page[0] = "$page[0]/";
+  }
+
   if (strpos($page[1], '<span class="beta">') === false) {
-    if ($page[0] == "about") {
-      echo '<li style="float:right"><a href="' . ROOT . '/about">About</a></li></ul>';
-    } elseif ($page[0] == "desktop") {
-      echo '<li id="desktopMenuItem" style="display: none;"><a href="' . ROOT . "/" . $page[0] . '">' . $page[1] . '</a></li> ';
+    if ($page[0] == "about/") {
+      echo '<li style="float:right"><a href="' . ROOT . '/about/">About</a></li></ul>';
     } else {
       echo '<li><a href="' . ROOT . "/" . $page[0] . '">' . $page[1] . '</a></li> ';
     }
