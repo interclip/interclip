@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title><?php echo ("$errortitle"); ?></title>
     <?php
 
         include_once "header.php";
@@ -47,6 +46,7 @@
         }
 
     ?>
+        <title><?php echo ("$errortitle"); ?></title>
         <link rel="stylesheet" href="<?php echo ROOT ?>/css/index.css">
         <link rel="stylesheet" href="<?php echo ROOT ?>/css/dark.css" media="(prefers-color-scheme: dark)">
     </head>
