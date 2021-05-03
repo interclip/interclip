@@ -17,14 +17,6 @@ if ($user !== false) {
     $hash = $output[0];
     $hashShort = substr($hash, 0, 7);
     $commit = "https://github.com/aperta-principium/Interclip/commit/" . $hash;
-
-    if (!$isWindows) {
-      $systemLoad = sys_getloadavg()[0];
-      $uptime = explode(',', explode(' up ', shell_exec('uptime'))[1])[0];
-    } else {
-      $systemLoad = "n/a";
-      $uptime = "n/a";
-    }
   }
 }
 
