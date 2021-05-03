@@ -18,12 +18,3 @@ include_once "components/html/meta-tags.php";
 if ($_ENV['ENVIRONMENT'] === "production") {
     include_once 'components/html/analytics.php';
 }
-
-//By default, we assume that PHP is NOT running on windows.
-$isWindows = false;
-
-//If the first three characters PHP_OS are equal to "WIN",
-//then PHP is running on a Windows operating system.
-if (strcasecmp(substr(PHP_OS, 0, 3), 'WIN') === 0) {
-    $isWindows = true;
-}
