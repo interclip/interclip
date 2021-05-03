@@ -6,7 +6,7 @@
     ?>
     <title>About | Interclip</title>
 
-    <link rel="stylesheet" type="text/css" href="./css/about.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/about.css">
 </head>
 
 <body>
@@ -36,17 +36,17 @@
                 <span id="release">Release: <span id="version"><?php echo $release[0]; ?> <a href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $release[0]; ?>">(what's new?)</a></span><br /></span>
                 Total clips:
                 <?php
-                include_once "./includes/components/rate.php";
                 $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
 
                 $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
                 $result = $conn->query($sqlquery);
+
+                $count = 0;
                 while ($row = $result->fetch_assoc()) {
                     $count = $row['id'];
                     break;
                 }
-                if (!$count) $count = 0;
-                noteLimit("about");
+
                 echo $count;
                 ?>
             </div>

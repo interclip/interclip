@@ -6,8 +6,8 @@
     ?>
     <title>Receive link | Interclip</title>
 
-    <link rel="stylesheet" type="text/css" href="css/button.css">
-    <link rel="stylesheet" type="text/css" href="css/receive.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/button.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/receive.css">
 </head>
 
 <body>
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </form>
-                <script type="text/javascript" src="js/receive.js"></script>
+                <script type="text/javascript" src="<?php echo ROOT ?>/js/receive.js"></script>
             </div>
         </div>
     </main>

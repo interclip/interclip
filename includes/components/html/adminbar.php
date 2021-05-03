@@ -30,17 +30,21 @@ if ($user !== false) {
 
 $renderTimeMicro = microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'];
 $renderTime = number_format($renderTimeMicro * 1000, 2);
+
+$branches = getBranches();
+$currBranch = $branches["current"];
+
 ?>
 <?php if (!is_bool($user) && $isStaff) : ?>
   <div id="adminbar" <?php echo $_ENV['ENVIRONMENT'] === "staging" ? "class='staging'" : "" ?>>
     <span title="The total time it took the client to render the DOM and fetch all the necessary resources" id="load">Client: TBD</span>
     <span title="The total time it took the server to process the request">Server: <?php echo $renderTime ?>ms</span>
+    <span class="lg" title="The current response status code">HTTP <?php echo http_response_code() ?></span>
     <?php if ($_ENV['ENVIRONMENT'] === "staging") : ?>
       <?php $branches = getBranches(); ?>
       <span>Current branch:
         <select id="branch-select">
           <?php
-          $currBranch = $branches["current"];
           echo "<option value='-'>$currBranch</option>";
           foreach ($branches["all"] as $branch) {
             echo "<option value='$branch'>$branch</option>";
@@ -50,8 +54,8 @@ $renderTime = number_format($renderTimeMicro * 1000, 2);
       </span>
     <?php endif; ?>
     <span>
-      <a title="View tag on GitHub" href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $release[0]; ?>">
-        <?php echo $release[0] ?>
+      <a title="View tag on GitHub" href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $currBranch ?>">
+        <?php echo $currBranch ?>
       </a>
       @
       <a title="View commit on GitHub" href="https://github.com/aperta-principium/Interclip/commit/<?php echo $hash ?>">

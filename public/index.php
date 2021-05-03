@@ -7,9 +7,9 @@
     ?>
     <title>Interclip - easy peasy clipboard sharing</title>
 
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="stylesheet" type="text/css" href="css/copy.css">
-    <link rel="stylesheet" type="text/css" href="css/progressbar.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/index.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/copy.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/progressbar.css">
 </head>
 
 <body>
@@ -68,9 +68,9 @@
         const csrfToken = "<?= $_SESSION['token'] ?>";
         const isMobile = <?php echo isMobile() ? "true" : "false" ?>;
     </script>
-    <script src="js/index.js"> </script>
-    <script src="js/validate.js"> </script>
-    <script src="js/file.js"></script>
+    <script src="<?php echo ROOT ?>/js/index.js"> </script>
+    <script src="<?php echo ROOT ?>/js/validate.js"> </script>
+    <script src="<?php echo ROOT ?>/js/file.js"></script>
 </body>
 
 </html>

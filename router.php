@@ -37,23 +37,6 @@ SimpleRouter::form('/set', function() {
     include_once "public/core/set.php";
 });
 
-use Pecee\Http\Request;
-SimpleRouter::error(function (Request $request, \Exception $exception) {
-    $statusCode = $exception->getCode();
-    include_once "includes/error.php";
-});
-
-SimpleRouter::get('/{user_code}', function ($user_code) {
-    include_once "includes/lib/functions.php";
-    include_once "includes/components/get.php";
-    
-    if (isset($url)) {
-        header("Location: $url");
-    } else {
-        header("Location: ");
-    }
-})->where(['user_code' => '([a-z|0-9|A-Z]){5}']);
-
 /* Static pages */
 
 SimpleRouter::get('/desktop/', function() {
@@ -91,6 +74,23 @@ SimpleRouter::match(['get', 'post'],'/includes/get-api', function() {
 SimpleRouter::get('/staging/change-branch', function() {
     include_once "public/change-branch.php";
 });
+
+use Pecee\Http\Request;
+SimpleRouter::error(function (Request $request, \Exception $exception) {
+    $statusCode = $exception->getCode();
+    include_once "includes/error.php";
+});
+
+SimpleRouter::get('/{user_code}', function ($user_code) {
+    include_once "includes/lib/functions.php";
+    include_once "includes/components/get.php";
+    
+    if (isset($url)) {
+        header("Location: $url");
+    } else {
+        header("Location: ");
+    }
+})->where(['user_code' => '([a-z|0-9|A-Z]){5}']);
 
 // Start the routing
 SimpleRouter::start();
