@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb888878bcca51da3912087b234065f5",
+    "content-hash": "ab011d82e351c0f9e48e43662db682d6",
     "packages": [
         {
             "name": "auth0/auth0-php",
@@ -700,16 +700,16 @@
         },
         {
             "name": "pecee/simple-router",
-            "version": "4.3.2.3",
+            "version": "4.3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/skipperbent/simple-php-router.git",
-                "reference": "569b3a876094080a3b54e919d6f80cdc4ce12d65"
+                "reference": "448a423d5d2fafb747b65ddae9b6af1f9dbbd44b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/skipperbent/simple-php-router/zipball/569b3a876094080a3b54e919d6f80cdc4ce12d65",
-                "reference": "569b3a876094080a3b54e919d6f80cdc4ce12d65",
+                "url": "https://api.github.com/repos/skipperbent/simple-php-router/zipball/448a423d5d2fafb747b65ddae9b6af1f9dbbd44b",
+                "reference": "448a423d5d2fafb747b65ddae9b6af1f9dbbd44b",
                 "shasum": ""
             },
             "require": {
@@ -751,7 +751,7 @@
                 "simple-php-router",
                 "url-handling"
             ],
-            "time": "2021-04-28T08:05:34+00:00"
+            "time": "2021-05-02T12:00:10+00:00"
         },
         {
             "name": "php-http/client-common",
