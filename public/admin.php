@@ -101,6 +101,7 @@ if ($isStaff) {
                 </aside>
             </section>
         <?php elseif ($user !== false) : ?>
+            <?php http_response_code(403); ?>
             <section id="intro">
                 <header>
                     <h1>Yikes ¯\_(ツ)_/¯</h1>
@@ -109,6 +110,7 @@ if ($isStaff) {
 
             </section>
         <?php else : ?>
+            <?php http_response_code(401); ?>
             <section id="intro">
                 <header>
                     <h1>Bummer</h1>
