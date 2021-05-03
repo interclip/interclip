@@ -31,11 +31,15 @@ function noteLimit($action) {
         $count = $row["COUNT(*)"];
         break;
     }
+
+    /* TODO: Fix rate limiting
     
     if($count > 15) {
         http_response_code(429);
         die("Rate Limited");
     }
+
+    */
 
     $sqlquery = "INSERT INTO hits (id, iphash, date, operation) VALUES (NULL, '$cryptIP', NOW(), '$action') ";
     $result = $conn->query($sqlquery);
