@@ -9,8 +9,13 @@ $pages = array(
   'file' => ['file', 'File <span class="beta">beta</span>'],
   'receive' => ['receive', 'Receive clip'],
   'privacy' => ['privacy', 'Privacy policy'],
-  'about' => ['about', 'About']
 );
+
+if ($isStaff) {
+  $pages += [ 'admin' => ['admin', 'Admin'] ];
+}
+
+$pages += ['about' => ['about', 'About']];
 
 include_once "components/html/adminbar.php";
 
