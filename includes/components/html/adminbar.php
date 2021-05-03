@@ -35,6 +35,7 @@ $renderTime = number_format($renderTimeMicro * 1000, 2);
   <div id="adminbar" <?php echo $_ENV['ENVIRONMENT'] === "staging" ? "class='staging'" : "" ?>>
     <span title="The total time it took the client to render the DOM and fetch all the necessary resources" id="load">Client: TBD</span>
     <span title="The total time it took the server to process the request">Server: <?php echo $renderTime ?>ms</span>
+    <span class="lg" title="The current response status code">HTTP <?php echo http_response_code() ?></span>
     <?php if ($_ENV['ENVIRONMENT'] === "staging") : ?>
       <?php $branches = getBranches(); ?>
       <span>Current branch:
