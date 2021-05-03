@@ -83,7 +83,7 @@ SimpleRouter::error(function (Request $request, \Exception $exception) {
     $currURL = $request->getUrl();
     $unRootedURL = str_replace(ROOT, "", $currURL);
     $user_code = str_replace("/", "", $unRootedURL);
-    echo $user_code;
+
     include_once "includes/components/get.php";
 
     if (isset($url)) {
