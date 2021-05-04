@@ -30,4 +30,4 @@
     clickEnabled = true;
     const csrfToken = "<?= $_SESSION['token'] ?>";
 </script>
-<script src="js/file.js"></script>
+<script src="<?php echo ROOT ?>/js/file.js"></script>
