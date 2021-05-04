@@ -1,4 +1,7 @@
 {
+    "name": "aperta-principium/interclip",
+    "description": "A clipboard and file sharing tool",
+    "license": "MIT",
     "require-dev": {
         "pestphp/pest": "^1.0"
     },
