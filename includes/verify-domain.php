@@ -71,6 +71,11 @@ function whois($domain) {
 function verify($url) {
     $pingable = parse_url($url, PHP_URL_HOST);
     $domain = new Domain($pingable);
-    $ping = ping($pingable);
-    return $ping ? $ping : whois($domain->getRegisterable());
+
+    if ($pingable === "files.interclip.app") {
+        return true;
+    } else {
+        $ping = ping($pingable);
+        return $ping ? $ping : whois($domain->getRegisterable());
+    }
 }
