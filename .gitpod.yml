@@ -13,7 +13,7 @@ tasks:
   init: composer install
   command: >
     bash scripts/secrets.sh;
-    mkdir upload/uploads;
+    mkdir public/upload/uploads;
     gp await-port 3306 &&
     mysql -e "CREATE DATABASE iclip;";
     mysql < scripts/db.sql;
