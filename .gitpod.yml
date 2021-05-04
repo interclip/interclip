@@ -21,6 +21,7 @@ tasks:
   openMode: split-right
   command: >
     sudo cp apache.conf /etc/apache2/apache2.conf &&
+    gp await-port 3306 &&
     apachectl start &&
     multitail /var/log/apache2/access.log -I /var/log/apache2/error.log
 
