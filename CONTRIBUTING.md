@@ -9,7 +9,7 @@ Hi, thanks for considering contributing to Interclip! Here's a guide on how to g
 - Apache server (needed for the .htaccess redirections)
 - PHP 7.4+
 - MySQL database server
-- Composer
+- Composer v2 or newer
 - Git
 
 ## Installing dependencies
