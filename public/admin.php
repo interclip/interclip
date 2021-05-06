@@ -9,7 +9,8 @@ include_once "includes/lib/auth.php";
 include_once "includes/lib/sentry.php";
 include_once "includes/lib/functions.php";
 
-exec("composer --version", $composerVer);
+exec("composer --version", $composerVerOut);
+$composerVer = explode(" ", $composerVerOut[0])[2];
 
 if (!$isWindows) {
     $osinfo = getOSInformation();
@@ -87,7 +88,7 @@ if ($isStaff) {
                     <p>Used memory: <strong><?php echo formatBytes(memory_get_usage()) ?></strong></p>
                     <p>PHP version: <strong><?php echo phpversion(); ?></strong></p>
                     <p>MySQL version: <strong><?php echo $mysqlVer ?></strong></p>
-                    <p>Composer version: <strong><?php echo $composerVer[0] ?></strong></p>
+                    <p>Composer version: <strong><?php echo $composerVer ?></strong></p>
                 </aside>
                 <aside>
                     <img alt="A person using a laptop" src="https://files.catbox.moe/szaqt9.svg" height="150" />
