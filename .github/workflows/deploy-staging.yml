@@ -1,0 +1,19 @@
+name: Remotely deploy code to the production server staging environment
+on:
+  push:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    name: Deploy to staging
+    runs-on: ubuntu-latest
+    steps:
+    - name: Git pull on the server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: cd /var/www/staging && sudo git pull --all && sudo composer install
