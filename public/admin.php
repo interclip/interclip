@@ -89,6 +89,7 @@ if ($isStaff) {
                     <p>PHP version: <strong><?php echo phpversion(); ?></strong></p>
                     <p>MySQL version: <strong><?php echo $mysqlVer ?></strong></p>
                     <p>Composer version: <strong><?php echo $composerVer ?></strong></p>
+                    <p>Running as: <strong><?php echo exec("whoami") ?></strong></p>
                 </aside>
                 <aside>
                     <img alt="A person using a laptop" src="https://files.catbox.moe/szaqt9.svg" height="150" />
