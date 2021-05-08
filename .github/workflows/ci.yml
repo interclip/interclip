@@ -39,3 +39,6 @@ jobs:
 
     - name: 🎹 Install Composer Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+
+    - name: 🧪 Run tests
+      run: ./vendor/bin/pest
