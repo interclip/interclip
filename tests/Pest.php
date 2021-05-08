@@ -1,6 +1,5 @@
 <?php
 
-include 'includes/lib/init.php';
 include 'includes/lib/functions.php';
 
 it('asserts URL shortening works', function () {
