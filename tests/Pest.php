@@ -17,3 +17,7 @@ it('should format bytes correctly', function () {
 it('should fetch git branches correctly', function () {
     $this->assertNotEmpty(getBranches());
 });
+
+it('should return the current OS', function () {
+   $this->assertNotEmpty(getOS());
+});
