@@ -32,6 +32,8 @@ cp .env.sample .env
 You can create the database and the tables by just executing the following SQL query:
 ```sql
 
+USE iclip;
+
 /* Rate limit table */
 DROP TABLE IF EXISTS `hits`;
 CREATE TABLE `hits` (
@@ -52,6 +54,19 @@ CREATE TABLE `userurl` (
   `expires` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/* Accounts table */
+DROP TABLE IF EXISTS `accounts`;
+CREATE TABLE `accounts` (
+  `email` varchar(128) NOT NULL,
+  `role` varchar(64) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0;
+
+/* Add the mocked admin account as an admin on the site */
+INSERT INTO accounts VALUES('admin@example.org', 'staff', NULL);
+
 ``` 
 
 ### Setting up MySQL cron jobs
