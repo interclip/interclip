@@ -16,4 +16,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        msg: You can setup this branch on Gitpod and preview it by clicking [here](https://gitpod.io/#https://github.com/aperta-principium/Interclip/pull/${{ github.event.number }}).
+        msg: "[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/aperta-principium/Interclip/pull/${{ github.event.number }}))"
