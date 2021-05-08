@@ -16,22 +16,17 @@ Hi, thanks for considering contributing to Interclip! Here's a guide on how to g
 1. `composer install`
 
 ## Setting up the env files
-In the `includes/` directory, create two files with the following contents:
-1. db.php
-This file is used to supply the credentials for creating the connection to a local (or remote) MySQL database.
-```php
-<?php
-$servername = "host:port";
-$DBName = "name";
-$username = 'user';
-$password = 'pass';
+1. First things first, copy the example .env file called `.env.sample`:
 ```
-2. salt.php
-The cryptographic salt used to help hashing the IP adresses used by the rate limit functionality.
-```php
-<?php
-$salt = "aEk8szZcZRjDGUvnoJWT6ECcnHTGWXFKR3M7v63CL2GbmNYD4QEJz3Z2H9jdrGXe6Uigk"; // this can be almost anything
+cp .env.sample .env
 ```
+2. Change the values to your environment, most importantly
+    * DB credentials, like the server, username, and password of your MySQL database
+    * The environment, like staging, development, or production
+    * The cryptographic salt used for hashing IP addresses
+    * Auth0 credentials (optional)
+    * Sentry credentials (optional)
+    * Rclone config
 
 ## Setting up the database
 You can create the database and the tables by just executing the following SQL query:
