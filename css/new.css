@@ -34,7 +34,6 @@ body {
 }
 
 #fullscreen .fullscreen-content .title h1 {
-  font-family: "Roboto", sans-serif;
   font-size: 3em;
   margin: 5px 0;
 }
@@ -135,5 +134,5 @@ html {
 }
 
 .usrCode {
-  font-variant-numeric: slashed-zero;
+  font-family: 'Roboto Mono', monospace;
 }
