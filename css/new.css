@@ -2,7 +2,7 @@ body {
   margin: 0;
   width: 100%;
   background-color: #ff9800;
-  font-family: 'Palanquin';
+  font-family: 'Palanquin', sans-serif;
   height: auto;
 }
 
