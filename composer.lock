@@ -3066,16 +3066,16 @@
         },
         {
             "name": "pestphp/pest",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest.git",
-                "reference": "c6a2e3b4d0eb129ad8eab2d6c8603a5e6c68f12b"
+                "reference": "fb0eef4200bbb050b44ee3943447560d4e700eb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest/zipball/c6a2e3b4d0eb129ad8eab2d6c8603a5e6c68f12b",
-                "reference": "c6a2e3b4d0eb129ad8eab2d6c8603a5e6c68f12b",
+                "url": "https://api.github.com/repos/pestphp/pest/zipball/fb0eef4200bbb050b44ee3943447560d4e700eb3",
+                "reference": "fb0eef4200bbb050b44ee3943447560d4e700eb3",
                 "shasum": ""
             },
             "require": {
@@ -3143,7 +3143,7 @@
             ],
             "support": {
                 "issues": "https://github.com/pestphp/pest/issues",
-                "source": "https://github.com/pestphp/pest/tree/v1.1.0"
+                "source": "https://github.com/pestphp/pest/tree/v1.2.0"
             },
             "funding": [
                 {
@@ -3171,7 +3171,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-05-02T22:41:59+00:00"
+            "time": "2021-05-12T23:37:55+00:00"
         },
         {
             "name": "pestphp/pest-plugin",
@@ -3395,16 +3395,16 @@
         },
         {
             "name": "pestphp/pest-plugin-init",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest-plugin-init.git",
-                "reference": "bd6fdb058ba5dc7a9f7f3645ad4e0bdc34cf0026"
+                "reference": "cb3dfa1a9887aafb3d0b4db0fb8f6171ce69b49e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest-plugin-init/zipball/bd6fdb058ba5dc7a9f7f3645ad4e0bdc34cf0026",
-                "reference": "bd6fdb058ba5dc7a9f7f3645ad4e0bdc34cf0026",
+                "url": "https://api.github.com/repos/pestphp/pest-plugin-init/zipball/cb3dfa1a9887aafb3d0b4db0fb8f6171ce69b49e",
+                "reference": "cb3dfa1a9887aafb3d0b4db0fb8f6171ce69b49e",
                 "shasum": ""
             },
             "require": {
@@ -3450,7 +3450,7 @@
                 "unit"
             ],
             "support": {
-                "source": "https://github.com/pestphp/pest-plugin-init/tree/v1.0.0"
+                "source": "https://github.com/pestphp/pest-plugin-init/tree/v1.1.0"
             },
             "funding": [
                 {
@@ -3466,7 +3466,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-01-03T15:47:48+00:00"
+            "time": "2021-05-10T16:31:00+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -5191,16 +5191,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v5.2.7",
+            "version": "v5.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "90374b8ed059325b49a29b55b3f8bb4062c87629"
+                "reference": "864568fdc0208b3eba3638b6000b69d2386e6768"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/90374b8ed059325b49a29b55b3f8bb4062c87629",
-                "reference": "90374b8ed059325b49a29b55b3f8bb4062c87629",
+                "url": "https://api.github.com/repos/symfony/console/zipball/864568fdc0208b3eba3638b6000b69d2386e6768",
+                "reference": "864568fdc0208b3eba3638b6000b69d2386e6768",
                 "shasum": ""
             },
             "require": {
@@ -5268,7 +5268,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v5.2.7"
+                "source": "https://github.com/symfony/console/tree/v5.2.8"
             },
             "funding": [
                 {
@@ -5284,7 +5284,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-19T14:07:32+00:00"
+            "time": "2021-05-11T15:45:21+00:00"
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
@@ -5453,16 +5453,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v5.2.6",
+            "version": "v5.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "ad0bd91bce2054103f5eaa18ebeba8d3bc2a0572"
+                "reference": "01b35eb64cac8467c3f94cd0ce2d0d376bb7d1db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/ad0bd91bce2054103f5eaa18ebeba8d3bc2a0572",
-                "reference": "ad0bd91bce2054103f5eaa18ebeba8d3bc2a0572",
+                "url": "https://api.github.com/repos/symfony/string/zipball/01b35eb64cac8467c3f94cd0ce2d0d376bb7d1db",
+                "reference": "01b35eb64cac8467c3f94cd0ce2d0d376bb7d1db",
                 "shasum": ""
             },
             "require": {
@@ -5516,7 +5516,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v5.2.6"
+                "source": "https://github.com/symfony/string/tree/v5.2.8"
             },
             "funding": [
                 {
@@ -5532,7 +5532,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-17T17:12:15+00:00"
+            "time": "2021-05-10T14:56:10+00:00"
         },
         {
             "name": "theseer/tokenizer",
