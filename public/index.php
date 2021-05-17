@@ -56,9 +56,7 @@
         </div>
         <div class="demo-droppable">
         </div>
-        <center>
             <div class="output"></div>
-        </center>
         </div>
     </main>
     <script>

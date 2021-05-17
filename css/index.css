@@ -29,7 +29,7 @@ body {
   animation-iteration-count: 1;
 }
 
-input {
+input[url] {
   box-sizing: border-box;
   width: 50px;
   height: 50px;
@@ -179,4 +179,10 @@ input::placeholder {
 
 .copy {
   display: none;
+}
+
+.output {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

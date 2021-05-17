@@ -13,7 +13,7 @@ function showCode(data) {
   data = encodeHTML(data);
 
   modal.style.display = "none";
-  document.body.innerHTML += `
+  output.innerHTML += `
     <form id="clip" action="/set" method="POST">
       <input type="hidden" name="token" value="${csrfToken}"/>
       <input type="url" name="input" value="${data}">
