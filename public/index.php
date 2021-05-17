@@ -44,7 +44,6 @@
         <div id="modal" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
-                <p>
                     <progress id="progressBar" value="0" max="100"></progress>
                     <br>
                     <span id="progressPercent">
@@ -53,7 +52,6 @@
                 <div id="fact">
                     Inter-clippin' good!
                 </div>
-                </p>
             </div>
         </div>
         <div class="demo-droppable">
