@@ -54,9 +54,9 @@
                 </div>
             </div>
         </div>
-        <div class="demo-droppable">
-        </div>
-            <div class="output"></div>
+        <!-- File uploads !-->
+        <div class="demo-droppable"></div>
+        <div class="output"></div>
         </div>
     </main>
     <script>
