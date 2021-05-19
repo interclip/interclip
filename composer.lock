@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6746107d11adbfffe3a93fcdd97bd1fa",
+    "content-hash": "3695be9b93b8c051ebe96f4b2c14a265",
     "packages": [
         {
             "name": "auth0/auth0-php",
@@ -674,16 +674,16 @@
         },
         {
             "name": "pecee/simple-router",
-            "version": "4.3.3.0",
+            "version": "4.3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/skipperbent/simple-php-router.git",
-                "reference": "448a423d5d2fafb747b65ddae9b6af1f9dbbd44b"
+                "reference": "b7c31ae434b9f4eb9701d1e03191c1c3e5526748"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/skipperbent/simple-php-router/zipball/448a423d5d2fafb747b65ddae9b6af1f9dbbd44b",
-                "reference": "448a423d5d2fafb747b65ddae9b6af1f9dbbd44b",
+                "url": "https://api.github.com/repos/skipperbent/simple-php-router/zipball/b7c31ae434b9f4eb9701d1e03191c1c3e5526748",
+                "reference": "b7c31ae434b9f4eb9701d1e03191c1c3e5526748",
                 "shasum": ""
             },
             "require": {
@@ -729,7 +729,7 @@
                 "issues": "https://github.com/skipperbent/simple-php-router/issues",
                 "source": "https://github.com/skipperbent/simple-php-router/issues"
             },
-            "time": "2021-05-02T12:00:10+00:00"
+            "time": "2021-05-19T02:43:29+00:00"
         },
         {
             "name": "php-http/client-common",
