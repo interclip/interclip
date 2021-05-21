@@ -49,8 +49,8 @@ body {
   .madeBy {
     display: block !important;
   }
+
   .madeBy > span > a > img {
     width: 20px;
   }
-
 }
