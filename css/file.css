@@ -22,3 +22,9 @@
 #copy {
   display: none;
 }
+
+.output {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
