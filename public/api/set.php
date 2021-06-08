@@ -35,6 +35,7 @@ function writeDb($url)
     die();
   }
 }
+
 if (isset($_GET['url'])) {
   writeDb($_GET['url']);
 } else if (isset($_POST['url'])) {
