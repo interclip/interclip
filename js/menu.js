@@ -146,6 +146,16 @@ if (loggedIn && isAdmin) {
         if (e.shiftKey && e.code === "KeyB") {
             e.preventDefault();
             const displayStatus = adminbar.style.display === "flex" ? "none" : "flex";
+
+            let newColor = "#333333";
+            if (displayStatus === "flex") {
+                if (document.getElementById("adminbar").classList.contains("staging")) {
+                    newColor = "#F15922";
+                } else {
+                    newColor = "#588D6A";
+                }
+            }
+            document.querySelector("meta[name=theme-color]").setAttribute("content", newColor);
             adminbar.style.display = displayStatus;
             localStorage.setItem("adminbarVisible", displayStatus);
         }
