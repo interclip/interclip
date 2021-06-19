@@ -67,20 +67,20 @@ if ($isStaff) {
                     <p>Welcome to the Interclip admin dashboard!<sup>ALPHA</sup></p>
                 </header>
                 <aside>
-                    <img alt="A lady sitting on a table" src="https://files.catbox.moe/fbdwm0.svg" height="150" />
+                    <img alt="A lady sitting on a table" src="<?php echo ROOT ?>/img/graphics/fbdwm0.svg" height="150" />
                     <h3>Interclip files</h3>
                     <p>Total files: <strong id="files">-</strong></p>
                     <p>Total size: <strong id="filesize">-</strong></p>
                 </aside>
                 <aside>
-                    <img alt="A server cluster" src="https://files.catbox.moe/1ahd5p.svg" height="150" />
+                    <img alt="A server cluster" src="<?php echo ROOT ?>/img/graphics/1ahd5p.svg" height="150" />
                     <h3>Server metrics</h3>
                     <p>Server load: <strong><?php echo $systemLoad ?></strong></p>
                     <p>Storage: <strong><?php echo (formatBytes(disk_total_space('/') - disk_free_space('/'))) . "/" . (formatBytes(disk_total_space('/'))) ?></strong></p>
                     <p>Uptime: <strong><?php echo $uptime ?></strong></p>
                 </aside>
                 <aside>
-                    <img alt="A dashboard" src="https://files.catbox.moe/hggz12.svg" height="150" />
+                    <img alt="A dashboard" src="<?php echo ROOT ?>/img/graphics/hggz12.svg" height="150" />
                     <h3>Runtime details</h3>
                     <p>Used memory: <strong><?php echo formatBytes(memory_get_usage()) ?></strong></p>
                     <p>PHP version: <strong><?php echo phpversion(); ?></strong></p>
@@ -88,13 +88,13 @@ if ($isStaff) {
                     <p>Running as: <strong><?php echo exec("whoami") ?></strong></p>
                 </aside>
                 <aside>
-                    <img alt="A person using a laptop" src="https://files.catbox.moe/szaqt9.svg" height="150" />
+                    <img alt="A person using a laptop" src="<?php echo ROOT ?>/img/graphics/szaqt9.svg" height="150" />
                     <h3>Service stats</h3>
                     <p>Total clips: <strong><?php echo $count ?></strong></p>
                     <p>Total database rows: <strong><?php echo $totalLines ?></strong></p>
                 </aside>
                 <aside>
-                    <img alt="A lady looking at a database symbol" src="https://files.catbox.moe/agmx1d.svg" height="150" />
+                    <img alt="A lady looking at a database symbol" src="<?php echo ROOT ?>/img/graphics/agmx1d.svg" height="150" />
                     <h3>Service status</h3>
                     <p>OS: <strong><?php echo PHP_OS ?></strong></p>
                     <p>OS version: <strong><?php print_r($osinfo['version']) ?></strong></p>
