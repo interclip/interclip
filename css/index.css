@@ -1,7 +1,6 @@
 /* Style */
 
 body {
-  font-family: "Palanquin", sans-serif;
   background-color: #ff9800;
   color: #fff;
   margin: 0;
@@ -39,7 +38,6 @@ input[url] {
   color: #fff;
   font-size: 16px;
   font-weight: 400;
-  font-family: "Palanquin", sans-serif;
   outline: 0;
   -webkit-transition: width 0.4s ease-in-out, border-radius 0.8s ease-in-out,
     padding 0.2s;
@@ -137,7 +135,6 @@ input::placeholder {
   border-radius: 0;
   background: none;
   color: #fff;
-  font-family: "Palanquin", sans-serif;
   font-size: 16px;
   font-weight: 400;
   outline: 0;
