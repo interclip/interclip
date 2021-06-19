@@ -9,9 +9,6 @@ include_once "includes/lib/auth.php";
 include_once "includes/lib/sentry.php";
 include_once "includes/lib/functions.php";
 
-exec("composer --version", $composerVerOut);
-$composerVer = explode(" ", $composerVerOut[0])[2];
-
 if (!$isWindows) {
     $osinfo = getOSInformation();
     exec("uname -srm", $kernel);
@@ -88,7 +85,6 @@ if ($isStaff) {
                     <p>Used memory: <strong><?php echo formatBytes(memory_get_usage()) ?></strong></p>
                     <p>PHP version: <strong><?php echo phpversion(); ?></strong></p>
                     <p>MySQL version: <strong><?php echo $mysqlVer ?></strong></p>
-                    <p>Composer version: <strong><?php echo $composerVer ?></strong></p>
                     <p>Running as: <strong><?php echo exec("whoami") ?></strong></p>
                 </aside>
                 <aside>
