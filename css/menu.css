@@ -284,6 +284,7 @@ h1:nth-child(1) {
 
 #adminbar {
   width: calc(100% - 20px);
+  padding: 6px 0;
   border: 1px solid black;
   border-top: none;
   display: flex;
