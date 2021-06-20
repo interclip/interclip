@@ -1,11 +1,3 @@
-html,
-body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  max-width: 100vw !important;
-}
-
 .wrapper {
   font-size: 36px;
   font-weight: bold;
@@ -15,9 +7,6 @@ p {
   color: #fff;
 }
 
-body {
-  background-color: #3cbcc3;
-}
 
 #code::placeholder {
   color:#ddd !important;
@@ -28,7 +17,7 @@ input[type="text"] {
   border-bottom: 1px solid #555;
   width: 200px;
   font-size: 36px;
-  background-color: #3cbcc3;
+  background-color: #157EFB;
   margin-bottom: 3rem;
 }
 
@@ -44,7 +33,6 @@ input[type="text"] {
 
 .full-screen {
   width: 100%;
-  background-color: #3cbcc3;
   transition: display 0.5s;
   position: absolute;
   display: block;

@@ -2,6 +2,14 @@
   font-family: 'Palanquin', sans-serif;
 }
 
+body {
+  background-color: #157EFB;
+  color: #fff;
+  margin: 0;
+  max-height: 100vh !important;
+  overflow-x: hidden;
+}
+
 ul {
   list-style-type: none;
   margin: 0;

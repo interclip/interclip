@@ -1,53 +1,29 @@
 /* Style */
 
-body {
-  background-color: #ff9800;
-  color: #fff;
-  margin: 0;
-  max-height: 100vh !important;
-  overflow-x: hidden;
-}
-
-#content {
-  position: absolute;
-  height: 50px;
-  width: 300px;
-  top: 50%;
-  left: 0;
-  transform: translate(calc(50vw + 150px));
-}
-
-#content.on {
-  -webkit-animation-name: in-out;
-  animation-name: in-out;
-  -webkit-animation-duration: 0.7s;
-  animation-duration: 0.7s;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
-  -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
-}
-
 input[url] {
   box-sizing: border-box;
   width: 50px;
   height: 50px;
   border: 4px solid #fff;
   border-radius: 50%;
-  background: none;
-  color: #fff;
-  font-size: 16px;
+  color: black;
+  background: white;
+  border-radius: 10px;
+  width: 40rem;
   font-weight: 400;
   outline: 0;
-  -webkit-transition: width 0.4s ease-in-out, border-radius 0.8s ease-in-out,
-    padding 0.2s;
-  transition: width 0.4s ease-in-out, border-radius 0.8s ease-in-out,
-    padding 0.2s;
-  -webkit-transition-delay: 0.4s;
-  transition-delay: 0.4s;
-  -webkit-transform: translate(-100%, -50%);
-  -ms-transform: translate(-100%, -50%);
-  transform: translate(-100%, -50%);
+}
+
+html, body {
+  height: 100vh;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 input::placeholder {
@@ -55,98 +31,16 @@ input::placeholder {
   opacity: 0.7;
 }
 
-.search {
-  background: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 50px;
-  width: 50px;
-  padding: 0;
-  border-radius: 100%;
-  outline: 0;
-  border: 0;
-  color: inherit;
-  cursor: pointer;
-  -webkit-transition: 0.2s ease-in-out;
-  transition: 0.2s ease-in-out;
-  -webkit-transform: translate(-100%, -50%);
-  -ms-transform: translate(-100%, -50%);
-  transform: translate(-100%, -50%);
-}
-
-.search:before {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 4px;
-  background-color: #fff;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  margin-top: 26px;
-  margin-left: 17px;
-  -webkit-transition: 0.2s ease-in-out;
-  transition: 0.2s ease-in-out;
-}
-
-.close {
-  -webkit-transition: 0.4s ease-in-out;
-  transition: 0.4s ease-in-out;
-  -webkit-transition-delay: 0.4s;
-  transition-delay: 0.4s;
-}
-
-.close:before {
-  content: "";
-  position: absolute;
-  width: 27px;
-  height: 4px;
-  margin-top: -1px;
-  margin-left: -13px;
-  background-color: #fff;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  -webkit-transition: 0.2s ease-in-out;
-  transition: 0.2s ease-in-out;
-}
-
-.close:after {
-  content: "";
-  position: absolute;
-  width: 27px;
-  height: 4px;
-  background-color: #fff;
-  margin-top: -1px;
-  margin-left: -13px;
-  cursor: pointer;
-  -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
 .square {
   box-sizing: border-box;
-  padding: 0 40px 0 10px;
+  padding: 0 10px 0 10px;
   width: 300px;
   height: 50px;
   border: 4px solid #ffffff;
   border-radius: 0;
-  background: none;
-  color: #fff;
   font-size: 16px;
   font-weight: 400;
   outline: 0;
-  -webkit-transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out,
-    padding 0.2s;
-  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out,
-    padding 0.2s;
-  -webkit-transition-delay: 0.2s, 0s, 0.2s;
-  transition-delay: 0.2s, 0s, 0.2s;
-  -webkit-transform: translate(-100%, -50%);
-  -ms-transform: translate(-100%, -50%);
-  transform: translate(-100%, -50%);
 }
 
 .demo-droppable {
