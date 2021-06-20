@@ -53,8 +53,8 @@ $err = $createArray[1];
         document.getElementById('qrcode').innerHTML = "";
         const qr = QRCode.generateSVG("https://interclip.app/<?php echo $usr ?>", {
             ecclevel: "M",
-            fillcolor: scheme === 'dark' ? "#444444" : "#ff9800",
-            textcolor: scheme === 'dark' ? "#e4e4e4" : "#000000",
+            fillcolor: scheme === 'dark' ? "#444444" : "#157EFB",
+            textcolor: scheme === 'dark' ? "#e4e4e4" : "#e4e4e4",
             margin: 0,
             modulesize: 4
         });
