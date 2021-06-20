@@ -28,7 +28,7 @@
                             <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>" />
                             <input type="text" name="user" minlength="5" maxlength="5" id="code" placeholder="h&amp;$h">
                             <br>
-                            <a class="btn" onClick="submit()" data-title="Make the magic happen"></a>
+                            <a class="btn" onClick="submit()">Retreive</a>
                             <div id="result"></div>
                             <div id="modalpage">
                             </div>
