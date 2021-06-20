@@ -28,12 +28,9 @@ input::placeholder {
   outline: 0;
 }
 
-html, body {
-  height: 100vh;
-}
-
 main {
   height: 100%;
+  margin-top: 30vh;
   width: 100%;
   display: flex;
   justify-content: center;
