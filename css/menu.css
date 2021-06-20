@@ -1,9 +1,9 @@
 * {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 body {
-  background-color: #157EFB;
+  background-color: #157efb;
   color: #fff;
   margin: 0;
   max-height: 100vh !important;
@@ -48,7 +48,7 @@ li a:hover:not(.active) {
 }
 
 .active {
-  background-color: #157EFB;
+  background-color: #157efb;
 }
 
 #menu li:hover {
@@ -79,7 +79,8 @@ li:hover .settingsIcon {
   cursor: pointer;
 }
 
-#settingsModal, #settingsModal p {
+#settingsModal,
+#settingsModal p {
   color: #000;
   text-align: left;
   padding-left: 0;
@@ -96,7 +97,7 @@ li:hover .settingsIcon {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 100px;  /* Location of the box */
+  padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -122,7 +123,7 @@ li:hover .settingsIcon {
   }
 
   .modal {
-      padding-top: 0;
+    padding-top: 0;
   }
 
   .lg {
@@ -154,7 +155,7 @@ li:hover .settingsIcon {
   outline: 0;
   box-shadow: none;
   border: 0 !important;
-  background:#DFDFDF;
+  background: #dfdfdf;
   color: black;
   background-image: none;
   font-size: medium;
@@ -191,7 +192,7 @@ li:hover .settingsIcon {
   top: 0;
   right: 0;
   padding: 0 1em;
-  background: #D3D3D3;
+  background: #d3d3d3;
   cursor: pointer;
   pointer-events: none;
   -webkit-transition: 0.25s all ease;
@@ -201,7 +202,7 @@ li:hover .settingsIcon {
 
 /* Transition */
 .select:hover::after {
-  color: #157EFB;
+  color: #157efb;
 }
 
 dark-mode-toggle {
@@ -256,11 +257,11 @@ dark-mode-toggle {
 }
 
 input:checked + .slider {
-  background-color: #157EFB;
+  background-color: #157efb;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #157EFB;
+  box-shadow: 0 0 1px #157efb;
 }
 
 input:checked + .slider:before {
@@ -320,11 +321,12 @@ h1:nth-child(1) {
   margin-left: auto;
 }
 
-.subitem  {
+.subitem {
   display: none;
 }
 
-.ending:hover .subitem, #adminbar:focus {
+.ending:hover .subitem,
+#adminbar:focus {
   display: inline-block;
 }
 
@@ -332,7 +334,7 @@ h1:nth-child(1) {
   position: absolute;
   top: -100px;
   left: 0;
-  background: #000000;
+  background: #000;
   color: white;
   padding: 8px;
   z-index: 100;

@@ -18,7 +18,7 @@ main {
 }
 
 #code::placeholder {
-  color:#ddd !important;
+  color: #ddd !important;
 }
 
 input[type="text"] {
@@ -28,7 +28,7 @@ input[type="text"] {
   font-size: 36px;
   margin-bottom: 3rem;
 
-  background: #157EFB;
+  background: #157efb;
 }
 
 input {
