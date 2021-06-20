@@ -59,7 +59,6 @@ li a:hover:not(.active) {
   width: 32px;
   height: 32px;
   transition-duration: 0.5s;
-  cursor: pointer;
   float: right;
   margin: 10px;
   color: white;
@@ -71,8 +70,13 @@ li a:hover:not(.active) {
   font-size: large;
 }
 
-.settingsIcon:hover {
+li:hover .settingsIcon {
   transform: rotate(90deg);
+}
+
+.triggerItem {
+  float: right;
+  cursor: pointer;
 }
 
 #settingsModal, #settingsModal p {
