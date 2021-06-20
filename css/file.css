@@ -1,13 +1,13 @@
 .demo-droppable {
-  background: #e58900;
-  color: #000;
+  background: #1065c7d3;
+  color: #fff;
   padding: 100px 0;
   text-align: center;
   cursor: pointer;
 }
 
 .demo-droppable.dragover {
-  background: #e58900;
+  background: #0d5db9;
 }
 
 .code {

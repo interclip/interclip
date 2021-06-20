@@ -23,11 +23,6 @@ body.loading .loading-modal {
   margin-top: 11%;
 }
 
-body {
-  background-color: #ff9800;
-  margin: 0;
-}
-
 .dropzone p {
   height: 100%;
   margin: 0;

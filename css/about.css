@@ -4,7 +4,7 @@ img {
 }
 
 a {
-  color: black;
+  color: white;
 }
 
 p {
@@ -20,8 +20,6 @@ p {
 }
 
 body {
-  background-color: #ff9800;
-  margin: 0;
   text-align: center;
 }
 
