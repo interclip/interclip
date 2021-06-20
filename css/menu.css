@@ -133,7 +133,7 @@ li:hover .settingsIcon {
 
 /* The Close Button */
 .closeBtn {
-  color: #aaaaaa;
+  color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -159,6 +159,10 @@ li:hover .settingsIcon {
   color: black;
   background-image: none;
   font-size: medium;
+
+  flex: 1;
+  padding: 0 0.5em;
+  cursor: pointer;
 }
 
 /* Remove IE arrow */
@@ -177,12 +181,6 @@ li:hover .settingsIcon {
   background: #fff;
   overflow: hidden;
   border-radius: 0.25em;
-}
-
-#slct {
-  flex: 1;
-  padding: 0 0.5em;
-  cursor: pointer;
 }
 
 /* Arrow */
@@ -209,7 +207,6 @@ dark-mode-toggle {
   display: none;
 }
 
-/* Switch */
 /* The switch - the box around the slider */
 .switch {
   position: relative;
@@ -244,7 +241,7 @@ dark-mode-toggle {
   transition: 0.4s;
 }
 
-.slider:before {
+.slider::before {
   position: absolute;
   content: "";
   height: 26px;
@@ -264,7 +261,7 @@ input:focus + .slider {
   box-shadow: 0 0 1px #157efb;
 }
 
-input:checked + .slider:before {
+input:checked + .slider::before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
@@ -275,7 +272,7 @@ input:checked + .slider:before {
   border-radius: 34px;
 }
 
-.slider.round:before {
+.slider.round::before {
   border-radius: 50%;
 }
 
