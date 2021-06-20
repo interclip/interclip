@@ -17,13 +17,14 @@
     <a class="skip-link" href="#maincontent">Skip to main</a>
 
     <?php
-    
+
     /**
      * Returns a boolean value indicating whether the user is using mobile (according to their user agent)
      *
      * @return bool
      */
-    function isMobile() {
+    function isMobile()
+    {
         if (!empty($_SERVER["HTTP_USER_AGENT"])) {
             return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
         } else {
@@ -37,17 +38,18 @@
     ?>
     <main id="maincontent">
         <form name="urlform" id="content" onsubmit="return validateForm()" action="/set" method="POST">
+            <h2>Paste your link here!</h2>
             <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>" />
-            <input type="url" name="input" class="input square" placeholder="Paste your link here" id="search-input" autofocus>
+            <input type="url" name="input" class="input square" placeholder="https://youtu.be/dQw4w9WgXcQ" id="search-input" autofocus>
         </form>
         <div id="modal" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
-                    <progress id="progressBar" value="0" max="100"></progress>
-                    <br>
-                    <span id="progressPercent">
-                        0%
-                    </span>
+                <progress id="progressBar" value="0" max="100"></progress>
+                <br>
+                <span id="progressPercent">
+                    0%
+                </span>
                 <div id="fact">
                     Inter-clippin' good!
                 </div>
