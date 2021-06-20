@@ -56,8 +56,8 @@ li a:hover:not(.active) {
 }
 
 .settingsIcon {
-  width: 32px;
-  height: 32px;
+  width: 27px;
+  height: 27px;
   transition-duration: 0.5s;
   float: right;
   margin: 10px;
