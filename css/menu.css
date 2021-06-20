@@ -159,7 +159,6 @@ li:hover .settingsIcon {
   color: black;
   background-image: none;
   font-size: medium;
-
   flex: 1;
   padding: 0 0.5em;
   cursor: pointer;
