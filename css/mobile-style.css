@@ -20,4 +20,8 @@
   .loading-table {
     margin: auto 50%;
   }
+
+  main h2 {
+    font-size: 2em;
+  }
 }

@@ -20,6 +20,7 @@ input::placeholder {
   box-sizing: border-box;
   padding: 0 10px;
   width: 45rem;
+  max-width: 90vw;
   height: 3.2rem;
   border: 4px solid #ffffff;
   font-size: 16px;
