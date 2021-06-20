@@ -22,7 +22,9 @@ img {
   color: #e4e4e4 !important;
 }
 
-.modal-content, .modal-content > p, #progressPercent {
+.modal-content,
+.modal-content > p,
+#progressPercent {
   background: #373737 !important;
   color: white !important;
 }
