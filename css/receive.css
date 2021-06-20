@@ -7,6 +7,15 @@ p {
   color: #fff;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  align-self: center;
+  margin-top: 20vh;
+}
 
 #code::placeholder {
   color:#ddd !important;
@@ -20,93 +29,6 @@ input[type="text"] {
   margin-bottom: 3rem;
 
   background: #157EFB;
-}
-
-.input-wrap {
-  margin-right: auto;
-  margin-left: auto;
-  text-align: center;
-}
-
-.form-container {
-  position: relative;
-}
-
-.full-screen {
-  width: 100%;
-  transition: display 0.5s;
-  position: absolute;
-  display: block;
-}
-
-button {
-  border: 1px solid #000;
-  border-radius: 30px;
-  text-align: center;
-  padding: 10px 20px;
-  margin-top: 50px;
-  width: 100px;
-  font-size: 16px;
-  position: absolute;
-}
-
-.color {
-  display: none;
-  width: 100px;
-  height: 100px;
-  margin: 10px;
-  border: 1px solid #000;
-}
-
-.color-container span {
-  margin-left: 10px;
-}
-
-.color-container input:checked + label .color {
-  display: block;
-}
-
-.color-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.color-choice input:checked ~ .color-container {
-  width: 500px;
-  height: 600px;
-}
-
-.color-choice input:checked ~ .color-container .color {
-  display: block;
-}
-
-.indicator {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 200px;
-  right: 50px;
-  font-size: 16px;
-}
-
-.color-wrap {
-  border: 2px solid #000;
-  width: 100px;
-  height: 100px;
-  padding: 5px;
-  background-color: gray;
-  color: #fff;
-}
-
-.priority {
-  border: 1px solid black;
-  height: 500px;
-  padding: 10px;
-}
-
-input[type="radio"] {
-  display: none;
 }
 
 input {

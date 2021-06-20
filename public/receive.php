@@ -22,7 +22,6 @@
         <div class="wrapper">
             <div class="form-container">
                 <form id="inputform" name="form" onsubmit="return validateForm()" action="/get" method="POST">
-                    <div class="full-screen">
                         <div class="input-wrap">
                             <p class="title">Receive link</p>
                             <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>" />
@@ -33,7 +32,6 @@
                             <div id="modalpage">
                             </div>
                         </div>
-                    </div>
                 </form>
                 <script type="text/javascript" src="<?php echo ROOT ?>/js/receive.js"></script>
             </div>
