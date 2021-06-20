@@ -46,7 +46,7 @@ $currBranch = $branches["current"];
       </span>
     <?php endif; ?>
     <span>
-      <a title="View tag on GitHub" href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $currBranch ?>">
+      <a title="View branch on GitHub" href="https://github.com/aperta-principium/Interclip/tree/<?php echo $currBranch ?>">
         <?php echo $currBranch ?>
       </a>
       @
