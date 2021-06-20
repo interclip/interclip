@@ -1,11 +1,26 @@
 .center {
-  width: 80vw;
+  width: 88vw;
   margin: auto;
-  text-align: center;
+  text-align: left;
+  padding-bottom: 5rem;
+}
+
+h1 {
+  margin-bottom: 3rem;
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.125em;
+  margin-bottom: 1rem;
 }
 
 @media only screen and (min-width: 800px) {
   .center {
-    width: 40vw;
+    width: 50vw;
   }
 }
