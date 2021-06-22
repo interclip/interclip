@@ -1,3 +1,5 @@
+@import "_colors.scss";
+
 body,
 html,
 .select,
@@ -5,8 +7,8 @@ html,
 #slct,
 .full-screen,
 #code {
-  background: #444 !important;
-  color: #e4e4e4 !important;
+  background: $darkBG !important;
+  color: $darkText !important;
 }
 
 a:not(#adminbar a):not(.btn) {
@@ -18,8 +20,8 @@ img {
 }
 
 .demo-droppable {
-  background: #444 !important;
-  color: #e4e4e4 !important;
+  background: $darkBG !important;
+  color: $darkText !important;
 }
 
 .modal-content,

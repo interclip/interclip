@@ -1,9 +1,11 @@
+@import "_colors.scss";
+
 * {
   font-family: "Lato", sans-serif;
 }
 
 body {
-  background-color: #157efb;
+  background-color: $primaryBlue;
   color: #fff;
   margin: 0;
   max-height: 100vh !important;
@@ -48,7 +50,7 @@ ul#menu {
 }
 
 .active {
-  background-color: #157efb;
+  background-color: $primaryBlue;
 }
 
 #menu li:hover {
@@ -194,7 +196,7 @@ li:hover .settingsIcon {
 
 /* Transition */
 .select:hover::after {
-  color: #157efb;
+  color: $primaryBlue;
 }
 
 dark-mode-toggle {

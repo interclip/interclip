@@ -1,3 +1,5 @@
+@import "_colors.scss";
+
 .wrapper {
   font-size: 36px;
   font-weight: bold;
@@ -27,7 +29,7 @@ input[type="text"] {
   width: 200px;
   font-size: 36px;
   margin-bottom: 3rem;
-  background: #157efb;
+  background: $primaryBlue;
 }
 
 input {
