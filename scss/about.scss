@@ -29,9 +29,11 @@ main {
 .madeBy {
   text-transform: uppercase;
   font-size: 1.2rem;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   position: absolute;
   width: 100%;
   bottom: 5;

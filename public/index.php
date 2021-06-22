@@ -8,7 +8,6 @@
     <title>Interclip - easy peasy clipboard sharing</title>
 
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/index.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/copy.css">
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/mobile-style.css">
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/progressbar.css">
 </head>

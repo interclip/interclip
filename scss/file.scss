@@ -1,0 +1,33 @@
+@import "_progressbar.scss";
+@import "_copy.scss";
+
+.demo-droppable {
+  background: #1065c7d3;
+  color: #fff;
+  padding: 100px 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.demo-droppable.dragover {
+  background: #0d5db9;
+}
+
+.code {
+  font-size: 3rem;
+}
+
+.modal {
+  max-height: 100vh;
+  display: none;
+}
+
+#copy {
+  display: none;
+}
+
+.output {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
