@@ -3070,16 +3070,16 @@
         },
         {
             "name": "pestphp/pest",
-            "version": "v1.6.0",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest.git",
-                "reference": "9b34650e7297c2c506bc88d7528e4e4aba132a77"
+                "reference": "1680613e1250070ab6ccfcbec429d04f1830f5bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest/zipball/9b34650e7297c2c506bc88d7528e4e4aba132a77",
-                "reference": "9b34650e7297c2c506bc88d7528e4e4aba132a77",
+                "url": "https://api.github.com/repos/pestphp/pest/zipball/1680613e1250070ab6ccfcbec429d04f1830f5bc",
+                "reference": "1680613e1250070ab6ccfcbec429d04f1830f5bc",
                 "shasum": ""
             },
             "require": {
@@ -3145,12 +3145,12 @@
             ],
             "support": {
                 "issues": "https://github.com/pestphp/pest/issues",
-                "source": "https://github.com/pestphp/pest/tree/v1.6.0"
+                "source": "https://github.com/pestphp/pest/tree/v1.7.0"
             },
             "funding": [
                 {
-                    "url": "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66BYDWAT92N6L",
-                    "type": "custom"
+                    "url": "https://github.com/lukeraymonddowning",
+                    "type": "github"
                 },
                 {
                     "url": "https://github.com/nunomaduro",
@@ -3173,7 +3173,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-06-18T11:36:43+00:00"
+            "time": "2021-06-19T13:42:29+00:00"
         },
         {
             "name": "pestphp/pest-plugin",
@@ -4857,6 +4857,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": true,
             "time": "2020-09-28T06:45:17+00:00"
         },
         {
