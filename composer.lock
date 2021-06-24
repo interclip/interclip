@@ -2982,16 +2982,16 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v5.4.0",
+            "version": "v5.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "41b7e9999133d5082700d31a1d0977161df8322a"
+                "reference": "b5cb36122f1c142c3c3ee20a0ae778439ef0244b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/41b7e9999133d5082700d31a1d0977161df8322a",
-                "reference": "41b7e9999133d5082700d31a1d0977161df8322a",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/b5cb36122f1c142c3c3ee20a0ae778439ef0244b",
+                "reference": "b5cb36122f1c142c3c3ee20a0ae778439ef0244b",
                 "shasum": ""
             },
             "require": {
@@ -3066,27 +3066,27 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-04-09T13:38:32+00:00"
+            "time": "2021-06-22T20:47:22+00:00"
         },
         {
             "name": "pestphp/pest",
-            "version": "v1.6.0",
+            "version": "v1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest.git",
-                "reference": "9b34650e7297c2c506bc88d7528e4e4aba132a77"
+                "reference": "e68c7b0e76918bd9983dd5c6582ac989a321db5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest/zipball/9b34650e7297c2c506bc88d7528e4e4aba132a77",
-                "reference": "9b34650e7297c2c506bc88d7528e4e4aba132a77",
+                "url": "https://api.github.com/repos/pestphp/pest/zipball/e68c7b0e76918bd9983dd5c6582ac989a321db5a",
+                "reference": "e68c7b0e76918bd9983dd5c6582ac989a321db5a",
                 "shasum": ""
             },
             "require": {
                 "nunomaduro/collision": "^5.4.0",
                 "pestphp/pest-plugin": "^1.0.0",
                 "php": "^7.3 || ^8.0",
-                "phpunit/phpunit": ">= 9.3.7 <= 9.5.5"
+                "phpunit/phpunit": ">= 9.3.7 <= 9.5.6"
             },
             "require-dev": {
                 "illuminate/console": "^8.47.0",
@@ -3145,12 +3145,12 @@
             ],
             "support": {
                 "issues": "https://github.com/pestphp/pest/issues",
-                "source": "https://github.com/pestphp/pest/tree/v1.6.0"
+                "source": "https://github.com/pestphp/pest/tree/v1.8.0"
             },
             "funding": [
                 {
-                    "url": "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66BYDWAT92N6L",
-                    "type": "custom"
+                    "url": "https://github.com/lukeraymonddowning",
+                    "type": "github"
                 },
                 {
                     "url": "https://github.com/nunomaduro",
@@ -3173,7 +3173,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-06-18T11:36:43+00:00"
+            "time": "2021-06-23T09:31:27+00:00"
         },
         {
             "name": "pestphp/pest-plugin",
@@ -3903,16 +3903,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.5",
+            "version": "9.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "89ff45ea9d70e35522fb6654a2ebc221158de276"
+                "reference": "fb9b8333f14e3dce976a60ef6a7e05c7c7ed8bfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/89ff45ea9d70e35522fb6654a2ebc221158de276",
-                "reference": "89ff45ea9d70e35522fb6654a2ebc221158de276",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fb9b8333f14e3dce976a60ef6a7e05c7c7ed8bfb",
+                "reference": "fb9b8333f14e3dce976a60ef6a7e05c7c7ed8bfb",
                 "shasum": ""
             },
             "require": {
@@ -3942,7 +3942,7 @@
                 "sebastian/global-state": "^5.0.1",
                 "sebastian/object-enumerator": "^4.0.3",
                 "sebastian/resource-operations": "^3.0.3",
-                "sebastian/type": "^2.3.2",
+                "sebastian/type": "^2.3.4",
                 "sebastian/version": "^3.0.2"
             },
             "require-dev": {
@@ -3990,7 +3990,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.5"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.6"
             },
             "funding": [
                 {
@@ -4002,7 +4002,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-06-05T04:49:07+00:00"
+            "time": "2021-06-23T05:14:38+00:00"
         },
         {
             "name": "sebastian/cli-parser",
