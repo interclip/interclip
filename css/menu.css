@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   font-family: "Lato", sans-serif;
 }
@@ -58,7 +59,8 @@ ul#menu {
 .settingsIcon {
   width: 27px;
   height: 27px;
-  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
   float: right;
   margin: 10px;
   color: white;
@@ -71,7 +73,8 @@ ul#menu {
 }
 
 li:hover .settingsIcon {
-  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
 }
 
 #menu .triggerItem {
@@ -130,14 +133,15 @@ li:hover .settingsIcon {
   .modal-content {
     width: 90%;
   }
+
   .modal {
     padding-top: 0;
   }
+
   .lg {
     display: none;
   }
 }
-
 /* The Close Button */
 .closeBtn {
   color: #aaa;
@@ -155,15 +159,20 @@ li:hover .settingsIcon {
 
 /* Reset Select */
 #slct {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   outline: 0;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   border: 0 !important;
   background: #dfdfdf;
   color: black;
   background-image: none;
   font-size: medium;
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   padding: 0 0.5em;
   cursor: pointer;
 }
@@ -176,6 +185,8 @@ li:hover .settingsIcon {
 /* Custom Select */
 .select {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 20em;
   max-width: 100%;
@@ -188,7 +199,7 @@ li:hover .settingsIcon {
 
 /* Arrow */
 .select::after {
-  content: "\25BC";
+  content: "▼";
   position: absolute;
   top: 0;
   right: 0;
@@ -196,6 +207,7 @@ li:hover .settingsIcon {
   background: #d3d3d3;
   cursor: pointer;
   pointer-events: none;
+  -webkit-transition: 0.25s all ease;
   transition: 0.25s all ease;
 }
 
@@ -218,8 +230,12 @@ dark-mode-toggle {
 }
 
 .flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 /* Hide default HTML checkbox */
@@ -238,6 +254,7 @@ dark-mode-toggle {
   right: 0;
   bottom: 0;
   background-color: #ccc;
+  -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
@@ -249,6 +266,7 @@ dark-mode-toggle {
   left: 4px;
   bottom: 4px;
   background-color: white;
+  -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
@@ -257,11 +275,13 @@ input:checked + .slider {
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #157efb;
+  -webkit-box-shadow: 0 0 1px #157efb;
+          box-shadow: 0 0 1px #157efb;
 }
 
 input:checked + .slider::before {
-  transform: translateX(26px);
+  -webkit-transform: translateX(26px);
+          transform: translateX(26px);
 }
 
 /* Rounded sliders */
@@ -286,9 +306,16 @@ h1:nth-child(1) {
   padding: 6px 0;
   border: 1px solid black;
   border-top: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: start;
-  flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   padding-left: 9px;
   padding-right: 9px;
   color: white;

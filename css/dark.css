@@ -14,7 +14,8 @@ a:not(#adminbar a):not(.btn) {
 }
 
 img {
-  filter: grayscale(20%) !important;
+  -webkit-filter: grayscale(20%) !important;
+          filter: grayscale(20%) !important;
 }
 
 .demo-droppable {

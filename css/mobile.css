@@ -1,5 +1,6 @@
 input {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   width: 75vw;
   height: 50px;
   margin-left: 35vw;

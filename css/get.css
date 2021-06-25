@@ -44,13 +44,11 @@ h1 a {
     height: 65vh;
   }
 }
-
 @media only screen and (max-width: 700px) {
   iframe#ytplayerSide {
     display: none;
   }
 }
-
 @media only screen and (max-width: 1000px) {
   #fullscreen .fullscreen-content .title {
     display: block;
@@ -63,7 +61,6 @@ h1 a {
     overflow: hidden;
   }
 }
-
 @media only screen and (min-width: 1000px) {
   #fullscreen .fullscreen-content .title {
     display: block;
@@ -75,7 +72,6 @@ h1 a {
     color: #fff;
   }
 }
-
 img {
   width: 80%;
   height: auto;

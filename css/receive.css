@@ -8,20 +8,42 @@ p {
 }
 
 body {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 main {
-  align-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
   margin-top: 20vh;
+}
+
+#code::-webkit-input-placeholder {
+  color: #ddd !important;
+}
+
+#code::-moz-placeholder {
+  color: #ddd !important;
+}
+
+#code:-ms-input-placeholder {
+  color: #ddd !important;
+}
+
+#code::-ms-input-placeholder {
+  color: #ddd !important;
 }
 
 #code::placeholder {
   color: #ddd !important;
 }
 
-input[type="text"] {
+input[type=text] {
   border: none;
   border-bottom: 1px solid #555;
   width: 200px;
