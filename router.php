@@ -61,11 +61,11 @@ SimpleRouter::get('/privacy/', function () {
 });
 
 /* API */
-SimpleRouter::match(['get', 'post'], '/includes/api', function () {
+SimpleRouter::match(['get', 'post'], '/api/set', function () {
     include_once "public/api/set.php";
 });
 
-SimpleRouter::match(['get', 'post'], '/includes/get-api', function () {
+SimpleRouter::match(['get', 'post'], '/api/get', function () {
     include_once "public/api/get.php";
 });
 
