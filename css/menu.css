@@ -29,7 +29,9 @@ ul#menu {
   border-color: #38c172 !important;
   padding-left: 0.4em;
   padding-right: 0.4em;
-  border-radius: 50rem !important;
+  -webkit-border-radius: 50rem !important;
+     -moz-border-radius: 50rem !important;
+          border-radius: 50rem !important;
   color: white;
   font-size: 11px;
   margin-left: 7px;
@@ -60,6 +62,8 @@ ul#menu {
   width: 27px;
   height: 27px;
   -webkit-transition-duration: 0.5s;
+     -moz-transition-duration: 0.5s;
+       -o-transition-duration: 0.5s;
           transition-duration: 0.5s;
   float: right;
   margin: 10px;
@@ -74,6 +78,9 @@ ul#menu {
 
 li:hover .settingsIcon {
   -webkit-transform: rotate(90deg);
+     -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+       -o-transform: rotate(90deg);
           transform: rotate(90deg);
 }
 
@@ -164,6 +171,7 @@ li:hover .settingsIcon {
           appearance: none;
   outline: 0;
   -webkit-box-shadow: none;
+     -moz-box-shadow: none;
           box-shadow: none;
   border: 0 !important;
   background: #dfdfdf;
@@ -171,6 +179,8 @@ li:hover .settingsIcon {
   background-image: none;
   font-size: medium;
   -webkit-box-flex: 1;
+  -webkit-flex: 1;
+     -moz-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
   padding: 0 0.5em;
@@ -186,6 +196,8 @@ li:hover .settingsIcon {
 .select {
   position: relative;
   display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
   display: -ms-flexbox;
   display: flex;
   width: 20em;
@@ -194,7 +206,9 @@ li:hover .settingsIcon {
   line-height: 3;
   background: #fff;
   overflow: hidden;
-  border-radius: 0.25em;
+  -webkit-border-radius: 0.25em;
+     -moz-border-radius: 0.25em;
+          border-radius: 0.25em;
 }
 
 /* Arrow */
@@ -208,6 +222,8 @@ li:hover .settingsIcon {
   cursor: pointer;
   pointer-events: none;
   -webkit-transition: 0.25s all ease;
+  -o-transition: 0.25s all ease;
+  -moz-transition: 0.25s all ease;
   transition: 0.25s all ease;
 }
 
@@ -231,9 +247,13 @@ dark-mode-toggle {
 
 .flex {
   display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
@@ -255,6 +275,8 @@ dark-mode-toggle {
   bottom: 0;
   background-color: #ccc;
   -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  -moz-transition: 0.4s;
   transition: 0.4s;
 }
 
@@ -267,6 +289,8 @@ dark-mode-toggle {
   bottom: 4px;
   background-color: white;
   -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  -moz-transition: 0.4s;
   transition: 0.4s;
 }
 
@@ -276,21 +300,29 @@ input:checked + .slider {
 
 input:focus + .slider {
   -webkit-box-shadow: 0 0 1px #157efb;
+     -moz-box-shadow: 0 0 1px #157efb;
           box-shadow: 0 0 1px #157efb;
 }
 
 input:checked + .slider::before {
   -webkit-transform: translateX(26px);
+     -moz-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+       -o-transform: translateX(26px);
           transform: translateX(26px);
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  -webkit-border-radius: 34px;
+     -moz-border-radius: 34px;
+          border-radius: 34px;
 }
 
 .slider.round::before {
-  border-radius: 50%;
+  -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+          border-radius: 50%;
 }
 
 .toggleLabel {
@@ -302,18 +334,27 @@ h1:nth-child(1) {
 }
 
 #adminbar {
+  width: -webkit-calc(100% - 20px);
+  width: -moz-calc(100% - 20px);
   width: calc(100% - 20px);
   padding: 6px 0;
   border: 1px solid black;
   border-top: none;
   display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: start;
+  -webkit-justify-content: start;
+     -moz-box-pack: start;
       -ms-flex-pack: start;
           justify-content: start;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+     -moz-box-orient: horizontal;
+     -moz-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
   padding-left: 9px;

@@ -30,12 +30,18 @@ main {
   text-transform: uppercase;
   font-size: 1.2rem;
   display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
+  -webkit-justify-content: center;
+     -moz-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   position: absolute;
@@ -50,7 +56,9 @@ main {
 }
 
 .madeBy > a > img {
-  border-radius: 250px;
+  -webkit-border-radius: 250px;
+     -moz-border-radius: 250px;
+          border-radius: 250px;
   width: 2rem;
   margin-top: 8px;
 }

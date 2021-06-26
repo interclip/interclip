@@ -59,12 +59,18 @@ if ($isStaff) {
 </head>
 
 <body>
+    <?php if ($isStaff) : ?>
+        <?php
+        include_once "includes/header.php";
+        include_once "includes/menu.php";
+        ?>
+    <?php endif; ?>
     <main>
         <?php if ($isStaff) : ?>
             <section id="intro">
                 <header>
                     <h1>Hi, <?php echo $user["name"] ? $user['name'] : $user["nickname"] ?></h1>
-                    <p>Welcome to the Interclip admin dashboard!<sup>ALPHA</sup></p>
+                    <p>Welcome to the Interclip admin dashboard!<sup>BETA</sup></p>
                 </header>
                 <aside>
                     <img alt="A lady sitting on a table" src="<?php echo ROOT ?>/img/graphics/fbdwm0.svg" height="150" />
@@ -121,6 +127,7 @@ if ($isStaff) {
         <?php endif; ?>
     </main>
 </body>
-    <script src="<?php echo ROOT; ?>/js/formatter.js"></script>
-    <script src="<?php echo ROOT; ?>/js/admin.js"></script>
+<script src="<?php echo ROOT; ?>/js/formatter.js"></script>
+<script src="<?php echo ROOT; ?>/js/admin.js"></script>
+
 </html>

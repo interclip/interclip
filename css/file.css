@@ -9,7 +9,8 @@ progress {
 
 progress[value]::-webkit-progress-bar {
   background-color: #eee;
-  border-radius: 2px;
+  -webkit-border-radius: 2px;
+          border-radius: 2px;
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
 }
@@ -17,7 +18,8 @@ progress[value]::-webkit-progress-bar {
 progress[value]::-webkit-progress-value,
 progress[value]::-moz-progress-bar {
   background: #3cbcc3;
-  border-radius: 2px;
+  -webkit-border-radius: 2px;
+          border-radius: 2px;
   background-size: 35px 20px, 100% 100%, 100% 100%;
 }
 
@@ -36,15 +38,20 @@ progress[value]::-moz-progress-bar {
   border: none;
   background: #2463ac;
   cursor: pointer;
-  border-radius: 3px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
   padding: 6px;
   width: 200px;
   color: white;
   margin-left: 25px;
   -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+     -moz-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
   margin-top: 35px;
   -webkit-transition-duration: 500ms;
+     -moz-transition-duration: 500ms;
+       -o-transition-duration: 500ms;
           transition-duration: 500ms;
 }
 
@@ -75,13 +82,20 @@ progress[value]::-moz-progress-bar {
 
 .output {
   display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+     -moz-box-orient: vertical;
+     -moz-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
   -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }

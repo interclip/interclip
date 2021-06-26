@@ -50,7 +50,9 @@ body.loading .loading-modal {
 }
 
 .status {
-  border-radius: 5px;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
   text-align: center;
   width: 50%;
   margin-left: auto;

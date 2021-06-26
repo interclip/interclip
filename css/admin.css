@@ -1,3 +1,16 @@
+a {
+  font-weight: unset;
+}
+
+body {
+  padding: 0;
+  line-height: unset;
+}
+
+ul#menu li {
+  padding: 0;
+}
+
 /* Style dark mode */
 @media (prefers-color-scheme: dark) {
   body {
@@ -7,6 +20,7 @@
 
   section aside {
     -webkit-box-shadow: none;
+       -moz-box-shadow: none;
             box-shadow: none;
   }
 }

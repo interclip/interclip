@@ -2,7 +2,9 @@
   width: 100%;
   height: 100%;
   display: table;
-  background-size: cover;
+  -moz-background-size: cover;
+    -o-background-size: cover;
+       background-size: cover;
 }
 
 #fullscreen .fullscreen-content {
@@ -18,7 +20,9 @@
   padding-bottom: 20px;
   padding-top: 2px;
   margin: 0 auto;
-  border-radius: 20px;
+  -webkit-border-radius: 20px;
+     -moz-border-radius: 20px;
+          border-radius: 20px;
   color: #fff;
 }
 
@@ -39,12 +43,20 @@ h1 a {
 
 h1.errheader {
   -webkit-animation-name: tada;
+     -moz-animation-name: tada;
+       -o-animation-name: tada;
           animation-name: tada;
   -webkit-animation-duration: 4000ms;
+     -moz-animation-duration: 4000ms;
+       -o-animation-duration: 4000ms;
           animation-duration: 4000ms;
   -webkit-animation-iteration-count: infinite;
+     -moz-animation-iteration-count: infinite;
+       -o-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
+     -moz-animation-timing-function: linear;
+       -o-animation-timing-function: linear;
           animation-timing-function: linear;
 }
 
@@ -71,25 +83,71 @@ h1.errheader {
   }
 }
 
+@-moz-keyframes tada {
+  from {
+    -moz-transform: scale3d(1, 1, 1);
+         transform: scale3d(1, 1, 1);
+  }
+  10%, 20% {
+    -moz-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+         transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+  30%, 50%, 70%, 90% {
+    -moz-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+         transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+  40%, 60%, 80% {
+    -moz-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+         transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+  to {
+    -moz-transform: scale3d(1, 1, 1);
+         transform: scale3d(1, 1, 1);
+  }
+}
+
+@-o-keyframes tada {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  10%, 20% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+  30%, 50%, 70%, 90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+  40%, 60%, 80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
 @keyframes tada {
   from {
     -webkit-transform: scale3d(1, 1, 1);
+       -moz-transform: scale3d(1, 1, 1);
             transform: scale3d(1, 1, 1);
   }
   10%, 20% {
     -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+       -moz-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
             transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
   }
   30%, 50%, 70%, 90% {
     -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+       -moz-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
             transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
   }
   40%, 60%, 80% {
     -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+       -moz-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
             transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
   }
   to {
     -webkit-transform: scale3d(1, 1, 1);
+       -moz-transform: scale3d(1, 1, 1);
             transform: scale3d(1, 1, 1);
   }
 }
@@ -111,7 +169,8 @@ h1.errheader {
 }
 span.url {
   display: block;
-  text-overflow: ellipsis !important;
+  -o-text-overflow: ellipsis !important;
+     text-overflow: ellipsis !important;
   overflow: hidden !important;
 }
 
