@@ -44,8 +44,7 @@ jobs:
       env:
         NPM_CONFIG_PREFIX: "~/.npm-global"
       run: |
-        npm i -g sass
-        sass ./scss:./css -s compressed
+        npx --force sass ./scss:./css -s compressed
 
     - name: 🧪 Run tests
       run: ./vendor/bin/pest
