@@ -8,7 +8,7 @@ ports:
   onOpen: ignore
 
 tasks:
-- name: Terminal
+- name: App
   before: >
     curl https://rclone.org/install.sh | sudo bash; 
     sudo apt update; 
@@ -32,6 +32,10 @@ tasks:
     gp await-port 3306 &&
     apachectl start &&
     multitail /var/log/apache2/access.log -I /var/log/apache2/error.log
+- name: Sass compiler
+  command: >
+    npm i -g sass
+    sass scss/:css/ -w -s compressed
 
 github:
   prebuilds:
