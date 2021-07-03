@@ -40,5 +40,8 @@ jobs:
     - name: 🎹 Install Composer Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
+    - name: 🤩 Compile styles
+      run: npm i -g sass && sass ./scss:./css -s compressed
+
     - name: 🧪 Run tests
       run: ./vendor/bin/pest
