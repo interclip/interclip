@@ -553,16 +553,16 @@
         },
         {
             "name": "io-developer/php-whois",
-            "version": "4.0.0",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/io-developer/php-whois.git",
-                "reference": "21a17d83fef83768c06fd7e1884f6898b0047b5d"
+                "reference": "356a70223bbb232b20e6bff04e47c67b839286f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/io-developer/php-whois/zipball/21a17d83fef83768c06fd7e1884f6898b0047b5d",
-                "reference": "21a17d83fef83768c06fd7e1884f6898b0047b5d",
+                "url": "https://api.github.com/repos/io-developer/php-whois/zipball/356a70223bbb232b20e6bff04e47c67b839286f3",
+                "reference": "356a70223bbb232b20e6bff04e47c67b839286f3",
                 "shasum": ""
             },
             "require": {
@@ -609,9 +609,9 @@
             ],
             "support": {
                 "issues": "https://github.com/io-developer/php-whois/issues",
-                "source": "https://github.com/io-developer/php-whois/tree/4.0.0"
+                "source": "https://github.com/io-developer/php-whois/tree/4.1.0"
             },
-            "time": "2020-03-22T21:36:05+00:00"
+            "time": "2021-06-29T13:46:35+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",
