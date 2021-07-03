@@ -11,6 +11,10 @@ Hi, thanks for considering contributing to Interclip! Here's a guide on how to g
 - MySQL database server
 - Composer v2 or newer
 - Git
+- Sass ([installation guide](https://sass-lang.com/install))
+
+## Compiling stylesheets
+1. Compile the stylesheets from the `scss/` folder to the `css/` folder: `sass ./scss:./css -s compressed`
 
 ## Installing dependencies
 1. `composer install`
