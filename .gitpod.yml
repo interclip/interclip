@@ -40,7 +40,7 @@ tasks:
     sass scss/:css/ -w -s compressed
 - name: Redis
   init: >
-    cd /workspace/
+    cd /workspace/ &&
     sudo apt-get install php-redis -y;
     wget http://download.redis.io/redis-stable.tar.gz;
     tar xvzf redis-stable.tar.gz;
