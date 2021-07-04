@@ -11,8 +11,10 @@ tasks:
     before: >
       curl https://rclone.org/install.sh | sudo bash; 
 
-      sudo apt update; 
-      sudo apt upgrade -y;    
+      sudo apt update;
+      sudo apt upgrade -y;
+      sudo apt install redis-server -y;
+      sudo apt install php-redis -y;
 
       sudo apt remove composer -y;
       php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');";
@@ -38,12 +40,9 @@ tasks:
       npm i -g sass;
       sass scss/:css/ -w -s compressed
   - name: Redis
-    init: >
-      cd /workspace/ &&
-      sudo apt install redis-server
-      sudo apt-get install php-redis -y;
-
-      sudo echo extension=redis.so >> /etc/php/7.4/apache2/php.ini
+    command: >
+      gp await 6379;
+      sudo echo extension=redis.so >> /etc/php/7.4/apache2/php.ini;
 
       redis-server;
 
