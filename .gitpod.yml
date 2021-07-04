@@ -41,7 +41,7 @@ tasks:
       sass scss/:css/ -w -s compressed
   - name: Redis
     command: >
-      gp await 6379;
+      gp await-port 6379;
       sudo echo extension=redis.so >> /etc/php/7.4/apache2/php.ini;
 
       redis-server;
