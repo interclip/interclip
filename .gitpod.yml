@@ -49,7 +49,9 @@ tasks:
 
     sudo cp src/redis-server /usr/local/bin/;
     sudo cp src/redis-cli /usr/local/bin/;
+
     sudo apt-get install php-redis;
+    sudo echo extension=redis.so >> /etc/php/7.4/apache2/php.ini
 
     redis-server;
 
