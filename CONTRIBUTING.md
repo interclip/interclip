@@ -11,6 +11,7 @@ Hi, thanks for considering contributing to Interclip! Here's a guide on how to g
 - MySQL database server
 - Composer v2 or newer
 - Git
+- (optional) Redis ([installation guide](https://redis.io/download))
 
 ## Installing dependencies
 1. `composer install`
