@@ -22,7 +22,6 @@ tasks:
       sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer;
       php -r "unlink('composer-setup.php');"
 
-      sudo echo extension=redis.so >> /etc/php/7.4/apache2/php.ini;
     init: composer install
     command: >
       bash scripts/secrets.sh;
@@ -30,6 +29,9 @@ tasks:
       gp await-port 3306 &&
       mysql -e "CREATE DATABASE iclip;";
       mysql < scripts/db.sql;
+
+      sudo echo extension=redis.so >> /etc/php/7.4/apache2/php.ini;
+      redis-server;
   - name: Apache
     openMode: split-right
     command: >
@@ -41,9 +43,6 @@ tasks:
     command: >
       npm i -g sass;
       sass scss/:css/ -w -s compressed
-  - name: Redis server
-    command: >
-      redis-server;
 
 github:
   prebuilds:
