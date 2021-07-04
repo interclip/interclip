@@ -36,7 +36,7 @@ tasks:
     multitail /var/log/apache2/access.log -I /var/log/apache2/error.log
 - name: Sass compiler
   command: >
-    npm i -g sass
+    npm i -g sass;
     sass scss/:css/ -w -s compressed
 - name: Redis
   init: >
@@ -47,10 +47,10 @@ tasks:
     cd redis-stable;
     make;
 
-    sudo cp src/redis-server /usr/local/bin/
-    sudo cp src/redis-cli /usr/local/bin/
+    sudo cp src/redis-server /usr/local/bin/;
+    sudo cp src/redis-cli /usr/local/bin/;
 
-    redis-server
+    redis-server;
 
 github:
   prebuilds:
