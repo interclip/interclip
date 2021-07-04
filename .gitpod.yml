@@ -31,6 +31,8 @@ tasks:
       mysql < scripts/db.sql;
 
       sudo echo extension=redis.so >> /etc/php/7.4/apache2/php.ini;
+      gp await-port 8080;
+      apachectl restart;
       redis-server;
   - name: Apache
     openMode: split-right
