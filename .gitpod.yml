@@ -23,7 +23,6 @@ tasks:
       php -r "unlink('composer-setup.php');"
 
       sudo echo extension=redis.so >> /etc/php/7.4/apache2/php.ini;
-      redis-server;
     init: composer install
     command: >
       bash scripts/secrets.sh;
@@ -42,6 +41,9 @@ tasks:
     command: >
       npm i -g sass;
       sass scss/:css/ -w -s compressed
+  - name: Redis server
+    command: >
+      redis-server;
 
 github:
   prebuilds:
