@@ -5,7 +5,7 @@ function storeRedis($key, $value)
     $redis = new Redis();
 
     try {
-        //Connecting to Redis
+        // Connecting to Redis
         $redis->connect('localhost', 6379);
     } catch (Exception $e) {
         return false; // Failed connecting to the server
@@ -17,7 +17,7 @@ function storeRedis($key, $value)
         if ($redisCached) {
             return $redisCached;
         } else {
-            $redis->setEx($key, 604800, $value); // Expire the key in one week
+            $redis->setEx($key, 60 * 60 * 24 * 7, $value); // Expire the key in one week
             return false;
         }
     }
@@ -26,9 +26,9 @@ function storeRedis($key, $value)
 function getRedis($key)
 {
     $redis = new Redis();
-    
+
     try {
-        //Connecting to Redis
+        // Connecting to Redis
         $redis->connect('localhost', 6379);
     } catch (Exception $e) {
         return false; // Failed connecting to the server
