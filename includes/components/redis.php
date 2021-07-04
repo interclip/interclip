@@ -1,46 +1,44 @@
 <?php
 
+$GLOBALS["redis"] = new Redis();
+
+try {
+    // Connecting to Redis
+    $GLOBALS["redis"]->connect('localhost', 6379);
+    $GLOBALS["redisAvailable"] = true;
+} catch (Exception $e) {
+    $GLOBALS["redisAvailable"] = false; // Failed connecting to the server
+}
+
 function storeRedis($key, $value)
 {
-    $redis = new Redis();
 
-    try {
-        // Connecting to Redis
-        $redis->connect('localhost', 6379);
-    } catch (Exception $e) {
-        return false; // Failed connecting to the server
-    }
-
-    if ($redis->ping()) {
-        $redisCached = $redis->get($key);
+    if ($GLOBALS["redisAvailable"] && $GLOBALS["redis"]->ping()) {
+        $redisCached = $GLOBALS["redis"]->get($key);
 
         if ($redisCached) {
             return $redisCached;
         } else {
-            $redis->setEx($key, 60 * 60 * 24 * 7, $value); // Expire the key in one week
+            $GLOBALS["redis"]->setEx($key, 60 * 60 * 24 * 7, $value); // Expire the key in one week
             return false;
         }
+    } else {
+        return false;
     }
 }
 
 function getRedis($key)
 {
-    $redis = new Redis();
 
-    try {
-        // Connecting to Redis
-        $redis->connect('localhost', 6379);
-    } catch (Exception $e) {
-        return false; // Failed connecting to the server
-    }
-
-    if ($redis->ping()) {
-        $redisCached = $redis->get($key);
+    if ($GLOBALS["redisAvailable"] && $GLOBALS["redis"]->ping()) {
+        $redisCached = $GLOBALS["redis"]->get($key);
 
         if ($redisCached) {
             return $redisCached;
         } else {
             return false;
         }
+    } else {
+        return false;
     }
 }
