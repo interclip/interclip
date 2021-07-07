@@ -14,7 +14,10 @@
     <div class="nav">
         <?php
         include "includes/menu.php";
+        include_once "includes/components/rate.php";
 
+        noteLimit();
+        
         exec('git rev-parse --verify HEAD', $output);
         $hash = $output[0];
         $hashShort = substr($hash, 0, 7);

@@ -1,6 +1,6 @@
 <?php
 
-include_once "./redis.php";
+include_once "redis.php";
 
 function noteLimit()
 {
