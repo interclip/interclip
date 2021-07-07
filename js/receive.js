@@ -17,19 +17,4 @@ if (!localStorage.getItem("hideHashAnimation")) {
   placeHolder();
 }
 
-function submit() {
-  document.forms.form.submit();
-}
-
-function validateForm() {
-  const x = document.forms.form.code.value;
-  if (x === "") {
-    printOutText("Code must be filled out");
-    return false;
-  } else if (x.length !== 5) {
-    printOutText("Code must be exactly the length of five");
-    return false;
-  } else {
-    return true;
-  }
-}
+document.querySelector("#code").title = "Input must be a valid clip code 😢";
