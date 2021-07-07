@@ -6,7 +6,6 @@
     ?>
     <title>Receive link | Interclip</title>
 
-    <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/button.css">
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/receive.css">
 </head>
 

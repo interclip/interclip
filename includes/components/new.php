@@ -2,6 +2,7 @@
 
 include_once "includes/components/rate.php";
 include_once "includes/verify-domain.php";
+include_once "includes/components/redis.php";
 
 /**
  * Creates a new clip in the database
@@ -9,14 +10,15 @@ include_once "includes/verify-domain.php";
  * @param  mixed $url
  * @return void
  */
-function createClip($url) {
+function createClip($url)
+{
     noteLimit("set");
 
     $err = "";
 
     // Create connection
     $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
-    
+
     $url = htmlspecialchars($url);
 
     $url = mysqli_real_escape_string($conn, $url);
@@ -25,14 +27,15 @@ function createClip($url) {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    
+
     /**
      * Creates a 
      *
      * @param  mixed $len
      * @return string
      */
-    function gen_uid($len = 10) {
+    function gen_uid($len = 10)
+    {
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $len);
     }
 
@@ -65,6 +68,8 @@ function createClip($url) {
 
         if (verify($url)) {
             $sqlquery = "INSERT INTO userurl (id, usr, url, date, expires) VALUES (NULL, '$usr', '$url', NOW(), '$expiryDate') ";
+            storeRedis($usr, $url);
+
             if ($conn->query($sqlquery) === FALSE) {
                 $err = "Error: " . $sqlquery . "<br>" . $conn->error;
             }
