@@ -5,7 +5,7 @@ include_once "includes/components/redis.php";
 
 if (isset($user_code)) {
 
-  noteLimit("get");
+  noteLimit();
 
   // Get the cached value (if it exists)
   $cached = getRedis($user_code);

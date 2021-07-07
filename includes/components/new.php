@@ -12,7 +12,7 @@ include_once "includes/components/redis.php";
  */
 function createClip($url)
 {
-    noteLimit("set");
+    noteLimit();
 
     $err = "";
 

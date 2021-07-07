@@ -10,6 +10,22 @@ try {
     $GLOBALS["redisAvailable"] = false; // Failed connecting to the server
 }
 
+function ipHit($hashedIP)
+{
+    if ($GLOBALS["redisAvailable"] && $GLOBALS["redis"]->ping()) {
+
+        $redisKey = "ip-".substr($hashedIP, 0, 7);
+
+        $GLOBALS["redis"]->incr($redisKey);
+        $GLOBALS["redis"]->expire($redisKey, 30);
+        $count = $GLOBALS["redis"]->get($redisKey);
+
+        return $count;
+    } else {
+        return 0;
+    }
+}
+
 function storeRedis($key, $value)
 {
 
