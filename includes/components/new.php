@@ -56,7 +56,6 @@ function createClip($url)
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $usr = $row['usr'];
-            storeRedis($usr, $url);
             break;
         }
         $conn->query($sqlquery);
@@ -69,6 +68,8 @@ function createClip($url)
 
         if (verify($url)) {
             $sqlquery = "INSERT INTO userurl (id, usr, url, date, expires) VALUES (NULL, '$usr', '$url', NOW(), '$expiryDate') ";
+            storeRedis($usr, $url);
+
             if ($conn->query($sqlquery) === FALSE) {
                 $err = "Error: " . $sqlquery . "<br>" . $conn->error;
             }
