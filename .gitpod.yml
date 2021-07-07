@@ -54,3 +54,4 @@ github:
 vscode:
   extensions:
     - bmewburn.vscode-intelephense-client
+    - cweijan.vscode-redis-client
