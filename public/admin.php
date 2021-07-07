@@ -8,6 +8,7 @@ include_once "includes/lib/auth.php";
 
 include_once "includes/lib/sentry.php";
 include_once "includes/lib/functions.php";
+include_once "includes/components/redis.php";
 
 if (!$isWindows) {
     $osinfo = getOSInformation();
@@ -96,8 +97,9 @@ if ($isStaff) {
                 <aside>
                     <img alt="A person using a laptop" src="<?php echo ROOT ?>/img/graphics/szaqt9.svg" height="150" />
                     <h3>Service stats</h3>
-                    <p>Total clips: <strong><?php echo $count ?></strong></p>
-                    <p>Total database rows: <strong><?php echo $totalLines ?></strong></p>
+                    <p>Clips: <strong><?php echo $count ?></strong></p>
+                    <p>Database rows: <strong><?php echo $totalLines ?></strong></p>
+                    <p>Redis items: <strong><?php echo getTotal() ?></strong></p>
                 </aside>
                 <aside>
                     <img alt="A lady looking at a database symbol" src="<?php echo ROOT ?>/img/graphics/agmx1d.svg" height="150" />

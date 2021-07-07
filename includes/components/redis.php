@@ -26,6 +26,14 @@ function ipHit($hashedIP)
     }
 }
 
+function getTotal() {
+    if ($GLOBALS["redisAvailable"] && $GLOBALS["redis"]->ping()) {
+        return $GLOBALS["redis"]->dbSize();
+    } else {
+        return "n/a";
+    }
+}
+
 function storeRedis($key, $value)
 {
 
