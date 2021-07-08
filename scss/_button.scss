@@ -1,11 +1,11 @@
 @import "_colors.scss";
 
-a.btn {
-  margin-top: 5em;
+button.btn {
   padding: 0.5em 1em;
   cursor: pointer;
   background: white;
   color: $primaryBlue;
   border-radius: 12px;
+  border: none;
   font-size: 0.7em;
 }

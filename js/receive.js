@@ -16,5 +16,3 @@ if (!localStorage.getItem("hideHashAnimation")) {
   }, 500);
   placeHolder();
 }
-
-document.querySelector("#code").title = "Input must be a valid clip code 😢";
