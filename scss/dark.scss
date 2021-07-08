@@ -11,10 +11,6 @@ html,
   color: $darkText !important;
 }
 
-a:not(#adminbar a):not(.btn) {
-  color: #e39777 !important;
-}
-
 img {
   filter: grayscale(20%) !important;
 }
@@ -37,4 +33,8 @@ img {
 
 .closeBtn:hover {
   color: white !important;
+}
+
+#menu {
+  background: #262626 !important;
 }

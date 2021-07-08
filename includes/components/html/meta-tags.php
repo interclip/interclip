@@ -43,4 +43,4 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="-YbUutUgfmvMugp0SOLLwef8BKdDcRvSoOvlQVJx4oM" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="theme-color" content="<?php echo $_ENV['ENVIRONMENT'] === 'staging' ? '#F15922' : ($user ? '#588D6A' : '#333333') ?>">
+<meta name="theme-color" content="<?php echo $_ENV['ENVIRONMENT'] === 'staging' ? '#F15922' : ($user ? '#588D6A' : '#262626') ?>">

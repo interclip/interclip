@@ -147,7 +147,7 @@ if (loggedIn && isAdmin) {
             e.preventDefault();
             const displayStatus = adminbar.style.display === "flex" ? "none" : "flex";
 
-            let newColor = "#333333";
+            let newColor = "#262626";
             if (displayStatus === "flex") {
                 if (document.getElementById("adminbar").classList.contains("staging")) {
                     newColor = "#F15922";
