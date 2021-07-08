@@ -34,9 +34,9 @@ main {
   justify-content: center;
   align-items: center;
 
-  position: absolute;
+  position: sticky;
   width: 100%;
-  bottom: 5;
+  background: #262626;
 }
 
 .madeBy > a {
