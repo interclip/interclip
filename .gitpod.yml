@@ -11,7 +11,7 @@ ports:
 
 tasks:
   - name: App
-    init: >
+    command: >
       curl https://rclone.org/install.sh | sudo bash; 
 
       sudo apt update;
@@ -26,7 +26,7 @@ tasks:
       php -r "unlink('composer-setup.php');"
 
       composer install
-    command: >
+
       bash scripts/secrets.sh;
       mkdir public/upload/uploads;
       gp await-port 3306 &&
