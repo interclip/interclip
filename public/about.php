@@ -48,12 +48,12 @@
             <p>
                 Interclip is a handy-dandy clipboard sharing tool to share URLs between devices and users.
                 You can read on in my article
-                <a href="https://blog.trnck.dev/what-is-interclip/" target="_blank" rel="noopener noreferrer">
+                <a href="https://interclip-docs.vercel.app/#what-is-interclip" target="_blank" rel="noopener noreferrer">
                     What even is Interclip
                 </a>
                 or visit
-                <a href="https://github.com/aperta-principium/Interclip/wiki" target="_blank" rel="noopener noreferrer">
-                    Interclip's wiki
+                <a href="https://interclip-docs.vercel.app/" target="_blank" rel="noopener noreferrer">
+                    Interclip's docs
                 </a>
                 on GitHub.
             </p>
@@ -68,7 +68,7 @@
                     GitHub
                 </a>
                 . The project is mostly written in pure PHP and JS, but there are some
-                <a href="https://github.com/aperta-principium/Interclip/wiki/Legal-notices" target="_blank" rel="noopener noreferrer">
+                <a href="https://interclip-docs.vercel.app/Legal%20notices#libraries" target="_blank" rel="noopener noreferrer">
                     libraries and designs
                 </a>
                 we use to make it easier upon ourselves.
