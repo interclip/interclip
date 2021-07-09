@@ -11,7 +11,7 @@ $pages = array(
   'privacy' => ['privacy', 'Privacy policy'],
 );
 
-if ($isStaff) {
+if ($isStaff && $_ENV['ENVIRONMENT'] !== 'staging') {
   $pages += ['admin' => ['admin', 'Admin']];
 }
 

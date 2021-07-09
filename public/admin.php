@@ -67,7 +67,14 @@ if ($isStaff) {
         ?>
     <?php endif; ?>
     <main>
-        <?php if ($isStaff) : ?>
+        <?php if ($_ENV['ENVIRONMENT'] === 'staging') : ?>
+            <section id="intro">
+                <header>
+                    <h1>Sorry</h1>
+                    <p>The admin page is not accesible while in staging.</p>
+                </header>
+            </section>
+        <?php elseif ($isStaff) : ?>
             <section id="intro">
                 <header>
                     <h1>Hi, <?php echo $user["name"] ? $user['name'] : $user["nickname"] ?></h1>
@@ -116,16 +123,12 @@ if ($isStaff) {
                     <h1>Yikes ¯\_(ツ)_/¯</h1>
                     <p>Sorry, but you don't have the permissions to access this resource.</p>
                 </header>
-
             </section>
         <?php else : ?>
-            <?php http_response_code(401); ?>
-            <section id="intro">
-                <header>
-                    <h1>Bummer</h1>
-                    <p>Hey, mr. unauthenticated, this page is not for you.</p>
-                </header>
-            </section>
+            <?php
+            http_response_code(401);
+            header("Location: " . ROOT . "/login");
+            ?>
         <?php endif; ?>
     </main>
 </body>
