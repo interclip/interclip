@@ -18,6 +18,13 @@ span.input-wrapper {
     color: $primaryBlue;
   }
 
+  select {
+    max-width: 8em;
+    position: absolute;
+    top: 2.5rem;
+    right: 3%;
+  }
+
   .square {
     box-sizing: border-box;
     padding: 0 10px;
@@ -40,6 +47,10 @@ span.input-wrapper {
     top: -10%;
     right: 3%;
   }
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 main {
