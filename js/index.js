@@ -35,4 +35,3 @@ if (recentlyMade.length > 0) {
 } else {
     historyBtn.classList.toggle("hidden");
 }
-console.log(recentlyMade);
