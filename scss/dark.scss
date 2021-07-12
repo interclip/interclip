@@ -38,3 +38,11 @@ img {
 #menu {
   background: #262626 !important;
 }
+
+span.input-wrapper {
+  color: #353535 !important;
+
+  &:focus-within {
+    color: $darkBG !important;
+  }
+}

@@ -78,4 +78,22 @@ $err = $createArray[1];
         update(toggle.value);
     });
 
+    const initialValue = localStorage.getItem("recentClips");
+    const url = "<?php echo $url ?>";
+
+    if (initialValue) {
+        const recentlyMadeArray = JSON.parse(initialValue);
+        if (!recentlyMadeArray.includes(url)) {
+            recentlyMadeArray.push(url);
+        }
+        if (recentlyMadeArray.length > 6) {
+            const reversedRecents = recentlyMadeArray.reverse();
+            reversedRecents.pop();
+            localStorage.setItem("recentClips", JSON.stringify(reversedRecents.reverse()));
+        } else {
+            localStorage.setItem("recentClips", JSON.stringify(recentlyMadeArray));
+        }
+    } else {
+        localStorage.setItem("recentClips", JSON.stringify([url]))
+    }
 </script>
