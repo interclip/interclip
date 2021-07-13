@@ -25,13 +25,11 @@ const getEntries = () => {
 const recentlyMade = getEntries();
 
 if (recentlyMade.length > 0) {
-
+    historyBtn.classList.remove("hidden")
     for (const clip of recentlyMade) {
         const option = document.createElement("option");
         option.value = clip;
         option.innerText = clip;
         selectDropdown.append(option);
     }
-} else {
-    historyBtn.classList.toggle("hidden");
 }
