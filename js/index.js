@@ -14,12 +14,7 @@ selectDropdown.onchange = (e) => {
 
 const getEntries = () => {
     const initialValue = localStorage.getItem("recentClips");
-
-    if (initialValue) {
-        return JSON.parse(initialValue);
-    } else {
-        return [];
-    }
+    return initialValue ? JSON.parse(initialValue) : [];
 }
 
 const recentlyMade = getEntries();
