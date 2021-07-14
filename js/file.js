@@ -29,22 +29,22 @@ function uploadRe($files) {
   // Begin file upload
   const request = new XMLHttpRequest();
   request.upload.onprogress = (event) => {
-    progressValue.innerText = `${Math.round((event.loaded / event.total) * 100)}%`;
+    progressValue.innerText = `${Math.round(
+      (event.loaded / event.total) * 100
+    )}%`;
     progressBar.value = (event.loaded / event.total) * 100;
   };
 
   request.onreadystatechange = () => {
     if (request.readyState == XMLHttpRequest.DONE) {
-      const data = (request.responseText);
+      const data = request.responseText;
       const jsonData = JSON.parse(data);
       if (jsonData.status === "error") {
-        Swal.fire(
-          'Something\'s went wrong',
-          jsonData.result,
-          'error'
-        ).then(() => {
-          location.reload();
-        });
+        Swal.fire("Something's went wrong", jsonData.result, "error").then(
+          () => {
+            location.reload();
+          }
+        );
       } else {
         const link = jsonData.result;
         showCode(link);
@@ -52,8 +52,7 @@ function uploadRe($files) {
     }
   };
   // API Endpoint
-  const apiUrl =
-    "/upload/?api";
+  const apiUrl = `${root || ""}/upload/?api`;
 
   const formData = new FormData();
   formData.append("uploaded_file", $files);
@@ -110,8 +109,7 @@ function uploadRe($files) {
 
     ele.addEventListener("click", () => {
       input.value = null;
-      if (clickEnabled)
-        input.click();
+      if (clickEnabled) input.click();
     });
   }
   window.makeDroppable = makeDroppable;
@@ -133,31 +131,34 @@ function uploadRe($files) {
 
     if (file.size > fileSizeLimitInBytes) {
       Swal.fire(
-        'Something\'s went wrong',
-        `Your file is ${formatBytes(file.size)}, which is over the limit of ${fileSizeLimitInMegabytes}MB`,
-        'error'
+        "Something's went wrong",
+        `Your file is ${formatBytes(
+          file.size
+        )}, which is over the limit of ${fileSizeLimitInMegabytes}MB`,
+        "error"
       ).then(() => {
         location.reload();
       });
     }
     uploadRe(file);
-
   });
 
   document.onpaste = function (event) {
-    const items = (event.clipboardData || event.originalEvent.clipboardData).items;
+    const items = (event.clipboardData || event.originalEvent.clipboardData)
+      .items;
     for (const item of items) {
-      if (item.kind === 'file') {
+      if (item.kind === "file") {
         const blob = item.getAsFile();
         uploadRe(blob);
       }
     }
   };
-
 })(this);
 
 window.onload = () => {
-  fetch("https://interclips.filiptronicek.workers.dev/").then((res) => res.text()).then((res) => {
-    fact.innerText = res;
-  });
+  fetch("https://interclips.filiptronicek.workers.dev/")
+    .then((res) => res.text())
+    .then((res) => {
+      fact.innerText = res;
+    });
 };
