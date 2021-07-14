@@ -11,7 +11,7 @@ include_once "includes/lib/functions.php";
 include_once "includes/components/redis.php";
 
 if (!$isWindows) {
-    $osinfo = getOSInformation();
+    $osinfo = getOSInformation() ?? ['version' => 'Unknown'];
     exec("uname -srm", $kernel);
     exec("mysql -V", $mysqlVerOut);
     $mysqlVer = explode(" ", $mysqlVerOut[0])[3];
@@ -28,13 +28,11 @@ if ($isStaff) {
 
     $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
     $result = $conn->query($sqlquery);
+    $count = 0;
+
     while ($row = $result->fetch_assoc()) {
         $count = $row['id'];
         break;
-    }
-
-    if (!$count) {
-        $count = 0;
     }
 
     $totalLinesQuery = "SELECT SUM(TABLE_ROWS) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'iclip'";
@@ -77,7 +75,7 @@ if ($isStaff) {
         <?php elseif ($isStaff) : ?>
             <section id="intro">
                 <header>
-                    <h1>Hi, <?php echo $user["name"] ? $user['name'] : $user["nickname"] ?></h1>
+                    <h1>Hi, <?php echo $user["name"] ?? $user["nickname"] ?></h1>
                     <p>Welcome to the Interclip admin dashboard!<sup>BETA</sup></p>
                 </header>
                 <aside>
