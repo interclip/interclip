@@ -10,6 +10,8 @@ include_once "includes/lib/sentry.php";
 include_once "includes/lib/functions.php";
 include_once "includes/components/redis.php";
 
+global $isWindows;
+
 if (!$isWindows) {
     $osinfo = getOSInformation() ?? ['version' => 'Unknown'];
     exec("uname -srm", $kernel);
