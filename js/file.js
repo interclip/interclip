@@ -115,8 +115,8 @@ function uploadRe($files) {
   window.makeDroppable = makeDroppable;
 })(this);
 
-((window) => {
-  makeDroppable(window.document.querySelector(".demo-droppable"), (files) => {
+(() => {
+  makeDroppable(document.body, (files) => {
     document.getElementById("content").style.display = "none";
     output.innerHTML = "";
 
