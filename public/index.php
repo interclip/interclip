@@ -65,8 +65,6 @@
                 </div>
             </div>
         </div>
-        <!-- File uploads !-->
-        <div class="demo-droppable"></div>
         <div class="output"></div>
         </div>
     </main>
