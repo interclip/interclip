@@ -37,7 +37,7 @@
     include "includes/menu.php";
     ?>
     <main id="maincontent">
-        <form name="urlform" id="content" onsubmit="return validateForm()" action="/set" method="POST">
+        <form name="urlform" id="content" onsubmit="return validateForm()" action="<?php echo ROOT ?>/set" method="POST">
             <h2>Paste your link here!</h2>
             <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>" />
             <span class="input-wrapper">

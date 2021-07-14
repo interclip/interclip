@@ -20,7 +20,7 @@
     <main id="maincontent">
         <div class="wrapper">
             <div class="form-container">
-                <form id="inputform" name="form" action="/get" method="POST">
+                <form id="inputform" name="form" action="<?php echo ROOT ?>/get" method="POST">
                     <div class="input-wrap">
                         <p class="title">Receive link</p>
                         <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>" />
