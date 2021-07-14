@@ -90,6 +90,7 @@ SimpleRouter::error(function (Request $request, \Exception $exception) {
         header("Location: $url");
     } else {
         $statusCode = $exception->getCode();
+        http_response_code($statusCode);
         include_once "includes/error.php";
     }
 });
