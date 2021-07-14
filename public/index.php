@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/index.css">
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/mobile-style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/file.css">
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/progressbar.css">
 </head>
 

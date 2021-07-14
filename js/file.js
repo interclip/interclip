@@ -78,6 +78,8 @@ function uploadRe($files) {
     callback.call(null, files);
   }
 
+  window.fileOver = false;
+
   function makeDroppable(ele, callback) {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
@@ -91,18 +93,25 @@ function uploadRe($files) {
     ele.addEventListener("dragover", (e) => {
       e.preventDefault();
       e.stopPropagation();
+      fileOver = true;
       ele.classList.add("dragover");
     });
 
     ele.addEventListener("dragleave", (e) => {
       e.preventDefault();
       e.stopPropagation();
-      ele.classList.remove("dragover");
+      fileOver = false;
+      setInterval(() => {
+        if (!fileOver) {
+          ele.classList.remove("dragover");
+        }
+      }, 100)
     });
 
     ele.addEventListener("drop", (e) => {
       e.preventDefault();
       e.stopPropagation();
+      fileOver = false;
       ele.classList.remove("dragover");
       triggerCallback(e, callback);
     });

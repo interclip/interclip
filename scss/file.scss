@@ -2,16 +2,10 @@
 @import "_copy.scss";
 @import "_skip-link.scss";
 
-.demo-droppable {
-  background: #1065c7d3;
-  color: #fff;
-  padding: 100px 0;
-  text-align: center;
-  cursor: pointer;
-}
-
-.demo-droppable.dragover {
-  background: #0d5db9;
+body.dragover {
+  background: #3B3B3B !important;
+  min-height: 100vh;
+  border: 5px dashed white;
 }
 
 .code {
