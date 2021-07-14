@@ -95,12 +95,14 @@ systemOpt.innerText = systemOpt.innerText += ` ${
   isTablet ? "📱" : isPhone ? "📱" : "💻"
 }`;
 
-colorSchemePreference.value =
-  localStorage.getItem("dark-mode-toggle") || "system";
+const updateOptions = () => {
+  colorSchemePreference.value =
+    localStorage.getItem("dark-mode-toggle") || "system";
 
-toggle.checked = !localStorage.getItem("hideHashAnimation");
+  toggle.checked = !localStorage.getItem("hideHashAnimation");
 
-betaToggle.checked = !localStorage.getItem("hideBetaMenu");
+  betaToggle.checked = !localStorage.getItem("hideBetaMenu");
+};
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = () => {
@@ -188,7 +190,11 @@ if (loggedIn && isAdmin) {
 }
 
 removeBtn.onclick = () => {
+  const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   localStorage.clear();
+  updateOptions();
+  darkModeToggle.mode = isDark ? "dark" : "light";
+
   Swal.fire({
     icon: "success",
     title: "All local data has been deleted",
@@ -201,4 +207,5 @@ updateMenu();
 
 window.addEventListener("load", () => {
   showPaintTimings();
+  updateOptions(); // Rerender the option values
 });
