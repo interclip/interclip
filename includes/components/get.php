@@ -22,9 +22,12 @@ if (isset($user_code)) {
     }
 
     // Prepare and execute SQL query to get clips
+    $stmt = $conn->prepare('SELECT * FROM userurl WHERE usr = ?');
 
-    $sqlquery = "SELECT * FROM userurl WHERE usr = '$user_code'";
-    $result = $conn->query($sqlquery);
+    $stmt->bind_param('s', $user_code);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
 
     // Get the clip from the DB
 
@@ -34,7 +37,6 @@ if (isset($user_code)) {
         storeRedis($user_code, $url);
         break;
       }
-      $conn->query($sqlquery);
     }
 
     $conn->close();
