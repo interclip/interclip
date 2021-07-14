@@ -1,11 +1,18 @@
 <?php
 
-$GLOBALS["redis"] = new Redis();
+$GLOBALS["redisAvailable"] = true;
 
 try {
-    // Connecting to Redis
-    $GLOBALS["redis"]->connect('localhost', 6379);
-    $GLOBALS["redisAvailable"] = true;
+    $GLOBALS["redis"] = new Redis();
+} catch (Error $e) {
+    $GLOBALS["redisAvailable"] = false; // Failed connecting to the server
+}
+
+try {
+    if ($GLOBALS["redisAvailable"]) {
+        // Connecting to Redis
+        $GLOBALS["redis"]->connect('localhost', 6379);
+    }
 } catch (Exception $e) {
     $GLOBALS["redisAvailable"] = false; // Failed connecting to the server
 }
@@ -14,7 +21,7 @@ function ipHit($hashedIP)
 {
     if ($GLOBALS["redisAvailable"] && $GLOBALS["redis"]->ping()) {
 
-        $redisKey = "ip-".substr($hashedIP, 0, 7);
+        $redisKey = "ip-" . substr($hashedIP, 0, 7);
 
         $GLOBALS["redis"]->incr($redisKey);
         $GLOBALS["redis"]->expire($redisKey, 30);
@@ -26,7 +33,8 @@ function ipHit($hashedIP)
     }
 }
 
-function getTotal() {
+function getTotal()
+{
     if ($GLOBALS["redisAvailable"] && $GLOBALS["redis"]->ping()) {
         return $GLOBALS["redis"]->dbSize();
     } else {
