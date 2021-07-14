@@ -2,10 +2,14 @@
 @import "_copy.scss";
 @import "_skip-link.scss";
 
-body.dragover {
-  background: #3B3B3B !important;
+body {
   min-height: 100vh;
-  border: 5px dashed white;
+
+  &.dragover {
+    min-height: calc(100vh - 10px);
+    background: #3B3B3B !important;
+    border: 5px dashed white;
+  }
 }
 
 .code {
