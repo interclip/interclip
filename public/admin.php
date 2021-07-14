@@ -10,7 +10,7 @@ include_once "includes/lib/sentry.php";
 include_once "includes/lib/functions.php";
 include_once "includes/components/redis.php";
 
-if (!$GLOBALS["isWindows"] ) {
+if (!$isWindows) {
     $osinfo = getOSInformation();
     exec("uname -srm", $kernel);
     exec("mysql -V", $mysqlVerOut);
