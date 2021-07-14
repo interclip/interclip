@@ -26,7 +26,7 @@ function writeDb($url)
         echo json_encode(['status' => 'error', 'result' => 'invalid URL specified']);
       }
     } else {
-      http_response_code(503);
+      http_response_code(400);
       echo json_encode(['status' => 'error', 'result' => $err]);
     }
   } else {
