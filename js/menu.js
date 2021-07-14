@@ -5,6 +5,9 @@ const darkModeToggle = document.querySelector("dark-mode-toggle");
 // Get the button that opens the modal
 const btn = document.getElementById("triggerModal");
 
+// The delete data button
+const removeBtn = document.getElementById("removeData");
+
 // Get the <span> element that closes the modal
 const span = document.getElementsByClassName("closeBtn")[0];
 
@@ -12,6 +15,7 @@ const span = document.getElementsByClassName("closeBtn")[0];
 const colorSchemePreference = document.querySelector("#slct");
 const toggle = document.querySelector("#hashanimation");
 const betaToggle = document.querySelector("#betafeatures");
+
 // Get the system value
 const systemOpt = document.getElementById("systemOption");
 
@@ -34,7 +38,7 @@ const isPhone = !isTablet
 function showPaintTimings() {
     if (!loggedIn) {
         return null;
-    } 
+    }
     if (window.performance) {
         const performance = window.performance;
         const performanceEntries = performance.getEntriesByType('paint');
@@ -173,6 +177,16 @@ if (loggedIn && isAdmin) {
         }
     });
 }
+
+removeBtn.onclick = () => {
+    localStorage.clear();
+    Swal.fire({
+        icon: 'success',
+        title: 'All local data has been deleted',
+        showConfirmButton: false,
+        timer: 1700
+    });
+};
 
 updateMenu();
 
