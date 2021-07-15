@@ -2,16 +2,27 @@
 @import "_copy.scss";
 @import "_skip-link.scss";
 
-.demo-droppable {
-  background: #1065c7d3;
-  color: #fff;
-  padding: 100px 0;
-  text-align: center;
-  cursor: pointer;
+body {
+  min-height: 100vh;
+
+  &.dragover {
+    min-height: calc(100vh - 10px);
+    background: #489AFB;
+    border: 5px dashed white;
+  }
+
+  #dropzone.dragover {
+    background: #157EFB;
+  }
 }
 
-.demo-droppable.dragover {
-  background: #0d5db9;
+.demo-droppable {
+  height: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #005AC7;
+  cursor: pointer;
 }
 
 .code {

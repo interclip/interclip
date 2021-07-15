@@ -48,14 +48,14 @@
             <p>
                 Interclip is a handy-dandy clipboard sharing tool to share URLs between devices and users.
                 You can read on in my article
-                <a href="https://interclip-docs.vercel.app/#what-is-interclip" target="_blank" rel="noopener noreferrer">
+                <a href="https://docs.interclip.app/#what-is-interclip" target="_blank" rel="noopener noreferrer">
                     What even is Interclip
                 </a>
                 or visit
-                <a href="https://interclip-docs.vercel.app/" target="_blank" rel="noopener noreferrer">
+                <a href="https://docs.interclip.app/" target="_blank" rel="noopener noreferrer">
                     Interclip's docs
                 </a>
-                on GitHub.
+                for usage guides and many other docs.
             </p>
         </section>
         <section id="libs">

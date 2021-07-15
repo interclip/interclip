@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/index.css">
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/mobile-style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/file.css">
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/progressbar.css">
 </head>
 
@@ -64,13 +65,10 @@
                 </div>
             </div>
         </div>
-        <!-- File uploads !-->
-        <div class="demo-droppable"></div>
         <div class="output"></div>
         </div>
     </main>
     <script>
-        clickEnabled = false;
         const csrfToken = "<?= $_SESSION['token'] ?>";
         const isMobile = <?php echo isMobile() ? "true" : "false" ?>;
     </script>
