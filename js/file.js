@@ -95,6 +95,9 @@ function uploadRe($files) {
       e.preventDefault();
       e.stopPropagation();
       fileOver = true;
+      if (dropzone) {
+        dropzone.classList.add("dragover");
+      }
       ele.classList.add("dragover");
     });
 
@@ -105,6 +108,9 @@ function uploadRe($files) {
       setInterval(() => {
         if (!fileOver) {
           ele.classList.remove("dragover");
+          if (dropzone) {
+            dropzone.classList.remove("dragover");
+          }
         }
       }, 100)
     });

@@ -11,8 +11,8 @@ body {
     border: 5px dashed white;
   }
 
-  #dropzone {
-    
+  #dropzone.dragover {
+    background: #157EFB;
   }
 }
 
