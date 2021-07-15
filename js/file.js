@@ -78,8 +78,8 @@ function uploadRe($files) {
     const urls = new Set();
 
     // "Borrowed" from https://github.com/thinkverse/draggable/blob/ddb6d6ff23ef80fb60f80d4119586f4b0902e8f5/src/draggable.ts#L40-L46
-    for (let i = 0; i < e.dataTransfer.items.length; i++) {
-      if (["text/uri-list", "text/plain"].includes(e.dataTransfer.items[i].type)) {
+    for (const item of e.dataTransfer.items) {
+      if (["text/uri-list", "text/plain"].includes(item.type)) {
         urls.add(e.dataTransfer.getData("URL"));
         continue;
       }
