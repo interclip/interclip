@@ -76,7 +76,9 @@ function uploadRe($files) {
     } else if (e.target) {
       files = e.target.files;
     }
-    callback.call(null, files);
+    if (files.length > 0) {
+      callback.call(null, files);
+    }
   }
 
   window.fileOver = false;
@@ -135,6 +137,7 @@ function uploadRe($files) {
 
 (() => {
   makeDroppable(document.body, (files) => {
+    console.log(files);
     document.getElementById("content").style.display = "none";
     output.innerHTML = "";
 
