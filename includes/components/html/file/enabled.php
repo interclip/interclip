@@ -27,7 +27,6 @@
 </div>
 
 <script>
-    clickEnabled = true;
     const csrfToken = "<?= $_SESSION['token'] ?>";
 </script>
 <script src="<?php echo ROOT ?>/js/file.js"></script>

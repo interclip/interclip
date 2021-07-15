@@ -117,10 +117,12 @@ function uploadRe($files) {
       triggerCallback(e, callback);
     });
 
-    dropzone.onclick = () => {
-      input.value = null;
-      if (clickEnabled) input.click();
-    };
+    if (dropzone) {
+      dropzone.onclick = () => {
+        input.value = null;
+        input.click();
+      };
+    }
   }
   window.makeDroppable = makeDroppable;
 })(this);

@@ -69,7 +69,6 @@
         </div>
     </main>
     <script>
-        clickEnabled = false;
         const csrfToken = "<?= $_SESSION['token'] ?>";
         const isMobile = <?php echo isMobile() ? "true" : "false" ?>;
     </script>
