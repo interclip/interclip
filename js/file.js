@@ -134,7 +134,7 @@ function uploadRe($files) {
             dropzone.classList.remove("dragover");
           }
         }
-      }, 100)
+      }, 100);
     });
 
     ele.addEventListener("drop", (e) => {
