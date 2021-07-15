@@ -7,9 +7,18 @@ body {
 
   &.dragover {
     min-height: calc(100vh - 10px);
-    background: #3B3B3B !important;
+    background: #489AFB;
     border: 5px dashed white;
   }
+}
+
+.demo-droppable {
+  height: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #005AC7;
+  cursor: pointer;
 }
 
 .code {

@@ -1,6 +1,7 @@
 const modal = document.getElementById("modal");
 const output = document.querySelector(".output");
 const fact = document.getElementById("fact");
+const dropzone = document.getElementById("dropzone");
 
 const fileSizeLimitInMegabytes = 100;
 const fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
@@ -116,10 +117,10 @@ function uploadRe($files) {
       triggerCallback(e, callback);
     });
 
-    ele.addEventListener("click", () => {
+    dropzone.onclick = () => {
       input.value = null;
       if (clickEnabled) input.click();
-    });
+    };
   }
   window.makeDroppable = makeDroppable;
 })(this);
