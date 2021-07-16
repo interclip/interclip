@@ -85,8 +85,9 @@ function uploadRe($files) {
       }
     }
 
-    if (urls.length !== 0 && urls.values().next().value !== "") {
-      submitClip(urls.values().next().value);
+    const firstURL = urls.values().next().value;
+    if (urls.length !== 0 && firstURL && firstURL !== "") {
+      submitClip(firstURL);
       return;
     }
 
