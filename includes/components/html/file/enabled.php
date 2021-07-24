@@ -2,6 +2,13 @@
 <div class="title">
     <h1>Upload a file to Interclip</h1>
     <p class="note">Upload any file type that's under 100MB.</p>
+    <div>
+        Upload to 
+        <select id="provider">
+            <option value="ipfs">IPFS (highly experimental)</option>
+            <option value="iclip" selected>Interclip Storage Server</option>
+        </select>
+    </div>
     <div class="demo-droppable" id="dropzone">
         <p>Drag files here or click to upload</p>
     </div>

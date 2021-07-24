@@ -11,10 +11,18 @@
     <h3>Color scheme</h3>
     <!-- Rounded switch -->
     <div class="select">
-      <select name="slct" id="slct">
+      <select name="slct" id="slct" class="slct">
         <option value="dark">Dark 🌑</option>
         <option value="light">Light ☀️</option>
         <option id="systemOption" value="system">System</option>
+      </select>
+    </div>
+    <h3>Default file server</h3>
+    <!-- Rounded select -->
+    <div class="select">
+      <select name="slct" id="file-slct" class="slct">
+        <option value="ipfs">IPFS 🌍</option>
+        <option value="iclip">Interclip 💾</option>
       </select>
     </div>
     <h3>Hash animations</h3>

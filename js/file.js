@@ -2,6 +2,7 @@ const modal = document.getElementById("modal");
 const output = document.querySelector(".output");
 const fact = document.getElementById("fact");
 const dropzone = document.getElementById("dropzone");
+const storageProvider = document.getElementById("provider");
 
 const fileSizeLimitInMegabytes = 100;
 const fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
@@ -31,39 +32,57 @@ const progressBar = document.getElementById("progressBar");
 const progressValue = document.getElementById("progressPercent");
 
 function uploadRe($files) {
-  // Begin file upload
-  const request = new XMLHttpRequest();
-  request.upload.onprogress = (event) => {
-    progressValue.innerText = `${Math.round(
-      (event.loaded / event.total) * 100
-    )}%`;
-    progressBar.value = (event.loaded / event.total) * 100;
-  };
-
-  request.onreadystatechange = () => {
-    if (request.readyState == XMLHttpRequest.DONE) {
-      const data = request.responseText;
-      const jsonData = JSON.parse(data);
-      if (jsonData.status === "error") {
-        Swal.fire("Something's went wrong", jsonData.result, "error").then(
-          () => {
-            location.reload();
-          }
-        );
-      } else {
-        const link = jsonData.result;
-        showCode(link);
-      }
-    }
-  };
-  // API Endpoint
-  const apiUrl = `${root || ""}/upload/?api`;
 
   const formData = new FormData();
   formData.append("uploaded_file", $files);
 
-  request.open("POST", apiUrl);
-  request.send(formData);
+  if (storageProvider.value === "ipfs") {
+
+    // The progress bar is not available for the fetch request, so hide the progress bar
+    progressBar.style.display = "none";
+    progressValue.innerText = "Uploading to IPFS....";
+
+    // Use fetch to upload to IPFS
+    fetch("https://ipfs.infura.io:5001/api/v0/add", {
+      method: "post",
+      body: formData
+    }).then((res) => {
+      return res.json();
+    }).then((obj) => {
+      submitClip(`https://cloudflare-ipfs.com/ipfs/${obj.Hash}`)
+    })
+  } else {
+    // Begin file upload
+    const request = new XMLHttpRequest();
+    request.upload.onprogress = (event) => {
+      progressValue.innerText = `${Math.round(
+        (event.loaded / event.total) * 100
+      )}%`;
+      progressBar.value = (event.loaded / event.total) * 100;
+    };
+
+    request.onreadystatechange = () => {
+      if (request.readyState == XMLHttpRequest.DONE) {
+        const data = request.responseText;
+        const jsonData = JSON.parse(data);
+        if (jsonData.status === "error") {
+          Swal.fire("Something's went wrong", jsonData.result, "error").then(
+            () => {
+              location.reload();
+            }
+          );
+        } else {
+          const link = jsonData.result;
+          showCode(link);
+        }
+      }
+    };
+    // API Endpoint
+    const apiUrl = `${root || ""}/upload/?api`;
+
+    request.open("POST", apiUrl);
+    request.send(formData);
+  }
 
   modal.style.display = "block";
   document.querySelector(".demo-droppable").style.display = "none";
@@ -75,21 +94,25 @@ function uploadRe($files) {
       return;
     }
 
-    const urls = new Set();
+    if (e.dataTransfer) {
 
-    // "Borrowed" from https://github.com/thinkverse/draggable/blob/ddb6d6ff23ef80fb60f80d4119586f4b0902e8f5/src/draggable.ts#L40-L46
-    for (const item of e.dataTransfer.items) {
-      if (["text/uri-list", "text/plain"].includes(item.type)) {
-        urls.add(e.dataTransfer.getData("URL"));
-        continue;
+      const urls = new Set();
+
+      // "Borrowed" from https://github.com/thinkverse/draggable/blob/ddb6d6ff23ef80fb60f80d4119586f4b0902e8f5/src/draggable.ts#L40-L46
+      for (const item of e.dataTransfer.items) {
+        if (["text/uri-list", "text/plain"].includes(item.type)) {
+          urls.add(e.dataTransfer.getData("URL"));
+          continue;
+        }
+      }
+  
+      const firstURL = urls.values().next().value;
+      if (urls.length !== 0 && firstURL && firstURL !== "") {
+        submitClip(firstURL);
+        return;
       }
     }
 
-    const firstURL = urls.values().next().value;
-    if (urls.length !== 0 && firstURL && firstURL !== "") {
-      submitClip(firstURL);
-      return;
-    }
 
     let files;
     if (e.dataTransfer) {
@@ -158,7 +181,6 @@ function uploadRe($files) {
 
 (() => {
   makeDroppable(document.body, (files) => {
-    console.log(files);
     document.getElementById("content").style.display = "none";
     output.innerHTML = "";
 
@@ -198,6 +220,8 @@ function uploadRe($files) {
 })(this);
 
 window.onload = () => {
+  storageProvider.value = localStorage.getItem("fileServer") || "iclip";
+
   fetch("https://interclips.filiptronicek.workers.dev/")
     .then((res) => res.text())
     .then((res) => {

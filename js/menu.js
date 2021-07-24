@@ -12,9 +12,10 @@ const removeBtn = document.getElementById("removeData");
 const span = document.getElementsByClassName("closeBtn")[0];
 
 // Get the toggle checkbox
-const colorSchemePreference = document.querySelector("#slct");
+const colorSchemePreference = document.getElementById("slct");
 const toggle = document.querySelector("#hashanimation");
 const betaToggle = document.querySelector("#betafeatures");
+const fileServer = document.getElementById("file-slct");
 
 // Get the system value
 const systemOpt = document.getElementById("systemOption");
@@ -72,6 +73,11 @@ colorSchemePreference.addEventListener("change", function () {
   }
 });
 
+fileServer.addEventListener("change", (e) => {
+  console.log("Change", e.target.value);
+  localStorage.setItem("fileServer", e.target.value)
+});
+
 toggle.addEventListener("change", function () {
   if (this.checked) {
     localStorage.removeItem("hideHashAnimation");
@@ -98,9 +104,8 @@ systemOpt.innerText = systemOpt.innerText += ` ${
 const updateOptions = () => {
   colorSchemePreference.value =
     localStorage.getItem("dark-mode-toggle") || "system";
-
   toggle.checked = !localStorage.getItem("hideHashAnimation");
-
+  fileServer.value = localStorage.getItem("fileServer");
   betaToggle.checked = !localStorage.getItem("hideBetaMenu");
 };
 

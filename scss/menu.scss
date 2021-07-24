@@ -149,7 +149,7 @@ li:hover .settingsIcon {
 }
 
 /* Reset Select */
-#slct {
+.slct {
   appearance: none;
   outline: 0;
   box-shadow: none;
@@ -164,7 +164,7 @@ li:hover .settingsIcon {
 }
 
 /* Remove IE arrow */
-#slct::-ms-expand {
+.slct::-ms-expand {
   display: none;
 }
 
