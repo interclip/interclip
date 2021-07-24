@@ -105,7 +105,7 @@ const updateOptions = () => {
   colorSchemePreference.value =
     localStorage.getItem("dark-mode-toggle") || "system";
   toggle.checked = !localStorage.getItem("hideHashAnimation");
-  fileServer.value = localStorage.getItem("fileServer");
+  fileServer.value = localStorage.getItem("fileServer") || "iclip";
   betaToggle.checked = !localStorage.getItem("hideBetaMenu");
 };
 
