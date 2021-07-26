@@ -57,7 +57,7 @@ function uploadRe(file) {
       return res.json();
     }).then((obj) => {
       submitClip(`${providerEndpoint}/ipfs/${obj.Hash}?filename=${encodeURIComponent(file.name)}`)
-    })
+    });
   } else {
     // Begin file upload
     const request = new XMLHttpRequest();
