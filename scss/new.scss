@@ -46,6 +46,24 @@ h1.errheader {
   animation-timing-function: linear;
 }
 
+#codeSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  svg {
+    transition: color 200ms;
+    color: #919191;
+    cursor: pointer;
+    width: 3rem;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
 @keyframes tada {
   from {
     transform: scale3d(1, 1, 1);
