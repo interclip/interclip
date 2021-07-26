@@ -31,10 +31,10 @@ function showCode(data) {
 const progressBar = document.getElementById("progressBar");
 const progressValue = document.getElementById("progressPercent");
 
-function uploadRe($files) {
+function uploadRe(file) {
 
   const formData = new FormData();
-  formData.append("uploaded_file", $files);
+  formData.append("uploaded_file", file);
 
   if (storageProvider.value === "ipfs") {
 
