@@ -49,7 +49,7 @@ function uploadRe(file) {
     }).then((res) => {
       return res.json();
     }).then((obj) => {
-      submitClip(`https://cloudflare-ipfs.com/ipfs/${obj.Hash}`)
+      submitClip(`https://cloudflare-ipfs.com/ipfs/${obj.Hash}?filename=${encodeURIComponent(file.name)}`)
     })
   } else {
     // Begin file upload
