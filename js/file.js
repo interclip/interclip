@@ -42,6 +42,13 @@ function uploadRe(file) {
     progressBar.style.display = "none";
     progressValue.innerText = "Uploading to IPFS....";
 
+    let providerEndpoint = "https://cloudflare-ipfs.com";
+
+    if (file.type.match(new RegExp("video\/.{1,10}"))) {
+      // If the file is a video, don't use Cloudflare, because it blocks it
+      providerEndpoint = "https://ipfs.io";
+    }
+
     // Use fetch to upload to IPFS
     fetch("https://ipfs.infura.io:5001/api/v0/add", {
       method: "post",
@@ -49,7 +56,7 @@ function uploadRe(file) {
     }).then((res) => {
       return res.json();
     }).then((obj) => {
-      submitClip(`https://cloudflare-ipfs.com/ipfs/${obj.Hash}?filename=${encodeURIComponent(file.name)}`)
+      submitClip(`${providerEndpoint}/ipfs/${obj.Hash}?filename=${encodeURIComponent(file.name)}`)
     })
   } else {
     // Begin file upload
@@ -105,7 +112,7 @@ function uploadRe(file) {
           continue;
         }
       }
-  
+
       const firstURL = urls.values().next().value;
       if (urls.length !== 0 && firstURL && firstURL !== "") {
         submitClip(firstURL);
