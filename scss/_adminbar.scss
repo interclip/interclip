@@ -1,0 +1,53 @@
+#adminbar {
+  width: calc(100% - 20px);
+  padding: 6px 0;
+  border: 1px solid black;
+  border-top: none;
+  display: flex;
+  justify-content: start;
+  flex-direction: row;
+  padding-left: 9px;
+  padding-right: 9px;
+  color: white;
+
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &:not(.staging) {
+    background: #588d6a;
+  }
+
+  &.staging {
+    background: #f15922;
+  }
+
+  span a {
+    color: white;
+  }
+
+  span:not(:last-child):not(:first-child) {
+    padding-left: 7px;
+    padding-right: 15px;
+  }
+}
+
+.ending {
+  margin-left: auto;
+}
+
+.subitem {
+  display: none;
+}
+
+.ending:hover .subitem,
+#adminbar:focus {
+  display: inline-block;
+}
+
+#branch-select {
+  width: 8em;
+}
