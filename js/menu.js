@@ -77,7 +77,6 @@ colorSchemePreference.addEventListener("change", function () {
 });
 
 fileServer.addEventListener("change", (e) => {
-  console.log("Change", e.target.value);
   localStorage.setItem("fileServer", e.target.value)
 });
 

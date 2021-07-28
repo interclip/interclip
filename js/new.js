@@ -39,7 +39,6 @@ window.matchMedia("(prefers-color-scheme: dark)").addListener(
 );
 
 const computedStyle = localStorage.getItem("dark-mode-toggle");
-console.log(computedStyle);
 let options;
 
 update(computedStyle);
