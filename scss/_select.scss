@@ -1,0 +1,50 @@
+/* Reset Select */
+.slct {
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #dfdfdf;
+  color: black;
+  background-image: none;
+  font-size: medium;
+  flex: 1;
+  padding: 0 0.5em;
+  cursor: pointer;
+
+  /* Remove IE arrow */
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+/* Custom Select */
+.select {
+  position: relative;
+  display: flex;
+  width: 20em;
+  max-width: 100%;
+  height: 3em;
+  line-height: 3;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 0.25em;
+
+  /* Arrow */
+  &::after {
+    content: "▼";
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #d3d3d3;
+    cursor: pointer;
+    pointer-events: none;
+    transition: 0.25s all ease;
+  }
+
+  /* Transition */
+  &:hover::after {
+    color: $primaryBlue;
+  }
+}
