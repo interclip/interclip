@@ -262,10 +262,10 @@ input:checked + .slider::before {
 /* Rounded sliders */
 .slider.round {
   border-radius: 34px;
-}
 
-.slider.round::before {
-  border-radius: 50%;
+  &::before {
+    border-radius: 50%
+  }
 }
 
 .toggleLabel {
@@ -294,23 +294,23 @@ h1:nth-child(1) {
       text-decoration: underline;
     }
   }
-}
 
-#adminbar:not(.staging) {
-  background: #588d6a;
-}
+  &:not(.staging) {
+    background: #588d6a;
+  }
 
-#adminbar.staging {
-  background: #f15922;
-}
+  &.staging {
+    background: #f15922;
+  }
 
-#adminbar span a {
-  color: white;
-}
+  span a {
+    color: white;
+  }
 
-#adminbar span:not(:last-child):not(:first-child) {
-  padding-left: 7px;
-  padding-right: 15px;
+  span:not(:last-child):not(:first-child) {
+    padding-left: 7px;
+    padding-right: 15px;
+  }
 }
 
 .ending {
