@@ -8,7 +8,6 @@
     <title>Upload a file | Interclip</title>
 
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/style.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/mobile-style.css">
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/file.css">
 </head>
 
