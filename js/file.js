@@ -69,7 +69,7 @@ function uploadRe(file) {
     };
 
     request.onreadystatechange = () => {
-      if (request.readyState == XMLHttpRequest.DONE) {
+      if (request.readyState === XMLHttpRequest.DONE) {
         const data = request.responseText;
         const jsonData = JSON.parse(data);
         if (jsonData.status === "error") {

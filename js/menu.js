@@ -118,7 +118,7 @@ span.onclick = () => {
 
 // When the user clicks anywhere outside of the modal, close it
 document.onclick = (event) => {
-  if (event.target == settingsModal) {
+  if (event.target === settingsModal) {
     settingsModal.style.display = "none";
   }
 };
