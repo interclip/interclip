@@ -13,7 +13,7 @@
 <body>
   <?php
   include "includes/anti-csrf.php";
-  //validate();
+  validate();
   include_once "includes/menu.php";
   ?>
 
