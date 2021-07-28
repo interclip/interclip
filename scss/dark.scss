@@ -49,3 +49,19 @@ span.input-wrapper {
     color: $darkBG !important;
   }
 }
+
+/* Admin bar */
+body,
+section aside {
+  background: #2a2a2e;
+  color: #fff;
+}
+
+section aside {
+  border: none;
+  box-shadow: none;
+
+  &:hover {
+    box-shadow: none;
+  }
+}
