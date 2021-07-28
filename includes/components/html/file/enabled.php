@@ -2,7 +2,7 @@
 <div class="title">
     <h1>Upload a file to Interclip</h1>
     <p class="note">Upload any file type that's under 100MB.</p>
-    <div>
+    <div class="server-container">
         Upload to 
         <select id="provider">
             <option value="ipfs">IPFS (highly experimental)</option>
