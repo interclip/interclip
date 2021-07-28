@@ -68,7 +68,7 @@
                     GitHub
                 </a>
                 . The project is mostly written in pure PHP and JS, but there are some
-                <a href="https://interclip-docs.vercel.app/Legal%20notices#libraries" target="_blank" rel="noopener noreferrer">
+                <a href="https://docs.interclip.app/legal" target="_blank" rel="noopener noreferrer">
                     libraries and designs
                 </a>
                 we use to make it easier upon ourselves.
