@@ -1,13 +1,13 @@
 <html lang="en">
 
 <head>
-    <?php
-        include_once "includes/header.php";
-    ?>
-    <title>New clip | Interclip</title>
+  <?php
+  include_once "includes/header.php";
+  ?>
+  <title>New clip | Interclip</title>
 
-    <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/new.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/new.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -15,9 +15,6 @@
   include "includes/anti-csrf.php";
   validate();
   include_once "includes/menu.php";
-  ?>
-
-  <?php
 
   if (isset($_POST['input'])) {
     $url = $_POST['input'];
