@@ -34,7 +34,7 @@ if (loggedIn && isAdmin) {
 
 const isPhone = !isTablet
   ? "ontouchstart" in document.documentElement &&
-    /mobi/i.test(navigator.userAgent)
+  /mobi/i.test(navigator.userAgent)
   : false;
 
 function showPaintTimings() {
@@ -99,9 +99,8 @@ betaToggle.addEventListener("change", function () {
 
 /* Initialization */
 
-systemOpt.innerText = systemOpt.innerText += ` ${
-  isTablet ? "📱" : isPhone ? "📱" : "💻"
-}`;
+systemOpt.innerText = systemOpt.innerText += ` ${isTablet ? "📱" : isPhone ? "📱" : "💻"
+  }`;
 
 const updateOptions = () => {
   colorSchemePreference.value =
@@ -147,7 +146,10 @@ console.log(
 );
 
 if (loggedIn && isAdmin) {
-  if (document.getElementById("adminbar").classList.contains("staging")) {
+
+  const isStaging = document.getElementById("adminbar").classList.contains("staging");
+
+  if (isStaging) {
     document.getElementById("branch-select").addEventListener("change", (e) => {
       const targetBranch = e.target.value.replace(/\s/g, "");
       if (targetBranch !== "-") {
@@ -170,12 +172,9 @@ if (loggedIn && isAdmin) {
 
       let newColor = "#262626";
       if (displayStatus === "flex") {
-        if (document.getElementById("adminbar").classList.contains("staging")) {
-          newColor = "#F15922";
-        } else {
-          newColor = "#588D6A";
-        }
+        newColor = isStaging ? "#F15922" : "#588D6A";
       }
+
       document
         .querySelector("meta[name=theme-color]")
         .setAttribute("content", newColor);
