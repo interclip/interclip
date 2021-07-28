@@ -44,16 +44,19 @@ function showPaintTimings() {
   if (window.performance) {
     const performance = window.performance;
     const performanceEntries = performance.getEntriesByType("paint");
+
+    const paintElement = document.getElementById("load");
+
     performanceEntries.forEach((performanceEntry) => {
       if (performanceEntry.name === "first-contentful-paint") {
         const paintTime = performanceEntry.startTime;
-        document.getElementById("load").innerText = `Paint: ${Math.round(
+        paintElement.innerText = `Paint: ${Math.round(
           paintTime
         )}ms`;
       }
     });
   } else {
-    console.log("Performance timing isn't supported.");
+    paintElement.style.display = "none";
   }
 }
 
