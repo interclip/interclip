@@ -42,7 +42,7 @@ function showPaintTimings() {
     return null;
   }
   if (window.performance) {
-    const performance = window.performance;
+    const { performance } = window;
     const performanceEntries = performance.getEntriesByType("paint");
 
     const paintElement = document.getElementById("load");

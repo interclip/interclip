@@ -42,7 +42,7 @@ function uploadRe(file) {
     progressBar.style.display = "none";
     progressValue.innerText = "Uploading to IPFS....";
 
-    let providerEndpoint = "https://cloudflare-ipfs.com";
+    let providerEndpoint = "https://ipfs.interclip.app";
 
     if (file.type.match(new RegExp("video\/.{1,10}"))) {
       // If the file is a video, don't use Cloudflare, because it blocks it
@@ -191,7 +191,7 @@ function uploadRe(file) {
     document.getElementById("content").style.display = "none";
     output.innerHTML = "";
 
-    const file = files[0];
+    const [ file ] = files;
 
     if (file.type.indexOf("image/") === 0) {
       output.innerHTML += `<img width="200" src="${URL.createObjectURL(
