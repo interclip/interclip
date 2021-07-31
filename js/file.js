@@ -73,7 +73,7 @@ function uploadRe(file) {
         const data = request.responseText;
         const jsonData = JSON.parse(data);
         if (jsonData.status === "error") {
-          Swal.fire("Something's went wrong", jsonData.result, "error").then(
+          swalFire({title: "Something's went wrong", text: jsonData.result, icon: "error"}).then(
             () => {
               location.reload();
             }
@@ -191,7 +191,7 @@ function uploadRe(file) {
     document.getElementById("content").style.display = "none";
     output.innerHTML = "";
 
-    const [ file ] = files;
+    const [file] = files;
 
     if (file.type.indexOf("image/") === 0) {
       output.innerHTML += `<img width="200" src="${URL.createObjectURL(
@@ -201,13 +201,13 @@ function uploadRe(file) {
     output.innerHTML += `<p>${file.name}</p>`;
 
     if (file.size > fileSizeLimitInBytes) {
-      Swal.fire(
-        "Something's went wrong",
-        `Your file is ${formatBytes(
+      swalFire({
+        title: "Something's went wrong",
+        text: `Your file is ${formatBytes(
           file.size
         )}, which is over the limit of ${fileSizeLimitInMegabytes}MB`,
-        "error"
-      ).then(() => {
+        icon: "error"
+      }).then(() => {
         location.reload();
       });
     }

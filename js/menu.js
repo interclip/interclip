@@ -60,6 +60,23 @@ function showPaintTimings() {
   }
 }
 
+const swalFire = async (opts) => {
+  try {
+    Swal.default.fire(opts);
+  } catch (error) {
+    // Sweet alert CSS
+    const cssLink = document.createElement("link");
+    cssLink.setAttribute("rel", "stylesheet");
+    cssLink.setAttribute("href", "https://cdn.skypack.dev/-/sweetalert2@v11.1.0-kBF6bITHr6S3RqI7Z0E9/dist=es2020,mode=raw/dist/sweetalert2.css")
+    document.head.append(cssLink);
+
+    // Sweet alert JS
+    const Swal = await import("https://cdn.skypack.dev/pin/sweetalert2@v11.1.0-kBF6bITHr6S3RqI7Z0E9/mode=imports,min/optimized/sweetalert2.js");
+    window.Swal = Swal;
+    Swal.default.fire(opts);
+  }
+}
+
 // When the user clicks the button, open the modal
 btn.onclick = () => {
   settingsModal.style.display = "block";
@@ -159,7 +176,7 @@ if (loggedIn && isAdmin) {
             location.reload();
           })
           .catch((err) => {
-            Swal.fire("Something's went wrong", err.toString(), "error");
+            swalFire({ title: "Something's went wrong", text: err.toString(), icon: "error" });
           });
       }
     });
@@ -186,11 +203,11 @@ if (loggedIn && isAdmin) {
   document.addEventListener("keydown", (e) => {
     e.preventDefault();
     if (e.shiftKey && e.code === "KeyB") {
-      Swal.fire(
-        "Permission error",
-        "Yikes! It seems you have to be an admin to view the admin bar. Want to be an admin? Tweet me @filiptronicek",
-        "error"
-      );
+      swalFire({
+        title: "Permission error",
+        text: "Yikes! It seems you have to be an admin to view the admin bar. Want to be an admin? Tweet me @filiptronicek",
+        icon: "error"
+      });
     }
   });
 }
@@ -201,7 +218,7 @@ removeBtn.onclick = () => {
   updateOptions();
   darkModeToggle.mode = isDark ? "dark" : "light";
 
-  Swal.fire({
+  swalFire({
     icon: "success",
     title: "All local data has been deleted",
     showConfirmButton: false,
