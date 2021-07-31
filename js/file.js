@@ -214,7 +214,7 @@ function uploadRe(file) {
     uploadRe(file);
   });
 
-  document.onpaste = function (event) {
+  document.onpaste = (event) => {
     const items = (event.clipboardData || event.originalEvent.clipboardData)
       .items;
     for (const item of items) {
