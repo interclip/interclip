@@ -79,7 +79,7 @@ const swalFire = async (opts) => {
 
 // When the user clicks the button, open the modal
 btn.onclick = () => {
-  settingsModal.style.display = "flex";
+  settingsModal.classList.add("settings-shown");
 };
 
 colorSchemePreference.addEventListener("change", function () {
@@ -129,13 +129,13 @@ const updateOptions = () => {
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = () => {
-  settingsModal.style.display = "none";
+  settingsModal.classList.remove("settings-shown");
 };
 
 // When the user clicks anywhere outside of the modal, close it
 document.onclick = (event) => {
   if (event.target === settingsModal) {
-    settingsModal.style.display = "none";
+    settingsModal.classList.remove("settings-shown");
   }
 };
 

@@ -43,7 +43,16 @@ li:hover .settingsIcon {
   overflow-y: auto;
 }
 
+.settings-shown {
+  display: block !important;
+}
+
 @media only screen and (max-width: 1000px) {
+
+  .settings-shown {
+    display: flex !important;
+  }
+
   .modal-content {
     width: 90%;
   }
