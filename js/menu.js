@@ -82,6 +82,14 @@ btn.onclick = () => {
   settingsModal.classList.add("settings-shown");
 };
 
+// Let the user disable the modal by pressing Escape
+document.onkeydown = (e) => {
+  e.preventDefault();
+  if (e.code === "Escape") {
+    settingsModal.classList.remove("settings-shown");
+  }
+}
+
 colorSchemePreference.addEventListener("change", function () {
   if (this.value === "system") {
     const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
