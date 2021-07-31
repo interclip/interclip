@@ -79,7 +79,7 @@ const swalFire = async (opts) => {
 
 // When the user clicks the button, open the modal
 btn.onclick = () => {
-  settingsModal.style.display = "block";
+  settingsModal.style.display = "flex";
 };
 
 colorSchemePreference.addEventListener("change", function () {
