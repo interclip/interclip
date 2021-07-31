@@ -227,7 +227,9 @@ function uploadRe(file) {
 })(this);
 
 window.onload = () => {
-  storageProvider.value = localStorage.getItem("fileServer") || "iclip";
+  if (storageProvider) {
+    storageProvider.value = localStorage.getItem("fileServer") || "iclip";
+  }
 
   fetch("https://interclips.filiptronicek.workers.dev/")
     .then((res) => res.text())
