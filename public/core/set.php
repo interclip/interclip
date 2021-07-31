@@ -36,16 +36,6 @@
         else
           include_once "includes/components/html/new/ok-msg.php";
         ?>
-
-        <!--
-        <script type="module">
-          import {
-            embed
-          } from "https://cdn.jsdelivr.net/gh/aperta-principium/embed.js/embed.min.js";
-
-          embed(document.getElementById("url").innerText);
-        </script>
-        -->
       </div>
     </div>
 </body>

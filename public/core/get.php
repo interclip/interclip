@@ -44,7 +44,6 @@
           <?php
           echo "<p>... is the URL of the code " . $user_code . "</p>";
           ?>
-          <div id="embed"> </div>
           <img id="imgShow">
           <div id="output"> </div>
         <?php elseif (!empty($user_code)) : ?>
@@ -62,15 +61,6 @@
     </div>
   </div>
   <script src="../js/get.js"></script>
-  <!--
-  <script type="module">
-    import {
-      embed
-    } from "https://cdn.jsdelivr.net/gh/aperta-principium/embed.js/embed.min.js";
-
-    embed("<?php // echo $realUrl ?>");
-  </script>
-  -->
 </body>
 
 </html>
