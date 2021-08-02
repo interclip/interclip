@@ -11,33 +11,31 @@
 
 <body>
     <a class="skip-link" href="#maincontent">Skip to main</a>
-    <div class="nav">
-        <?php
-        include "includes/menu.php";
-        include_once "includes/components/rate.php";
+    <?php
+    include "includes/menu.php";
+    include_once "includes/components/rate.php";
 
-        noteLimit();
-        
-        exec('git rev-parse --verify HEAD', $output);
-        $hash = $output[0];
-        $hashShort = substr($hash, 0, 7);
-        $commit = "https://github.com/aperta-principium/Interclip/commit/" . $hash;
+    noteLimit();
 
-        exec('git describe --abbrev=0 --tags', $release);
+    exec('git rev-parse --verify HEAD', $output);
+    $hash = $output[0];
+    $hashShort = substr($hash, 0, 7);
+    $commit = "https://github.com/aperta-principium/Interclip/commit/" . $hash;
 
-        $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
+    exec('git describe --abbrev=0 --tags', $release);
 
-        $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
-        $result = $conn->query($sqlquery);
+    $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
 
-        $count = 0;
-        while ($row = $result->fetch_assoc()) {
-            $count = $row['id'];
-            break;
-        }
+    $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
+    $result = $conn->query($sqlquery);
 
-        ?>
-    </div>
+    $count = 0;
+    while ($row = $result->fetch_assoc()) {
+        $count = $row['id'];
+        break;
+    }
+
+    ?>
     <br>
     <main id="maincontent">
         <h1>About Interclip</h1>
@@ -75,25 +73,25 @@
             </p>
         </section>
         <section id="facts">
-                <h2>
-                    Facts about Interclip
-                </h2>
-                <ul class="facts">
-                    <li>
-                        Latest release: <?php echo $release[0]; ?> 
-                        <a target="_blank" rel="noopener noreferrer" href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $release[0]; ?>">
-                            (changelog)
-                        </a>
-                    </li>
-                    <li>
-                        Total clips made:
-                        <?php
-                        echo $count;
-                        ?>
-                    </li>
-                </ul>
+            <h2>
+                Facts about Interclip
+            </h2>
+            <ul class="facts">
+                <li>
+                    Latest release: <?php echo $release[0]; ?>
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $release[0]; ?>">
+                        (changelog)
+                    </a>
+                </li>
+                <li>
+                    Total clips made:
+                    <?php
+                    echo $count;
+                    ?>
+                </li>
+            </ul>
 
-                <br />
+            <br />
         </section>
     </main>
 

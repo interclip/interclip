@@ -69,17 +69,17 @@ if ($isStaff) {
     <main>
         <?php if ($_ENV['ENVIRONMENT'] === 'staging') : ?>
             <section id="intro">
-                <header>
+                <main>
                     <h1>Sorry</h1>
                     <p>The admin page is not accesible while in staging.</p>
-                </header>
+                </main>
             </section>
         <?php elseif ($isStaff) : ?>
             <section id="intro">
-                <header>
+                <main>
                     <h1>Hi, <?php echo $user["name"] ?? $user["nickname"] ?></h1>
                     <p>Welcome to the Interclip admin dashboard!<sup>BETA</sup></p>
-                </header>
+                </main>
                 <aside>
                     <img alt="A lady sitting on a table" src="<?php echo ROOT ?>/img/graphics/fbdwm0.svg" height="150" />
                     <h3>Interclip files</h3>
@@ -119,10 +119,10 @@ if ($isStaff) {
         <?php elseif ($user !== false) : ?>
             <?php http_response_code(403); ?>
             <section id="intro">
-                <header>
+                <main>
                     <h1>Yikes ¯\_(ツ)_/¯</h1>
                     <p>Sorry, but you don't have the permissions to access this resource.</p>
-                </header>
+                </main>
             </section>
         <?php else : ?>
             <?php

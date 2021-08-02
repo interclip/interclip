@@ -14,7 +14,6 @@
 <body>
 
     <a class="skip-link" href="#maincontent">Skip to main</a>
-
     <?php
 
     /**
