@@ -13,7 +13,7 @@ function encodeHTML(s) {
 
 const submitClip = (url) => {
   output.innerHTML += `
-  <form id="clip" action="/set" method="POST">
+  <form id="clip" action="/set" method="POST" style="display: none;">
     <input type="hidden" name="token" value="${csrfToken}"/>
     <input type="url" name="input" value="${url}">
     <input type="submit">
