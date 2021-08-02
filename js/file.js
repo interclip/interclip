@@ -207,9 +207,7 @@ function uploadRe(file) {
           file.size
         )}, which is over the limit of ${fileSizeLimitInMegabytes}MB`,
         icon: "error"
-      }).then(() => {
-        location.reload();
-      });
+      }, true);
     }
     uploadRe(file);
   });

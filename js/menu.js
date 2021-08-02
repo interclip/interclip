@@ -60,7 +60,7 @@ function showPaintTimings() {
   }
 }
 
-const swalFire = async (opts) => {
+const swalFire = async (opts, reload = false) => {
   try {
     Swal.default.fire(opts);
   } catch (error) {
@@ -73,7 +73,7 @@ const swalFire = async (opts) => {
     // Sweet alert JS
     const Swal = await import("https://cdn.skypack.dev/pin/sweetalert2@v11.1.0-kBF6bITHr6S3RqI7Z0E9/mode=imports,min/optimized/sweetalert2.js");
     window.Swal = Swal;
-    Swal.default.fire(opts);
+    Swal.default.fire(opts).then(() => { if (reload) location.reload() });
   }
 }
 
