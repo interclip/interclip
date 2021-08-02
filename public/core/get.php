@@ -49,7 +49,7 @@
         <?php elseif (!empty($user_code)) : ?>
           <?php
           http_response_code(404);
-          echo "<p>There was no url found for the code " . $user_code . "</p>";
+          echo "<p>There was no URL found for the code " . $user_code . "</p>";
           ?>
         <?php else : ?>
           <?php
