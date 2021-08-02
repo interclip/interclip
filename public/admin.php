@@ -132,7 +132,7 @@ if ($isStaff) {
         <?php endif; ?>
     </main>
 </body>
-<script src="<?php echo ROOT; ?>/js/formatter.js"></script>
+<script src="<?php echo ROOT; ?>/js/formatter.js" defer></script>
 <script src="<?php echo ROOT; ?>/js/admin.js"></script>
 
 </html>

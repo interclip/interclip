@@ -53,5 +53,5 @@ include_once "components/html/settings.php";
   const root = "<?php echo ROOT ?>";
 </script>
 
-<script src="<?php echo ROOT ?>/js/formatter.js"></script>
+<script src="<?php echo ROOT ?>/js/formatter.js" defer></script>
 <script src="<?php echo ROOT ?>/js/menu.js"></script>
