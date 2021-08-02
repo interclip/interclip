@@ -16,6 +16,8 @@
 <meta property="twitter:description" content="Interclip is a tool for easily sharing URLs between devices or users.">
 <meta property="twitter:image" content="https://interclip.app/img/header.png">
 
+<!-- iPhone app promotion -->
+<meta name="apple-itunes-app" content="app-id=1546777494">
 
 <!-- Preconnects -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
