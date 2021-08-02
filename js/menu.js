@@ -82,14 +82,6 @@ btn.onclick = () => {
   settingsModal.classList.add("settings-shown");
 };
 
-// Let the user disable the modal by pressing Escape
-document.onkeydown = (e) => {
-  e.preventDefault();
-  if (e.code === "Escape") {
-    settingsModal.classList.remove("settings-shown");
-  }
-}
-
 colorSchemePreference.addEventListener("change", function () {
   if (this.value === "system") {
     const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -191,6 +183,13 @@ if (loggedIn && isAdmin) {
   }
 
   document.addEventListener("keydown", (e) => {
+
+    // Let the user disable the modal by pressing Escape
+    if (e.code === "Escape") {
+      e.preventDefault();
+      settingsModal.classList.remove("settings-shown");
+    }
+
     if (e.shiftKey && e.code === "KeyB") {
       e.preventDefault();
       const displayStatus = adminbar.style.display === "flex" ? "none" : "flex";
