@@ -22,6 +22,11 @@ ul#menu {
       background-color: #222;
     }
 
+    &.triggerItem {
+      cursor: pointer;
+      margin-left: auto;
+    }
+
     a {
       display: block;
       color: white;
@@ -54,11 +59,6 @@ ul#menu {
 
 .themeLabel {
   font-size: large;
-}
-
-#menu .triggerItem {
-  float: right;
-  cursor: pointer;
 }
 
 dark-mode-toggle {
