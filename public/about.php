@@ -36,7 +36,6 @@
     }
 
     ?>
-    <br>
     <main id="maincontent">
         <h1>About Interclip</h1>
         <section id="about">
@@ -90,17 +89,15 @@
                     ?>
                 </li>
             </ul>
-
-            <br />
         </section>
     </main>
 
-    <div class="madeBy">
+    <footer class="madeBy">
         <p> made with ❤️ by &nbsp;</p>
         <a href="https://github.com/filiptronicek">
             <img src="https://github.com/filiptronicek.png">
         </a>
-    </div>
+    </footer>
 
 
 </body>
