@@ -2,6 +2,8 @@ const copyButton = document.getElementById("copyCode");
 copyButton.onclick = () => {
     navigator.clipboard.writeText(code);
     swalFire({
+        toast: true,
+        position: 'top-end',
         icon: "success",
         timer: 1000,
         timerProgressBar: true,
