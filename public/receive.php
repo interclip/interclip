@@ -22,7 +22,7 @@
             <div class="form-container">
                 <form id="inputform" name="form" action="<?php echo ROOT ?>/get" method="POST">
                     <div class="input-wrap">
-                        <p class="title">Receive link</p>
+                        <h2 class="title">Receive a clip</h2>
                         <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>" />
                         <input
                             type="text"

@@ -3,8 +3,9 @@
 @import "_skip-link.scss";
 
 .wrapper {
-  font-size: 36px;
+  font-size: 1.5em;
   font-weight: bold;
+  text-align: center;
 }
 
 p {
@@ -29,14 +30,11 @@ input[type="text"] {
   border: none;
   border-bottom: 1px solid #555;
   width: 200px;
-  font-size: 36px;
+  font-size: 2em;
   margin-bottom: 3rem;
   background: $primaryBlue;
-}
-
-input {
   color: white;
-  font-size: 6vh;
+  text-align: center;
 }
 
 #modalpage {
