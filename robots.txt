@@ -1,6 +1,4 @@
 User-Agent: *
-Disallow: /includes/new
-Disallow: /includes/get
-Disallow: /admin/
+Disallow: /desktop
 
 Sitemap: sitemap.xml 
