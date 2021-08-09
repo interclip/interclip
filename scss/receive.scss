@@ -27,14 +27,20 @@ main {
 }
 
 input[type="text"] {
+  outline: none;
   border: none;
-  border-bottom: 1px solid #555;
+  border-bottom: 1px solid #fff;
   width: 200px;
   font-size: 2em;
   margin-bottom: 3rem;
   background: $primaryBlue;
   color: white;
   text-align: center;
+
+  &::placeholder {
+    color: #cfcfcf;
+    opacity: 1;
+  }
 }
 
 #modalpage {
