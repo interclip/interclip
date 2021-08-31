@@ -46,6 +46,15 @@ h1 a {
   }
 }
 
+#qrcode {
+  margin-top: 35px;
+
+  & > svg {
+    max-width: 50vw;
+    width: 320px;
+  }
+}
+
 #codeSection {
   display: flex;
   align-items: center;
@@ -92,19 +101,10 @@ h1 a {
   }
 }
 
-#qrcode {
-  margin-top: 35px;
-}
-
 span.url {
   display: block;
   text-overflow: ellipsis !important;
   overflow: hidden !important;
-}
-
-#qrcode > svg {
-  max-width: 50vw;
-  width: 320px;
 }
 
 html {

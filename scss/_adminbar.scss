@@ -1,4 +1,5 @@
-ul#menu, #adminbar {
+ul#menu,
+#adminbar {
   line-height: initial;
 }
 
@@ -14,8 +15,10 @@ ul#menu, #adminbar {
   padding-right: 9px;
   color: white;
 
-  a {
+  span a {
     text-decoration: none;
+    color: white;
+
     &:hover {
       text-decoration: underline;
     }
@@ -27,10 +30,6 @@ ul#menu, #adminbar {
 
   &.staging {
     background: #f15922;
-  }
-
-  span a {
-    color: white;
   }
 
   span:not(:last-child):not(:first-child) {

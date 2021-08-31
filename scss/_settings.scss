@@ -14,6 +14,17 @@
   overflow-y: initial !important;
 }
 
+.settingsIcon {
+  width: 27px;
+  height: 27px;
+  transition-duration: 0.5s;
+  float: right;
+  margin: 10px;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
 li:hover .settingsIcon {
   transform: rotate(90deg);
 }
@@ -48,7 +59,6 @@ li:hover .settingsIcon {
 }
 
 @media only screen and (max-width: 1000px) {
-
   .settings-shown {
     display: flex !important;
   }
@@ -79,15 +89,4 @@ li:hover .settingsIcon {
     text-decoration: none;
     cursor: pointer;
   }
-}
-
-.settingsIcon {
-  width: 27px;
-  height: 27px;
-  transition-duration: 0.5s;
-  float: right;
-  margin: 10px;
-  color: white;
-  position: relative;
-  z-index: 1;
 }
