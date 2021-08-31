@@ -67,13 +67,13 @@ const swalFire = async (opts, reload = false) => {
     // Sweet alert CSS
     const cssLink = document.createElement("link");
     cssLink.setAttribute("rel", "stylesheet");
-    cssLink.setAttribute("href", "https://cdn.skypack.dev/-/sweetalert2@v11.1.0-kBF6bITHr6S3RqI7Z0E9/dist=es2020,mode=raw/dist/sweetalert2.css")
+    cssLink.setAttribute("href", "https://cdn.skypack.dev/-/sweetalert2@v11.1.0-kBF6bITHr6S3RqI7Z0E9/dist=es2020,mode=raw/dist/sweetalert2.css");
     document.head.append(cssLink);
 
     // Sweet alert JS
     const Swal = await import("https://cdn.skypack.dev/pin/sweetalert2@v11.1.0-kBF6bITHr6S3RqI7Z0E9/mode=imports,min/optimized/sweetalert2.js");
     window.Swal = Swal;
-    Swal.default.fire(opts).then(() => { if (reload) location.reload() });
+    Swal.default.fire(opts).then(() => { if (reload) { location.reload(); } });
   }
 }
 
@@ -94,7 +94,7 @@ colorSchemePreference.addEventListener("change", function () {
 });
 
 fileServer.addEventListener("change", (e) => {
-  localStorage.setItem("fileServer", e.target.value)
+  localStorage.setItem("fileServer", e.target.value);
 });
 
 toggle.addEventListener("change", function () {

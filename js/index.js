@@ -1,11 +1,11 @@
 const historyBtn = document.querySelector("#content > .input-wrapper > svg");
-const selectDropdown = document.querySelector(".history-select")
+const selectDropdown = document.querySelector(".history-select");
 const linkInput = document.getElementById("search-input");
 const form = document.getElementById("content");
 
 historyBtn.onclick = () => {
     selectDropdown.classList.toggle("hidden");
-}
+};
 
 selectDropdown.onchange = (e) => {
     linkInput.value = e.target.value;
@@ -20,7 +20,7 @@ const getEntries = () => {
 const recentlyMade = getEntries();
 
 if (recentlyMade.length > 0) {
-    historyBtn.classList.remove("hidden")
+    historyBtn.classList.remove("hidden");
     for (const clip of recentlyMade) {
         const option = document.createElement("option");
         option.value = clip;

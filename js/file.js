@@ -19,7 +19,7 @@ const submitClip = (url) => {
     <input type="submit">
   </form>`;
   document.getElementById("clip").submit();
-}
+};
 
 function showCode(data) {
   data = encodeHTML(data);
@@ -56,7 +56,7 @@ function uploadRe(file) {
     }).then((res) => {
       return res.json();
     }).then((obj) => {
-      submitClip(`${providerEndpoint}/ipfs/${obj.Hash}?filename=${encodeURIComponent(file.name)}`)
+      submitClip(`${providerEndpoint}/ipfs/${obj.Hash}?filename=${encodeURIComponent(file.name)}`);
     });
   } else {
     // Begin file upload
