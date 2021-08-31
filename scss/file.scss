@@ -8,12 +8,12 @@ body {
 
   &.dragover {
     min-height: calc(100vh - 10px);
-    background: #489AFB;
+    background: #489afb;
     border: 5px dashed white;
   }
 
   #dropzone.dragover {
-    background: #157EFB;
+    background: #157efb;
   }
 }
 
@@ -22,7 +22,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #005AC7;
+  background: #005ac7;
   cursor: pointer;
 }
 

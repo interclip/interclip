@@ -13,7 +13,8 @@ h2 {
   font-size: 2rem;
 }
 
-p, #facts {
+p,
+#facts {
   font-size: 1.3em;
   margin-bottom: 1rem;
 }
@@ -34,11 +35,9 @@ main {
 .madeBy {
   text-transform: uppercase;
   font-size: 1.2rem;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   position: sticky;
   width: 100%;
   background: #262626;
