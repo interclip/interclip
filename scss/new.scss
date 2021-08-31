@@ -1,0 +1,129 @@
+@import "skip-link";
+
+#fullscreen {
+  width: 100%;
+  height: 100%;
+  display: table;
+  background-size: cover;
+
+  .fullscreen-content {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    max-width: 90vw !important;
+
+    .title {
+      display: block;
+      width: 55%;
+      padding-bottom: 20px;
+      padding-top: 2px;
+      margin: 0 auto;
+      border-radius: 20px;
+      color: #fff;
+
+      h1 {
+        font-size: 3em;
+        margin: 5px 0;
+      }
+
+      p {
+        font-family: "Lato", sans-serif;
+        font-size: 2em;
+      }
+    }
+  }
+}
+
+h1 a {
+  text-decoration: none;
+  color: white;
+
+  &.errheader {
+    animation-name: tada;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+}
+
+#qrcode {
+  margin-top: 35px;
+
+  & > svg {
+    max-width: 50vw;
+    width: 320px;
+  }
+}
+
+#codeSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  svg {
+    transition: color 200ms;
+    color: #919191;
+    cursor: pointer;
+    width: 3rem;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+@keyframes tada {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%,
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%,
+  60%,
+  80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+span.url {
+  display: block;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+}
+
+html {
+  content: "";
+}
+
+@media (prefers-color-scheme: light) {
+  html {
+    content: "light";
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    content: "dark";
+  }
+}
+
+/* Make the code a font which makes differentiating between some similar characters a smaller hassle */
+.usrCode {
+  font-family: "Roboto Mono", monospace;
+}

@@ -58,7 +58,7 @@ include_once "includes/lib/sentry.php";
     }
 
     if (move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
-      exec("bash public/upload/upload.sh '$path' ".$_ENV['RCLONE_REMOTE_NAME']." > /dev/null &");
+      exec("bash public/upload/upload.sh '$path' " . $_ENV['RCLONE_REMOTE_NAME'] . " > /dev/null &");
       $url = "https://files.interclip.app/" . $id . "." . htmlspecialchars($ext);
       if (isset($_GET['api'])) {
         echo json_encode(['status' => 'success', 'result' => $url]);
@@ -76,6 +76,12 @@ include_once "includes/lib/sentry.php";
       } else {
         echo "There was an error uploading the file, please try again!";
       }
+    }
+  } elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
+    if (isset($_GET['api'])) {
+      echo json_encode(['status' => 'error', 'result' => 'No file provided.']);
+    } else {
+      echo "Please specify a file!";
     }
   }
   ?>

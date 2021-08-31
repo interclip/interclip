@@ -1,0 +1,58 @@
+@import "colors";
+@import "button";
+@import "skip-link";
+
+.wrapper {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+}
+
+p {
+  color: #fff;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  align-self: center;
+  margin-top: 20vh;
+}
+
+#code::placeholder {
+  color: #ddd !important;
+}
+
+input[type="text"] {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #fff;
+  width: 200px;
+  font-size: 2em;
+  margin-bottom: 3rem;
+  background: $primaryBlue;
+  color: white;
+  text-align: center;
+
+  &::placeholder {
+    color: #cfcfcf;
+    opacity: 1;
+  }
+}
+
+#modalpage {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 1); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}

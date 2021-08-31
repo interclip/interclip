@@ -16,6 +16,8 @@
 <meta property="twitter:description" content="Interclip is a tool for easily sharing URLs between devices or users.">
 <meta property="twitter:image" content="https://interclip.app/img/header.png">
 
+<!-- iPhone app promotion -->
+<meta name="apple-itunes-app" content="app-id=1546777494">
 
 <!-- Preconnects -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -31,11 +33,11 @@
 
 <link rel="stylesheet" href="<?php echo ROOT ?>/css/menu.css">
 <link rel="stylesheet" href="<?php echo ROOT ?>/css/dark.css" media="(prefers-color-scheme: dark)">
-<link href="https://fonts.googleapis.com/css2?family=Palanquin&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato&display=swap" as="font" type="font/woff2" crossorigin>
 
 <!-- External JS libraries -->
 <script type="module" src="https://cdn.skypack.dev/pin/dark-mode-toggle@v0.8.0-8sz7Rv9Ou4431j6B2ucG/mode=imports,min/optimized/dark-mode-toggle.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2Ces2016%2Ces2017%2Ces2018%2Ces2019%2Ces5%2Ces6%2Ces7%2CArray.prototype.forEach%2CArray.prototype.includes%2CArray.prototype.indexOf%2CBlob%2CDate.now%2CJSON%2CSet%2CString.prototype.replaceAll%2Cfetch%2CglobalThis"></script>
 
 <!-- Meta tags -->
 <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
@@ -43,4 +45,4 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="-YbUutUgfmvMugp0SOLLwef8BKdDcRvSoOvlQVJx4oM" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="theme-color" content="<?php echo $_ENV['ENVIRONMENT'] === 'staging' ? '#F15922' : ($user ? '#588D6A' : '#333333') ?>">
+<meta name="theme-color" content="<?php echo $_ENV['ENVIRONMENT'] === 'staging' ? '#F15922' : ($user ? '#588D6A' : '#262626') ?>">
