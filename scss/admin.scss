@@ -1,7 +1,42 @@
 @import "mvp_reverts";
 @import "skip-link";
 
-section aside {
-  background: white;
-  color: black;
+:root {
+  --border-radius: 5px;
+  --color-bg: #fff;
+  --color-secondary: #920de9;
+}
+
+section {
+  section {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+  }
+
+  &>h1, &>p {
+    text-align: center;
+  }
+
+  aside {
+    background: white;
+    color: black;
+    width: 285px;
+    margin: 1rem;
+    padding: 1.25rem;
+  }
+}
+
+sup {
+  background-color: var(--color-secondary);
+  border-radius: var(--border-radius);
+  color: var(--color-bg);
+  font-size: xx-small;
+  font-weight: bold;
+  margin: 0.2rem;
+  padding: 0.2rem 0.3rem;
+  position: relative;
+  top: -2px;
 }
