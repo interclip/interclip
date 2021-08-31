@@ -1,9 +1,9 @@
-@import "_button.scss";
-@import "_colors.scss";
-@import "_defaults.scss";
+@import "button";
+@import "colors";
+@import "defaults";
 
-@import "_adminbar.scss";
-@import "_settings.scss";
+@import "adminbar";
+@import "settings";
 
 ul#menu {
   list-style-type: none;
