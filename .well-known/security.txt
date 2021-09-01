@@ -1,5 +1,5 @@
 Contact: mailto:filip.tronicek@seznam.cz
 Expires: Sun, 9 Mar 2025 00:00 +0200
-Acknowledgments: https://github.com/aperta-principium/Interclip/wiki/Security-hall-of-fame
+Acknowledgments: https://github.com/interclip/interclip/wiki/Security-hall-of-fame
 Preferred-Languages: en, de, cs
 Canonical: https://interclip.app/.well-known/security.txt

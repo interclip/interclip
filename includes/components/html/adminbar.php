@@ -16,7 +16,7 @@ if ($user !== false) {
     exec('git rev-parse --verify HEAD', $output);
     $hash = $output[0];
     $hashShort = substr($hash, 0, 7);
-    $commit = "https://github.com/aperta-principium/Interclip/commit/" . $hash;
+    $commit = "https://github.com/interclip/interclip/commit/" . $hash;
   }
 }
 
@@ -46,11 +46,11 @@ $currBranch = $branches["current"];
       </span>
     <?php endif; ?>
     <span>
-      <a title="View branch on GitHub" href="https://github.com/aperta-principium/Interclip/tree/<?php echo $currBranch ?>">
+      <a title="View branch on GitHub" href="https://github.com/interclip/interclip/tree/<?php echo $currBranch ?>">
         <?php echo $currBranch ?>
       </a>
       @
-      <a title="View commit on GitHub" href="https://github.com/aperta-principium/Interclip/commit/<?php echo $hash ?>">
+      <a title="View commit on GitHub" href="https://github.com/interclip/interclip/commit/<?php echo $hash ?>">
         <?php echo $hashShort ?>
       </a>
     </span>

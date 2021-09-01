@@ -1,6 +1,6 @@
 # Contributing
 
-When contributing to this repository, please first discuss the change you wish to make by creating a [new issue](https://github.com/aperta-principium/Interclip/issues/new/choose) or [discussion](https://github.com/aperta-principium/Interclip/discussions).
+When contributing to this repository, please first discuss the change you wish to make by creating a [new issue](https://github.com/interclip/interclip/issues/new/choose) or [discussion](https://github.com/interclip/interclip/discussions).
 
 Please note we have a code of conduct, please follow it in all your interactions with the project.
 

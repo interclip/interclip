@@ -3,8 +3,8 @@
 # Interclip
 <a href="https://www.producthunt.com/posts/interclip?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-interclip" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=174002&theme=light" alt="Interclip - Easy peasy clipboard cross-platform sharing | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
 
-![clipboard](https://img.shields.io/badge/clipboard-copied-orange) ![Clipboard](https://img.shields.io/github/repo-size/aperta-principium/Interclip) [![Maintainability](https://api.codeclimate.com/v1/badges/0a72c92a0a2da0c79ba5/maintainability)](https://codeclimate.com/github/aperta-principium/Interclip/maintainability)
-![GitHub commits since latest release](https://img.shields.io/github/commits-since/aperta-principium/interclip/latest)
+![clipboard](https://img.shields.io/badge/clipboard-copied-orange) ![Clipboard](https://img.shields.io/github/repo-size/aperta-principium/Interclip) [![Maintainability](https://api.codeclimate.com/v1/badges/0a72c92a0a2da0c79ba5/maintainability)](https://codeclimate.com/github/interclip/interclip/maintainability)
+![GitHub commits since latest release](https://img.shields.io/github/commits-since/interclip/interclip/latest)
 [![GitPod badge](https://img.shields.io/badge/setup-automated-blue?logo=gitpod)](https://gitpod.io/#https://github.com/aperta-principium/Interclip)
 [![Uptime](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Faperta-principium%2Fstatus%2FHEAD%2Fapi%2Fhomepage%2Fuptime.json)](https://status.interclip.app)
 ***
@@ -43,7 +43,7 @@ Different apps for different platforms
 
 ## API
 
-For using the Interclip API, see the [API Docs](https://github.com/aperta-principium/Interclip/wiki/API).
+For using the Interclip API, see the [API Docs](https://github.com/interclip/interclip/wiki/API).
 <a name="contribute"> </a>
 
 ## Contributing
@@ -56,7 +56,7 @@ For a code of conduct, see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and for sett
 
 Clipping is easy. Just click on the magnifying glass and paste in your link!
 
-![how-to](https://github.com/aperta-principium/Interclip/raw/HEAD/img/interclip-home.gif)
+![how-to](https://github.com/interclip/interclip/raw/HEAD/img/interclip-home.gif)
 
 Then press Enter and through the magic of code here is the code to your link!
 

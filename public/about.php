@@ -20,7 +20,7 @@
     exec('git rev-parse --verify HEAD', $output);
     $hash = $output[0];
     $hashShort = substr($hash, 0, 7);
-    $commit = "https://github.com/aperta-principium/Interclip/commit/" . $hash;
+    $commit = "https://github.com/interclip/interclip/commit/" . $hash;
 
     exec('git describe --abbrev=0 --tags', $release);
 
@@ -76,7 +76,7 @@
             <ul class="facts">
                 <li>
                     Latest release: <?php echo $release[0]; ?>
-                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/aperta-principium/Interclip/releases/tag/<?php echo $release[0]; ?>">
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/interclip/interclip/releases/tag/<?php echo $release[0]; ?>">
                         (changelog)
                     </a>
                 </li>
