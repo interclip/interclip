@@ -1,4 +1,4 @@
-name: Remotely deploy code to the production server
+name: Deploy Interclip
 on:
   push:
     branches:
@@ -7,8 +7,8 @@ on:
     types: [published]
 
 jobs:
-  deploy:
-    name: Deploy
+  deploy-production:
+    name: Deploy to production
     runs-on: ubuntu-latest
     steps:
     - name: Git pull on the server
@@ -19,10 +19,21 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: cd /var/www/html && sudo git pull --all && sudo composer install && sass scss/:css/ -s compressed
-        
+  deploy-staging:
+    name: Deploy to staging
+    runs-on: ubuntu-latest
+    steps:
+    - name: Git pull on the server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: cd /var/www/staging && sudo git pull --all && sudo composer install && sudo sass scss/:css/ -s compressed        
   purge-cache:
     name: Purge Cloudflare cache
-    needs: deploy
+    needs: [deploy-production, deploy-staging]
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repo
