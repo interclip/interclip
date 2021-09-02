@@ -93,7 +93,7 @@
     <footer class="madeBy">
         <p> made with ❤️ by &nbsp;</p>
         <a href="https://github.com/filiptronicek">
-            <img src="https://github.com/filiptronicek.png">
+            <img src="https://github.com/filiptronicek.png" alt="An image of Filip's user avatar">
         </a>
     </footer>
 
