@@ -31,7 +31,7 @@ function showCode(data) {
 const progressBar = document.getElementById("progressBar");
 const progressValue = document.getElementById("progressPercent");
 
-function uploadRe(file) {
+function uploadFile(file) {
 
   const formData = new FormData();
   formData.append("uploaded_file", file);
@@ -209,7 +209,7 @@ function uploadRe(file) {
         icon: "error"
       }, true);
     }
-    uploadRe(file);
+    uploadFile(file);
   });
 
   document.onpaste = (event) => {
@@ -218,7 +218,7 @@ function uploadRe(file) {
     for (const item of items) {
       if (item.kind === "file") {
         const blob = item.getAsFile();
-        uploadRe(blob);
+        uploadFile(blob);
       }
     }
   };
