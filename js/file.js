@@ -36,7 +36,7 @@ function uploadRe(file) {
   const formData = new FormData();
   formData.append("uploaded_file", file);
 
-  if (storageProvider.value === "ipfs") {
+  if (storageProvider && storageProvider.value === "ipfs" || localStorage.getItem("fileServer") === "ipfs") {
 
     // The progress bar is not available for the fetch request, so hide the progress bar
     progressBar.style.display = "none";
