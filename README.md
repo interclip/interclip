@@ -55,17 +55,13 @@ For a code of conduct, see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and for sett
 ## How to clip
 
 Clipping is easy. Just click on the magnifying glass and paste in your link!
-
-![how-to](https://github.com/interclip/interclip/raw/HEAD/img/interclip-home.gif)
-
 Then press Enter and through the magic of code here is the code to your link!
 
-![code-preview](https://user-images.githubusercontent.com/29888641/114938778-d0e92280-9e3f-11eb-811e-c1b8abc3567e.png)
+![how-to](https://user-images.githubusercontent.com/29888641/131836539-60614c94-c9a3-4ad7-9fae-18ae8ba9db18.gif)
+
 ## How to receive a clip
 **💡 ProTip: you can receive a clip even faster by scanning the QR code or going to `interclip.app/yourcode`**
 
 Receiving a clip is even easier than clipping. Just get out your phone or another device and paste the code into the input.
-![receive page](https://user-images.githubusercontent.com/29888641/111874110-f34c6500-8993-11eb-989e-928018279580.png)
+![receive page](https://user-images.githubusercontent.com/29888641/131837516-c8db158b-6eeb-477f-96bd-98e7c4de3286.gif)
 
-And now just click the button....
-![URL preview](https://user-images.githubusercontent.com/29888641/111874125-fe9f9080-8993-11eb-82b1-27642de9468a.png)
