@@ -11,3 +11,13 @@
 .skip-link:focus {
   top: 0;
 }
+
+::selection {
+  color: black;
+  background: white;
+}
+
+input::selection {
+  color: white;
+  background: #157efb;
+}
