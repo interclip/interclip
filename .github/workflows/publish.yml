@@ -67,14 +67,3 @@ jobs:
             https://interclip.app/desktop
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true # upload lighthouse report to the temporary storage
-  screenshot:
-    name: Screenshot
-    needs: purge-cache
-    runs-on: macos-11
-    steps:
-      - name: Take photo of github.com
-        uses: "lannonbr/puppeteer-screenshot-action@1.0.0"
-        with:
-          url: https://interclip.app
-      - name: Upload to Interclip
-        run: curl -F "uploaded_file=@screenshots/*.png" https://interclip.app/upload/
