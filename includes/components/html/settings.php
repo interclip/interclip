@@ -26,20 +26,20 @@
     <h3>Hash animations</h3>
     <p>Toggle the animation of the random hash on the receive page.</p>
     <div class="flex">
-      <span class="toggleLabel">Off</span>
       <label for="hashanimation" class="gui-switch">
+        Off
         <input type="checkbox" role="switch" id="hashanimation">
+        On
       </label>
-      <span class="toggleLabel">On</span>
     </div>
     <h3>Beta menu</h3>
     <p>Hide or show Interclip's beta features in the menu.</p>
     <div class="flex">
-      <span class="toggleLabel">Hide</span>
       <label for="betafeatures" class="gui-switch">
+        Hide
         <input type="checkbox" role="switch" id="betafeatures">
+        Show
       </label>
-      <span class="toggleLabel">Show</span>
     </div>
     <h3>Danger zone</h3>
     <p>Clear all the local data including settings and recently made clips.</p>
