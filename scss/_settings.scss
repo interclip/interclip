@@ -1,5 +1,5 @@
 @import "select";
-@import "slider";
+@import "switch";
 
 #settingsModal,
 #settingsModal p {
@@ -27,6 +27,12 @@
 
 li:hover .settingsIcon {
   transform: rotate(90deg);
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  li:hover .settingsIcon {
+    transform: unset;
+  }
 }
 
 /* The Modal (background) */

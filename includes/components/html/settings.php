@@ -27,9 +27,8 @@
     <p>Toggle the animation of the random hash on the receive page.</p>
     <div class="flex">
       <span class="toggleLabel">Off</span>
-      <label class="switch" role="switch">
-        <input type="checkbox" id="hashanimation">
-        <span class="slider round"></span>
+      <label for="hashanimation" class="gui-switch">
+        <input type="checkbox" role="switch" id="hashanimation">
       </label>
       <span class="toggleLabel">On</span>
     </div>
@@ -37,9 +36,8 @@
     <p>Hide or show Interclip's beta features in the menu.</p>
     <div class="flex">
       <span class="toggleLabel">Hide</span>
-      <label class="switch" role="switch">
-        <input type="checkbox" id="betafeatures">
-        <span class="slider round"></span>
+      <label for="betafeatures" class="gui-switch">
+        <input type="checkbox" role="switch" id="betafeatures">
       </label>
       <span class="toggleLabel">Show</span>
     </div>
