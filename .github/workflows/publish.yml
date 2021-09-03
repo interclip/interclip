@@ -70,15 +70,11 @@ jobs:
   screenshot:
     name: Screenshot
     needs: purge-cache
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-11, windows-latest]
-        width: [992]
-    runs-on: ${{ matrix.os }}
+    runs-on: macos-11
     steps:
-    - name: Screenshot Website
-      uses: swinton/screenshot-website@v1.x
-      with:
-        source: https://interclip.app/
-        destination: screenshot-${{ matrix.os }}-${{ matrix.width }}.png
-        width: ${{ matrix.width }}
+      - name: Take photo of github.com
+        uses: "lannonbr/puppeteer-screenshot-action@1.0.0"
+        with:
+          url: https://interclip.app
+      - name: Upload to Interclip
+        run: curl -F "uploaded_file=@screenshots/*.png" https://interclip.app/upload/
