@@ -87,11 +87,11 @@ async function handleRequest(request) {
 
     const expirationEpoch = parseInt(((now + mSecondMonth) / 1000).toFixed(0));
 
-    const isInDB = async(cd) => await iclip.get(cd) !== null;
+    const isInDB = async (cd) => (await iclip.get(cd)) !== null;
 
     var code = Math.random().toString(36).substr(2, 5);
     while (!isInDB(code)) {
-        code = Math.random().toString(36).substr(2, 5); // random 5 letter (base 36) string
+      code = Math.random().toString(36).substr(2, 5); // random 5 letter (base 36) string
     }
     console.log(code);
     await iclip.put(code, url, { expiration: expirationEpoch });
@@ -103,11 +103,17 @@ async function handleRequest(request) {
       status: 200,
     });
   } else {
-    return new Response(JSON.stringify({ status: "error", result: "there is nothing to do, specify a method" }), {
-      headers: {
-        "content-type": "application/json;charset=UTF-8",
-      },
-      status: 400,
-    });
+    return new Response(
+      JSON.stringify({
+        status: "error",
+        result: "there is nothing to do, specify a method",
+      }),
+      {
+        headers: {
+          "content-type": "application/json;charset=UTF-8",
+        },
+        status: 400,
+      }
+    );
   }
 }
