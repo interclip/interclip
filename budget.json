@@ -7,7 +7,7 @@
         "budget": 3000
       },
       {
-        "metric": "first-meaningful-paint",
+        "metric": "first-contentful-paint",
         "budget": 1000
       }
     ],
