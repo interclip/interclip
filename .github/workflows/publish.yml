@@ -56,7 +56,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Audit URLs using Lighthouse
-        uses: treosh/lighthouse-ci-action@v7
+        uses: treosh/lighthouse-ci-action@v8
         with:
           urls: |
             https://interclip.app/
@@ -65,5 +65,7 @@ jobs:
             https://interclip.app/privacy
             https://interclip.app/about
             https://interclip.app/desktop
+          runs: 5
+          budgetPath: ./budget.json # test performance budgets
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true # upload lighthouse report to the temporary storage
