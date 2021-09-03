@@ -1,4 +1,4 @@
-addEventListener('fetch', event => {
+addEventListener("fetch", (event) => {
   event.respondWith(handleRequest(event.request));
 });
 
@@ -11,7 +11,11 @@ async function handleRequest(request) {
   const result = await res.text(); // Load the resulting text
 
   const messageArray = result.split("\n"); // Split the text lines to an arrray
-  const randomItem = messageArray[Math.floor(Math.random() * messageArray.length)]; // Get a random item from the array
+  const randomItem =
+    messageArray[Math.floor(Math.random() * messageArray.length)]; // Get a random item from the array
 
-  return new Response(randomItem, {headers: {"Access-Control-Allow-Origin": "*"}, status: 200});
+  return new Response(randomItem, {
+    headers: { "Access-Control-Allow-Origin": "*" },
+    status: 200,
+  });
 }

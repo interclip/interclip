@@ -1,16 +1,17 @@
 <img src="https://github.com/filiptronicek/Interclip/raw/HEAD/img/interclip_logo.png" alt="Interclip logo" width="150">
 
 # Interclip
+
 <a href="https://www.producthunt.com/posts/interclip?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-interclip" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=174002&theme=light" alt="Interclip - Easy peasy clipboard cross-platform sharing | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
 
 ![clipboard](https://img.shields.io/badge/clipboard-copied-orange) ![Clipboard](https://img.shields.io/github/repo-size/aperta-principium/Interclip) [![Maintainability](https://api.codeclimate.com/v1/badges/0a72c92a0a2da0c79ba5/maintainability)](https://codeclimate.com/github/interclip/interclip/maintainability)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/interclip/interclip/latest)
 [![GitPod badge](https://img.shields.io/badge/setup-automated-blue?logo=gitpod)](https://gitpod.io/#https://github.com/aperta-principium/Interclip)
 [![Uptime](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Faperta-principium%2Fstatus%2FHEAD%2Fapi%2Fhomepage%2Fuptime.json)](https://status.interclip.app)
-***
+
+---
 
 <img width="1552" alt="Screenshot_2021-06-13_at_7 38 02_PM" src="https://user-images.githubusercontent.com/29888641/121811025-4700de80-cc63-11eb-9e4a-35bedea6066c.png">
-
 
 <a name="intro"> </a>
 
@@ -60,8 +61,8 @@ Then press Enter and through the magic of code here is the code to your link!
 ![how-to](https://user-images.githubusercontent.com/29888641/131836539-60614c94-c9a3-4ad7-9fae-18ae8ba9db18.gif)
 
 ## How to receive a clip
+
 **💡 ProTip: you can receive a clip even faster by scanning the QR code or going to `interclip.app/yourcode`**
 
 Receiving a clip is even easier than clipping. Just get out your phone or another device and paste the code into the input.
 ![receive page](https://user-images.githubusercontent.com/29888641/131837516-c8db158b-6eeb-477f-96bd-98e7c4de3286.gif)
-

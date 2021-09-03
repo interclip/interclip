@@ -32,19 +32,20 @@ const progressBar = document.getElementById("progressBar");
 const progressValue = document.getElementById("progressPercent");
 
 function uploadFile(file) {
-
   const formData = new FormData();
   formData.append("uploaded_file", file);
 
-  if (storageProvider && storageProvider.value === "ipfs" || localStorage.getItem("fileServer") === "ipfs") {
-
+  if (
+    (storageProvider && storageProvider.value === "ipfs") ||
+    localStorage.getItem("fileServer") === "ipfs"
+  ) {
     // The progress bar is not available for the fetch request, so hide the progress bar
     progressBar.style.display = "none";
     progressValue.innerText = "Uploading to IPFS....";
 
     let providerEndpoint = "https://ipfs.interclip.app";
 
-    if (file.type.match(new RegExp("video\/.{1,10}"))) {
+    if (file.type.match(new RegExp("video/.{1,10}"))) {
       // If the file is a video, don't use Cloudflare, because it blocks it
       providerEndpoint = "https://ipfs.io";
     }
@@ -52,12 +53,18 @@ function uploadFile(file) {
     // Use fetch to upload to IPFS
     fetch("https://ipfs.infura.io:5001/api/v0/add", {
       method: "post",
-      body: formData
-    }).then((res) => {
-      return res.json();
-    }).then((obj) => {
-      submitClip(`${providerEndpoint}/ipfs/${obj.Hash}?filename=${encodeURIComponent(file.name)}`);
-    });
+      body: formData,
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((obj) => {
+        submitClip(
+          `${providerEndpoint}/ipfs/${obj.Hash}?filename=${encodeURIComponent(
+            file.name
+          )}`
+        );
+      });
   } else {
     // Begin file upload
     const request = new XMLHttpRequest();
@@ -73,11 +80,13 @@ function uploadFile(file) {
         const data = request.responseText;
         const jsonData = JSON.parse(data);
         if (jsonData.status === "error") {
-          swalFire({title: "Something's went wrong", text: jsonData.result, icon: "error"}).then(
-            () => {
-              location.reload();
-            }
-          );
+          swalFire({
+            title: "Something's went wrong",
+            text: jsonData.result,
+            icon: "error",
+          }).then(() => {
+            location.reload();
+          });
         } else {
           const link = jsonData.result;
           showCode(link);
@@ -102,7 +111,6 @@ function uploadFile(file) {
     }
 
     if (e.dataTransfer) {
-
       const urls = new Set();
 
       // "Borrowed" from https://github.com/thinkverse/draggable/blob/ddb6d6ff23ef80fb60f80d4119586f4b0902e8f5/src/draggable.ts#L40-L46
@@ -119,7 +127,6 @@ function uploadFile(file) {
         return;
       }
     }
-
 
     let files;
     if (e.dataTransfer) {
@@ -201,13 +208,16 @@ function uploadFile(file) {
     output.innerHTML += `<p>${file.name}</p>`;
 
     if (file.size > fileSizeLimitInBytes) {
-      swalFire({
-        title: "Something's went wrong",
-        text: `Your file is ${formatBytes(
-          file.size
-        )}, which is over the limit of ${fileSizeLimitInMegabytes}MB`,
-        icon: "error"
-      }, true);
+      swalFire(
+        {
+          title: "Something's went wrong",
+          text: `Your file is ${formatBytes(
+            file.size
+          )}, which is over the limit of ${fileSizeLimitInMegabytes}MB`,
+          icon: "error",
+        },
+        true
+      );
     }
     uploadFile(file);
   });

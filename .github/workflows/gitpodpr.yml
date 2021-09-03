@@ -2,22 +2,21 @@ name: GitPod deploy PR comment
 
 on:
   pull_request:
-    branches: [ main ]
-    types: [ opened ]
+    branches: [main]
+    types: [opened]
 
 permissions:
-    issues: write
-    pull-requests: write
+  issues: write
+  pull-requests: write
 
 jobs:
   comment:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: unsplash/comment-on-pr@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        msg: "[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/interclip/interclip/pull/${{ github.event.number }})"
+      - uses: actions/checkout@v2
+      - uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: "[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/interclip/interclip/pull/${{ github.event.number }})"
