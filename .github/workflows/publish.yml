@@ -67,3 +67,22 @@ jobs:
             https://interclip.app/desktop
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true # upload lighthouse report to the temporary storage
+  screenshot:
+    name: Screenshot
+    needs: purge-cache
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-11, windows-latest]
+        width: [1200, 992, 768, 600]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: Screenshot Website
+      uses: swinton/screenshot-website@v1.x
+      with:
+        source: https://interclip.app/
+        destination: screenshot-${{ matrix.os }}-${{ matrix.width }}.png
+        width: ${{ matrix.width }}
+    - uses: actions/upload-artifact@v2
+      with:
+        name: screenshots
+        path: ./screenshot-*.png
