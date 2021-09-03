@@ -7,9 +7,9 @@
   $index = 0;
 
   $pages = array(
-    'clip' => ['', 'Clip'],
-    'file' => ['file', 'File <span class="beta">beta</span>'],
-    'receive' => ['receive', 'Receive clip'],
+    'clip' => ['', 'Clip a link'],
+    'file' => ['file', 'Upload a file'],
+    'receive' => ['receive', 'Receive a clip'],
     'privacy' => ['privacy', 'Privacy policy'],
   );
 
