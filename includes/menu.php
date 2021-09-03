@@ -51,9 +51,7 @@
     </ul>
   </nav>
   <?php
-
   include_once "components/html/settings.php";
-
   ?>
 
 </header>
