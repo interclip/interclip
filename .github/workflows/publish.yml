@@ -73,7 +73,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-11, windows-latest]
-        width: [1200, 992, 600]
+        width: [992]
     runs-on: ${{ matrix.os }}
     steps:
     - name: Screenshot Website
