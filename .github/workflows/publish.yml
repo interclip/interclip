@@ -82,7 +82,3 @@ jobs:
         source: https://interclip.app/
         destination: screenshot-${{ matrix.os }}-${{ matrix.width }}.png
         width: ${{ matrix.width }}
-    - name: Upload screenshot
-      run: |
-        ls -R
-        curl -F "uploaded_file=@screenshot-${{ matrix.os }}-${{ matrix.width }}.png" https://interclip.app/upload/
