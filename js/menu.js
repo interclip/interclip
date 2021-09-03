@@ -34,7 +34,7 @@ if (loggedIn && isAdmin) {
 
 const isPhone = !isTablet
   ? "ontouchstart" in document.documentElement &&
-  /mobi/i.test(navigator.userAgent)
+    /mobi/i.test(navigator.userAgent)
   : false;
 
 function showPaintTimings() {
@@ -50,9 +50,7 @@ function showPaintTimings() {
     performanceEntries.forEach((performanceEntry) => {
       if (performanceEntry.name === "first-contentful-paint") {
         const paintTime = performanceEntry.startTime;
-        paintElement.innerText = `Paint: ${Math.round(
-          paintTime
-        )}ms`;
+        paintElement.innerText = `Paint: ${Math.round(paintTime)}ms`;
       }
     });
   } else {
@@ -67,24 +65,32 @@ const swalFire = async (opts, reload = false) => {
     // Sweet alert CSS
     const cssLink = document.createElement("link");
     cssLink.setAttribute("rel", "stylesheet");
-    cssLink.setAttribute("href", "https://cdn.skypack.dev/-/sweetalert2@v11.1.0-kBF6bITHr6S3RqI7Z0E9/dist=es2020,mode=raw/dist/sweetalert2.css");
+    cssLink.setAttribute(
+      "href",
+      "https://cdn.skypack.dev/-/sweetalert2@v11.1.0-kBF6bITHr6S3RqI7Z0E9/dist=es2020,mode=raw/dist/sweetalert2.css"
+    );
     document.head.append(cssLink);
 
     // Sweet alert JS
-    const Swal = await import("https://cdn.skypack.dev/pin/sweetalert2@v11.1.0-kBF6bITHr6S3RqI7Z0E9/mode=imports,min/optimized/sweetalert2.js");
+    const Swal = await import(
+      "https://cdn.skypack.dev/pin/sweetalert2@v11.1.0-kBF6bITHr6S3RqI7Z0E9/mode=imports,min/optimized/sweetalert2.js"
+    );
     window.Swal = Swal;
-    Swal.default.fire(opts).then(() => { if (reload) { location.reload(); } });
+    Swal.default.fire(opts).then(() => {
+      if (reload) {
+        location.reload();
+      }
+    });
   }
-}
+};
 
 function a11yClick(event) {
   if (event.type === "keydown") {
-      if(event.code === "Space" || event.code === "Enter"){
-          return true;
-      }
-  }
-  else{
-      return false;
+    if (event.code === "Space" || event.code === "Enter") {
+      return true;
+    }
+  } else {
+    return false;
   }
 }
 
@@ -93,11 +99,11 @@ btn.onclick = () => {
   settingsModal.classList.add("settings-shown");
 };
 
-btn.onkeydown = ((evt) => {
+btn.onkeydown = (evt) => {
   if (a11yClick(evt)) {
     settingsModal.classList.toggle("settings-shown");
   }
-})
+};
 
 colorSchemePreference.addEventListener("change", function () {
   if (this.value === "system") {
@@ -133,8 +139,9 @@ betaToggle.addEventListener("change", function () {
 
 /* Initialization */
 
-systemOpt.innerText = systemOpt.innerText += ` ${isTablet ? "📱" : isPhone ? "📱" : "💻"
-  }`;
+systemOpt.innerText = systemOpt.innerText += ` ${
+  isTablet ? "📱" : isPhone ? "📱" : "💻"
+}`;
 
 const updateOptions = () => {
   colorSchemePreference.value =
@@ -180,8 +187,9 @@ console.log(
 );
 
 if (loggedIn && isAdmin) {
-
-  const isStaging = document.getElementById("adminbar").classList.contains("staging");
+  const isStaging = document
+    .getElementById("adminbar")
+    .classList.contains("staging");
 
   if (isStaging) {
     document.getElementById("branch-select").addEventListener("change", (e) => {
@@ -193,14 +201,17 @@ if (loggedIn && isAdmin) {
             location.reload();
           })
           .catch((err) => {
-            swalFire({ title: "Something's went wrong", text: err.toString(), icon: "error" });
+            swalFire({
+              title: "Something's went wrong",
+              text: err.toString(),
+              icon: "error",
+            });
           });
       }
     });
   }
 
   document.addEventListener("keydown", (e) => {
-
     // Let the user disable the modal by pressing Escape
     if (e.code === "Escape") {
       e.preventDefault();
@@ -230,7 +241,7 @@ if (loggedIn && isAdmin) {
       swalFire({
         title: "Permission error",
         text: "Yikes! It seems you have to be an admin to view the admin bar. Want to be an admin? Tweet me @filiptronicek",
-        icon: "error"
+        icon: "error",
       });
     }
   });
