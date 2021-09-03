@@ -73,3 +73,10 @@ section aside {
     box-shadow: none;
   }
 }
+
+.gui-switch {
+  --thumb: hsl(0 0% 5%);
+  --thumb-highlight: hsl(0 0% 100% / 25%);
+  --track-inactive: hsl(80 0% 35%);
+  --track-active: #56a0fa;
+}
