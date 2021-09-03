@@ -17,11 +17,6 @@
 
     noteLimit();
 
-    exec('git rev-parse --verify HEAD', $output);
-    $hash = $output[0];
-    $hashShort = substr($hash, 0, 7);
-    $commit = "https://github.com/interclip/interclip/commit/" . $hash;
-
     exec('git describe --abbrev=0 --tags', $release);
 
     $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
@@ -33,6 +28,42 @@
     while ($row = $result->fetch_assoc()) {
         $count = $row['id'];
         break;
+    }
+
+    if (!function_exists('str_contains')) {
+        function str_contains($haystack, $needle)
+        {
+            return $needle !== '' && mb_strpos($haystack, $needle) !== false;
+        }
+    }
+
+    function url_get_contents($Url)
+    {
+        if (!function_exists('curl_init')) {
+            die('CURL is not installed!');
+        }
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $Url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Brave Chrome/93.0.4577.58 Safari/537.36',
+        ));
+        $output = curl_exec($ch);
+        curl_close($ch);
+        return $output;
+    }
+
+    $contributorsResponse = url_get_contents("https://api.github.com/repos/interclip/interclip/contributors", false);
+    $contributorsJSON = json_decode($contributorsResponse, true);
+
+    // Get the login of every contributor
+    $contributors = array();
+    foreach ($contributorsJSON as $contributor) {
+
+        // Don't push if the contributor is a bot
+        if ($contributor['type'] !== "Bot" && !str_contains(strtolower($contributor['login']), "bot")) {
+            array_push($contributors, $contributor['login']);
+        }
     }
 
     ?>
@@ -84,6 +115,7 @@
                     Total clips made:
                     <?php
                     echo $count;
+                    print_r($contributors);
                     ?>
                 </li>
             </ul>
@@ -92,9 +124,15 @@
 
     <footer class="madeBy">
         <p> made with ❤️ by &nbsp;</p>
-        <a href="https://github.com/filiptronicek">
-            <img src="https://github.com/filiptronicek.png" alt="An image of Filip's user avatar">
-        </a>
+        <div class="avatar-stack">
+            <?php foreach ($contributors as $contributor) : ?>
+                <a href="https://github.com/<?php echo $contributor; ?>" target="_blank" rel="noopener noreferrer">
+                    <img src="https://github.com/<?php echo $contributor; ?>.png?s=50" class="avatar" alt="<?php echo $contributor; ?>">
+                </a>
+            <?php endforeach; ?>
+        </div>
+        </div>
+
     </footer>
 
 

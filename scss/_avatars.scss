@@ -1,0 +1,38 @@
+.avatar-stack {
+  .avatar {
+    display: inline;
+    height: 25px;
+    margin-right: -15px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 50px;
+    transition: margin 0.1s ease-in-out;
+    cursor: pointer;
+  }
+
+  &:hover .avatar {
+    margin-right: 3px;
+  }
+
+  &:hover .others {
+    margin-left: 5px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.others {
+  color: #000;
+  position: fixed;
+  display: inline-block;
+  background-color: #fff;
+  font-size: 10px;
+  line-height: 25px;
+  height: 25px;
+  min-width: 25px;
+  text-align: center;
+  border-radius: 50px;
+  border: 2px solid white;
+}
