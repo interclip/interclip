@@ -73,7 +73,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-11, windows-latest]
-        width: [1200, 992, 768, 600]
+        width: [1200, 992, 600]
     runs-on: ${{ matrix.os }}
     steps:
     - name: Screenshot Website
@@ -85,4 +85,4 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: screenshots
-        path: ./screenshot-*.png
+        path: "*.png"
