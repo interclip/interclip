@@ -77,10 +77,27 @@ const swalFire = async (opts, reload = false) => {
   }
 }
 
+function a11yClick(event) {
+  if (event.type === "keydown") {
+      if(event.code === "Space" || event.code === "Enter"){
+          return true;
+      }
+  }
+  else{
+      return false;
+  }
+}
+
 // When the user clicks the button, open the modal
 btn.onclick = () => {
   settingsModal.classList.add("settings-shown");
 };
+
+btn.onkeydown = ((evt) => {
+  if (a11yClick(evt)) {
+    settingsModal.classList.toggle("settings-shown");
+  }
+})
 
 colorSchemePreference.addEventListener("change", function () {
   if (this.value === "system") {
