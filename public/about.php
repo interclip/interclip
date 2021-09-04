@@ -3,7 +3,7 @@
 <head>
     <?php
     include_once "includes/header.php";
-    include_once "redis.php";
+    include_once "includes/components/redis.php";
     ?>
     <title>About | Interclip</title>
 
