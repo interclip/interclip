@@ -3,6 +3,7 @@
 <head>
     <?php
     include_once "includes/header.php";
+    include_once "includes/components/redis.php";
     ?>
     <title>About | Interclip</title>
 
@@ -53,19 +54,25 @@
         return $output;
     }
 
-    $contributorsResponse = url_get_contents("https://api.github.com/repos/interclip/interclip/contributors", false);
-    $contributorsJSON = json_decode($contributorsResponse, true);
+    // Cache the contributors
+    if (!getRedis("contributors")) {
+        $contributorsResponse = url_get_contents("https://api.github.com/repos/interclip/interclip/contributors", false);
+        $contributorsJSON = json_decode($contributorsResponse, true);
 
-    // Get the login of every contributor
-    $contributors = array();
-    foreach ($contributorsJSON as $contributor) {
-
-        // Don't push if the contributor is a bot
-        if ($contributor['type'] !== "Bot" && !str_contains(strtolower($contributor['login']), "bot")) {
-            array_push($contributors, $contributor['login']);
+        // Get the login of every contributor
+        $contributors = array();
+        foreach ($contributorsJSON as $contributor) {
+            // Don't push if the contributor is a bot
+            if ($contributor['type'] !== "Bot" && !str_contains(strtolower($contributor['login']), "bot")) {
+                array_push($contributors, $contributor['login']);
+            }
         }
-    }
 
+        // Cache the contributors
+        storeRedis("contributors", json_encode($contributors), 60 * 60 * 24);
+    } else {
+        $contributors = json_decode(getRedis("contributors"));
+    }
     ?>
     <main id="maincontent">
         <h1>About Interclip</h1>
@@ -115,7 +122,6 @@
                     Total clips made:
                     <?php
                     echo $count;
-                    print_r($contributors);
                     ?>
                 </li>
             </ul>

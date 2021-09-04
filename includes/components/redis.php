@@ -42,7 +42,15 @@ function getTotal()
     }
 }
 
-function storeRedis($key, $value)
+/**
+ * Stores a key value pair in Redis
+ *
+ * @param  mixed $key
+ * @param  mixed $value
+ * @param  mixed $expiration (optional)
+ * @return void
+ */
+function storeRedis($key, $value, $expiration = 60 * 60 * 24 * 7)
 {
 
     if ($GLOBALS["redisAvailable"] && $GLOBALS["redis"]->ping()) {
@@ -51,7 +59,7 @@ function storeRedis($key, $value)
         if ($redisCached) {
             return $redisCached;
         } else {
-            $GLOBALS["redis"]->setEx($key, 60 * 60 * 24 * 7, $value); // Expire the key in one week
+            $GLOBALS["redis"]->setEx($key, $expiration, $value); // Expire the key in the set time
             return false;
         }
     } else {
