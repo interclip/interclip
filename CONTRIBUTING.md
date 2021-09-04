@@ -4,7 +4,7 @@ Hi, thanks for considering contributing to Interclip! Here's a guide on how to g
 
 ## The quick and easy way - [GitPod](https://www.gitpod.io/)
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/aperta-principium/Interclip)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/interclip/interclip)
 
 ## Prerequisites
 
