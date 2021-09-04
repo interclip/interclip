@@ -115,7 +115,6 @@
                     Total clips made:
                     <?php
                     echo $count;
-                    print_r($contributors);
                     ?>
                 </li>
             </ul>
