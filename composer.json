@@ -1,5 +1,5 @@
 {
-  "name": "aperta-principium/interclip",
+  "name": "interclip/interclip",
   "description": "A clipboard and file sharing tool",
   "license": "MIT",
   "require-dev": {
