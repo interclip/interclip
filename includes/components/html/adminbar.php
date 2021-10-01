@@ -1,7 +1,8 @@
 <?php
 if (empty($user)) {
   if ($_ENV['AUTH_TYPE'] === "account") {
-    if ($auth0->getUser()) {
+    $session = $auth0->getCredentials();
+    if ($session !== null) {
       $user = $auth0->getUser();
     } else {
       $user = false;
