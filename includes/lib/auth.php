@@ -13,6 +13,7 @@ if ($_ENV['AUTH_TYPE'] === "account") {
             'clientId'     => $_ENV['AUTH0_CLIENT_ID'],
             'clientSecret' => $_ENV['AUTH0_CLIENT_SECRET'],
             'redirectUri' => $redirURI,
+            'cookieSecret' => ['SALT'],
             'cookieExpires' => 86400 * 365 // 1 year
         ]);
     } else {
