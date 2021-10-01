@@ -3,15 +3,18 @@
 include_once "init.php";
 
 use Auth0\SDK\Auth0;
+use Auth0\SDK\Utility\HttpResponse;
 
 if ($_ENV['AUTH_TYPE'] === "account") {
     if (!empty($_SERVER['HTTP_HOST'])) {
         $redirURI = $_ENV['PROTOCOL'] . "://" . $_SERVER['HTTP_HOST'] . ROOT . "/login";
+
         $auth0 = new Auth0([
             'domain'        => $_ENV['AUTH0_DOMAIN'],
             'client_id'     => $_ENV['AUTH0_CLIENT_ID'],
             'client_secret' => $_ENV['AUTH0_CLIENT_SECRET'],
             'redirect_uri' => $redirURI,
+            'cookieExpires' => 86400 * 365 // 1 year
         ]);
     } else {
         die("
@@ -31,7 +34,8 @@ if ($_ENV['AUTH_TYPE'] === "account") {
 
 if (empty($user)) {
     if ($_ENV['AUTH_TYPE'] === "account") {
-        if ($auth0->getUser()) {
+        $session = $auth0->getCredentials();
+        if ($session !== null) {
             $user = $auth0->getUser();
         } else {
             $user = false;
@@ -55,7 +59,7 @@ if ($user !== false) {
         $isStaff = $account === "staff";
     }
     if (!isset($account)) {
-        $sqlquery = "INSERT INTO accounts VALUES('$usrEmail', 'visitor',NULL)";
+        $sqlquery = "INSERT INTO accounts VALUES('$usrEmail', 'visitor', NULL)";
         $accResult = $conn->query($sqlquery);
     }
 }

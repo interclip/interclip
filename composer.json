@@ -8,9 +8,11 @@
   "require": {
     "io-developer/php-whois": "^4.0",
     "vlucas/phpdotenv": "^5.3",
-    "auth0/auth0-php": "^7.7",
+    "auth0/auth0-php": "^8.0",
     "utopia-php/domains": "^1.1",
     "sentry/sdk": "^3.1",
-    "pecee/simple-router": "4.3.7.2"
+    "pecee/simple-router": "4.3.7.2",
+    "kriswallsmith/buzz": "^1.2",
+    "nyholm/psr7": "^1.4"
   }
 }
