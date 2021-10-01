@@ -1,14 +1,6 @@
 <?php
-if (empty($user)) {
-  if ($_ENV['AUTH_TYPE'] === "account") {
-    if ($auth0->getUser()) {
-      $user = $auth0->getUser();
-    } else {
-      $user = false;
-      $isStaff = false;
-    }
-  }
-}
+
+include_once "../../lib/auth.php";
 
 exec('git describe --abbrev=0 --tags', $release);
 if ($user !== false) {
