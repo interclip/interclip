@@ -24,7 +24,7 @@ tasks:
       sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer;
       php -r "unlink('composer-setup.php');"
 
-      composer install
+      composer install;
 
       bash scripts/secrets.sh;
       mkdir public/upload/uploads;
@@ -52,6 +52,8 @@ github:
   prebuilds:
     branches: true
     addLabel: gitpod-prebuilt
+    addComment: true
+    addCheck: true
 
 vscode:
   extensions:
