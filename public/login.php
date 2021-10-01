@@ -7,9 +7,11 @@ if ($_ENV['AUTH_TYPE'] === "account") {
     if ($session !== null) {
         // Output the authenticated user
         header("Location: " . ROOT . "/");
+        exit;
     } else {
         // No session was available, so redirect to Universal Login page
-        $auth0->login();
+        header('Location: ' . $auth0->login());
+        exit;
     }
 } else {
     header("Location: " . ROOT . "/");
