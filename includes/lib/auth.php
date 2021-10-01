@@ -3,7 +3,6 @@
 include_once "init.php";
 
 use Auth0\SDK\Auth0;
-use Auth0\SDK\Utility\HttpResponse;
 
 if ($_ENV['AUTH_TYPE'] === "account") {
     if (!empty($_SERVER['HTTP_HOST'])) {
@@ -11,9 +10,9 @@ if ($_ENV['AUTH_TYPE'] === "account") {
 
         $auth0 = new Auth0([
             'domain'        => $_ENV['AUTH0_DOMAIN'],
-            'client_id'     => $_ENV['AUTH0_CLIENT_ID'],
-            'client_secret' => $_ENV['AUTH0_CLIENT_SECRET'],
-            'redirect_uri' => $redirURI,
+            'clientId'     => $_ENV['AUTH0_CLIENT_ID'],
+            'clientSecret' => $_ENV['AUTH0_CLIENT_SECRET'],
+            'redirectUri' => $redirURI,
             'cookieExpires' => 86400 * 365 // 1 year
         ]);
     } else {
