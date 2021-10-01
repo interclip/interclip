@@ -1,4 +1,3 @@
-FROM gitpod/workspace-full:latest
 FROM gitpod/workspace-mysql
 
 # optional: use a custom apache config.
