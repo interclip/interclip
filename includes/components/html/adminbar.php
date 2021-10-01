@@ -1,6 +1,6 @@
 <?php
 
-include_once "../../lib/auth.php";
+include_once "lib/auth.php";
 
 exec('git describe --abbrev=0 --tags', $release);
 if ($user !== false) {
