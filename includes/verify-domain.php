@@ -71,6 +71,11 @@ function whois($domain) {
 function verify($url) {
     $pingable = parse_url($url, PHP_URL_HOST);
     $domain = new Domain($pingable);
+    $excludedTLDs = ['onion'];
+
+    if (in_array($domain->getTLD(), $excludedTLDs)) {
+        return true;
+    }
 
     if ($pingable === "files.interclip.app") {
         return true;
