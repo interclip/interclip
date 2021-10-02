@@ -71,7 +71,12 @@ function createClip($url)
             $stmt->store_result();
         }
 
-        if (verify($url)) {
+        $protocol = parse_url($url, PHP_URL_SCHEME);
+        $allowed_protocols = ["https", "http", "ipfs"];
+
+        if (!in_array($protocol, $allowed_protocols)) {
+            $err = "Error: URL protocol not allowed";
+        } else if ($protocol === "ipfs" || verify($url)) {
             $stmt = $conn->prepare('INSERT INTO userurl (usr, url, date, expires) VALUES (?, ?, NOW(), ?)');
 
             $stmt->bind_param('sss', $usr, $url, $expiryDate);
@@ -85,6 +90,5 @@ function createClip($url)
         }
     }
 
-    //$conn->close();
     return [$usr, $err];
 }
