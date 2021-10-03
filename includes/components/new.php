@@ -5,6 +5,25 @@ include_once "includes/verify-domain.php";
 include_once "includes/components/redis.php";
 
 /**
+ * Checks if a given `$url` is hosted on IPFS
+ */
+function checkIPFS($url) {
+    $headers = get_headers($url);
+    $ipfs = false;
+    foreach ($headers as $key=>$value) {
+        if (is_array($value)) {
+            $value = end($value);
+        }
+        $headerParts = explode(":", $value);
+        if ($headerParts[0] === "X-Ipfs-Path") {
+            $ipfs = true;
+            break;
+        }
+    }
+    return $ipfs;
+}
+
+/**
  * Creates a new clip in the database
  *
  * @param  mixed $url
@@ -77,6 +96,9 @@ function createClip($url)
         if (!in_array($protocol, $allowed_protocols)) {
             $err = "Error: URL protocol not allowed";
         } else if ($protocol === "ipfs" || verify($url)) {
+            if ($protocol === "ipfs" || checkIPFS($url)) {
+                $ipfs = true;
+            }
             $stmt = $conn->prepare('INSERT INTO userurl (usr, url, date, expires) VALUES (?, ?, NOW(), ?)');
 
             $stmt->bind_param('sss', $usr, $url, $expiryDate);
@@ -90,5 +112,5 @@ function createClip($url)
         }
     }
 
-    return [$usr, $err];
+    return [$usr, $err, $ipfs];
 }
