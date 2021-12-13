@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "auth0/auth0-php",
-            "version": "8.0.2",
+            "version": "8.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/auth0/auth0-PHP.git",
-                "reference": "81938b31141ba643bbfce7fc5df9cca50ebe741b"
+                "reference": "8c4aba40b56a7546f496ee4e701e600c4219e9e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/auth0/auth0-PHP/zipball/81938b31141ba643bbfce7fc5df9cca50ebe741b",
-                "reference": "81938b31141ba643bbfce7fc5df9cca50ebe741b",
+                "url": "https://api.github.com/repos/auth0/auth0-PHP/zipball/8c4aba40b56a7546f496ee4e701e600c4219e9e9",
+                "reference": "8c4aba40b56a7546f496ee4e701e600c4219e9e9",
                 "shasum": ""
             },
             "require": {
@@ -89,9 +89,9 @@
             ],
             "support": {
                 "issues": "https://github.com/auth0/auth0-PHP/issues",
-                "source": "https://github.com/auth0/auth0-PHP/tree/8.0.2"
+                "source": "https://github.com/auth0/auth0-PHP/tree/8.0.4"
             },
-            "time": "2021-10-19T12:40:49+00:00"
+            "time": "2021-12-13T19:27:32+00:00"
         },
         {
             "name": "clue/stream-filter",
