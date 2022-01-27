@@ -66,3 +66,9 @@ Then press Enter and through the magic of code here is the code to your link!
 
 Receiving a clip is even easier than clipping. Just get out your phone or another device and paste the code into the input.
 ![receive page](https://user-images.githubusercontent.com/29888641/131837516-c8db158b-6eeb-477f-96bd-98e7c4de3286.gif)
+
+## Domain resolution troubles
+
+For some users, we have observed that some ISPs block Interclip's traffic over the [interclip.app](https://interclip.app) domain. No idea why, but maybe because of the files hosted by the users? If you encounter such trouble please use the alternate domain, [iclip.fufik.eu](https://iclip.fufik.eu), which can also be accessed with HTTP if you plan to use ultra-old browsers with outdated TLS requirements.
+
+_Note_: I know it's a bad idea to allow the access over HTTP, but if you use this alternate domain it should be a last resort. If you encounter any further issues, shoot me an email - [filip@interclip.app](mailto:filip@interclip.app).
