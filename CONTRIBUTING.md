@@ -2,7 +2,7 @@
 
 Hi, thanks for considering contributing to Interclip! Here's a guide on how to get you set up.
 
-## The quick and easy way - [GitPod](https://www.gitpod.io/)
+## The quick and easy way - [Gitpod](https://www.gitpod.io/)
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/interclip/interclip)
 
