@@ -33,7 +33,7 @@ jobs:
           script: cd /var/www/staging && sudo git pull --all && sudo composer install && sudo sass scss/:css/ -s compressed && postcss css/*.css --replace --use autoprefixer
   purge-cache:
     name: Purge Cloudflare cache
-    needs: [deploy-production, deploy-staging]
+    needs: [deploy-production]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
