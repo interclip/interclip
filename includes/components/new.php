@@ -5,6 +5,47 @@ include_once "includes/verify-domain.php";
 include_once "includes/components/redis.php";
 
 /**
+ * Checks if a given `$url` is hosted on IPFS
+ * 
+ * @param string $url
+ * @return bool
+ */
+function checkIPFS($url)
+{
+    $headers = get_headers($url);
+    $ipfs = false;
+
+    $protocol = parse_url($url, PHP_URL_SCHEME);
+
+    if ($protocol !== "ipfs") {
+        foreach ($headers as $key => $value) {
+            if (is_array($value)) {
+                $value = end($value);
+            }
+            $headerParts = explode(":", $value);
+            if ($headerParts[0] === "X-Ipfs-Path") {
+                $ipfs = true;
+                break;
+            }
+        }
+    } else {
+        $ipfs = true;
+    }
+    return $ipfs;
+}
+
+/**
+ * Creates a random alpha-numberic ID.
+ *
+ * @param  int $len
+ * @return string
+ */
+function gen_uid($len = 10)
+{
+    return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $len);
+}
+
+/**
  * Creates a new clip in the database
  *
  * @param  mixed $url
@@ -26,17 +67,6 @@ function createClip($url)
         die("Connection failed: " . $conn->connect_error);
     }
 
-    /**
-     * Creates a random alpha-numberic ID.
-     *
-     * @param  mixed $len
-     * @return string
-     */
-    function gen_uid($len = 10)
-    {
-        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $len);
-    }
-
     $usr = gen_uid(5);
 
     /* Expiry of clips */
@@ -56,6 +86,7 @@ function createClip($url)
             $usr = $row['usr'];
             break;
         }
+        $ipfs = checkIPFS($url);
     } else {
         $stmt = $conn->prepare('SELECT * FROM userurl WHERE usr = ?');
 
@@ -71,7 +102,13 @@ function createClip($url)
             $stmt->store_result();
         }
 
-        if (verify($url)) {
+        $protocol = parse_url($url, PHP_URL_SCHEME);
+        $allowed_protocols = ["https", "http", "ipfs"];
+
+        if (!in_array($protocol, $allowed_protocols)) {
+            $err = "Error: URL protocol not allowed";
+        } else if ($protocol === "ipfs" || verify($url)) {
+            $ipfs = checkIPFS($url);
             $stmt = $conn->prepare('INSERT INTO userurl (usr, url, date, expires) VALUES (?, ?, NOW(), ?)');
 
             $stmt->bind_param('sss', $usr, $url, $expiryDate);
@@ -85,6 +122,5 @@ function createClip($url)
         }
     }
 
-    //$conn->close();
-    return [$usr, $err];
+    return [$usr, $err, $ipfs];
 }
