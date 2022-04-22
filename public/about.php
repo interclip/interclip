@@ -133,7 +133,7 @@
         <div class="avatar-stack">
             <?php foreach ($contributors as $contributor) : ?>
                 <a href="https://github.com/<?php echo $contributor; ?>" target="_blank" rel="noopener noreferrer">
-                    <img src="https://github.com/<?php echo $contributor; ?>.png?s=50" class="avatar" alt="<?php echo $contributor; ?>">
+                    <img src="https://images.weserv.nl/?url=https://github.com/<?php echo $contributor; ?>.png&w=30&output=webp" class="avatar" alt="<?php echo $contributor; ?>">
                 </a>
             <?php endforeach; ?>
         </div>
