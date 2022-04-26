@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "auth0/auth0-php",
-            "version": "8.0.2",
+            "version": "8.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/auth0/auth0-PHP.git",
-                "reference": "81938b31141ba643bbfce7fc5df9cca50ebe741b"
+                "reference": "610873fcc14c03b92b1e71c167aeb2428919c904"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/auth0/auth0-PHP/zipball/81938b31141ba643bbfce7fc5df9cca50ebe741b",
-                "reference": "81938b31141ba643bbfce7fc5df9cca50ebe741b",
+                "url": "https://api.github.com/repos/auth0/auth0-PHP/zipball/610873fcc14c03b92b1e71c167aeb2428919c904",
+                "reference": "610873fcc14c03b92b1e71c167aeb2428919c904",
                 "shasum": ""
             },
             "require": {
@@ -37,14 +37,13 @@
             },
             "require-dev": {
                 "ergebnis/phpstan-rules": "^0.15",
-                "firebase/php-jwt": "^5.0",
+                "firebase/php-jwt": "^6.0",
                 "hyperf/event": "^2.2",
-                "infection/infection": "^0.23",
                 "mockery/mockery": "^1.4",
                 "nunomaduro/phpinsights": "^2.0",
                 "nyholm/psr7": "^1.4",
                 "pestphp/pest": "^1.18",
-                "pestphp/pest-plugin-parallel": "^0.2",
+                "pestphp/pest-plugin-parallel": "^0.2 || ^1.0",
                 "php-http/mock-client": "^1.4",
                 "phpstan/phpstan": "^0.12",
                 "phpstan/phpstan-strict-rules": "^0.12",
@@ -89,9 +88,9 @@
             ],
             "support": {
                 "issues": "https://github.com/auth0/auth0-PHP/issues",
-                "source": "https://github.com/auth0/auth0-PHP/tree/8.0.2"
+                "source": "https://github.com/auth0/auth0-PHP/tree/8.2.0"
             },
-            "time": "2021-10-19T12:40:49+00:00"
+            "time": "2022-04-26T13:11:00+00:00"
         },
         {
             "name": "clue/stream-filter",
@@ -884,16 +883,16 @@
         },
         {
             "name": "php-http/httplug",
-            "version": "2.2.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/httplug.git",
-                "reference": "191a0a1b41ed026b717421931f8d3bd2514ffbf9"
+                "reference": "f640739f80dfa1152533976e3c112477f69274eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/httplug/zipball/191a0a1b41ed026b717421931f8d3bd2514ffbf9",
-                "reference": "191a0a1b41ed026b717421931f8d3bd2514ffbf9",
+                "url": "https://api.github.com/repos/php-http/httplug/zipball/f640739f80dfa1152533976e3c112477f69274eb",
+                "reference": "f640739f80dfa1152533976e3c112477f69274eb",
                 "shasum": ""
             },
             "require": {
@@ -940,9 +939,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/httplug/issues",
-                "source": "https://github.com/php-http/httplug/tree/master"
+                "source": "https://github.com/php-http/httplug/tree/2.3.0"
             },
-            "time": "2020-07-13T15:43:23+00:00"
+            "time": "2022-02-21T09:52:22+00:00"
         },
         {
             "name": "php-http/message",
@@ -5601,5 +5600,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
