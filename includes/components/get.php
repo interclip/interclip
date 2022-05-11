@@ -12,6 +12,8 @@ if (isset($user_code)) {
   if ($cached) {
     $url = $cached;
   } else {
+    
+    error_log("Didn't find " . $user_code . " in Redis");
 
     // Create connection
     $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
@@ -37,6 +39,10 @@ if (isset($user_code)) {
         storeRedis($user_code, $url);
         break;
       }
+    }
+
+    if (!$url) {
+      error_log($url . " not found in DB");
     }
 
     $conn->close();
