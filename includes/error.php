@@ -10,8 +10,7 @@
     $clipRegex = "/([a-z|0-9|A-Z]){5}/g";
 
     /* Check if requested string wasn't a code */
-
-    $path = explode("?", basename($_SERVER['REQUEST_URI']))[0];
+    $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
     if (strlen($path) == 5) {
         $user_code = $path;
