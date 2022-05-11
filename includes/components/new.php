@@ -1,7 +1,6 @@
 <?php
 
 include_once "includes/components/rate.php";
-include_once "includes/verify-domain.php";
 include_once "includes/components/redis.php";
 
 /**
@@ -71,17 +70,13 @@ function createClip($url)
             $stmt->store_result();
         }
 
-        if (verify($url)) {
-            $stmt = $conn->prepare('INSERT INTO userurl (usr, url, date, expires) VALUES (?, ?, NOW(), ?)');
+        $stmt = $conn->prepare('INSERT INTO userurl (usr, url, date, expires) VALUES (?, ?, NOW(), ?)');
 
-            $stmt->bind_param('sss', $usr, $url, $expiryDate);
-            storeRedis($usr, $url);
+        $stmt->bind_param('sss', $usr, $url, $expiryDate);
+        storeRedis($usr, $url);
 
-            if ($stmt->execute() === FALSE) {
-                $err = "Error inserting clip: <br>" . $conn->error;
-            }
-        } else {
-            $err = "Error: this domain is not accesible nor registered.";
+        if ($stmt->execute() === FALSE) {
+            $err = "Error inserting clip: <br>" . $conn->error;
         }
     }
 
