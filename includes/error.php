@@ -19,6 +19,8 @@
         if (isset($url)) {
             reDir($url);
         }
+    } else {
+        echo 'Not 5 chars';
     }
 
     if ($statusCode) {
