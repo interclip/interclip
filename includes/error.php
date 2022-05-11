@@ -63,6 +63,7 @@
         echo ('<h1 style="font-size: 5rem;margin-top: 30vh;">' . $errortitle . '</h1>');
         echo ('<p style="font-size: 2rem;">' . $message . '</p>');
         echo ('<p>' . $path .  '</p>');
+        echo ('<p>' . $_SERVER['REQUEST_URI'] .  '</p>');
         ?>
     </main>
 </body>
