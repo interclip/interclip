@@ -14,11 +14,6 @@ tasks:
     command: >
       curl https://rclone.org/install.sh | sudo bash; 
 
-      sudo apt update;
-      sudo apt upgrade -y;
-      sudo apt install redis-server -y;
-      sudo apt install php-redis -y;
-
       sudo apt remove composer -y;
       php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');";
       sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer;
