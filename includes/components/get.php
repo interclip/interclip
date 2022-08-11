@@ -34,7 +34,6 @@ if (isset($user_code)) {
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
         $url = $row['url'];
-        var_dump($result);
         storeRedis($user_code, $url);
         break;
       }
