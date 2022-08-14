@@ -38,7 +38,7 @@ const isPhone = !isTablet
   : false;
 
 function showPaintTimings() {
-  if (!loggedIn) {
+  if (!isAdmin) {
     return null;
   }
   if (window.performance) {
