@@ -36,8 +36,9 @@ function uploadFile(file) {
   formData.append("uploaded_file", file);
 
   if (
-    (storageProvider && storageProvider.value === "ipfs") ||
-    localStorage.getItem("fileServer") === "ipfs"
+    storageProvider &&
+    storageProvider.value === "ipfs"
+    // todo(ft): uncomment when IPFS works again || localStorage.getItem("fileServer") === "ipfs"
   ) {
     // The progress bar is not available for the fetch request, so hide the progress bar
     progressBar.style.display = "none";
@@ -236,7 +237,16 @@ function uploadFile(file) {
 
 window.onload = () => {
   if (storageProvider) {
-    storageProvider.value = localStorage.getItem("fileServer") || "iclip";
+    const preferredDestination = localStorage.getItem("fileServer") || "iclip";
+    const optionAllowed =
+      [...storageProvider.options]
+        .find((e) => e.value === preferredDestination)
+        .getAttribute("disabled") === null;
+
+    if (optionAllowed) {
+      console.log(optionAllowed, preferredDestination);
+      storageProvider.value = preferredDestination;
+    }
   }
 
   fetch("https://interclips.filiptronicek.workers.dev/")
@@ -245,3 +255,4 @@ window.onload = () => {
       fact.innerText = res;
     });
 };
+
