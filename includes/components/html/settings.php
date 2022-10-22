@@ -19,7 +19,7 @@
     <h3>Default file server</h3>
     <div class="select">
       <select name="slct" id="file-slct" class="slct">
-        <option value="ipfs">IPFS 🌍</option>
+        <option value="ipfs" disabled>IPFS 🌍</option>
         <option value="iclip">Interclip 💾</option>
       </select>
     </div>

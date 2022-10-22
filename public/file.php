@@ -31,7 +31,7 @@
                 <div class="server-container">
                     Upload to
                     <select id="provider">
-                        <option value="ipfs">IPFS (highly experimental)</option>
+                        <option value="ipfs" disabled>IPFS (out of service)</option>
                         <option value="iclip" selected>Interclip Storage Server</option>
                     </select>
                 </div>
