@@ -7,8 +7,8 @@ function isValidURL(string) {
 }
 
 function validateForm() {
-  const x = document.forms["urlform"]["input"].value;
-  if (!isValidURL(x) || x === "") {
+  const inputValue = document.forms["urlform"]["input"].value;
+  if (!isValidURL(inputValue) || inputValue === "") {
     swalFire({
       title: "Something's wrong here",
       text: "You have to enter a valid URL",
