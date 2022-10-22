@@ -1,6 +1,5 @@
 function placeHolder() {
-  const hash = Math.random().toString(36).substr(2, 5);
-
+  const hash = Math.random().toString(36).slice(2, 7);
   document.querySelector("#code").setAttribute("placeholder", hash);
 }
 
