@@ -71,6 +71,10 @@ SimpleRouter::group(['prefix' => ROOT], function () {
         include_once "public/api/get.php";
     });
 
+    SimpleRouter::match(['get', 'post'], '/api/file', function () {
+        include_once "public/api/file.php";
+    });
+
     /* Internal behavior */
 
     SimpleRouter::get('/staging/change-branch', function () {

@@ -14,7 +14,9 @@
     "pecee/simple-router": "4.3.7.2",
     "kriswallsmith/buzz": "^1.2",
     "nyholm/psr7": "^1.4",
-    "squizlabs/php_codesniffer": "*"
+    "squizlabs/php_codesniffer": "*",
+    "aws/aws-sdk-php": "^3.240",
+    "tracy/tracy": "^2.9"
   },
   "config": {
     "allow-plugins": {

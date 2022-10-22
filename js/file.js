@@ -31,7 +31,7 @@ function showCode(data) {
 const progressBar = document.getElementById("progressBar");
 const progressValue = document.getElementById("progressPercent");
 
-function uploadFile(file) {
+async function uploadFile(file) {
   const formData = new FormData();
   formData.append("uploaded_file", file);
 
@@ -67,7 +67,41 @@ function uploadFile(file) {
         );
       });
   } else {
-    // Begin file upload
+    // Get the AWS presigned URL
+
+    const presignedRes = await fetch(`/api/file?name=${encodeURIComponent(file.name)}&type=${file.type}`, {
+      method: "get",
+    });
+
+
+    // Upload the file to the presigned URL
+    if (!presignedRes.ok) {
+      switch (res.status) {
+        case 404:
+          throw new APIError('API Endpoint not found');
+        case 500:
+          throw new APIError('Generic fail');
+        case 503:
+          throw new APIError((await presignedRes.json()).result);
+      }
+  
+      throw new APIError(await presignedRes.text());
+    }
+    const { data: {action}, inputs: fields } = await presignedRes.json();
+    const formData = new FormData();
+
+    Object.entries({ ...fields, file }).forEach(
+      ([key, value]) => {
+        formData.append(key, value);
+      },
+    );
+    const upload = await fetch(action, {
+      method: 'POST',
+      body: formData,
+    });
+
+    return;
+
     const request = new XMLHttpRequest();
     request.upload.onprogress = (event) => {
       progressValue.innerText = `${Math.round(
