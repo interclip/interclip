@@ -36,7 +36,7 @@
                             required
                         >
                         <br>
-                        <button type="submit" class="btn">Retreive</a>
+                        <button type="submit" class="btn">Retrieve</a>
                         <div id="result"></div>
                         <div id="modalpage">
                         </div>
