@@ -255,4 +255,3 @@ window.onload = () => {
       fact.innerText = res;
     });
 };
-
