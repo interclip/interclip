@@ -33,7 +33,7 @@ async function handleRequest(request) {
       return new Response(
         JSON.stringify({
           status: "error",
-          result: "there is no URL assosiated with that code",
+          result: "there is no URL associated with that code",
         }),
         {
           headers: {
@@ -80,7 +80,6 @@ async function handleRequest(request) {
       );
     }
 
-    const value = await iclip.get(url);
 
     const now = Date.now();
     const mSecondMonth = 30 * 24 * 60 * 60 * 1000;
