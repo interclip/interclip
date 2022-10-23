@@ -45,7 +45,7 @@ async function uploadFile(file) {
   const formData = new FormData();
   formData.append("uploaded_file", file);
   modal.style.display = "block";
- 
+
   if (
     storageProvider &&
     storageProvider.value === "ipfs"
@@ -78,10 +78,9 @@ async function uploadFile(file) {
         );
       });
   } else {
-
     progressBar.style.visibility = "hidden";
     progressValue.innerText = "Preparing upload";
- 
+
     // Get the AWS presigned URL
     const urlToFetch = new URL("https://iclip.vercel.app");
     urlToFetch.pathname = "api/uploadFile";
@@ -116,7 +115,8 @@ async function uploadFile(file) {
       )}%`;
       progressBar.value = (event.loaded / event.total) * 100;
     };
-    request.upload.onloadstart = () => progressBar.style.visibility = "visible";
+    request.upload.onloadstart = () =>
+      (progressBar.style.visibility = "visible");
 
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
