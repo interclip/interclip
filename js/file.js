@@ -69,10 +69,9 @@ async function uploadFile(file) {
   } else {
     // Get the AWS presigned URL
 
-    const presignedRes = await fetch(`/api/file?name=${encodeURIComponent(file.name)}&type=${file.type}`, {
+    const presignedRes = await fetch(`https://iclip.vercel.app/api/uploadFile?name=${encodeURIComponent(file.name)}&type=${file.type}`, {
       method: "get",
     });
-
 
     // Upload the file to the presigned URL
     if (!presignedRes.ok) {
@@ -87,7 +86,7 @@ async function uploadFile(file) {
   
       throw new APIError(await presignedRes.text());
     }
-    const { data: {action}, inputs: fields } = await presignedRes.json();
+    const { url, fields } = await presignedRes.json();
     const formData = new FormData();
 
     Object.entries({ ...fields, file }).forEach(
@@ -95,12 +94,6 @@ async function uploadFile(file) {
         formData.append(key, value);
       },
     );
-    const upload = await fetch(action, {
-      method: 'POST',
-      body: formData,
-    });
-
-    return;
 
     const request = new XMLHttpRequest();
     request.upload.onprogress = (event) => {
@@ -112,9 +105,8 @@ async function uploadFile(file) {
 
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
-        const data = request.responseText;
-        const jsonData = JSON.parse(data);
-        if (jsonData.status === "error") {
+        const {status} = request;
+        if (status >= 400) {
           swalFire({
             title: "Something's went wrong",
             text: jsonData.result,
@@ -123,15 +115,13 @@ async function uploadFile(file) {
             location.reload();
           });
         } else {
-          const link = jsonData.result;
+          const link = `https://files.interclip.app/${fields.key}`;
           showCode(link);
         }
       }
     };
-    // API Endpoint
-    const apiUrl = `${root || ""}/upload/?api`;
 
-    request.open("POST", apiUrl);
+    request.open("POST", url);
     request.send(formData);
   }
 
