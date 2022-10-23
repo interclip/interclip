@@ -27,7 +27,7 @@
             <span id="content"> </span>
             <div class="title">
                 <h1>Upload a file to Interclip</h1>
-                <p class="note">Upload any file type that's under 100MB.</p>
+                <p class="note">Upload any file type that's under 1GB</p>
                 <div class="server-container">
                     Upload to
                     <select id="provider">

@@ -4,7 +4,7 @@ const fact = document.getElementById("fact");
 const dropzone = document.getElementById("dropzone");
 const storageProvider = document.getElementById("provider");
 
-const fileSizeLimitInMegabytes = 100;
+const fileSizeLimitInMegabytes = 1000;
 const fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
 
 function encodeHTML(s) {
