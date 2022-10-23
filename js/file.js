@@ -11,6 +11,16 @@ function encodeHTML(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 }
 
+const showError = (message) => {
+  swalFire({
+    title: "Something's went wrong",
+    text: `Upload failed with HTTP ${message}`,
+    icon: "error",
+  }).then(() => {
+    location.reload();
+  });
+}
+
 const submitClip = (url) => {
   output.innerHTML += `
   <form id="clip" action="/set" method="POST" style="display: none;">
@@ -69,31 +79,31 @@ async function uploadFile(file) {
   } else {
     // Get the AWS presigned URL
 
-    const presignedRes = await fetch(`https://iclip.vercel.app/api/uploadFile?name=${encodeURIComponent(file.name)}&type=${file.type}`, {
-      method: "get",
-    });
+    const urlToFetch = new URL("https://iclip.vercel.app");
+    urlToFetch.pathname = "api/uploadFile";
+    urlToFetch.searchParams.set("name", file.name);
+    urlToFetch.searchParams.set("type", file.type);
+    const presignedRes = await fetch(urlToFetch);
 
     // Upload the file to the presigned URL
     if (!presignedRes.ok) {
       switch (res.status) {
         case 404:
-          throw new APIError('API Endpoint not found');
+          throw new showError("API Endpoint not found");
         case 500:
-          throw new APIError('Generic fail');
+          throw new showError("Generic fail");
         case 503:
-          throw new APIError((await presignedRes.json()).result);
+          throw new showError((await presignedRes.json()).result);
       }
-  
-      throw new APIError(await presignedRes.text());
+
+      throw new showError(await presignedRes.text());
     }
     const { url, fields } = await presignedRes.json();
     const formData = new FormData();
 
-    Object.entries({ ...fields, file }).forEach(
-      ([key, value]) => {
-        formData.append(key, value);
-      },
-    );
+    Object.entries({ ...fields, file }).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
 
     const request = new XMLHttpRequest();
     request.upload.onprogress = (event) => {
@@ -105,15 +115,9 @@ async function uploadFile(file) {
 
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
-        const {status} = request;
+        const { status } = request;
         if (status >= 400) {
-          swalFire({
-            title: "Something's went wrong",
-            text: jsonData.result,
-            icon: "error",
-          }).then(() => {
-            location.reload();
-          });
+          showError(`Upload failed with HTTP ${status}`);
         } else {
           const link = `https://files.interclip.app/${fields.key}`;
           showCode(link);
@@ -279,3 +283,4 @@ window.onload = () => {
       fact.innerText = res;
     });
 };
+
