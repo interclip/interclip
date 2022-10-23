@@ -19,7 +19,7 @@ const showError = (message) => {
   }).then(() => {
     location.reload();
   });
-}
+};
 
 const submitClip = (url) => {
   output.innerHTML += `
@@ -282,4 +282,3 @@ window.onload = () => {
       fact.innerText = res;
     });
 };
-
