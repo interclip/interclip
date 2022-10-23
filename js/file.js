@@ -272,7 +272,6 @@ window.onload = () => {
         .getAttribute("disabled") === null;
 
     if (optionAllowed) {
-      console.log(optionAllowed, preferredDestination);
       storageProvider.value = preferredDestination;
     }
   }
