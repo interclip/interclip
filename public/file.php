@@ -43,16 +43,16 @@
 
                     <!-- Modal content -->
                     <div class="modal-content">
-                        <p>
+                        <span>
                             <progress id="progressBar" value="0" max="100"></progress>
                             <br>
                             <span id="progressPercent">
                                 0%
                             </span>
-                        <div id="fact">
-                            Inter-clippin' good!
-                        </div>
-                        </p>
+                            <div id="fact">
+                                Inter-clippin' good!
+                            </div>
+                        </span>
                     </div>
 
                 </div>
