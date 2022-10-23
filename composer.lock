@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "auth0/auth0-php",
-            "version": "8.0.2",
+            "version": "8.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/auth0/auth0-PHP.git",
-                "reference": "81938b31141ba643bbfce7fc5df9cca50ebe741b"
+                "reference": "848c702e2ea58c8dba0cae30976953b5772f8bf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/auth0/auth0-PHP/zipball/81938b31141ba643bbfce7fc5df9cca50ebe741b",
-                "reference": "81938b31141ba643bbfce7fc5df9cca50ebe741b",
+                "url": "https://api.github.com/repos/auth0/auth0-PHP/zipball/848c702e2ea58c8dba0cae30976953b5772f8bf0",
+                "reference": "848c702e2ea58c8dba0cae30976953b5772f8bf0",
                 "shasum": ""
             },
             "require": {
@@ -25,7 +25,7 @@
                 "ext-json": "*",
                 "ext-mbstring": "*",
                 "ext-openssl": "*",
-                "php": "^7.4 || ^8.0, <8.2",
+                "php": "^7.4 || ^8.0",
                 "php-http/discovery": "^1.0",
                 "php-http/httplug": "^2.2",
                 "php-http/multipart-stream-builder": "^1.1",
@@ -36,21 +36,20 @@
                 "psr/http-message-implementation": "^1.0"
             },
             "require-dev": {
-                "ergebnis/phpstan-rules": "^0.15",
-                "firebase/php-jwt": "^5.0",
+                "firebase/php-jwt": "^6.2",
                 "hyperf/event": "^2.2",
-                "infection/infection": "^0.23",
                 "mockery/mockery": "^1.4",
-                "nunomaduro/phpinsights": "^2.0",
-                "nyholm/psr7": "^1.4",
-                "pestphp/pest": "^1.18",
-                "pestphp/pest-plugin-parallel": "^0.2",
-                "php-http/mock-client": "^1.4",
-                "phpstan/phpstan": "^0.12",
-                "phpstan/phpstan-strict-rules": "^0.12",
-                "symfony/cache": "^4.4 || ^5.2",
-                "thecodingmachine/phpstan-strict-rules": "^0.12",
-                "vimeo/psalm": "^4.10"
+                "nyholm/psr7": "^1.5",
+                "pestphp/pest": "^1.21",
+                "php-http/mock-client": "^1.5",
+                "phpstan/phpstan": "^1.7",
+                "phpstan/phpstan-strict-rules": "1.4.3",
+                "phpunit/phpunit": "^9.5",
+                "rector/rector": "^0.13.6",
+                "squizlabs/php_codesniffer": "^3.7",
+                "symfony/cache": "^4.4 || ^5.4 || ^6.1",
+                "vimeo/psalm": "^4.24",
+                "wikimedia/composer-merge-plugin": "^2.0"
             },
             "type": "library",
             "autoload": {
@@ -89,9 +88,9 @@
             ],
             "support": {
                 "issues": "https://github.com/auth0/auth0-PHP/issues",
-                "source": "https://github.com/auth0/auth0-PHP/tree/8.0.2"
+                "source": "https://github.com/auth0/auth0-PHP/tree/8.3.1"
             },
-            "time": "2021-10-19T12:40:49+00:00"
+            "time": "2022-09-26T09:34:14+00:00"
         },
         {
             "name": "aws/aws-crt-php",
@@ -1223,16 +1222,16 @@
         },
         {
             "name": "php-http/discovery",
-            "version": "1.14.1",
+            "version": "1.14.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/discovery.git",
-                "reference": "de90ab2b41d7d61609f504e031339776bc8c7223"
+                "reference": "31d8ee46d0215108df16a8527c7438e96a4d7735"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/discovery/zipball/de90ab2b41d7d61609f504e031339776bc8c7223",
-                "reference": "de90ab2b41d7d61609f504e031339776bc8c7223",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/31d8ee46d0215108df16a8527c7438e96a4d7735",
+                "reference": "31d8ee46d0215108df16a8527c7438e96a4d7735",
                 "shasum": ""
             },
             "require": {
@@ -1245,8 +1244,7 @@
                 "graham-campbell/phpspec-skip-example-extension": "^5.0",
                 "php-http/httplug": "^1.0 || ^2.0",
                 "php-http/message-factory": "^1.0",
-                "phpspec/phpspec": "^5.1 || ^6.1",
-                "puli/composer-plugin": "1.0.0-beta10"
+                "phpspec/phpspec": "^5.1 || ^6.1"
             },
             "suggest": {
                 "php-http/message": "Allow to use Guzzle, Diactoros or Slim Framework factories"
@@ -1285,9 +1283,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/discovery/issues",
-                "source": "https://github.com/php-http/discovery/tree/1.14.1"
+                "source": "https://github.com/php-http/discovery/tree/1.14.3"
             },
-            "time": "2021-09-18T07:57:46+00:00"
+            "time": "2022-07-11T14:04:40+00:00"
         },
         {
             "name": "php-http/httplug",
