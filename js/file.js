@@ -4,11 +4,21 @@ const fact = document.getElementById("fact");
 const dropzone = document.getElementById("dropzone");
 const storageProvider = document.getElementById("provider");
 
-const fileSizeLimitInMegabytes = 100;
+const fileSizeLimitInMegabytes = 1000;
 const fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
 
 function encodeHTML(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+}
+
+const showError = (message) => {
+  swalFire({
+    title: "Something's went wrong",
+    text: `Upload failed with HTTP ${message}`,
+    icon: "error",
+  }).then(() => {
+    location.reload();
+  });
 }
 
 const submitClip = (url) => {
@@ -31,7 +41,7 @@ function showCode(data) {
 const progressBar = document.getElementById("progressBar");
 const progressValue = document.getElementById("progressPercent");
 
-function uploadFile(file) {
+async function uploadFile(file) {
   const formData = new FormData();
   formData.append("uploaded_file", file);
 
@@ -67,7 +77,34 @@ function uploadFile(file) {
         );
       });
   } else {
-    // Begin file upload
+    // Get the AWS presigned URL
+
+    const urlToFetch = new URL("https://iclip.vercel.app");
+    urlToFetch.pathname = "api/uploadFile";
+    urlToFetch.searchParams.set("name", file.name);
+    urlToFetch.searchParams.set("type", file.type);
+    const presignedRes = await fetch(urlToFetch);
+
+    // Upload the file to the presigned URL
+    if (!presignedRes.ok) {
+      switch (res.status) {
+        case 404:
+          throw new showError("API Endpoint not found");
+        case 500:
+          throw new showError("Generic fail");
+        case 503:
+          throw new showError((await presignedRes.json()).result);
+      }
+
+      throw new showError(await presignedRes.text());
+    }
+    const { url, fields } = await presignedRes.json();
+    const formData = new FormData();
+
+    Object.entries({ ...fields, file }).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
     const request = new XMLHttpRequest();
     request.upload.onprogress = (event) => {
       progressValue.innerText = `${Math.round(
@@ -78,26 +115,17 @@ function uploadFile(file) {
 
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
-        const data = request.responseText;
-        const jsonData = JSON.parse(data);
-        if (jsonData.status === "error") {
-          swalFire({
-            title: "Something's went wrong",
-            text: jsonData.result,
-            icon: "error",
-          }).then(() => {
-            location.reload();
-          });
+        const { status } = request;
+        if (status >= 400) {
+          showError(`Upload failed with HTTP ${status}`);
         } else {
-          const link = jsonData.result;
+          const link = `https://files.interclip.app/${fields.key}`;
           showCode(link);
         }
       }
     };
-    // API Endpoint
-    const apiUrl = `${root || ""}/upload/?api`;
 
-    request.open("POST", apiUrl);
+    request.open("POST", url);
     request.send(formData);
   }
 
@@ -255,3 +283,4 @@ window.onload = () => {
       fact.innerText = res;
     });
 };
+
