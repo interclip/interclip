@@ -14,7 +14,3 @@ include_once "lib/auth.php";
 
 /* Meta tags */
 include_once "components/html/meta-tags.php";
-
-if ($_ENV['ENVIRONMENT'] === "production") {
-    include_once 'components/html/analytics.php';
-}
