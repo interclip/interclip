@@ -42,7 +42,7 @@
         <?php if (isset($url)) : ?>
           <h1><a id="urlLink" href="<?php echo $url; ?>"><?php echo $url; ?></a></h1>
           <?php
-          echo "<p>... is the URL of the code " . $user_code . "</p>";
+          echo "<p>... is the <span id='clipType'>URL</span> of the code " . $user_code . "</p>";
           ?>
           <img id="imgShow">
           <div id="output"> </div>

@@ -1,11 +1,13 @@
-let str = document.getElementById("urlLink").innerText;
-const https = str.indexOf("https");
-const http = str.indexOf("http");
+let shownUrl = new URL(document.getElementById("urlLink").innerText);
+const showUrl = (url) => {
+  document.getElementById("urlLink").innerText = url;
+};
 
-if (https > -1) {
-  str = str.split("https://").pop();
-  document.getElementById("urlLink").innerText = str;
-} else if (http > -1) {
-  str = str.split("http://").pop();
-  document.getElementById("urlLink").innerText = str;
+showUrl(shownUrl.toString().replace(/https?:\/\//, ""));
+
+const defaultFilesEndpoint = "files.interclip.app";
+
+if (shownUrl.hostname === defaultFilesEndpoint) {
+  showUrl(shownUrl.pathname.split("/").at(-1));
+  document.getElementById("clipType").innerText = "file";
 }
