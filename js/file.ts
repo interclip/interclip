@@ -31,15 +31,12 @@ const submitClip = (url: string) => {
   form.action = "/set";
   form.method = "POST";
   form.style.display = "none";
-  form.id = "clip";
 
   const csrfInput = document.createElement("input");
-  csrfInput.type = "hidden";
   csrfInput.name = "token";
   csrfInput.value = csrfToken;
 
   const urlInput = document.createElement("input");
-  urlInput.type = "url";
   urlInput.name = "input";
   urlInput.value = url;
 
