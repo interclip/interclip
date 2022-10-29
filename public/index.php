@@ -35,11 +35,11 @@
     include "includes/menu.php";
     ?>
     <main id="maincontent">
-        <form name="urlform" id="content" onsubmit="return validateForm()" action="<?php echo ROOT ?>/set" method="POST">
+        <form name="urlform" id="content" id="clipForm" action="<?php echo ROOT ?>/set" method="POST">
             <h2>Paste your link here!</h2>
             <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>" />
             <span class="input-wrapper">
-                <input type="url" name="input" class="input square" placeholder="https://youtu.be/dQw4w9WgXcQ" id="search-input" autofocus />
+                <input type="text" name="input" class="input square" placeholder="https://youtu.be/dQw4w9WgXcQ" id="search-input" autofocus />
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="hidden" viewBox="0 0 24 24" width="24" height="24">
                     <path d="M11.998 2.5A9.503 9.503 0 003.378 8H5.75a.75.75 0 010 1.5H2a1 1 0 01-1-1V4.75a.75.75 0 011.5 0v1.697A10.997 10.997 0 0111.998 1C18.074 1 23 5.925 23 12s-4.926 11-11.002 11C6.014 23 1.146 18.223 1 12.275a.75.75 0 011.5-.037 9.5 9.5 0 009.498 9.262c5.248 0 9.502-4.253 9.502-9.5s-4.254-9.5-9.502-9.5z"></path>
                     <path d="M12.5 7.25a.75.75 0 00-1.5 0v5.5c0 .27.144.518.378.651l3.5 2a.75.75 0 00.744-1.302L12.5 12.315V7.25z"></path>
@@ -69,7 +69,6 @@
         const csrfToken = "<?= $_SESSION['token'] ?>";
         const isMobile = <?php echo isMobile() ? "true" : "false" ?>;
     </script>
-    <script src="<?php echo ROOT ?>/out/validate.js" defer> </script>
     <script src="<?php echo ROOT ?>/out/index.js" defer> </script>
     <script src="<?php echo ROOT ?>/out/file.js" defer></script>
 </body>
