@@ -58,7 +58,7 @@ function showCode(data) {
 const progressBar = document.getElementById("progressBar") as HTMLProgressElement;
 const progressValue = document.getElementById("progressPercent") as HTMLSpanElement;
 
-async function uploadFile(file) {
+async function uploadFile(file: File) {
   const formData = new FormData();
   formData.append("uploaded_file", file);
   modal.style.display = "block";
@@ -234,60 +234,62 @@ function makeDroppable(ele, callback) {
 
   if (dropzone) {
     dropzone.onclick = () => {
-      input.value = null;
+      input.value = "";
       input.click();
     };
   }
 }
 
-(() => {
-  makeDroppable(document.body, (files) => {
-    document.getElementById("content").style.display = "none";
-    output.innerHTML = "";
+makeDroppable(document.body, (files: File[]) => {
+  document.getElementById("content")!.style.display = "none";
+  output.innerHTML = "";
 
-    const [file] = files;
+  const [file] = files;
 
-    if (file.type.indexOf("image/") === 0) {
-      output.innerHTML += `<img width="200" src="${URL.createObjectURL(
-        file
-      )}" />`;
+  if (file.type.indexOf("image/") === 0) {
+    output.innerHTML += `<img width="200" src="${URL.createObjectURL(
+      file
+    )}" />`;
+  }
+  output.innerHTML += `<p>${file.name}</p>`;
+
+  if (file.size > fileSizeLimitInBytes) {
+    alertUser(
+      {
+        title: "Something's went wrong",
+        text: `Your file is ${formatBytes(
+          file.size
+        )}, which is over the limit of ${fileSizeLimitInMegabytes}MB`,
+        icon: "error",
+      },
+      true
+    );
+  }
+  uploadFile(file);
+});
+
+document.onpaste = (event) => {
+  const items = event.clipboardData?.items;
+  if (!items) return;
+  for (const item of items) {
+    if (item.kind === "file") {
+      const blob = item.getAsFile();
+      uploadFile(blob);
     }
-    output.innerHTML += `<p>${file.name}</p>`;
-
-    if (file.size > fileSizeLimitInBytes) {
-      alertUser(
-        {
-          title: "Something's went wrong",
-          text: `Your file is ${formatBytes(
-            file.size
-          )}, which is over the limit of ${fileSizeLimitInMegabytes}MB`,
-          icon: "error",
-        },
-        true
-      );
-    }
-    uploadFile(file);
-  });
-
-  document.onpaste = (event) => {
-    const items = (event.clipboardData || event.originalEvent.clipboardData)
-      .items;
-    for (const item of items) {
-      if (item.kind === "file") {
-        const blob = item.getAsFile();
-        uploadFile(blob);
-      }
-    }
-  };
-})(this);
+  }
+};
 
 window.onload = () => {
   if (storageProvider) {
     const preferredDestination = localStorage.getItem("fileServer") || "iclip";
-    const optionAllowed =
-      [...storageProvider.options]
-        .find((e) => e.value === preferredDestination)
-        .getAttribute("disabled") === null;
+    const selectedOption = [...storageProvider.options]
+      .find((e) => e.value === preferredDestination);
+
+    if (!selectedOption) {
+      return;
+    }
+
+    const optionAllowed = selectedOption.getAttribute("disabled") === null;
 
     if (optionAllowed) {
       storageProvider.value = preferredDestination;
