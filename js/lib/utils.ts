@@ -1,9 +1,7 @@
 /**
  * Formats a byte value to a human readable string
- * @param  {} bytes
- * @param  {} decimals=2
  */
-function formatBytes(bytes, decimals = 2) {
+export function formatBytes(bytes: number, decimals = 2) {
   if (bytes === 0) return "0 Bytes";
 
   const k = 1024;

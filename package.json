@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "esbuild": "^0.15.12"
+  },
+  "scripts": {
+    "build": "esbuild `find ./js \\( -name '*.ts' -o -name '*.js' \\)` --outdir=out --bundle --minify",
+    "dev": "esbuild `find ./js \\( -name '*.ts' -o -name '*.js' \\)` --outdir=out --bundle --sourcemap --watch"
+  }
+}
