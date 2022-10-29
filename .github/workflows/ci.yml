@@ -46,5 +46,8 @@ jobs:
         run: |
           npx sass scss/:css/ -s compressed
 
+      - name: 🏗️ Build scripts
+        run: yarn && yarn build
+
       - name: 🧪 Run tests
         run: ./vendor/bin/pest
