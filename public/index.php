@@ -70,7 +70,6 @@
         const isMobile = <?php echo isMobile() ? "true" : "false" ?>;
     </script>
     <script src="<?php echo ROOT ?>/out/index.js" defer> </script>
-    <script src="<?php echo ROOT ?>/out/file.js" defer></script>
 </body>
 
 </html>

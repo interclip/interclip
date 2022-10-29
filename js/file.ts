@@ -1,9 +1,9 @@
 import { alertUser } from "./menu";
 
-const modal = document.getElementById("modal");
-const output = document.querySelector(".output");
-const fact = document.getElementById("fact");
-const dropzone = document.getElementById("dropzone");
+const modal = document.getElementById("modal") as HTMLDivElement;
+const output = document.querySelector(".output") as HTMLSpanElement;
+const fact = document.getElementById("fact") as HTMLSpanElement;
+const dropzone = document.getElementById("dropzone") as HTMLDivElement;
 const storageProvider = document.getElementById("provider") as HTMLSelectElement;
 
 const fileSizeLimitInMegabytes = 1000;
@@ -21,14 +21,33 @@ const showError = (message: string) => {
   }, true)
 };
 
-const submitClip = (url) => {
-  output.innerHTML += `
-  <form id="clip" action="/set" method="POST" style="display: none;">
-    <input type="hidden" name="token" value="${csrfToken}"/>
-    <input type="url" name="input" value="${url}">
-    <input type="submit">
-  </form>`;
-  document.getElementById("clip").submit();
+declare global {
+  const csrfToken: string;
+  let fileOver: boolean;
+}
+
+const submitClip = (url: string) => {
+  const form = document.createElement("form");
+  form.action = "/set";
+  form.method = "POST";
+  form.style.display = "none";
+  form.id = "clip";
+
+  const csrfInput = document.createElement("input");
+  csrfInput.type = "hidden";
+  csrfInput.name = "token";
+  csrfInput.value = csrfToken;
+
+  const urlInput = document.createElement("input");
+  urlInput.type = "url";
+  urlInput.name = "input";
+  urlInput.value = url;
+
+  form.appendChild(csrfInput);
+  form.appendChild(urlInput);
+
+  document.body.appendChild(form);
+  form.submit();
 };
 
 function showCode(data) {
