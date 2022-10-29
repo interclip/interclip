@@ -16,6 +16,11 @@ copyButton.onclick = () => {
   });
 };
 
+declare global {
+  const code: string;
+  const url: string
+}
+
 const update = async (scheme) => {
   const style = window
     .getComputedStyle(document.documentElement)
