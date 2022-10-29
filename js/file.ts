@@ -1,24 +1,24 @@
+import { alertUser } from "./menu";
+
 const modal = document.getElementById("modal");
 const output = document.querySelector(".output");
 const fact = document.getElementById("fact");
 const dropzone = document.getElementById("dropzone");
-const storageProvider = document.getElementById("provider");
+const storageProvider = document.getElementById("provider") as HTMLSelectElement;
 
 const fileSizeLimitInMegabytes = 1000;
-const fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1048576;
+const fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1_048_576;
 
-function encodeHTML(s) {
+function encodeHTML(s: string) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 }
 
-const showError = (message) => {
-  swalFire({
+const showError = (message: string) => {
+  alertUser({
     title: "Something's went wrong",
     text: `Upload failed with HTTP ${message}`,
     icon: "error",
-  }).then(() => {
-    location.reload();
-  });
+  }, true)
 };
 
 const submitClip = (url) => {
@@ -45,7 +45,7 @@ async function uploadFile(file) {
   const formData = new FormData();
   formData.append("uploaded_file", file);
   modal.style.display = "block";
- 
+
   if (
     storageProvider &&
     storageProvider.value === "ipfs"
@@ -81,7 +81,7 @@ async function uploadFile(file) {
 
     progressBar.style.visibility = "hidden";
     progressValue.innerText = "Preparing upload";
- 
+
     // Get the AWS presigned URL
     const urlToFetch = new URL("https://iclip.vercel.app");
     urlToFetch.pathname = "api/uploadFile";
@@ -91,7 +91,7 @@ async function uploadFile(file) {
 
     // Upload the file to the presigned URL
     if (!presignedRes.ok) {
-      switch (res.status) {
+      switch (presignedRes.status) {
         case 404:
           throw new showError("API Endpoint not found");
         case 500:
@@ -137,94 +137,91 @@ async function uploadFile(file) {
   document.querySelector(".demo-droppable").style.display = "none";
 }
 
-((window) => {
-  function triggerCallback(e, callback) {
-    if (!callback || typeof callback !== "function") {
+function triggerCallback(e, callback) {
+  if (!callback || typeof callback !== "function") {
+    return;
+  }
+
+  if (e.dataTransfer) {
+    const urls = new Set<string>();
+
+    // "Borrowed" from https://github.com/thinkverse/draggable/blob/ddb6d6ff23ef80fb60f80d4119586f4b0902e8f5/src/draggable.ts#L40-L46
+    for (const item of e.dataTransfer.items) {
+      if (["text/uri-list", "text/plain"].includes(item.type)) {
+        urls.add(e.dataTransfer.getData("URL"));
+        continue;
+      }
+    }
+
+    const firstURL = urls.values().next().value;
+    if ([...urls].length !== 0 && firstURL && firstURL !== "") {
+      submitClip(firstURL);
       return;
     }
-
-    if (e.dataTransfer) {
-      const urls = new Set();
-
-      // "Borrowed" from https://github.com/thinkverse/draggable/blob/ddb6d6ff23ef80fb60f80d4119586f4b0902e8f5/src/draggable.ts#L40-L46
-      for (const item of e.dataTransfer.items) {
-        if (["text/uri-list", "text/plain"].includes(item.type)) {
-          urls.add(e.dataTransfer.getData("URL"));
-          continue;
-        }
-      }
-
-      const firstURL = urls.values().next().value;
-      if (urls.length !== 0 && firstURL && firstURL !== "") {
-        submitClip(firstURL);
-        return;
-      }
-    }
-
-    let files;
-    if (e.dataTransfer) {
-      files = e.dataTransfer.files;
-    } else if (e.target) {
-      files = e.target.files;
-    }
-    if (files.length > 0) {
-      callback.call(null, files);
-    }
   }
 
-  window.fileOver = false;
+  let files;
+  if (e.dataTransfer) {
+    files = e.dataTransfer.files;
+  } else if (e.target) {
+    files = e.target.files;
+  }
+  if (files.length > 0) {
+    callback.call(null, files);
+  }
+}
 
-  function makeDroppable(ele, callback) {
-    const input = document.createElement("input");
-    input.setAttribute("type", "file");
-    input.setAttribute("multiple", false);
-    input.style.display = "none";
-    input.addEventListener("change", (e) => {
-      triggerCallback(e, callback);
-    });
-    ele.appendChild(input);
+window.fileOver = false;
 
-    ele.addEventListener("dragover", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      fileOver = true;
-      if (dropzone) {
-        dropzone.classList.add("dragover");
-      }
-      ele.classList.add("dragover");
-    });
+function makeDroppable(ele, callback) {
+  const input = document.createElement("input");
+  input.setAttribute("type", "file");
+  input.setAttribute("multiple", "false");
+  input.style.display = "none";
+  input.addEventListener("change", (e) => {
+    triggerCallback(e, callback);
+  });
+  ele.appendChild(input);
 
-    ele.addEventListener("dragleave", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      fileOver = false;
-      setInterval(() => {
-        if (!fileOver) {
-          ele.classList.remove("dragover");
-          if (dropzone) {
-            dropzone.classList.remove("dragover");
-          }
-        }
-      }, 100);
-    });
-
-    ele.addEventListener("drop", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      fileOver = false;
-      ele.classList.remove("dragover");
-      triggerCallback(e, callback);
-    });
-
+  ele.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    fileOver = true;
     if (dropzone) {
-      dropzone.onclick = () => {
-        input.value = null;
-        input.click();
-      };
+      dropzone.classList.add("dragover");
     }
+    ele.classList.add("dragover");
+  });
+
+  ele.addEventListener("dragleave", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    fileOver = false;
+    setInterval(() => {
+      if (!fileOver) {
+        ele.classList.remove("dragover");
+        if (dropzone) {
+          dropzone.classList.remove("dragover");
+        }
+      }
+    }, 100);
+  });
+
+  ele.addEventListener("drop", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    fileOver = false;
+    ele.classList.remove("dragover");
+    triggerCallback(e, callback);
+  });
+
+  if (dropzone) {
+    dropzone.onclick = () => {
+      input.value = null;
+      input.click();
+    };
   }
-  window.makeDroppable = makeDroppable;
-})(this);
+}
 
 (() => {
   makeDroppable(document.body, (files) => {
