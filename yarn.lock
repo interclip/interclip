@@ -12,6 +12,11 @@
   resolved "https://registry.yarnpkg.com/@esbuild/linux-loong64/-/linux-loong64-0.15.12.tgz#475b33a2631a3d8ca8aa95ee127f9a61d95bf9c1"
   integrity sha512-tZEowDjvU7O7I04GYvWQOS4yyP9E/7YlsB0jjw1Ycukgr2ycEzKyIk5tms5WnLBymaewc6VmRKnn5IJWgK4eFw==
 
+dark-mode-toggle@^0.14.2:
+  version "0.14.2"
+  resolved "https://registry.yarnpkg.com/dark-mode-toggle/-/dark-mode-toggle-0.14.2.tgz#77ab6d8e8b7e1505d8d06192f0d1d5cb187e7787"
+  integrity sha512-VsFLzTO9lA7Pfbylrd6JjRlJkFHTOz6LwoXSeJQKmc3xkLffkyUOzB/R8tDDxXTj3duyaBeLLzqARjiOmV3LNA==
+
 esbuild-android-64@0.15.12:
   version "0.15.12"
   resolved "https://registry.yarnpkg.com/esbuild-android-64/-/esbuild-android-64-0.15.12.tgz#5e8151d5f0a748c71a7fbea8cee844ccf008e6fc"
@@ -139,3 +144,8 @@ esbuild@^0.15.12:
     esbuild-windows-32 "0.15.12"
     esbuild-windows-64 "0.15.12"
     esbuild-windows-arm64 "0.15.12"
+
+sweetalert2@^11.6.4:
+  version "11.6.4"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.6.4.tgz#8d0bcfcc9af415319f9e93262923b49834da729c"
+  integrity sha512-EfvbqpApvOLbJ7UehO4rjmlltramOGVNpWhh9hBDyeSP1WhoslpmYUXZXI8AiC77Yl6esCfRcWXpzCAKkbvcgg==

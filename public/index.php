@@ -69,9 +69,9 @@
         const csrfToken = "<?= $_SESSION['token'] ?>";
         const isMobile = <?php echo isMobile() ? "true" : "false" ?>;
     </script>
-    <script src="<?php echo ROOT ?>/js/validate.js" defer> </script>
-    <script src="<?php echo ROOT ?>/js/index.js" defer> </script>
-    <script src="<?php echo ROOT ?>/js/file.js" defer></script>
+    <script src="<?php echo ROOT ?>/out/validate.js" defer> </script>
+    <script src="<?php echo ROOT ?>/out/index.js" defer> </script>
+    <script src="<?php echo ROOT ?>/out/file.js" defer></script>
 </body>
 
 </html>

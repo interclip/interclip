@@ -62,7 +62,7 @@
             <script>
                 const csrfToken = "<?= $_SESSION['token'] ?>";
             </script>
-            <script src="<?php echo ROOT ?>/js/file.js"></script>
+            <script src="<?php echo ROOT ?>/out/file.js"></script>
         <?php else : ?>
             <span id="content"> </span>
             <div class="title">

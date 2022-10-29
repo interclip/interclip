@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "esbuild": "^0.15.12"
+    "dark-mode-toggle": "^0.14.2",
+    "esbuild": "^0.15.12",
+    "sweetalert2": "^11.6.4"
   },
   "scripts": {
     "build": "esbuild `find ./js \\( -name '*.ts' -o -name '*.js' \\)` --outdir=out --bundle --minify",

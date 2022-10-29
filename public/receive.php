@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 </form>
-                <script type="text/javascript" src="<?php echo ROOT ?>/js/receive.js"></script>
+                <script type="text/javascript" src="<?php echo ROOT ?>/out/receive.js"></script>
             </div>
         </div>
     </main>

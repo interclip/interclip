@@ -65,7 +65,7 @@
             const url = "<?php echo $url ?>";
             const code = "<?php echo $usr ?>";
           </script>
-          <script src="<?php echo ROOT ?>/js/new.js"></script>
+          <script src="<?php echo ROOT ?>/out/new.js"></script>
 
         <?php endif; ?>
       </div>

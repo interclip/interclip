@@ -64,4 +64,4 @@
   const root = "<?php echo ROOT ?>";
 </script>
 
-<script src="<?php echo ROOT ?>/js/menu.js"></script>
+<script src="<?php echo ROOT ?>/out/menu.js"></script>
