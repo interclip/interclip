@@ -76,7 +76,7 @@ function showPaintTimings() {
   }
 }
 
-const alertUser = async (opts: SweetAlertOptions<any, any>, reload = false) => {
+export const alertUser = async (opts: SweetAlertOptions<any, any>, reload = false) => {
   await sweetAlert.fire(opts);
   if (reload) {
     location.reload();
