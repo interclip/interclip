@@ -274,7 +274,7 @@ document.onpaste = (event) => {
   for (const item of items) {
     if (item.kind === "file") {
       const blob = item.getAsFile();
-      uploadFile(blob);
+      uploadFile(blob!);
     }
   }
 };
