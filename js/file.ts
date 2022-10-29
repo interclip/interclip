@@ -1,3 +1,4 @@
+import { formatBytes } from "./lib/utils";
 import { alertUser } from "./menu";
 
 const modal = document.getElementById("modal") as HTMLDivElement;
@@ -54,8 +55,8 @@ function showCode(data) {
   submitClip(data);
 }
 
-const progressBar = document.getElementById("progressBar");
-const progressValue = document.getElementById("progressPercent");
+const progressBar = document.getElementById("progressBar") as HTMLProgressElement;
+const progressValue = document.getElementById("progressPercent") as HTMLSpanElement;
 
 async function uploadFile(file) {
   const formData = new FormData();
@@ -150,7 +151,7 @@ async function uploadFile(file) {
     request.send(formData);
   }
 
-  document.querySelector(".demo-droppable").style.display = "none";
+  (document.querySelector(".droppable-area") as HTMLDivElement).style.display = "none";
 }
 
 function triggerCallback(e, callback) {
@@ -254,7 +255,7 @@ function makeDroppable(ele, callback) {
     output.innerHTML += `<p>${file.name}</p>`;
 
     if (file.size > fileSizeLimitInBytes) {
-      swalFire(
+      alertUser(
         {
           title: "Something's went wrong",
           text: `Your file is ${formatBytes(

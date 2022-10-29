@@ -35,7 +35,7 @@
                         <option value="iclip" selected>Interclip Storage Server</option>
                     </select>
                 </div>
-                <div class="demo-droppable" id="dropzone">
+                <div class="droppable-area" id="dropzone">
                     <p>Drag files here or click to upload</p>
                 </div>
 
