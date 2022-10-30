@@ -1,5 +1,5 @@
 import { alertUser } from "./menu";
-import QRCode from 'qrcode';
+import QRCode from "qrcode";
 
 const copyButton = document.getElementById("copyCode") as HTMLButtonElement;
 
@@ -18,7 +18,7 @@ copyButton.onclick = () => {
 
 declare global {
   const code: string;
-  const url: string
+  const url: string;
 }
 
 const update = async (scheme) => {
@@ -36,10 +36,13 @@ const update = async (scheme) => {
   qrCodeContainer.innerHTML = "";
   await QRCode.toCanvas(qrCodeContainer, `https://interclip.app/${code}`, {
     errorCorrectionLevel: "M",
-    color: { dark: scheme === "light" ? "#157EFB" : "#151515", light: "#e4e4e4" },
+    color: {
+      dark: scheme === "light" ? "#157EFB" : "#151515",
+      light: "#e4e4e4",
+    },
     margin: 0,
     width: 320,
-    scale: 2
+    scale: 2,
   });
 };
 

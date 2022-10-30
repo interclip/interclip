@@ -5,7 +5,9 @@ const modal = document.getElementById("modal") as HTMLDivElement;
 const output = document.querySelector(".output") as HTMLSpanElement;
 const fact = document.getElementById("fact") as HTMLSpanElement;
 const dropzone = document.getElementById("dropzone") as HTMLDivElement;
-const storageProvider = document.getElementById("provider") as HTMLSelectElement;
+const storageProvider = document.getElementById(
+  "provider"
+) as HTMLSelectElement;
 
 const fileSizeLimitInMegabytes = 1000;
 const fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1_048_576;
@@ -15,11 +17,14 @@ function encodeHTML(s: string) {
 }
 
 const showError = (message: string) => {
-  alertUser({
-    title: "Something's went wrong",
-    text: `Upload failed with HTTP ${message}`,
-    icon: "error",
-  }, true)
+  alertUser(
+    {
+      title: "Something's went wrong",
+      text: `Upload failed with HTTP ${message}`,
+      icon: "error",
+    },
+    true
+  );
 };
 
 declare global {
@@ -55,8 +60,12 @@ function showCode(data) {
   submitClip(data);
 }
 
-const progressBar = document.getElementById("progressBar") as HTMLProgressElement;
-const progressValue = document.getElementById("progressPercent") as HTMLSpanElement;
+const progressBar = document.getElementById(
+  "progressBar"
+) as HTMLProgressElement;
+const progressValue = document.getElementById(
+  "progressPercent"
+) as HTMLSpanElement;
 
 async function uploadFile(file: File) {
   const formData = new FormData();
@@ -95,7 +104,6 @@ async function uploadFile(file: File) {
         );
       });
   } else {
-
     progressBar.style.visibility = "hidden";
     progressValue.innerText = "Preparing upload";
 
@@ -133,7 +141,8 @@ async function uploadFile(file: File) {
       )}%`;
       progressBar.value = (event.loaded / event.total) * 100;
     };
-    request.upload.onloadstart = () => progressBar.style.visibility = "visible";
+    request.upload.onloadstart = () =>
+      (progressBar.style.visibility = "visible");
 
     request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
@@ -151,7 +160,8 @@ async function uploadFile(file: File) {
     request.send(formData);
   }
 
-  (document.querySelector(".droppable-area") as HTMLDivElement).style.display = "none";
+  (document.querySelector(".droppable-area") as HTMLDivElement).style.display =
+    "none";
 }
 
 function triggerCallback(e, callback) {
@@ -248,9 +258,7 @@ makeDroppable(document.body, (files: File[]) => {
 
   if (file.type.indexOf("image/") === 0) {
     const image = new Image(200);
-    image.src = URL.createObjectURL(
-      file
-    );
+    image.src = URL.createObjectURL(file);
     output.appendChild(image);
   }
 
@@ -287,8 +295,9 @@ document.onpaste = (event) => {
 window.onload = () => {
   if (storageProvider) {
     const preferredDestination = localStorage.getItem("fileServer") || "iclip";
-    const selectedOption = [...storageProvider.options]
-      .find((e) => e.value === preferredDestination);
+    const selectedOption = [...storageProvider.options].find(
+      (e) => e.value === preferredDestination
+    );
 
     if (!selectedOption) {
       return;
