@@ -11,8 +11,8 @@ jobs:
 
     strategy:
       matrix:
-        operating-system: [ubuntu-latest, macos-latest, windows-latest]
-        php-versions: ["7.4", "8.0"]
+        operating-system: [ubuntu-latest, macos-latest]
+        php-versions: ["8.1"]
 
     name: 📦 php ${{ matrix.php-versions }} 🖥️ ${{ matrix.operating-system }}
 
@@ -26,6 +26,11 @@ jobs:
           php-version: ${{ matrix.php-versions }}
           tools: composer:v2
 
+      - name: 🏯 Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
       - name: ✅ Validate Composer files
         run: composer validate
 
@@ -37,14 +42,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-php-
 
-      - name: 🎹 Install Composer Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
-
-      - name: 🤩 Compile styles
-        env:
-          NPM_CONFIG_PREFIX: "~/.npm-global"
+      - name: 🎹 Install Dependencies
         run: |
-          npx sass scss/:css/ -s compressed
+          composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+          yarn
+
+      - name: 🏗️ Build
+        run: yarn build
 
       - name: 🧪 Run tests
         run: ./vendor/bin/pest

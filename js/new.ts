@@ -1,7 +1,11 @@
-const copyButton = document.getElementById("copyCode");
+import { alertUser } from "./menu";
+import QRCode from 'qrcode';
+
+const copyButton = document.getElementById("copyCode") as HTMLButtonElement;
+
 copyButton.onclick = () => {
   navigator.clipboard.writeText(code);
-  swalFire({
+  alertUser({
     toast: true,
     position: "top-end",
     icon: "success",
@@ -12,7 +16,12 @@ copyButton.onclick = () => {
   });
 };
 
-const update = (scheme) => {
+declare global {
+  const code: string;
+  const url: string
+}
+
+const update = async (scheme) => {
   const style = window
     .getComputedStyle(document.documentElement)
     .getPropertyValue("content")
@@ -22,15 +31,16 @@ const update = (scheme) => {
     scheme = style;
   }
 
-  document.getElementById("qrcode").innerHTML = "";
-  const qr = QRCode.generateSVG(`https://interclip.app/${code}`, {
-    ecclevel: "M",
-    fillcolor: scheme === "light" ? "#157EFB" : "#151515",
-    textcolor: "#e4e4e4",
+  const qrCodeContainer = document.getElementById("qrcode")!;
+
+  qrCodeContainer.innerHTML = "";
+  await QRCode.toCanvas(qrCodeContainer, `https://interclip.app/${code}`, {
+    errorCorrectionLevel: "M",
+    color: { dark: scheme === "light" ? "#157EFB" : "#151515", light: "#e4e4e4" },
     margin: 0,
-    modulesize: 4,
+    width: 320,
+    scale: 2
   });
-  document.getElementById("qrcode").appendChild(qr);
 };
 
 window.matchMedia("(prefers-color-scheme: dark)").addListener((e) => {
@@ -39,11 +49,10 @@ window.matchMedia("(prefers-color-scheme: dark)").addListener((e) => {
 });
 
 const computedStyle = localStorage.getItem("dark-mode-toggle");
-let options;
 
 update(computedStyle);
 
-const themeSwitchToggle = document.getElementById("slct");
+const themeSwitchToggle = document.getElementById("slct") as HTMLSelectElement;
 
 themeSwitchToggle.addEventListener("change", () => {
   update(themeSwitchToggle.value);

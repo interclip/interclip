@@ -49,10 +49,9 @@ h1 a {
 #qrcode {
   margin-top: 35px;
 
-  & > svg {
     max-width: 50vw;
-    width: 320px;
-  }
+    width: 15rem !important;
+    height: 15rem !important;  
 }
 
 #codeSection {

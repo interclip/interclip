@@ -1,24 +1,28 @@
+
+import sweetAlert, { SweetAlertOptions } from "sweetalert2";
+import * as DarkModeToggle from 'dark-mode-toggle';
+
 // Get the modal
-const settingsModal = document.getElementById("settingsModal");
-const darkModeToggle = document.querySelector("dark-mode-toggle");
+const settingsModal = document.getElementById("settingsModal")!;
+const darkModeToggle = document.querySelector("dark-mode-toggle")!;
 
 // Get the button that opens the modal
-const btn = document.getElementById("triggerModal");
+const btn = document.getElementById("triggerModal")!;
 
 // The delete data button
-const removeBtn = document.getElementById("removeData");
+const removeBtn = document.getElementById("removeData")!;
 
 // Get the <span> element that closes the modal
-const span = document.getElementsByClassName("closeBtn")[0];
+const closeSettingsModalButton = document.getElementsByClassName("closeBtn")[0] as HTMLSpanElement;
 
 // Get the toggle checkbox
-const colorSchemePreference = document.getElementById("slct");
-const toggle = document.querySelector("#hashanimation");
-const betaToggle = document.querySelector("#betafeatures");
-const fileServer = document.getElementById("file-slct");
+const colorSchemePreference = document.getElementById("slct") as HTMLInputElement;
+const toggle = document.querySelector("#hashanimation") as HTMLInputElement;
+const betaToggle = document.querySelector("#betafeatures") as HTMLInputElement;
+const fileServer = document.getElementById("file-slct") as HTMLSelectElement;
 
 // Get the system value
-const systemOpt = document.getElementById("systemOption");
+const systemOpt = document.getElementById("systemOption") as HTMLInputElement;
 
 const userAgent = navigator.userAgent.toLowerCase();
 
@@ -27,25 +31,39 @@ const isTablet =
     userAgent
   );
 
-if (loggedIn && isAdmin) {
-  const adminbar = document.querySelector("#adminbar");
-  adminbar.style.display = localStorage.getItem("adminbarVisible") || "flex";
+declare global {
+  const isAdmin: boolean;
+  const loggedIn: boolean;
+  const root: string;
+  const version: string
+}
+
+const adminBar = isAdmin ? document.getElementById("adminbar") : null;
+if (isAdmin) {
+  if (!adminBar) {
+    throw new DOMException("Admin bar not found");
+  }
+
+  adminBar.style.display = localStorage.getItem("adminBarVisible") || "flex";
 }
 
 const isPhone = !isTablet
   ? "ontouchstart" in document.documentElement &&
-    /mobi/i.test(navigator.userAgent)
+  /mobi/i.test(navigator.userAgent)
   : false;
 
 function showPaintTimings() {
   if (!isAdmin) {
     return null;
   }
+
+  const paintElement = document.getElementById("load");
+
+  if (!paintElement) return;
+
   if (window.performance) {
     const { performance } = window;
     const performanceEntries = performance.getEntriesByType("paint");
-
-    const paintElement = document.getElementById("load");
 
     performanceEntries.forEach((performanceEntry) => {
       if (performanceEntry.name === "first-contentful-paint") {
@@ -58,29 +76,10 @@ function showPaintTimings() {
   }
 }
 
-const swalFire = async (opts, reload = false) => {
-  try {
-    Swal.default.fire(opts);
-  } catch (error) {
-    // Sweet alert CSS
-    const cssLink = document.createElement("link");
-    cssLink.setAttribute("rel", "stylesheet");
-    cssLink.setAttribute(
-      "href",
-      "https://cdn.skypack.dev/-/sweetalert2@v11.1.0-kBF6bITHr6S3RqI7Z0E9/dist=es2020,mode=raw/dist/sweetalert2.css"
-    );
-    document.head.append(cssLink);
-
-    // Sweet alert JS
-    const Swal = await import(
-      "https://cdn.skypack.dev/pin/sweetalert2@v11.1.0-kBF6bITHr6S3RqI7Z0E9/mode=imports,min/optimized/sweetalert2.js"
-    );
-    window.Swal = Swal;
-    Swal.default.fire(opts).then(() => {
-      if (reload) {
-        location.reload();
-      }
-    });
+export const alertUser = async (opts: SweetAlertOptions<any, any>, reload = false) => {
+  await sweetAlert.fire(opts);
+  if (reload) {
+    location.reload();
   }
 };
 
@@ -105,31 +104,40 @@ btn.onkeydown = (evt) => {
   }
 };
 
-colorSchemePreference.addEventListener("change", function () {
-  if (this.value === "system") {
-    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    darkModeToggle.mode = isDark ? "dark" : "light";
-    localStorage.removeItem("dark-mode-toggle");
-  } else {
-    darkModeToggle.mode = this.value;
-    localStorage.setItem("dark-mode-toggle", this.value);
-  }
-});
+if (colorSchemePreference) {
+  colorSchemePreference.addEventListener("change", () => {
 
-fileServer.addEventListener("change", (e) => {
-  localStorage.setItem("fileServer", e.target.value);
-});
+    if (!darkModeToggle) {
+      throw new DOMException("Dark mode toggle does not exist");
+    }
 
-toggle.addEventListener("change", function () {
-  if (this.checked) {
+    if (colorSchemePreference.value === "system") {
+      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      darkModeToggle.mode = isDark ? "dark" : "light";
+      localStorage.removeItem("dark-mode-toggle");
+    } else {
+      darkModeToggle.mode = colorSchemePreference.value as DarkModeToggle.ColorScheme;
+      localStorage.setItem("dark-mode-toggle", colorSchemePreference.value);
+    }
+  });
+}
+
+if (fileServer) {
+  fileServer.addEventListener("change", (e: any) => {
+    localStorage.setItem("fileServer", e.target.value);
+  });
+}
+
+toggle.addEventListener("change", () => {
+  if (toggle.checked) {
     localStorage.removeItem("hideHashAnimation");
   } else {
     localStorage.setItem("hideHashAnimation", "true");
   }
 });
 
-betaToggle.addEventListener("change", function () {
-  if (this.checked) {
+betaToggle.addEventListener("change", () => {
+  if (betaToggle.checked) {
     localStorage.removeItem("hideBetaMenu");
   } else {
     localStorage.setItem("hideBetaMenu", "true");
@@ -139,9 +147,8 @@ betaToggle.addEventListener("change", function () {
 
 /* Initialization */
 
-systemOpt.innerText = systemOpt.innerText += ` ${
-  isTablet ? "📱" : isPhone ? "📱" : "💻"
-}`;
+systemOpt.innerText = systemOpt.innerText += ` ${isTablet ? "📱" : isPhone ? "📱" : "💻"
+  }`;
 
 const updateOptions = () => {
   colorSchemePreference.value =
@@ -151,8 +158,8 @@ const updateOptions = () => {
   betaToggle.checked = !localStorage.getItem("hideBetaMenu");
 };
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = () => {
+// When the user clicks on the (x) <span>, close the modal
+closeSettingsModalButton.onclick = () => {
   settingsModal.classList.remove("settings-shown");
 };
 
@@ -166,7 +173,7 @@ document.onclick = (event) => {
 const updateMenu = () => {
   for (const li of document.querySelectorAll("#menu li")) {
     if (li?.children[0]?.children[0]?.classList.contains("beta")) {
-      li.style.display = localStorage.getItem("hideBetaMenu")
+      (li as HTMLDataListElement).style.display = localStorage.getItem("hideBetaMenu")
         ? "none"
         : "block";
     }
@@ -187,12 +194,10 @@ console.log(
 );
 
 if (loggedIn && isAdmin) {
-  const isStaging = document
-    .getElementById("adminbar")
-    .classList.contains("staging");
+  const isStaging = adminBar!.classList.contains("staging");
 
   if (isStaging) {
-    document.getElementById("branch-select").addEventListener("change", (e) => {
+    document.getElementById("branch-select")!.addEventListener("change", (e: any) => {
       const targetBranch = e.target.value.replace(/\s/g, "");
       if (targetBranch !== "-") {
         fetch(`${root}/staging/change-branch?branch=${targetBranch}`)
@@ -201,7 +206,7 @@ if (loggedIn && isAdmin) {
             location.reload();
           })
           .catch((err) => {
-            swalFire({
+            alertUser({
               title: "Something's went wrong",
               text: err.toString(),
               icon: "error",
@@ -220,7 +225,7 @@ if (loggedIn && isAdmin) {
 
     if (e.shiftKey && e.code === "KeyB") {
       e.preventDefault();
-      const displayStatus = adminbar.style.display === "flex" ? "none" : "flex";
+      const displayStatus = adminBar!.style.display === "flex" ? "none" : "flex";
 
       let newColor = "#262626";
       if (displayStatus === "flex") {
@@ -228,17 +233,17 @@ if (loggedIn && isAdmin) {
       }
 
       document
-        .querySelector("meta[name=theme-color]")
+        .querySelector("meta[name=theme-color]")!
         .setAttribute("content", newColor);
-      adminbar.style.display = displayStatus;
-      localStorage.setItem("adminbarVisible", displayStatus);
+      adminBar!.style.display = displayStatus;
+      localStorage.setItem("adminBarVisible", displayStatus);
     }
   });
 } else if (loggedIn && !isAdmin) {
   document.addEventListener("keydown", (e) => {
     e.preventDefault();
     if (e.shiftKey && e.code === "KeyB") {
-      swalFire({
+      alertUser({
         title: "Permission error",
         text: "Yikes! It seems you have to be an admin to view the admin bar. Want to be an admin? Tweet me @filiptronicek",
         icon: "error",
@@ -253,7 +258,7 @@ removeBtn.onclick = () => {
   updateOptions();
   darkModeToggle.mode = isDark ? "dark" : "light";
 
-  swalFire({
+  alertUser({
     icon: "success",
     title: "All local data has been deleted",
     showConfirmButton: false,

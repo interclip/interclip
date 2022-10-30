@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "dark-mode-toggle": "^0.14.2",
+    "esbuild": "^0.15.12",
+    "qrcode": "^1.5.1",
+    "sass": "^1.55.0",
+    "sweetalert2": "^11.6.4"
+  },
+  "scripts": {
+    "build": "esbuild `find ./js \\( -name '*.ts' -o -name '*.js' \\)` --outdir=out --bundle --minify && yarn compile:styles --style compressed --no-source-map",
+    "compile:styles": "sass scss/:css/",
+    "dev": "esbuild `find ./js \\( -name '*.ts' -o -name '*.js' \\)` --outdir=out --bundle --sourcemap --watch"
+  },
+  "devDependencies": {
+    "@types/qrcode": "^1.5.0"
+  }
+}
