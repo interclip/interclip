@@ -26,7 +26,7 @@ function createClip($url)
     }
 
     /**
-     * Creates a random alpha-numberic ID.
+     * Creates a random alpha-numeric ID.
      *
      * @param  mixed $len
      * @return string
