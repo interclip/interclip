@@ -21,8 +21,6 @@
 
 <!-- Preconnects -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="preconnect" href="https://cdn.jsdelivr.net/">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com/">
 
 <!-- Vendor-specific icons -->
 
