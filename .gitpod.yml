@@ -4,10 +4,13 @@ ports:
   - port: 8080
     onOpen: open-browser
     visibility: public
+    name: App
   - port: 3306
     onOpen: ignore
+    name: MySQL Database
   - port: 6379
     onOpen: ignore
+    name: Redis
 
 tasks:
   - name: App
@@ -42,6 +45,10 @@ tasks:
     command: >
       npm i -g sass;
       sass scss/:css/ -w -s compressed
+  - name: TS Watch
+    init: yarn
+    command: >
+      yarn dev
 
 github:
   prebuilds:
