@@ -247,11 +247,16 @@ makeDroppable(document.body, (files: File[]) => {
   const [file] = files;
 
   if (file.type.indexOf("image/") === 0) {
-    output.innerHTML += `<img width="200" src="${URL.createObjectURL(
+    const image = new Image(200);
+    image.src = URL.createObjectURL(
       file
-    )}" />`;
+    );
+    output.appendChild(image);
   }
-  output.innerHTML += `<p>${file.name}</p>`;
+
+  const fileNameElement = document.createElement("p");
+  fileNameElement.innerText = file.name;
+  output.appendChild(fileNameElement);
 
   if (file.size > fileSizeLimitInBytes) {
     alertUser(
