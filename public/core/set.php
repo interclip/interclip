@@ -14,14 +14,12 @@
 <body>
   <?php
   include "includes/anti-csrf.php";
-  validate();
+  $csrfVerificationResult = validate();
   include_once "includes/menu.php";
 
   if (isset($_POST['input'])) {
     $url = $_POST['input'];
     $url = htmlspecialchars($url);
-
-    include_once "includes/components/new.php";
   }
   ?>
 
@@ -41,9 +39,17 @@
           </span>
         <?php else : ?>
           <?php
+
+          include_once "includes/components/new.php";
           $createArray = createClip($url);
           $usr = $createArray[0];
           $err = $createArray[1];
+          if (!$csrfVerificationResult) {
+            if (!clipExistsForUrl($url)) {
+              die("CSRF verification failed");
+            }
+          }
+
           ?>
 
           <?php if ($err === "") : ?>
