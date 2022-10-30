@@ -60,7 +60,7 @@
       </div>
     </div>
   </div>
-  <script src="../js/get.js"></script>
+  <script src="<?php echo ROOT ?>/out/get.js"></script>
 </body>
 
 </html>
