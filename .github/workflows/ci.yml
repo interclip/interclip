@@ -37,17 +37,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-php-
 
-      - name: 🎹 Install Composer Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
-
-      - name: 🤩 Compile styles
-        env:
-          NPM_CONFIG_PREFIX: "~/.npm-global"
+      - name: 🎹 Install Dependencies
         run: |
-          npx sass scss/:css/ -s compressed
+          composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+          yarn
 
-      - name: 🏗️ Build scripts
-        run: yarn && yarn build
+      - name: 🏗️ Build
+        run: yarn build
 
       - name: 🧪 Run tests
         run: ./vendor/bin/pest
