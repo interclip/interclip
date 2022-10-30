@@ -1,8 +1,12 @@
 import { validateForm } from "./lib/utils";
 import "./file";
 
-const historyBtn = document.querySelector("#content > .input-wrapper > svg") as HTMLOrSVGImageElement;
-const selectDropdown = document.querySelector(".history-select") as HTMLSelectElement;
+const historyBtn = document.querySelector(
+  "#content > .input-wrapper > svg"
+) as HTMLOrSVGImageElement;
+const selectDropdown = document.querySelector(
+  ".history-select"
+) as HTMLSelectElement;
 const linkInput = document.getElementById("search-input") as HTMLInputElement;
 const form = document.getElementById("content") as HTMLFormElement;
 

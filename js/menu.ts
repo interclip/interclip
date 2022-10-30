@@ -1,6 +1,5 @@
-
 import sweetAlert, { SweetAlertOptions } from "sweetalert2";
-import * as DarkModeToggle from 'dark-mode-toggle';
+import * as DarkModeToggle from "dark-mode-toggle";
 
 // Get the modal
 const settingsModal = document.getElementById("settingsModal")!;
@@ -13,10 +12,14 @@ const btn = document.getElementById("triggerModal")!;
 const removeBtn = document.getElementById("removeData")!;
 
 // Get the <span> element that closes the modal
-const closeSettingsModalButton = document.getElementsByClassName("closeBtn")[0] as HTMLSpanElement;
+const closeSettingsModalButton = document.getElementsByClassName(
+  "closeBtn"
+)[0] as HTMLSpanElement;
 
 // Get the toggle checkbox
-const colorSchemePreference = document.getElementById("slct") as HTMLInputElement;
+const colorSchemePreference = document.getElementById(
+  "slct"
+) as HTMLInputElement;
 const toggle = document.querySelector("#hashanimation") as HTMLInputElement;
 const betaToggle = document.querySelector("#betafeatures") as HTMLInputElement;
 const fileServer = document.getElementById("file-slct") as HTMLSelectElement;
@@ -35,7 +38,7 @@ declare global {
   const isAdmin: boolean;
   const loggedIn: boolean;
   const root: string;
-  const version: string
+  const version: string;
 }
 
 const adminBar = isAdmin ? document.getElementById("adminbar") : null;
@@ -49,7 +52,7 @@ if (isAdmin) {
 
 const isPhone = !isTablet
   ? "ontouchstart" in document.documentElement &&
-  /mobi/i.test(navigator.userAgent)
+    /mobi/i.test(navigator.userAgent)
   : false;
 
 function showPaintTimings() {
@@ -76,7 +79,10 @@ function showPaintTimings() {
   }
 }
 
-export const alertUser = async (opts: SweetAlertOptions<any, any>, reload = false) => {
+export const alertUser = async (
+  opts: SweetAlertOptions<any, any>,
+  reload = false
+) => {
   await sweetAlert.fire(opts);
   if (reload) {
     location.reload();
@@ -106,7 +112,6 @@ btn.onkeydown = (evt) => {
 
 if (colorSchemePreference) {
   colorSchemePreference.addEventListener("change", () => {
-
     if (!darkModeToggle) {
       throw new DOMException("Dark mode toggle does not exist");
     }
@@ -116,7 +121,8 @@ if (colorSchemePreference) {
       darkModeToggle.mode = isDark ? "dark" : "light";
       localStorage.removeItem("dark-mode-toggle");
     } else {
-      darkModeToggle.mode = colorSchemePreference.value as DarkModeToggle.ColorScheme;
+      darkModeToggle.mode =
+        colorSchemePreference.value as DarkModeToggle.ColorScheme;
       localStorage.setItem("dark-mode-toggle", colorSchemePreference.value);
     }
   });
@@ -147,8 +153,9 @@ betaToggle.addEventListener("change", () => {
 
 /* Initialization */
 
-systemOpt.innerText = systemOpt.innerText += ` ${isTablet ? "📱" : isPhone ? "📱" : "💻"
-  }`;
+systemOpt.innerText = systemOpt.innerText += ` ${
+  isTablet ? "📱" : isPhone ? "📱" : "💻"
+}`;
 
 const updateOptions = () => {
   colorSchemePreference.value =
@@ -173,7 +180,9 @@ document.onclick = (event) => {
 const updateMenu = () => {
   for (const li of document.querySelectorAll("#menu li")) {
     if (li?.children[0]?.children[0]?.classList.contains("beta")) {
-      (li as HTMLDataListElement).style.display = localStorage.getItem("hideBetaMenu")
+      (li as HTMLDataListElement).style.display = localStorage.getItem(
+        "hideBetaMenu"
+      )
         ? "none"
         : "block";
     }
@@ -197,23 +206,25 @@ if (loggedIn && isAdmin) {
   const isStaging = adminBar!.classList.contains("staging");
 
   if (isStaging) {
-    document.getElementById("branch-select")!.addEventListener("change", (e: any) => {
-      const targetBranch = e.target.value.replace(/\s/g, "");
-      if (targetBranch !== "-") {
-        fetch(`${root}/staging/change-branch?branch=${targetBranch}`)
-          .then((res) => res.json())
-          .then(() => {
-            location.reload();
-          })
-          .catch((err) => {
-            alertUser({
-              title: "Something's went wrong",
-              text: err.toString(),
-              icon: "error",
+    document
+      .getElementById("branch-select")!
+      .addEventListener("change", (e: any) => {
+        const targetBranch = e.target.value.replace(/\s/g, "");
+        if (targetBranch !== "-") {
+          fetch(`${root}/staging/change-branch?branch=${targetBranch}`)
+            .then((res) => res.json())
+            .then(() => {
+              location.reload();
+            })
+            .catch((err) => {
+              alertUser({
+                title: "Something's went wrong",
+                text: err.toString(),
+                icon: "error",
+              });
             });
-          });
-      }
-    });
+        }
+      });
   }
 
   document.addEventListener("keydown", (e) => {
@@ -225,7 +236,8 @@ if (loggedIn && isAdmin) {
 
     if (e.shiftKey && e.code === "KeyB") {
       e.preventDefault();
-      const displayStatus = adminBar!.style.display === "flex" ? "none" : "flex";
+      const displayStatus =
+        adminBar!.style.display === "flex" ? "none" : "flex";
 
       let newColor = "#262626";
       if (displayStatus === "flex") {

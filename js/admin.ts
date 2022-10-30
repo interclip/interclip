@@ -14,9 +14,7 @@ const updateFileStats = async () => {
   }
 
   // Retrieve data from the Interclip file API
-  if (
-    !localStorage.getItem("file_stat")
-  ) {
+  if (!localStorage.getItem("file_stat")) {
     fetch("https://interclip.app/includes/size.json")
       .then((res) => res.json())
       .then((res: FileSizeResponse) => {
@@ -29,8 +27,8 @@ const updateFileStats = async () => {
 
         const cache = {
           value: res,
-          expires: (new Date().getTime() + 60 * 60 * 1000).toString()
-        }
+          expires: (new Date().getTime() + 60 * 60 * 1000).toString(),
+        };
 
         localStorage.setItem("file_stat", JSON.stringify(cache));
       });
@@ -44,6 +42,6 @@ const updateFileStats = async () => {
       `Average file size: ${formatBytes(fileStat.bytes / fileStat.count)}`
     );
   }
-}
+};
 
 updateFileStats();
