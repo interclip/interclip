@@ -22,4 +22,3 @@ if (shownUrl.hostname === defaultFilesEndpoint) {
     document.getElementById("clipType")!.innerText = "file";
   }
 }
-
