@@ -21,7 +21,7 @@ declare global {
   const url: string;
 }
 
-const update = async (scheme) => {
+const update = async (scheme: string | null) => {
   const style = window
     .getComputedStyle(document.documentElement)
     .getPropertyValue("content")
