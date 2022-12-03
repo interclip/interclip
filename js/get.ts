@@ -18,7 +18,7 @@ const defaultFilesEndpoint = "files.interclip.app";
 if (shownUrl.hostname === defaultFilesEndpoint) {
   const fileNamePart = shownUrl.pathname.split("/").at(-1);
   if (fileNamePart) {
-    showUrl(fileNamePart);
+    showUrl(decodeURIComponent(fileNamePart));
     document.getElementById("clipType")!.innerText = "file";
   }
 }
