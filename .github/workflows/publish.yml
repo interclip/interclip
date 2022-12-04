@@ -22,7 +22,7 @@ jobs:
   deploy-staging:
     name: Deploy to staging
     runs-on: ubuntu-latest
-    if: never()
+    if: false
     steps:
       - name: Git pull on the server
         uses: appleboy/ssh-action@master
