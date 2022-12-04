@@ -40,14 +40,15 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - run: git diff --name-only HEAD^ > diff.txt
-      - run: echo "Purging \"$(python3 scripts/arrayify.py)\""
-      - name: Purge cache
-        uses: jakejarvis/cloudflare-purge-action@master
+      - name: Setup Deno
+        uses: denolib/setup-deno@v2
+        with:
+          deno-version: v1.x
+      - name: Purge Cloudflare cache
+        run: deno run --allow-net --allow-env --allow-run scripts/cachePurge.ts
         env:
-          CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
-          CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
-          #PURGE_URLS: "\"$(python3 scripts/arrayify.py)\""
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE }}
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_TOKEN }}
 
   audit:
     name: Audit the production site with Lighthouse
@@ -69,3 +70,4 @@ jobs:
           budgetPath: ./budget.json # test performance budgets
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true # upload lighthouse report to the temporary storage
+
