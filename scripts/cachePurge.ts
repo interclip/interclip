@@ -66,4 +66,3 @@ exec("git diff HEAD~1 --name-only").then((output: string) => {
     });
   });
 });
-
