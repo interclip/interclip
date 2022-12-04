@@ -70,7 +70,7 @@ if ($isStaff) {
             <section id="intro">
                 <main>
                     <h1>Sorry</h1>
-                    <p>The admin page is not accesible while in staging.</p>
+                    <p>The admin page is not accessible while in staging.</p>
                 </main>
             </section>
         <?php elseif ($isStaff) : ?>
