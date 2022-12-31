@@ -27,7 +27,6 @@
       }
 
       p {
-        font-family: "Lato", sans-serif;
         font-size: 2em;
       }
     }
@@ -120,9 +119,4 @@ html {
   html {
     content: "dark";
   }
-}
-
-/* Make the code a font which makes differentiating between some similar characters a smaller hassle */
-.usrCode {
-  font-family: "Roboto Mono", monospace;
 }

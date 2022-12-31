@@ -1,5 +1,16 @@
 * {
-  font-family: "Lato", sans-serif;
+  /* Ref: https://tailwindcss.com/docs/font-family */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* 
+  Make the code a font which makes differentiating between some similar characters a smaller hassle
+  Ref: https://tailwindcss.com/docs/font-family
+*/
+.mono {
+  font-family: monospace;
 }
 
 body {
@@ -8,3 +19,4 @@ body {
   margin: 0;
   overflow-x: hidden;
 }
+
