@@ -23,6 +23,12 @@
         $fileUpload = true;
         ?>
 
+        <?php if ($isStaff && $_ENV["FILES_TOKEN"]) : ?>
+            <span style="display: none" id="filesToken">
+                <?php echo $_ENV["FILES_TOKEN"] ?>
+            </span>
+        <?php endif; ?>
+
         <?php if ($fileUpload) : ?>
             <span id="content"> </span>
             <div class="title">

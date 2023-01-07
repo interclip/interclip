@@ -67,6 +67,8 @@ const progressValue = document.getElementById(
   "progressPercent"
 ) as HTMLSpanElement;
 
+let filesToken: string | null = null;
+
 async function uploadFile(file: File) {
   const formData = new FormData();
   formData.append("uploaded_file", file);
@@ -112,6 +114,9 @@ async function uploadFile(file: File) {
     urlToFetch.pathname = "api/uploadFile";
     urlToFetch.searchParams.set("name", file.name);
     urlToFetch.searchParams.set("type", file.type);
+    if (filesToken) {
+      urlToFetch.searchParams.set("token", filesToken)
+    }
     const presignedRes = await fetch(urlToFetch);
 
     // Upload the file to the presigned URL
@@ -266,7 +271,7 @@ makeDroppable(document.body, (files: File[]) => {
   fileNameElement.innerText = file.name;
   output.appendChild(fileNameElement);
 
-  if (file.size > fileSizeLimitInBytes) {
+  if (file.size > fileSizeLimitInBytes && !filesToken) {
     alertUser(
       {
         title: "Something's went wrong",
@@ -292,6 +297,12 @@ document.onpaste = (event) => {
   }
 };
 
+const fileTokenElement = document.getElementById("filesToken");
+if (fileTokenElement) {
+  filesToken = fileTokenElement.innerText.trim();
+  fileTokenElement.remove();
+}
+
 window.onload = () => {
   if (storageProvider) {
     const preferredDestination = localStorage.getItem("fileServer") || "iclip";
@@ -316,3 +327,4 @@ window.onload = () => {
       fact.innerText = res;
     });
 };
+
