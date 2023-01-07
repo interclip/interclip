@@ -230,20 +230,22 @@ if (loggedIn && isAdmin) {
       });
   }
 
-  const userGreeting = document.getElementById("user-greet")!;
-  const logoutButton = document.getElementById("logout-button")!;
+  const userGreeting = document.getElementById("user-greet");
+  const logoutButton = document.getElementById("logout-button");
 
-  userGreeting.addEventListener("focusin", () => {
-    // Shift focus from itself to Log out action button
-    logoutButton.focus();
-    logoutButton.style.display = "inline-block";
-    userGreeting.tabIndex = -1;
-  });
+  if (userGreeting && logoutButton) {
+    userGreeting.addEventListener("focusin", () => {
+      // Shift focus from itself to Log out action button
+      logoutButton.focus();
+      logoutButton.style.display = "inline-block";
+      userGreeting.tabIndex = -1;
+    });
 
-  logoutButton.addEventListener("blur", () => {
-    userGreeting.tabIndex = 0;
-    logoutButton.style.display = ""; // Reset display back to being hidden
-  });
+    logoutButton.addEventListener("blur", () => {
+      userGreeting.tabIndex = 0;
+      logoutButton.style.display = ""; // Reset display back to being hidden
+    });
+  }
 
   document.addEventListener("keydown", (e) => {
     // Let the user disable the modal by pressing Escape
