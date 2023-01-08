@@ -50,7 +50,7 @@ $currBranch = $branches["current"];
     <span class="lg">Memory: <?php echo formatBytes(memory_get_usage()) ?></span>
     <span class="ending lg" tabindex="0" id="user-greet">
       Hi, <?php echo $user["name"] ?? $user["nickname"]  ?>
-      <?php if ($_ENV["AUTH_TYPE"] === "mock") : ?>
+      <?php if ($_ENV["AUTH_TYPE"] !== "mock") : ?>
         <a class="subitem" id="logout-button" href="<?php echo ROOT ?>/logout">Log out</a>
       <?php endif; ?>
     </span>
