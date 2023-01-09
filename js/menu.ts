@@ -99,14 +99,27 @@ export function a11yClick(event) {
   }
 }
 
+const closeSettingsModal = () => {
+  settingsModal.classList.remove("settings-shown");
+}
+
+const showSettingsModal = () => {
+  settingsModal.classList.add("settings-shown");
+}
+
 // When the user clicks the button, open the modal
 btn.onclick = () => {
-  settingsModal.classList.add("settings-shown");
+  showSettingsModal();
+  settingsModal.addEventListener("keydown", e => {
+    if (e.code === "Escape") {
+      closeSettingsModal();
+    }
+  })
 };
 
 btn.onkeydown = (evt) => {
   if (a11yClick(evt)) {
-    settingsModal.classList.toggle("settings-shown");
+    showSettingsModal();
   }
 };
 
@@ -165,15 +178,14 @@ const updateOptions = () => {
   betaToggle.checked = !localStorage.getItem("hideBetaMenu");
 };
 
-// When the user clicks on the (x) <span>, close the modal
 closeSettingsModalButton.onclick = () => {
-  settingsModal.classList.remove("settings-shown");
+  closeSettingsModal();
 };
 
 // When the user clicks anywhere outside of the modal, close it
 document.onclick = (event) => {
   if (event.target === settingsModal) {
-    settingsModal.classList.remove("settings-shown");
+    closeSettingsModal();
   }
 };
 
@@ -248,12 +260,6 @@ if (loggedIn && isAdmin) {
   }
 
   document.addEventListener("keydown", (e) => {
-    // Let the user disable the modal by pressing Escape
-    if (e.code === "Escape") {
-      e.preventDefault();
-      settingsModal.classList.remove("settings-shown");
-    }
-
     if (e.shiftKey && e.code === "KeyB") {
       e.preventDefault();
       const displayStatus =
