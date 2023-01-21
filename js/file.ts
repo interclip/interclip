@@ -2,7 +2,6 @@ import { a11yClick, alertUser } from "./menu";
 import { formatBytes } from "./lib/utils";
 
 const modal = document.getElementById("modal") as HTMLDialogElement;
-const fact = document.getElementById("fact") as HTMLSpanElement;
 const dropzone = document.getElementById("dropzone") as HTMLDivElement | null;
 const storageProvider = document.getElementById(
   "provider"
@@ -60,26 +59,39 @@ function showCode(data) {
 const progressBar = document.getElementById(
   "progressBar"
 ) as HTMLProgressElement;
-const percentage = document.getElementById("percentage-bar") as HTMLSpanElement;
 const fileProgress = document.getElementById(
   "file-progress"
 ) as HTMLSpanElement;
+const percentages: NodeListOf<HTMLSpanElement> =
+document.querySelectorAll(".percentage-bar");
 
 /**
  * This function makes sure that the percentage text is always overlayed over the progress bar
  */
-const updatePercentagePosition = () => {
-  percentage.style.top =
-    progressBar.offsetTop +
-    progressBar.offsetHeight / 2 -
-    percentage.offsetHeight / 2 +
-    "px";
-  percentage.style.left =
-    progressBar.offsetLeft +
-    progressBar.offsetWidth / 2 -
-    percentage.offsetWidth / 2 +
-    "px";
+const updatePercentage = (percentage = 0) => {
+  percentage = Math.round(percentage);
+  progressBar.value = percentage;
+
+  percentages[1].style.clipPath = `inset(0 0 0 ${percentage}%)`
+  for (const el of percentages) {
+    el.innerText = percentage + "%";
+    el.style.top =
+      progressBar.offsetTop +
+      progressBar.offsetHeight / 2 -
+      el.offsetHeight / 2 +
+      "px";
+    el.style.left =
+      progressBar.offsetLeft +
+      progressBar.offsetWidth / 2 -
+      el.offsetWidth / 2 +
+      "px";
+  }
 };
+
+const setProgressElementsVisibility = (visibility: 'visible' | 'hidden') => {
+  progressBar.style.visibility = visibility;
+  percentages.forEach((percentage) => percentage.style.visibility = visibility);
+}
 
 let filesToken: string | null = null;
 
@@ -94,8 +106,8 @@ async function uploadFile(file: File) {
     // todo(ft): uncomment when IPFS works again || localStorage.getItem("fileServer") === "ipfs"
   ) {
     // The progress bar is not available for the fetch request, so hide the progress bar
-    progressBar.style.visibility = "hidden";
-    percentage.innerText = "Uploading to IPFS....";
+    setProgressElementsVisibility("hidden");
+    //percentage.innerText = "Uploading to IPFS....";
 
     let providerEndpoint = "https://ipfs.interclip.app";
 
@@ -120,8 +132,7 @@ async function uploadFile(file: File) {
         );
       });
   } else {
-    progressBar.style.visibility = "hidden";
-    percentage.style.visibility = "hidden";
+    setProgressElementsVisibility("hidden");
     fileProgress.innerText = "Preparing upload";
 
     // Get the AWS presigned URL
@@ -162,14 +173,10 @@ async function uploadFile(file: File) {
 
     const uploadRequest = new XMLHttpRequest();
     uploadRequest.upload.onprogress = (event) => {
-      percentage.innerText = `${Math.round(
-        (event.loaded / event.total) * 100
-      )}%`;
+      updatePercentage((event.loaded / event.total) * 100);
       fileProgress.innerText = `${formatBytes(event.loaded)} / ${formatBytes(
         event.total
       )}`;
-      progressBar.value = (event.loaded / event.total) * 100;
-      updatePercentagePosition();
     };
     uploadRequest.upload.onloadstart = () => {
       cancelUploadButton.onclick = () => {
@@ -180,10 +187,9 @@ async function uploadFile(file: File) {
         if (a11yClick(e)) {
           uploadRequest.abort();
         }
-      }
+      };
 
-      progressBar.style.visibility = "visible";
-      percentage.style.visibility = "visible";
+      setProgressElementsVisibility("visible");
     };
 
     uploadRequest.onerror = async () => {
@@ -310,8 +316,7 @@ makeDroppable(document.body, async (files: File[]) => {
   const fileNameElement = document.createElement("p");
   fileNameElement.innerText = file.name;
 
-  percentage.innerText = "0%";
-  progressBar.value = 0;
+  updatePercentage(0);
 
   uploadFile(file);
 });
@@ -352,5 +357,5 @@ if (fileTokenElement) {
   }
 })();
 
-updatePercentagePosition();
+updatePercentage();
 

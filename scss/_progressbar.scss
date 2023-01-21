@@ -3,6 +3,7 @@ progress {
   appearance: none;
   width: 250px;
   height: 20px;
+  z-index: 1;
 }
 
 progress[value]::-webkit-progress-bar {
@@ -13,18 +14,7 @@ progress[value]::-webkit-progress-bar {
 
 progress[value]::-webkit-progress-value,
 progress[value]::-moz-progress-bar {
-  background: #3cbcc3;
+  background: #489afb;
   border-radius: 2px;
   background-size: 35px 20px, 100% 100%, 100% 100%;
-}
-
-#fact {
-  background: #bbb;
-  width: 69%;
-  margin: auto;
-}
-
-#percentage-bar,
-#fact {
-  color: #000;
 }

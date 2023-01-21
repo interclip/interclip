@@ -11,12 +11,19 @@ dialog {
     cursor: pointer;
   }
 
-  #percentage-bar {
+  .percentage-bar {
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;
     text-align: center;
     color: black;
+    z-index: 3;
+
+    &:nth-child(2) {
+      color: white;
+      z-index: 2;
+    }
   }
 }
 

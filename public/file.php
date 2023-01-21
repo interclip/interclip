@@ -47,7 +47,10 @@
 
                 <dialog id="modal">
                     <progress id="progressBar" value="0" max="100"></progress>
-                    <span id="percentage-bar">
+                    <span class="percentage-bar">
+                        0%
+                    </span>
+                    <span class="percentage-bar">
                         0%
                     </span>
                     <br />
