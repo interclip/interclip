@@ -112,6 +112,7 @@ let filesToken: string | null = null;
 async function uploadFile(file: File) {
   const formData = new FormData();
   formData.append("uploaded_file", file);
+
   modal.showModal();
 
   if (
@@ -163,10 +164,14 @@ async function uploadFile(file: File) {
       controller.abort();
     });
 
+    modal.onclose = () => {
+      controller.abort();
+    };
+
     if (filesToken) {
       urlToFetch.searchParams.set("token", filesToken);
     }
-    const uploadUrlResponse = await fetch(urlToFetch, { signal }).catch(e => {
+    const uploadUrlResponse = await fetch(urlToFetch, { signal }).catch((e) => {
       showError(e);
     });
 
@@ -200,6 +205,7 @@ async function uploadFile(file: File) {
     });
 
     const uploadRequest = new XMLHttpRequest();
+
     uploadRequest.upload.onprogress = (event) => {
       updatePercentage((event.loaded / event.total) * 100);
       fileProgress.innerText = `${formatBytes(event.loaded)} / ${formatBytes(
@@ -227,6 +233,10 @@ async function uploadFile(file: File) {
       } else {
         showCode(`https://files.interclip.app/${fields.key}`);
       }
+    };
+
+    modal.onclose = () => {
+      uploadRequest.abort();
     };
 
     uploadRequest.open("POST", url);
