@@ -1,4 +1,4 @@
-import { alertUser } from "./menu";
+import { a11yClick, alertUser } from "./menu";
 import { formatBytes } from "./lib/utils";
 
 const modal = document.getElementById("modal") as HTMLDialogElement;
@@ -175,6 +175,12 @@ async function uploadFile(file: File) {
       cancelUploadButton.onclick = () => {
         uploadRequest.abort();
       };
+
+      cancelUploadButton.onkeydown = (e) => {
+        if (a11yClick(e)) {
+          uploadRequest.abort();
+        }
+      }
 
       progressBar.style.visibility = "visible";
       percentage.style.visibility = "visible";
