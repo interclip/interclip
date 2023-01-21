@@ -16,14 +16,13 @@ function encodeHTML(s: string) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 }
 
-const showError = (message: string) => {
-  alertUser(
+const showError = async (message: string) => {
+  await alertUser(
     {
       title: "Something's went wrong",
       text: `Upload failed with HTTP ${message}`,
       icon: "error",
-    },
-    true
+    }
   );
 };
 
@@ -115,54 +114,59 @@ async function uploadFile(file: File) {
     urlToFetch.searchParams.set("name", file.name);
     urlToFetch.searchParams.set("type", file.type);
     if (filesToken) {
-      urlToFetch.searchParams.set("token", filesToken)
+      urlToFetch.searchParams.set("token", filesToken);
     }
-    const presignedRes = await fetch(urlToFetch);
+    const uploadUrlResponse = await fetch(urlToFetch);
 
     // Upload the file to the presigned URL
-    if (!presignedRes.ok) {
-      switch (presignedRes.status) {
+    if (!uploadUrlResponse.ok) {
+      switch (uploadUrlResponse.status) {
         case 404:
-          throw new showError("API Endpoint not found");
+          return await showError("API Endpoint not found");
         case 500:
-          throw new showError("Generic fail");
+          return await showError("The server failed to initiate the upload. Please try again later");
         case 503:
-          throw new showError((await presignedRes.json()).result);
+          return await showError((await uploadUrlResponse.json()).result);
       }
 
-      throw new showError(await presignedRes.text());
+      await showError(await uploadUrlResponse.text());
     }
-    const { url, fields } = await presignedRes.json();
+    const { url, fields } = await uploadUrlResponse.json();
     const formData = new FormData();
 
     Object.entries({ ...fields, file }).forEach(([key, value]) => {
       formData.append(key, value);
     });
 
-    const request = new XMLHttpRequest();
-    request.upload.onprogress = (event) => {
+    const uploadRequest = new XMLHttpRequest();
+    uploadRequest.upload.onprogress = (event) => {
       progressValue.innerText = `${Math.round(
         (event.loaded / event.total) * 100
       )}%`;
       progressBar.value = (event.loaded / event.total) * 100;
     };
-    request.upload.onloadstart = () =>
+    uploadRequest.upload.onloadstart = () =>
       (progressBar.style.visibility = "visible");
 
-    request.onreadystatechange = () => {
-      if (request.readyState === XMLHttpRequest.DONE) {
-        const { status } = request;
-        if (status >= 400) {
-          showError(`Upload failed with HTTP ${status}`);
-        } else {
-          const link = `https://files.interclip.app/${fields.key}`;
-          showCode(link);
-        }
+    uploadRequest.onerror = async () => {
+      await showError("Network Error");
+    };
+
+    uploadRequest.onabort = async () => {
+      console.warn("Upload Aborted");
+    };
+
+    uploadRequest.onload = () => {
+      const { status } = uploadRequest;
+      if (status >= 400) {
+        showError(`Upload failed with HTTP ${status}`);
+      } else {
+        showCode(`https://files.interclip.app/${fields.key}`);
       }
     };
 
-    request.open("POST", url);
-    request.send(formData);
+    uploadRequest.open("POST", url);
+    uploadRequest.send(formData);
   }
 
   (document.querySelector(".droppable-area") as HTMLDivElement).style.display =
@@ -255,13 +259,14 @@ function makeDroppable(ele, callback) {
   }
 }
 
-makeDroppable(document.body, (files: File[]) => {
+makeDroppable(document.body, async (files: File[]) => {
   document.getElementById("content")!.style.display = "none";
+  dropzone.classList.remove("dragover");
   output.innerHTML = "";
 
   const [file] = files;
 
-  if (file.type.indexOf("image/") === 0) {
+  if (file.type.startsWith("image/")) {
     const image = new Image(200);
     image.src = URL.createObjectURL(file);
     output.appendChild(image);
@@ -272,7 +277,7 @@ makeDroppable(document.body, (files: File[]) => {
   output.appendChild(fileNameElement);
 
   if (file.size > fileSizeLimitInBytes && !filesToken) {
-    alertUser(
+    await alertUser(
       {
         title: "Something's went wrong",
         text: `Your file is ${formatBytes(
@@ -280,8 +285,8 @@ makeDroppable(document.body, (files: File[]) => {
         )}, which is over the limit of ${fileSizeLimitInMegabytes}MB`,
         icon: "error",
       },
-      true
     );
+    return;
   }
   uploadFile(file);
 });
