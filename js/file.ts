@@ -49,6 +49,18 @@ const submitClip = (url: string) => {
   form.submit();
 };
 
+const registerDomAction = (el: HTMLElement, callback: () => any) => {
+  el.onclick = () => {
+    callback();
+  };
+
+  el.onkeydown = (e) => {
+    if (a11yClick(e)) {
+      callback();
+    }
+  };
+};
+
 function showCode(data) {
   data = encodeHTML(data);
 
@@ -63,7 +75,7 @@ const fileProgress = document.getElementById(
   "file-progress"
 ) as HTMLSpanElement;
 const percentages: NodeListOf<HTMLSpanElement> =
-document.querySelectorAll(".percentage-bar");
+  document.querySelectorAll(".percentage-bar");
 
 /**
  * This function makes sure that the percentage text is always overlayed over the progress bar
@@ -72,7 +84,7 @@ const updatePercentage = (percentage = 0) => {
   percentage = Math.round(percentage);
   progressBar.value = percentage;
 
-  percentages[1].style.clipPath = `inset(0 0 0 ${percentage}%)`
+  percentages[1].style.clipPath = `inset(0 0 0 ${percentage}%)`;
   for (const el of percentages) {
     el.innerText = percentage + "%";
     el.style.top =
@@ -88,10 +100,12 @@ const updatePercentage = (percentage = 0) => {
   }
 };
 
-const setProgressElementsVisibility = (visibility: 'visible' | 'hidden') => {
+const setProgressElementsVisibility = (visibility: "visible" | "hidden") => {
   progressBar.style.visibility = visibility;
-  percentages.forEach((percentage) => percentage.style.visibility = visibility);
-}
+  percentages.forEach(
+    (percentage) => (percentage.style.visibility = visibility)
+  );
+};
 
 let filesToken: string | null = null;
 
@@ -142,10 +156,24 @@ async function uploadFile(file: File) {
     urlToFetch.searchParams.set("type", file.type);
     urlToFetch.searchParams.set("size", file.size.toString());
 
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    registerDomAction(cancelUploadButton, () => {
+      controller.abort();
+    });
+
     if (filesToken) {
       urlToFetch.searchParams.set("token", filesToken);
     }
-    const uploadUrlResponse = await fetch(urlToFetch);
+    const uploadUrlResponse = await fetch(urlToFetch, { signal }).catch(e => {
+      showError(e);
+    });
+
+    if (!uploadUrlResponse) {
+      modal.close();
+      return;
+    }
 
     // Upload the file to the presigned URL
     if (!uploadUrlResponse.ok) {
@@ -179,16 +207,7 @@ async function uploadFile(file: File) {
       )}`;
     };
     uploadRequest.upload.onloadstart = () => {
-      cancelUploadButton.onclick = () => {
-        uploadRequest.abort();
-      };
-
-      cancelUploadButton.onkeydown = (e) => {
-        if (a11yClick(e)) {
-          uploadRequest.abort();
-        }
-      };
-
+      registerDomAction(cancelUploadButton, () => uploadRequest.abort());
       setProgressElementsVisibility("visible");
     };
 
