@@ -1,7 +1,6 @@
-import { formatBytes } from "./lib/utils";
 import { alertUser } from "./menu";
 
-const modal = document.getElementById("modal") as HTMLDivElement;
+const modal = document.getElementById("modal") as HTMLDialogElement;
 const output = document.querySelector(".output") as HTMLSpanElement;
 const fact = document.getElementById("fact") as HTMLSpanElement;
 const dropzone = document.getElementById("dropzone") as HTMLDivElement | null;
@@ -9,14 +8,12 @@ const storageProvider = document.getElementById(
   "provider"
 ) as HTMLSelectElement;
 
-const fileSizeLimitInMegabytes = 1024;
-const fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1_048_576;
-
 function encodeHTML(s: string) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 }
 
 const showError = async (message: string) => {
+  modal.close();
   await alertUser(
     {
       title: "Something's went wrong",
@@ -55,7 +52,7 @@ const submitClip = (url: string) => {
 function showCode(data) {
   data = encodeHTML(data);
 
-  modal.style.display = "none";
+  modal.close();
   submitClip(data);
 }
 
@@ -71,7 +68,7 @@ let filesToken: string | null = null;
 async function uploadFile(file: File) {
   const formData = new FormData();
   formData.append("uploaded_file", file);
-  modal.style.display = "block";
+  modal.showModal();
 
   if (
     storageProvider &&
@@ -113,6 +110,8 @@ async function uploadFile(file: File) {
     urlToFetch.pathname = "api/uploadFile";
     urlToFetch.searchParams.set("name", file.name);
     urlToFetch.searchParams.set("type", file.type);
+    urlToFetch.searchParams.set("size", file.size.toString());
+
     if (filesToken) {
       urlToFetch.searchParams.set("token", filesToken);
     }
@@ -123,6 +122,8 @@ async function uploadFile(file: File) {
       switch (uploadUrlResponse.status) {
         case 404:
           return await showError("API Endpoint not found");
+        case 413:
+          return await showError((await uploadUrlResponse.json()).result);
         case 500:
           return await showError("The server failed to initiate the upload. Please try again later");
         case 503:
@@ -278,18 +279,6 @@ makeDroppable(document.body, async (files: File[]) => {
   fileNameElement.innerText = file.name;
   output.appendChild(fileNameElement);
 
-  if (file.size > fileSizeLimitInBytes && !filesToken) {
-    await alertUser(
-      {
-        title: "Something's went wrong",
-        text: `Your file is ${formatBytes(
-          file.size
-        )}, which is over the limit of ${formatBytes(fileSizeLimitInBytes)}`,
-        icon: "error",
-      },
-    );
-    return;
-  }
   uploadFile(file);
 });
 

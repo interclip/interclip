@@ -45,23 +45,16 @@
                     <p>Drag files here or click to upload</p>
                 </div>
 
-                <div id="modal" class="modal">
-
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <span>
-                            <progress id="progressBar" value="0" max="100"></progress>
-                            <br>
-                            <span id="progressPercent">
-                                0%
-                            </span>
-                            <div id="fact">
-                                Inter-clippin' good!
-                            </div>
-                        </span>
+                <dialog id="modal">
+                    <progress id="progressBar" value="0" max="100"></progress>
+                    <br>
+                    <span id="progressPercent">
+                        0%
+                    </span>
+                    <div id="fact">
+                        Inter-clippin' good!
                     </div>
-
-                </div>
+                </dialog>
                 <div class="output"></div>
             </div>
 
