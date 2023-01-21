@@ -3,8 +3,7 @@
 @import "copy";
 @import "globals";
 @import "mobile";
-
-/* Style */
+@import "fileModal";
 
 input::placeholder {
   color: #555;
@@ -97,8 +96,3 @@ main h2 {
   display: none;
 }
 
-.output {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}

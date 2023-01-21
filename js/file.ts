@@ -1,4 +1,5 @@
 import { alertUser } from "./menu";
+import { formatBytes } from "./lib/utils";
 
 const modal = document.getElementById("modal") as HTMLDialogElement;
 const output = document.querySelector(".output") as HTMLSpanElement;
@@ -7,6 +8,9 @@ const dropzone = document.getElementById("dropzone") as HTMLDivElement | null;
 const storageProvider = document.getElementById(
   "provider"
 ) as HTMLSelectElement;
+const cancelUploadButton = document.getElementById(
+  "cancel-upload"
+) as HTMLSpanElement;
 
 function encodeHTML(s: string) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
@@ -14,14 +18,12 @@ function encodeHTML(s: string) {
 
 const showError = async (message: string) => {
   modal.close();
-  output.innerHTML = '';
-  await alertUser(
-    {
-      title: "Something's went wrong",
-      text: `Upload failed with HTTP ${message}`,
-      icon: "error",
-    }
-  );
+  output.innerHTML = "";
+  await alertUser({
+    title: "Something's went wrong",
+    text: `Upload failed with HTTP ${message}`,
+    icon: "error",
+  });
 };
 
 declare global {
@@ -60,9 +62,26 @@ function showCode(data) {
 const progressBar = document.getElementById(
   "progressBar"
 ) as HTMLProgressElement;
-const progressValue = document.getElementById(
-  "progressPercent"
+const percentage = document.getElementById("percentage-bar") as HTMLSpanElement;
+const fileProgress = document.getElementById(
+  "file-progress"
 ) as HTMLSpanElement;
+
+/**
+ * This function makes sure that the percentage text is always overlayed over the progress bar
+ */
+const updatePercentagePosition = () => {
+  percentage.style.top =
+    progressBar.offsetTop +
+    progressBar.offsetHeight / 2 -
+    percentage.offsetHeight / 2 +
+    "px";
+  percentage.style.left =
+    progressBar.offsetLeft +
+    progressBar.offsetWidth / 2 -
+    percentage.offsetWidth / 2 +
+    "px";
+};
 
 let filesToken: string | null = null;
 
@@ -78,7 +97,7 @@ async function uploadFile(file: File) {
   ) {
     // The progress bar is not available for the fetch request, so hide the progress bar
     progressBar.style.display = "none";
-    progressValue.innerText = "Uploading to IPFS....";
+    percentage.innerText = "Uploading to IPFS....";
 
     let providerEndpoint = "https://ipfs.interclip.app";
 
@@ -104,7 +123,8 @@ async function uploadFile(file: File) {
       });
   } else {
     progressBar.style.visibility = "hidden";
-    progressValue.innerText = "Preparing upload";
+    percentage.style.visibility = "hidden";
+    fileProgress.innerText = "Preparing upload";
 
     // Get the AWS presigned URL
     const urlToFetch = new URL("https://iclip.vercel.app");
@@ -126,7 +146,9 @@ async function uploadFile(file: File) {
         case 413:
           return await showError((await uploadUrlResponse.json()).result);
         case 500:
-          return await showError("The server failed to initiate the upload. Please try again later");
+          return await showError(
+            "The server failed to initiate the upload. Please try again later"
+          );
         case 503:
           return await showError((await uploadUrlResponse.json()).result);
       }
@@ -142,13 +164,23 @@ async function uploadFile(file: File) {
 
     const uploadRequest = new XMLHttpRequest();
     uploadRequest.upload.onprogress = (event) => {
-      progressValue.innerText = `${Math.round(
+      percentage.innerText = `${Math.round(
         (event.loaded / event.total) * 100
       )}%`;
+      fileProgress.innerText = `${formatBytes(event.loaded)} / ${formatBytes(
+        event.total
+      )}`;
       progressBar.value = (event.loaded / event.total) * 100;
+      updatePercentagePosition();
     };
-    uploadRequest.upload.onloadstart = () =>
-      (progressBar.style.visibility = "visible");
+    uploadRequest.upload.onloadstart = () => {
+      cancelUploadButton.onclick = () => {
+        uploadRequest.abort();
+      };
+
+      progressBar.style.visibility = "visible";
+      percentage.style.visibility = "visible";
+    };
 
     uploadRequest.onerror = async () => {
       await showError("Network Error");
@@ -156,6 +188,7 @@ async function uploadFile(file: File) {
 
     uploadRequest.onabort = async () => {
       console.warn("Upload Aborted");
+      modal.close();
     };
 
     uploadRequest.onload = () => {
@@ -300,7 +333,7 @@ if (fileTokenElement) {
   fileTokenElement.remove();
 }
 
-window.onload = () => {
+(() => {
   if (storageProvider) {
     const preferredDestination = localStorage.getItem("fileServer") || "iclip";
     const selectedOption = [...storageProvider.options].find(
@@ -317,11 +350,12 @@ window.onload = () => {
       storageProvider.value = preferredDestination;
     }
   }
+})();
 
-  fetch("https://interclips.filiptronicek.workers.dev/")
-    .then((res) => res.text())
-    .then((res) => {
-      fact.innerText = res;
-    });
-};
+fetch("https://interclips.filiptronicek.workers.dev/")
+  .then((res) => res.text())
+  .then((res) => {
+    fact.innerText = res;
+    updatePercentagePosition();
+  });
 

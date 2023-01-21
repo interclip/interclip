@@ -2,6 +2,7 @@
 @import "copy";
 @import "globals";
 @import "mobile";
+@import "fileModal";
 
 body {
   min-height: 100vh;
@@ -34,16 +35,6 @@ body {
   font-size: 3rem;
 }
 
-.modal {
-  max-height: 100vh;
-}
-
 #copy {
   display: none;
-}
-
-.output {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
