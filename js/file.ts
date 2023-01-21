@@ -14,6 +14,7 @@ function encodeHTML(s: string) {
 
 const showError = async (message: string) => {
   modal.close();
+  output.innerHTML = '';
   await alertUser(
     {
       title: "Something's went wrong",
