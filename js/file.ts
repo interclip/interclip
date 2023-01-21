@@ -4,12 +4,12 @@ import { alertUser } from "./menu";
 const modal = document.getElementById("modal") as HTMLDivElement;
 const output = document.querySelector(".output") as HTMLSpanElement;
 const fact = document.getElementById("fact") as HTMLSpanElement;
-const dropzone = document.getElementById("dropzone") as HTMLDivElement;
+const dropzone = document.getElementById("dropzone") as HTMLDivElement | null;
 const storageProvider = document.getElementById(
   "provider"
 ) as HTMLSelectElement;
 
-const fileSizeLimitInMegabytes = 1000;
+const fileSizeLimitInMegabytes = 1024;
 const fileSizeLimitInBytes = fileSizeLimitInMegabytes * 1_048_576;
 
 function encodeHTML(s: string) {
@@ -261,7 +261,9 @@ function makeDroppable(ele, callback) {
 
 makeDroppable(document.body, async (files: File[]) => {
   document.getElementById("content")!.style.display = "none";
-  dropzone.classList.remove("dragover");
+  if (dropzone) {
+    dropzone.classList.remove("dragover");
+  }
   output.innerHTML = "";
 
   const [file] = files;
@@ -282,7 +284,7 @@ makeDroppable(document.body, async (files: File[]) => {
         title: "Something's went wrong",
         text: `Your file is ${formatBytes(
           file.size
-        )}, which is over the limit of ${fileSizeLimitInMegabytes}MB`,
+        )}, which is over the limit of ${formatBytes(fileSizeLimitInBytes)}`,
         icon: "error",
       },
     );
