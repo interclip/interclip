@@ -96,7 +96,7 @@ async function uploadFile(file: File) {
     // todo(ft): uncomment when IPFS works again || localStorage.getItem("fileServer") === "ipfs"
   ) {
     // The progress bar is not available for the fetch request, so hide the progress bar
-    progressBar.style.display = "none";
+    progressBar.style.visibility = "hidden";
     percentage.innerText = "Uploading to IPFS....";
 
     let providerEndpoint = "https://ipfs.interclip.app";
@@ -188,6 +188,7 @@ async function uploadFile(file: File) {
 
     uploadRequest.onabort = async () => {
       console.warn("Upload Aborted");
+      output.innerHTML = "";
       modal.close();
     };
 
@@ -204,8 +205,6 @@ async function uploadFile(file: File) {
     uploadRequest.send(formData);
   }
 
-  (document.querySelector(".droppable-area") as HTMLDivElement).style.display =
-    "none";
 }
 
 function triggerCallback(e, callback) {
