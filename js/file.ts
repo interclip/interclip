@@ -2,7 +2,6 @@ import { alertUser } from "./menu";
 import { formatBytes } from "./lib/utils";
 
 const modal = document.getElementById("modal") as HTMLDialogElement;
-const output = document.querySelector(".output") as HTMLSpanElement;
 const fact = document.getElementById("fact") as HTMLSpanElement;
 const dropzone = document.getElementById("dropzone") as HTMLDivElement | null;
 const storageProvider = document.getElementById(
@@ -18,7 +17,6 @@ function encodeHTML(s: string) {
 
 const showError = async (message: string) => {
   modal.close();
-  output.innerHTML = "";
   await alertUser({
     title: "Something's went wrong",
     text: `Upload failed with HTTP ${message}`,
@@ -188,7 +186,6 @@ async function uploadFile(file: File) {
 
     uploadRequest.onabort = async () => {
       console.warn("Upload Aborted");
-      output.innerHTML = "";
       modal.close();
     };
 
@@ -204,7 +201,6 @@ async function uploadFile(file: File) {
     uploadRequest.open("POST", url);
     uploadRequest.send(formData);
   }
-
 }
 
 function triggerCallback(e, callback) {
@@ -294,23 +290,22 @@ function makeDroppable(ele, callback) {
 }
 
 makeDroppable(document.body, async (files: File[]) => {
-  document.getElementById("content")!.style.display = "none";
   if (dropzone) {
     dropzone.classList.remove("dragover");
   }
-  output.innerHTML = "";
 
   const [file] = files;
 
   if (file.type.startsWith("image/")) {
     const image = new Image(200);
     image.src = URL.createObjectURL(file);
-    output.appendChild(image);
   }
 
   const fileNameElement = document.createElement("p");
   fileNameElement.innerText = file.name;
-  output.appendChild(fileNameElement);
+
+  percentage.innerText = "0%";
+  progressBar.value = 0;
 
   uploadFile(file);
 });
@@ -351,10 +346,5 @@ if (fileTokenElement) {
   }
 })();
 
-fetch("https://interclips.filiptronicek.workers.dev/")
-  .then((res) => res.text())
-  .then((res) => {
-    fact.innerText = res;
-    updatePercentagePosition();
-  });
+updatePercentagePosition();
 

@@ -65,11 +65,6 @@
                     </svg>
                 </span>
             </div>
-            <br>
-            <br />
-            <span id="fact">
-                Inter-clippin' good!
-            </span>
         </dialog>
         <div class="output"></div>
         </div>
