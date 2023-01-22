@@ -1,6 +1,6 @@
 import { a11yClick, alertUser } from "./menu";
 import { formatBytes } from "./lib/utils";
-import { convertStringToArrayBufferView } from "./lib/crypto/converters";
+import { initTabs } from "./lib/tabs";
 
 const modal = document.getElementById("modal") as HTMLDialogElement;
 const dropzone = document.getElementById("dropzone") as HTMLDivElement | null;
@@ -409,3 +409,6 @@ if (fileTokenElement) {
 
 updatePercentage();
 
+if (dropzone) {
+  initTabs();
+}

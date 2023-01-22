@@ -42,18 +42,34 @@
                     </select>
                 </div>
                 <?php if ($isStaff) : ?>
-                    <form action="" id="gist">
-                        <textarea class="mono" name="data" placeholder="Eggs, chocolate, milk" required></textarea>
-                        <br />
-                        <input type="submit" value="Create clip from text">
-                    </form>
+
                 <?php endif; ?>
 
-
-                <div class="droppable-area" id="dropzone">
-                    <p>Drag files here or click to upload</p>
+                <div class="container--tabs">
+                    <section class="row">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a title="Upload a file" href="#file">File</a></li>
+                            <li class=""><a title="Upload a text snippet" href="#text">Text</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="file" class="tab-pane active">
+                                <div class="droppable-area" id="dropzone">
+                                    <p>Drag files here or click to upload</p>
+                                </div>
+                            </div>
+                            <div id="text" class="tab-pane">
+                                <span class="glyphicon glyphicon-fire glyphicon--home--feature two columns text-center"></span>
+                                <span class="col-md-10">
+                                    <form action="" id="gist">
+                                        <textarea class="mono" name="data" placeholder="Eggs, chocolate, milk" required></textarea>
+                                        <br />
+                                        <input type="submit" value="Create clip from text">
+                                    </form>
+                                </span>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-
                 <dialog id="modal">
                     <progress id="progressBar" value="0" max="100"></progress>
                     <span class="percentage-bar">

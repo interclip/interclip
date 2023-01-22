@@ -3,6 +3,7 @@
 @import "globals";
 @import "mobile";
 @import "fileModal";
+@import "tabs";
 
 body {
   min-height: 100vh;
@@ -41,7 +42,6 @@ body {
     border-radius: 10px;
     padding: 10px;
     resize: vertical;
-    width: min(80vw, 35rem);
     min-height: 5rem;
 
     &:focus {
