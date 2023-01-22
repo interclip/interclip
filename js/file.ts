@@ -1,5 +1,6 @@
 import { a11yClick, alertUser } from "./menu";
 import { formatBytes } from "./lib/utils";
+import { convertStringToArrayBufferView } from "./lib/crypto/converters";
 
 const modal = document.getElementById("modal") as HTMLDialogElement;
 const dropzone = document.getElementById("dropzone") as HTMLDivElement | null;
@@ -10,6 +11,31 @@ const cancelUploadButton = document.getElementById(
   "cancel-upload"
 ) as HTMLSpanElement;
 const gistForm = document.getElementById("gist") as HTMLFormElement | null;
+
+const iv = window.crypto.getRandomValues(new Uint8Array(16));
+
+async function encryptFile(file: string, key: ArrayBuffer): Promise<File> {
+  const enc = new TextEncoder();
+  const encoded = enc.encode(file);
+  const cryptoKey = await window.crypto.subtle.importKey(
+    "raw",
+    key,
+    { name: "AES-CBC" },
+    false,
+    ["encrypt", "decrypt"]
+  );
+  const encryptedData = await window.crypto.subtle.encrypt(
+    { name: "AES-CBC", iv },
+    cryptoKey,
+    encoded
+  );
+
+  const encryptedFile = new File([encryptedData], "clip.enc.json", {
+    type: "application/json",
+  });
+
+  return encryptedFile;
+}
 
 if (gistForm) {
   gistForm.onsubmit = async (e) => {
@@ -28,7 +54,13 @@ if (gistForm) {
       });
       uploadFile(file);
     } else {
-      return await showError("Encrypting Gists is not yet supported");
+      const key = await crypto.subtle.digest(
+        { name: "SHA-256" },
+        convertStringToArrayBufferView(secret.toString())
+      );
+
+      const file = await encryptFile(data.toString(), key);
+      uploadFile(file);
     }
   };
 }
