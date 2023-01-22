@@ -45,11 +45,6 @@
                     <form action="" id="gist">
                         <textarea name="data" placeholder="Eggs, chocolate, milk" required></textarea>
                         <br />
-                        <label>
-                            Your password:
-                            <input name="secret" type="text" id="secret">
-                        </label>
-                        <br />
                         <input type="submit" value="Create clip from text">
                     </form>
                 <?php endif; ?>

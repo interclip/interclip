@@ -12,31 +12,6 @@ const cancelUploadButton = document.getElementById(
 ) as HTMLSpanElement;
 const gistForm = document.getElementById("gist") as HTMLFormElement | null;
 
-const iv = window.crypto.getRandomValues(new Uint8Array(16));
-
-async function encryptFile(file: string, key: ArrayBuffer): Promise<File> {
-  const enc = new TextEncoder();
-  const encoded = enc.encode(file);
-  const cryptoKey = await window.crypto.subtle.importKey(
-    "raw",
-    key,
-    { name: "AES-CBC" },
-    false,
-    ["encrypt", "decrypt"]
-  );
-  const encryptedData = await window.crypto.subtle.encrypt(
-    { name: "AES-CBC", iv },
-    cryptoKey,
-    encoded
-  );
-
-  const encryptedFile = new File([encryptedData], "clip.enc.json", {
-    type: "application/json",
-  });
-
-  return encryptedFile;
-}
-
 if (gistForm) {
   gistForm.onsubmit = async (e) => {
     e.preventDefault();
@@ -45,23 +20,14 @@ if (gistForm) {
 
     const formData = new FormData(e.target as HTMLFormElement);
     const entries = formData.entries();
-    const { data, secret } = Object.fromEntries(entries);
+    const { data } = Object.fromEntries(entries);
 
-    if (!secret) {
-      const blob = new Blob([data], { type: "text/plain;charset=utf-8" });
-      const file = new File([blob], "clip.txt", {
-        type: "text/plain;charset=utf-8",
-      });
-      uploadFile(file);
-    } else {
-      const key = await crypto.subtle.digest(
-        { name: "SHA-256" },
-        convertStringToArrayBufferView(secret.toString())
-      );
-
-      const file = await encryptFile(data.toString(), key);
-      uploadFile(file);
-    }
+    const type = "text/plain;charset=utf-8";
+    const blob = new Blob([data], { type });
+    const file = new File([blob], "clip.txt", {
+      type,
+    });
+    uploadFile(file);
   };
 }
 
