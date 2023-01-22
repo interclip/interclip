@@ -41,6 +41,20 @@
                         <option value="iclip" selected>Interclip Storage Server</option>
                     </select>
                 </div>
+                <?php if ($isStaff) : ?>
+                    <form action="" id="gist">
+                        <textarea name="data" placeholder="Eggs, chocolate, milk" required></textarea>
+                        <br />
+                        <label>
+                            Your password:
+                            <input name="secret" type="text" id="secret">
+                        </label>
+                        <br />
+                        <input type="submit" value="Create clip from text">
+                    </form>
+                <?php endif; ?>
+
+
                 <div class="droppable-area" id="dropzone">
                     <p>Drag files here or click to upload</p>
                 </div>

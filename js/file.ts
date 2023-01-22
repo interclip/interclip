@@ -9,6 +9,29 @@ const storageProvider = document.getElementById(
 const cancelUploadButton = document.getElementById(
   "cancel-upload"
 ) as HTMLSpanElement;
+const gistForm = document.getElementById("gist") as HTMLFormElement | null;
+
+if (gistForm) {
+  gistForm.onsubmit = async (e) => {
+    e.preventDefault();
+
+    if (!e.target) return await showError("Huh");
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    const entries = formData.entries();
+    const { data, secret } = Object.fromEntries(entries);
+
+    if (!secret) {
+      const blob = new Blob([data], { type: "text/plain;charset=utf-8" });
+      const file = new File([blob], "clip.txt", {
+        type: "text/plain;charset=utf-8",
+      });
+      uploadFile(file);
+    } else {
+      return await showError("Encrypting Gists is not yet supported");
+    }
+  };
+}
 
 function encodeHTML(s: string) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
@@ -18,7 +41,7 @@ const showError = async (message: string) => {
   modal.close();
   await alertUser({
     title: "Something's went wrong",
-    text: `Upload failed with HTTP ${message}`,
+    text: message,
     icon: "error",
   });
 };
@@ -109,7 +132,7 @@ const setProgressElementsVisibility = (visibility: "visible" | "hidden") => {
 
 let filesToken: string | null = null;
 
-async function uploadFile(file: File) {
+export async function uploadFile(file: File) {
   const formData = new FormData();
   formData.append("uploaded_file", file);
 
