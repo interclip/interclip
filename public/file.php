@@ -43,7 +43,7 @@
                 </div>
                 <?php if ($isStaff) : ?>
                     <form action="" id="gist">
-                        <textarea name="data" placeholder="Eggs, chocolate, milk" required></textarea>
+                        <textarea class="mono" name="data" placeholder="Eggs, chocolate, milk" required></textarea>
                         <br />
                         <input type="submit" value="Create clip from text">
                     </form>
