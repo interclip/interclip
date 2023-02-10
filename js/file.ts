@@ -265,43 +265,54 @@ export async function uploadFile(file: File) {
   }
 }
 
-function triggerCallback(e, callback) {
+function triggerCallback(e: DragEvent | Event, callback: () => {}) {
   if (!callback || typeof callback !== "function") {
     return;
   }
 
-  if (e.dataTransfer) {
-    const urls = new Set<string>();
+  //@ts-ignore
+  if (e.target?.files) {
+    //@ts-ignore
+    callback.call(null, e.target.files);
+    return;
+  }
+  if (e instanceof DragEvent) {
+    if (e.dataTransfer && !e.dataTransfer.files) {
+      const urls = new Set<string>();
 
-    // "Borrowed" from https://github.com/thinkverse/draggable/blob/ddb6d6ff23ef80fb60f80d4119586f4b0902e8f5/src/draggable.ts#L40-L46
-    for (const item of e.dataTransfer.items) {
-      if (["text/uri-list", "text/plain"].includes(item.type)) {
-        urls.add(e.dataTransfer.getData("URL"));
-        continue;
+      // "Borrowed" from https://github.com/thinkverse/draggable/blob/ddb6d6ff23ef80fb60f80d4119586f4b0902e8f5/src/draggable.ts#L40-L46
+      for (const item of e.dataTransfer.items) {
+        if (["text/uri-list", "text/plain"].includes(item.type)) {
+          urls.add(e.dataTransfer.getData("URL"));
+          continue;
+        }
+      }
+
+      const firstURL = urls.values().next().value;
+      if ([...urls].length !== 0 && firstURL && firstURL !== "") {
+        submitClip(firstURL);
+        return;
       }
     }
 
-    const firstURL = urls.values().next().value;
-    if ([...urls].length !== 0 && firstURL && firstURL !== "") {
-      submitClip(firstURL);
-      return;
+    if (e.dataTransfer) {
+      const files = e.dataTransfer.files;
+      if (files.length > 0) {
+        callback.call(null, files);
+      }
     }
-  }
-
-  let files;
-  if (e.dataTransfer) {
-    files = e.dataTransfer.files;
-  } else if (e.target) {
-    files = e.target.files;
-  }
-  if (files.length > 0) {
-    callback.call(null, files);
+  } else {
+    alertUser({
+      title: "Something has gone wrong",
+      text: "Please selecting your file again",
+      icon: "error",
+    });
   }
 }
 
 window.fileOver = false;
 
-function makeDroppable(ele, callback) {
+function makeDroppable(element: HTMLElement, callback: any) {
   const input = document.createElement("input");
   input.setAttribute("type", "file");
   input.setAttribute("multiple", "false");
@@ -309,25 +320,25 @@ function makeDroppable(ele, callback) {
   input.addEventListener("change", (e) => {
     triggerCallback(e, callback);
   });
-  ele.appendChild(input);
+  element.appendChild(input);
 
-  ele.addEventListener("dragover", (e) => {
+  element.addEventListener("dragover", (e: DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     fileOver = true;
     if (dropzone) {
       dropzone.classList.add("dragover");
     }
-    ele.classList.add("dragover");
+    element.classList.add("dragover");
   });
 
-  ele.addEventListener("dragleave", (e) => {
+  element.addEventListener("dragleave", (e: DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     fileOver = false;
     setInterval(() => {
       if (!fileOver) {
-        ele.classList.remove("dragover");
+        element.classList.remove("dragover");
         if (dropzone) {
           dropzone.classList.remove("dragover");
         }
@@ -335,11 +346,25 @@ function makeDroppable(ele, callback) {
     }, 100);
   });
 
-  ele.addEventListener("drop", (e) => {
+  element.addEventListener("dragend", (e: DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     fileOver = false;
-    ele.classList.remove("dragover");
+    setInterval(() => {
+      if (!fileOver) {
+        element.classList.remove("dragover");
+        if (dropzone) {
+          dropzone.classList.remove("dragover");
+        }
+      }
+    }, 100);
+  });
+
+  element.addEventListener("drop", (e: DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    fileOver = false;
+    element.classList.remove("dragover");
     triggerCallback(e, callback);
   });
 
@@ -412,3 +437,4 @@ updatePercentage();
 if (dropzone) {
   initTabs();
 }
+
