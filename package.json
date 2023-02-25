@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "dark-mode-toggle": "^0.14.2",
+    "dark-mode-toggle": "^0.14.4",
     "esbuild": "^0.15.12",
     "qrcode": "^1.5.1",
     "sass": "^1.55.0",
