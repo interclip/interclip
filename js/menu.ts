@@ -89,7 +89,7 @@ export const alertUser = async (
   }
 };
 
-export function a11yClick(event) {
+export function a11yClick(event: KeyboardEvent) {
   if (event.type === "keydown") {
     if (event.code === "Space" || event.code === "Enter") {
       return true;
