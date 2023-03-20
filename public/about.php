@@ -101,11 +101,7 @@
             <p>
                 Interclip's code is in its entirety published on
                 <a href="https://github.com/interclip/interclip" target="_blank" rel="noopener noreferrer">GitHub</a>.
-                The project is mostly written in pure PHP and JS, but there are some
-                <a href="https://docs.interclip.app/legal" target="_blank" rel="noopener noreferrer">
-                    libraries and designs
-                </a>
-                we use to make it easier upon ourselves.
+                The project is mostly written in PHP and Typescript with a MySQL Database powering it all.
             </p>
         </section>
         <section id="facts">
