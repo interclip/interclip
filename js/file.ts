@@ -373,6 +373,13 @@ function makeDroppable(element: HTMLElement, callback: any) {
       input.value = "";
       input.click();
     };
+
+    dropzone.onkeydown = (event) => {
+      if (a11yClick(event)) {
+        input.value = "";
+        input.click();
+      }
+    }
   }
 }
 

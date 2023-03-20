@@ -14,8 +14,16 @@ body {
     border: 5px dashed white;
   }
 
-  #dropzone.dragover {
-    background: #157efb;
+  #dropzone {
+    .dragover {
+      background: #157efb;
+    }
+
+    button {
+      background: transparent;
+      color: inherit;
+      border: none;
+    }
   }
 }
 
@@ -56,3 +64,4 @@ body {
 #copy {
   display: none;
 }
+
