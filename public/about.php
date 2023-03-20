@@ -55,24 +55,26 @@
         return $output;
     }
 
-    // Cache the contributors
-    if (!getRedis("contributors")) {
-        $contributorsResponse = url_get_contents("https://api.github.com/repos/interclip/interclip/contributors", false);
-        $contributorsJSON = json_decode($contributorsResponse, true);
+    try {
+        if (!getRedis("contributors")) {
+            $contributorsResponse = url_get_contents("https://api.github.com/repos/interclip/interclip/contributors", false);
+            $contributorsJSON = json_decode($contributorsResponse, true);
 
-        // Get the login of every contributor
-        $contributors = array();
-        foreach ($contributorsJSON as $contributor) {
-            // Don't push if the contributor is a bot
-            if ($contributor['type'] !== "Bot" && !str_contains(strtolower($contributor['login']), "bot")) {
-                array_push($contributors, $contributor['login']);
+            // Get the login of every contributor
+            $contributors = array();
+            foreach ($contributorsJSON as $contributor) {
+                // Don't push if the contributor is a bot
+                if ($contributor['type'] !== "Bot" && !str_contains(strtolower($contributor['login']), "bot")) {
+                    array_push($contributors, $contributor['login']);
+                }
             }
-        }
 
-        // Cache the contributors
-        storeRedis("contributors", json_encode($contributors), 60 * 60 * 24);
-    } else {
-        $contributors = json_decode(getRedis("contributors"));
+            // Cache the contributors
+            storeRedis("contributors", json_encode($contributors), 60 * 60 * 24);
+        } else {
+            $contributors = json_decode(getRedis("contributors"));
+        }
+    } catch (Error $e) {
     }
     ?>
     <main id="maincontent">
