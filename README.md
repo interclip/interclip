@@ -32,14 +32,6 @@ Different apps for different platforms
 - Interclip browser extension [Repo](https://github.com/aperta-principium/iclip-ext), [Firefox addon](https://addons.mozilla.org/en-US/firefox/addon/interclip/), [Chrome extension](https://chrome.google.com/webstore/detail/interclip-extension/mpgjjbeepoonaaeaodiadghpnaadnngg)
 - Interclip CLI (`npm i -g interclip`), [Repo](https://github.com/interclip/cli)
 
-<a name="dependencies"> </a>
-
-## Built with
-
-- [aperta-principium/embed.js](https://github.com/aperta-principium/embed.js)
-- [filiptronicek/iclip-external](https://github.com/filiptronicek/iclip-external)
-- [aperta-principium/Interclip-proxy](https://github.com/aperta-principium/Interclip-proxy)
-
 <a name="api"> </a>
 
 ## API
