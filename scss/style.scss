@@ -66,3 +66,11 @@ body.loading .loading-modal {
 .img {
   width: 100%;
 }
+
+button.no-styles {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+}

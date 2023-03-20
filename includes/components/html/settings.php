@@ -5,7 +5,7 @@
 
   <!-- Modal content -->
   <div class="modal-content">
-    <span class="closeBtn">&times;</span>
+    <button class="closeBtn no-styles">&times;</button>
     <h2>Settings</h2>
     <p>Here you can change some of Interclip's settings.</p>
     <h3>Color scheme</h3>

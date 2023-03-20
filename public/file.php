@@ -54,7 +54,7 @@
                         <div class="tab-content">
                             <div id="file" class="tab-pane active">
                                 <div class="droppable-area" id="dropzone">
-                                    <button>Drag files here or click to upload</button>
+                                    <button class="no-styles">Drag files here or click to upload</button>
                                 </div>
                             </div>
                             <div id="text" class="tab-pane">
