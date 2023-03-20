@@ -34,7 +34,7 @@
             <div class="title">
                 <h1>Upload a file to Interclip</h1>
                 <p class="note">Upload any file type that's under 1GB</p>
-                <div class="server-container">
+                <div class="server-container" hidden>
                     Upload to
                     <select id="provider">
                         <option value="ipfs" disabled>IPFS (out of service)</option>
