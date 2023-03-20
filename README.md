@@ -2,8 +2,6 @@
 
 # Interclip
 
-<a href="https://www.producthunt.com/posts/interclip?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-interclip" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=174002&theme=light" alt="Interclip - Easy peasy clipboard cross-platform sharing | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
-
 ![clipboard](https://img.shields.io/badge/clipboard-copied-orange) ![Clipboard](https://img.shields.io/github/repo-size/interclip/interclip) [![Maintainability](https://api.codeclimate.com/v1/badges/0a72c92a0a2da0c79ba5/maintainability)](https://codeclimate.com/github/interclip/interclip/maintainability)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/interclip/interclip/latest)
 [![GitPod badge](https://img.shields.io/badge/setup-automated-blue?logo=gitpod)](https://gitpod.io/#https://github.com/interclip/interclip)
@@ -61,6 +59,6 @@ Receiving a clip is even easier than clipping. Just get out your phone or anothe
 
 ## Domain resolution troubles
 
-For some users, we have observed that some ISPs block Interclip's traffic over the [interclip.app](https://interclip.app) domain. No idea why, but maybe because of the files hosted by the users? If you encounter such trouble please use the alternate domain, [iclip.fufik.eu](https://iclip.fufik.eu), which can also be accessed with HTTP if you plan to use ultra-old browsers with outdated TLS requirements.
+From feedback, we have observed that some ISPs block Interclip's traffic over the [interclip.app](https://interclip.app) domain. No idea why, but maybe because of the files hosted by the users? If you encounter such trouble please use the alternate domain, [iclip.fufik.eu](https://iclip.fufik.eu), which can also be accessed with HTTP if you plan to use ultra-old browsers with outdated TLS requirements.
 
 _Note_: I know it's a bad idea to allow the access over HTTP, but if you use this alternate domain it should be a last resort. If you encounter any further issues, shoot me an email - [filip@interclip.app](mailto:filip@interclip.app).
