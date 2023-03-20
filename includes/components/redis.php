@@ -5,16 +5,15 @@ $GLOBALS["redisAvailable"] = true;
 try {
     $GLOBALS["redis"] = new Redis();
 } catch (Error $e) {
-    $GLOBALS["redisAvailable"] = false; // Failed connecting to the server
+    $GLOBALS["redisAvailable"] = false;
 }
 
 try {
     if ($GLOBALS["redisAvailable"]) {
-        // Connecting to Redis
         $GLOBALS["redis"]->connect('localhost', 6379);
     }
 } catch (Exception $e) {
-    $GLOBALS["redisAvailable"] = false; // Failed connecting to the server
+    $GLOBALS["redisAvailable"] = false;
 }
 
 function ipHit($hashedIP)
@@ -59,7 +58,7 @@ function storeRedis($key, $value, $expiration = 60 * 60 * 24 * 7)
         if ($redisCached) {
             return $redisCached;
         } else {
-            $GLOBALS["redis"]->setEx($key, $expiration, $value); // Expire the key in the set time
+            $GLOBALS["redis"]->setEx($key, $expiration, $value);
             return false;
         }
     } else {

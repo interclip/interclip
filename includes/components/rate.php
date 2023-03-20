@@ -6,8 +6,7 @@ function noteLimit()
 {
 
     if ($GLOBALS["redisAvailable"]) {
-
-    // The IP is from the shared internet
+        // The IP is from the shared internet
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             $ip = $_SERVER['HTTP_CLIENT_IP'];
         }
