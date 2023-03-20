@@ -53,16 +53,6 @@ You can create the database and the tables by just executing the following SQL q
 
 USE iclip;
 
-/* Rate limit table */
-DROP TABLE IF EXISTS `hits`;
-CREATE TABLE `hits` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `iphash` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `date` datetime NOT NULL,
-  `operation` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 /* Clips table */
 DROP TABLE IF EXISTS `userurl`;
 CREATE TABLE `userurl` (
