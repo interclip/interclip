@@ -35,6 +35,7 @@ jobs:
   purge-cache:
     name: Purge Cloudflare cache
     needs: [deploy-production]
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
