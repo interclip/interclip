@@ -69,7 +69,13 @@ const tabClick = (tabClickEvent) => {
 export const initTabs = () => {
   for (const tab of tabs) {
     tab.addEventListener("click", tabClick);
+    tab.children[0].setAttribute("tabIndex", "-1");
   }
+
+  // Activate the first tab
+  tabs[0].children[0].setAttribute("tabIndex", "0");
+  tabs[0].addEventListener("keydown", handleTabNavigation);
+  tabs[0].classList.add("active");
 
   const hash = new URL(location.href).hash;
   const tabLinks = [
