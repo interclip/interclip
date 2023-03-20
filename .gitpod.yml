@@ -41,12 +41,13 @@ tasks:
       apachectl start &&
       multitail /var/log/apache2/access.log -I /var/log/apache2/error.log
   - name: Sass compiler
-    init: yarn
-    command: >
+    command: |
+      yarn
       yarn compile:styles --watch
   - name: TS Watch
     init: yarn
-    command: >
+    command: |
+      yarn
       yarn dev
 
 github:
