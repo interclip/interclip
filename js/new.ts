@@ -1,11 +1,11 @@
-import { alertUser } from "./menu";
+import { a11yClick, alertUser } from "./menu";
 import QRCode from "qrcode";
 
 const copyButton = document.getElementById("copyCode") as HTMLButtonElement;
 
-copyButton.onclick = () => {
-  navigator.clipboard.writeText(code);
-  alertUser({
+const copyCode = async () => {
+  await navigator.clipboard.writeText(code);
+  await alertUser({
     toast: true,
     position: "top-end",
     icon: "success",
@@ -14,6 +14,17 @@ copyButton.onclick = () => {
     title: "Yay!",
     text: "Copied to clipboard",
   });
+}
+
+copyButton.onkeydown = (e) => {
+  if (a11yClick(e)) {
+    e.preventDefault();
+    copyCode();
+  }
+}
+
+copyButton.onclick = async () => {
+  copyCode();
 };
 
 declare global {
