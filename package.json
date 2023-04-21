@@ -3,7 +3,7 @@
   "dependencies": {
     "dark-mode-toggle": "^0.14.6",
     "esbuild": "^0.17.17",
-    "qrcode": "^1.5.1",
+    "qrcode": "^1.5.2",
     "sass": "^1.62.0",
     "sweetalert2": "^11.6.4"
   },
