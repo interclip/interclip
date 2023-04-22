@@ -2,12 +2,6 @@ import { a11yClick, alertUser } from "./menu";
 import { generate } from "./lib/qr"; 
 import { INFERRED_BASE_URL } from "./constants";
 
-generate(`${INFERRED_BASE_URL}/${code}`).then((data) => {
-  const qrCodeContainer = document.getElementById("qrcode")!;
-  qrCodeContainer.innerHTML = data;
-  console.log(data);
-});
-
 const copyButton = document.getElementById("copyCode") as HTMLButtonElement;
 
 const copyCode = async () => {
@@ -39,19 +33,26 @@ declare global {
   const url: string;
 }
 
-const update = async (scheme: string | null) => {
+export type Theme = "light" | "dark" | "system";
+
+const update = async (scheme?: Theme) => {
   const style = window
     .getComputedStyle(document.documentElement)
     .getPropertyValue("content")
     .replace(/"/g, "");
 
   if (scheme === null || scheme === "system") {
-    scheme = style;
+    scheme = (style as Theme);
   }
 
   const qrCodeContainer = document.getElementById("qrcode")!;
 
   qrCodeContainer.innerHTML = "";
+  generate(`${INFERRED_BASE_URL}/${code}`, scheme).then((data) => {
+    const qrCodeContainer = document.getElementById("qrcode")!;
+    qrCodeContainer.innerHTML = data;
+    console.log(data);
+  });
 };
 
 window.matchMedia("(prefers-color-scheme: dark)").addListener((e) => {
