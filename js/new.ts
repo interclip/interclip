@@ -1,5 +1,5 @@
 import { a11yClick, alertUser } from "./menu";
-import { generate } from "./lib/qr"; 
+import { generate } from "./lib/qr";
 import { INFERRED_BASE_URL } from "./constants";
 
 const copyButton = document.getElementById("copyCode") as HTMLButtonElement;
@@ -52,6 +52,8 @@ const update = async (scheme: Theme | null) => {
     const qrCodeContainer = document.getElementById("qrcode")!;
     qrCodeContainer.innerHTML = data;
     console.log(data);
+  }).catch((e) => {
+    console.error(e);
   });
 };
 
