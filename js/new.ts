@@ -1,7 +1,8 @@
 import { a11yClick, alertUser } from "./menu";
 import { generate } from "./lib/qr"; 
+import { INFERRED_BASE_URL } from "./constants";
 
-generate("https://interclip.app/" + code).then((data) => {
+generate(`${INFERRED_BASE_URL}/${code}`).then((data) => {
   const qrCodeContainer = document.getElementById("qrcode")!;
   qrCodeContainer.innerHTML = data;
   console.log(data);
