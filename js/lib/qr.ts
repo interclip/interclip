@@ -24,7 +24,7 @@ export const generate = async (url: string, theme: Theme) => {
         await waitForLoad();
     }
 
-    const lightColor = "#e4e4e4";
+    const lightColor = theme === "light" ? "#fff" : "#e4e4e4";
     const darkColor = theme === "light" ? "#157EFB" : "#151515";
 
     const data = qrcode.generate_qr_code(url, lightColor, darkColor);
