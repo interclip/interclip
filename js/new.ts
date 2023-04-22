@@ -35,7 +35,7 @@ declare global {
 
 export type Theme = "light" | "dark" | "system";
 
-const update = async (scheme?: Theme) => {
+const update = async (scheme: Theme | null) => {
   const style = window
     .getComputedStyle(document.documentElement)
     .getPropertyValue("content")
@@ -62,12 +62,12 @@ window.matchMedia("(prefers-color-scheme: dark)").addListener((e) => {
 
 const computedStyle = localStorage.getItem("dark-mode-toggle");
 
-update(computedStyle);
+update(computedStyle as Theme);
 
 const themeSwitchToggle = document.getElementById("slct") as HTMLSelectElement;
 
 themeSwitchToggle.addEventListener("change", () => {
-  update(themeSwitchToggle.value);
+  update(themeSwitchToggle.value as Theme);
 });
 
 const initialValue = localStorage.getItem("recentClips");
