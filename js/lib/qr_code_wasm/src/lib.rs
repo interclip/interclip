@@ -15,7 +15,8 @@ pub fn test() -> Result<String, String> {
 
 #[wasm_bindgen]
 pub fn generate_qr_code(text: &str, light_color: &str, dark_color: &str) -> Result<String, String> {
-    let code = QrCode::with_version(text.as_bytes(), Version::Micro(1), EcLevel::L).unwrap();
+    let code = QrCode::with_version(text, Version::Normal(2), EcLevel::L)
+        .map_err(|e| format!("QR code generation failed: {}", e))?;
 
     let image = code.render::<svg::Color>()
         .min_dimensions(100, 100)
@@ -25,3 +26,4 @@ pub fn generate_qr_code(text: &str, light_color: &str, dark_color: &str) -> Resu
 
     Ok(image)
 }
+
