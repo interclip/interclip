@@ -8,9 +8,9 @@
     "sweetalert2": "^11.6.4"
   },
   "scripts": {
-    "build": "esbuild `find ./js \\( -name '*.ts' -o -name '*.js' \\)` --outdir=out --bundle --minify && yarn compile:styles --style compressed --no-source-map",
+    "build": "esbuild `find ./js \\( -name '*.ts' -o -name '*.js' \\)` --outdir=out --bundle --minify && yarn compile:styles --style compressed --no-source-map --format=esm",
     "compile:styles": "sass scss/:css/",
-    "dev": "esbuild `find ./js \\( -name '*.ts' -o -name '*.js' \\)` --outdir=out --bundle --sourcemap --watch"
+    "dev": "esbuild `find ./js \\( -name '*.ts' -o -name '*.js' \\)` --outdir=out --bundle --sourcemap --watch --format=esm"
   },
   "devDependencies": {
     "@types/qrcode": "^1.5.0"

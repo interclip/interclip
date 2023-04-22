@@ -1,5 +1,11 @@
 import { a11yClick, alertUser } from "./menu";
-import QRCode from "qrcode";
+import { generate } from "./lib/qr"; 
+
+generate("https://interclip.app/" + code).then((data) => {
+  const qrCodeContainer = document.getElementById("qrcode")!;
+  qrCodeContainer.innerHTML = data;
+  console.log(data);
+});
 
 const copyButton = document.getElementById("copyCode") as HTMLButtonElement;
 
@@ -45,16 +51,6 @@ const update = async (scheme: string | null) => {
   const qrCodeContainer = document.getElementById("qrcode")!;
 
   qrCodeContainer.innerHTML = "";
-  await QRCode.toCanvas(qrCodeContainer, `https://interclip.app/${code}`, {
-    errorCorrectionLevel: "M",
-    color: {
-      dark: scheme === "light" ? "#157EFB" : "#151515",
-      light: "#e4e4e4",
-    },
-    margin: 0,
-    width: 320,
-    scale: 2,
-  });
 };
 
 window.matchMedia("(prefers-color-scheme: dark)").addListener((e) => {
