@@ -1,3 +1,5 @@
+import './lib/stringExtensions';
+
 const urlElement = document.getElementById("urlLink") as HTMLSpanElement;
 
 let shownUrl = new URL(urlElement.innerText);
@@ -9,8 +11,8 @@ const showUrl = (url: string) => {
 showUrl(
   shownUrl
     .toString()
-    .replace(/https?:\/\//, "")
-    .replace(/\/$/, "")
+    .trimKnownProtocols()
+    .trimTrailingSlash()
 );
 
 const defaultFilesEndpoint = "files.interclip.app";

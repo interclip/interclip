@@ -1,6 +1,7 @@
 import { a11yClick, alertUser } from "./menu";
 import { generate } from "./lib/qr";
 import { INFERRED_BASE_URL } from "./constants";
+import "./lib/stringExtensions";
 
 const copyButton = document.getElementById("copyCode") as HTMLButtonElement;
 
@@ -34,6 +35,11 @@ declare global {
 }
 
 export type Theme = "light" | "dark" | "system";
+
+const urlContainer = document.getElementById("url");
+if (urlContainer) {
+  urlContainer.innerHTML = url.trimTrailingSlash().trimKnownProtocols()
+}
 
 const update = async (scheme: Theme | null) => {
   const style = window
