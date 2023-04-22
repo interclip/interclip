@@ -21,6 +21,7 @@ pub fn generate_qr_code(text: &str, light_color: &str, dark_color: &str) -> Resu
     let image = code.render::<svg::Color>()
         .min_dimensions(250, 250)
         .dark_color(svg::Color(dark_color))
+        .quiet_zone(false)
         .light_color(svg::Color(light_color))
         .build();
 
