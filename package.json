@@ -8,9 +8,9 @@
     "sweetalert2": "^11.6.4"
   },
   "scripts": {
-    "build": "esbuild `find ./js \\( -name '*.ts' -o -name '*.js' \\)` --outdir=out --bundle --minify && yarn compile:styles --style compressed --no-source-map --format=esm",
+    "build": "esbuild `find ./js -path ./js/lib/generated -prune -o \\( -name '*.ts' -o -name '*.js' \\) -print` --format=esm --outdir=out --bundle --minify && yarn compile:styles --style compressed --no-source-map && cp -r js/lib/generated/qr_code_wasm out/lib",
     "compile:styles": "sass scss/:css/",
-    "dev": "esbuild `find ./js \\( -name '*.ts' -o -name '*.js' \\)` --outdir=out --bundle --sourcemap --watch --format=esm"
+    "dev": "esbuild `find ./js -path ./js/lib/generated -prune -o \\( -name '*.ts' -o -name '*.js' \\) -print` --outdir=out --bundle --sourcemap --watch --format=esm && cp -r js/lib/generated/qr_code_wasm out/lib"
   },
   "devDependencies": {
     "@types/qrcode": "^1.5.0"

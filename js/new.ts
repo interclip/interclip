@@ -1,12 +1,6 @@
 import { a11yClick, alertUser } from "./menu";
 import { generate } from "./lib/qr"; 
 
-generate("hi").then((data) => {
-  const qrCodeContainer = document.getElementById("qrcode")!;
-  qrCodeContainer.innerHTML = data;
-  console.warn(data);
-});
-
 generate("https://interclip.app/" + code).then((data) => {
   const qrCodeContainer = document.getElementById("qrcode")!;
   qrCodeContainer.innerHTML = data;

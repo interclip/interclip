@@ -61,7 +61,7 @@
                 </svg>
               </span>
             </div>
-            <canvas id="qrcode"></canvas>
+            <span id="qrcode"></canvas>
           <?php else : ?>
             <p><span id="url" class="url"><?php echo $url ?> </span><br></p>
             <h1 class="mono"><?php echo $err ?></h1>
