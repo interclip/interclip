@@ -59,7 +59,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Audit URLs using Lighthouse
-        uses: treosh/lighthouse-ci-action@9.6.8
+        uses: treosh/lighthouse-ci-action@10.1.0
         with:
           urls: |
             https://interclip.app/
