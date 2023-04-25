@@ -52,7 +52,7 @@
           ?>
 
           <?php if ($err === "") : ?>
-            <p><span id="url" class="url"><?php echo $url ?> </span><br><br> was saved as</p>
+            <p><span id="url" class="url"><?php echo $url ?> </span><br> was saved as</p>
             <div id="codeSection">
               <h1 class="mono"><?php echo $usr ?></h1>
               <span tabindex="0" id="copyCode">
@@ -61,9 +61,9 @@
                 </svg>
               </span>
             </div>
-            <canvas id="qrcode"></canvas>
+            <span id="qrcode"></canvas>
           <?php else : ?>
-            <p><span id="url" class="url"><?php echo $url ?> </span><br></p>
+            <p><span id="url" class="url"><?php echo $url ?> </span></p>
             <h1 class="mono"><?php echo $err ?></h1>
           <?php endif; ?>
 
@@ -71,7 +71,7 @@
             const url = "<?php echo $url ?>";
             const code = "<?php echo $usr ?>";
           </script>
-          <script src="<?php echo ROOT ?>/out/new.js"></script>
+          <script type="module" src="<?php echo ROOT ?>/out/new.js"></script>
 
         <?php endif; ?>
       </div>

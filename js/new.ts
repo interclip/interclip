@@ -1,5 +1,7 @@
 import { a11yClick, alertUser } from "./menu";
-import QRCode from "qrcode";
+import { generate } from "./lib/qr";
+import { INFERRED_BASE_URL } from "./constants";
+import "./lib/stringExtensions";
 
 const copyButton = document.getElementById("copyCode") as HTMLButtonElement;
 
@@ -32,28 +34,32 @@ declare global {
   const url: string;
 }
 
-const update = async (scheme: string | null) => {
+export type Theme = "light" | "dark" | "system";
+
+const urlContainer = document.getElementById("url");
+if (urlContainer) {
+  urlContainer.innerHTML = url.trimTrailingSlash().trimKnownProtocols()
+}
+
+const update = async (scheme: Theme | null) => {
   const style = window
     .getComputedStyle(document.documentElement)
     .getPropertyValue("content")
     .replace(/"/g, "");
 
   if (scheme === null || scheme === "system") {
-    scheme = style;
+    scheme = (style as Theme);
   }
 
   const qrCodeContainer = document.getElementById("qrcode")!;
 
   qrCodeContainer.innerHTML = "";
-  await QRCode.toCanvas(qrCodeContainer, `https://interclip.app/${code}`, {
-    errorCorrectionLevel: "M",
-    color: {
-      dark: scheme === "light" ? "#157EFB" : "#151515",
-      light: "#e4e4e4",
-    },
-    margin: 0,
-    width: 320,
-    scale: 2,
+  generate(`${INFERRED_BASE_URL}/${code}`, scheme).then((data) => {
+    const qrCodeContainer = document.getElementById("qrcode")!;
+    qrCodeContainer.innerHTML = data;
+    console.log(data);
+  }).catch((e) => {
+    console.error(e);
   });
 };
 
@@ -64,12 +70,12 @@ window.matchMedia("(prefers-color-scheme: dark)").addListener((e) => {
 
 const computedStyle = localStorage.getItem("dark-mode-toggle");
 
-update(computedStyle);
+update(computedStyle as Theme);
 
 const themeSwitchToggle = document.getElementById("slct") as HTMLSelectElement;
 
 themeSwitchToggle.addEventListener("change", () => {
-  update(themeSwitchToggle.value);
+  update(themeSwitchToggle.value as Theme);
 });
 
 const initialValue = localStorage.getItem("recentClips");

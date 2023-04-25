@@ -17,3 +17,6 @@ dump.rdb
 
 node_modules/
 out/
+
+# Rust
+target/
