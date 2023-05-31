@@ -424,10 +424,10 @@ strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   dependencies:
     ansi-regex "^5.0.1"
 
-sweetalert2@^11.7.8:
-  version "11.7.8"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.7.8.tgz#f686a996b0f506795ad8d22328284a65e73013d6"
-  integrity sha512-s6WMsK0DogOZ2fj21tM5LjeBcQm7sPf+Z0sksxhZFs9HeIKAnLz8NMeIIOgcB/wS7/ZzP95d3jxzE6FbSau6eA==
+sweetalert2@^11.7.9:
+  version "11.7.9"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.7.9.tgz#0d47a3acd6327ae9a4f13e2a4e27b5bd23658ade"
+  integrity sha512-0WR65e1zsiD5pjecsROHHadBvwOqo3jdQ1RyO9IzFcYdAijpsSct/qOr9mdBJdJ4Fbomw6a2s6W6haq9cBIPKA==
 
 to-regex-range@^5.0.1:
   version "5.0.1"
