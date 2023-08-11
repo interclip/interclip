@@ -5,7 +5,7 @@
     "esbuild": "^0.19.0",
     "qrcode": "^1.5.3",
     "sass": "^1.65.1",
-    "sweetalert2": "^11.7.21"
+    "sweetalert2": "^11.7.22"
   },
   "scripts": {
     "build": "esbuild `find ./js \\( -name '*.ts' -o -name '*.js' \\)` --outdir=out --bundle --minify && yarn compile:styles --style compressed --no-source-map",
