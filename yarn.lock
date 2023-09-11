@@ -117,10 +117,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.7.tgz#8ccef136f240770c1379d50100796a6952f01f94"
   integrity sha512-LhFTglglr63mNXUSRYD8A+ZAIu5sFqNJ4Y2fPuY7UlrySJH87rRRlhtVmMHplmfk5WkoJGmDjE9oiTfyX94CpQ==
 
-"@types/qrcode@^1.5.1":
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/@types/qrcode/-/qrcode-1.5.1.tgz#027c2dbfbc8505e1fe2f4033daba920dbd182b44"
-  integrity sha512-HpSN675K0PmxIDRpjMI3Mc2GiKo3dNu+X/F5SoItiaDS1lVfgC6Wac1c5lQDfKWbTJUSHWiHKzpJpBZG7k9gaA==
+"@types/qrcode@^1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@types/qrcode/-/qrcode-1.5.2.tgz#27633439b7fbe88cc3043b29c8e7612a8a789e15"
+  integrity sha512-W4KDz75m7rJjFbyCctzCtRzZUj+PrUHV+YjqDp50sSRezTbrtEAIq2iTzC6lISARl3qw+8IlcCyljdcVJE0Wug==
   dependencies:
     "@types/node" "*"
 
