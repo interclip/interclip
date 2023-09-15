@@ -4,7 +4,7 @@
     "dark-mode-toggle": "^0.14.6",
     "esbuild": "^0.19.3",
     "qrcode": "^1.5.3",
-    "sass": "^1.66.1",
+    "sass": "^1.67.0",
     "sweetalert2": "^11.7.28"
   },
   "scripts": {
