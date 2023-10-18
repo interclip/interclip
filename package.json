@@ -2,7 +2,7 @@
   "version": "4.3.0",
   "dependencies": {
     "dark-mode-toggle": "^0.14.6",
-    "esbuild": "^0.19.4",
+    "esbuild": "^0.19.5",
     "qrcode": "^1.5.3",
     "sass": "^1.69.3",
     "sweetalert2": "^11.7.32"
