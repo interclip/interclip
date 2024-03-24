@@ -52,7 +52,7 @@
           ?>
 
           <?php if ($err === "") : ?>
-            <p><span id="url" class="url"><?php echo $url ?> </span><br><br> was saved as</p>
+            <p><span id="url" class="url"><?php echo $url ?></span><br><br> was saved as</p>
             <div id="codeSection">
               <h1 class="mono"><?php echo $usr ?></h1>
               <span tabindex="0" id="copyCode">
@@ -63,7 +63,7 @@
             </div>
             <canvas id="qrcode"></canvas>
           <?php else : ?>
-            <p><span id="url" class="url"><?php echo $url ?> </span><br></p>
+            <p><span id="url" class="url"><?php echo $url ?></span><br></p>
             <h1 class="mono"><?php echo $err ?></h1>
           <?php endif; ?>
 
