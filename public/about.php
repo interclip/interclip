@@ -119,9 +119,7 @@
                 </li>
                 <li>
                     Total clips made:
-                    <?php
-                    echo $count;
-                    ?>
+                    <?php echo $count; ?>
                 </li>
             </ul>
         </section>
