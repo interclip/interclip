@@ -31,7 +31,6 @@
 
 <!-- External JS libraries -->
 <script type="module" src="https://cdn.skypack.dev/pin/dark-mode-toggle@v0.8.0-8sz7Rv9Ou4431j6B2ucG/mode=imports,min/optimized/dark-mode-toggle.js"></script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2Ces2016%2Ces2017%2Ces2018%2Ces2019%2Ces5%2Ces6%2Ces7%2CArray.prototype.forEach%2CArray.prototype.includes%2CArray.prototype.indexOf%2CBlob%2CDate.now%2CJSON%2CSet%2CString.prototype.replaceAll%2Cfetch%2CglobalThis"></script>
 
 <!-- Meta tags -->
 <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
