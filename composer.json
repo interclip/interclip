@@ -16,7 +16,7 @@
     "nyholm/psr7": "^1.4",
     "squizlabs/php_codesniffer": "*",
     "aws/aws-sdk-php": "^3.240",
-    "tracy/tracy": "^2.9"
+    "tracy/tracy": "^2.10"
   },
   "config": {
     "allow-plugins": {

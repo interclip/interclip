@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5390c467ca9722953e077bd8ee0895b3",
+    "content-hash": "f846d45b59c2287221ca14240d115bb4",
     "packages": [
         {
             "name": "auth0/auth0-php",
@@ -2929,39 +2929,40 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.9.5",
+            "version": "v2.10.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "89936aa9fc428e14736c637ad535bcce6ddc6382"
+                "reference": "0e0f3312708fb9c179a92072ebacc24aeee7e2e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/89936aa9fc428e14736c637ad535bcce6ddc6382",
-                "reference": "89936aa9fc428e14736c637ad535bcce6ddc6382",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/0e0f3312708fb9c179a92072ebacc24aeee7e2e8",
+                "reference": "0e0f3312708fb9c179a92072ebacc24aeee7e2e8",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-session": "*",
-                "php": ">=7.2 <8.3"
+                "php": "8.0 - 8.4"
             },
             "conflict": {
                 "nette/di": "<3.0"
             },
             "require-dev": {
-                "latte/latte": "^2.5",
+                "latte/latte": "^2.5 || ^3.0",
                 "nette/di": "^3.0",
-                "nette/mail": "^3.0",
+                "nette/http": "^3.0",
+                "nette/mail": "^3.0 || ^4.0",
                 "nette/tester": "^2.2",
-                "nette/utils": "^3.0",
+                "nette/utils": "^3.0 || ^4.0",
                 "phpstan/phpstan": "^1.0",
                 "psr/log": "^1.0 || ^2.0 || ^3.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.9-dev"
+                    "dev-master": "2.10-dev"
                 }
             },
             "autoload": {
@@ -2997,9 +2998,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/tracy/issues",
-                "source": "https://github.com/nette/tracy/tree/v2.9.5"
+                "source": "https://github.com/nette/tracy/tree/v2.10.8"
             },
-            "time": "2022-11-18T02:50:22+00:00"
+            "time": "2024-08-07T02:04:53+00:00"
         },
         {
             "name": "true/punycode",
@@ -5616,5 +5617,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
