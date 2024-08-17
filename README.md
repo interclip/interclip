@@ -34,7 +34,7 @@ Different apps for different platforms
 
 ## API
 
-For using the Interclip API, see the [API Docs](https://github.com/interclip/interclip/wiki/API).
+For using the Interclip API, see the [API Docs](https://docs.interclip.app/Guides/API).
 <a name="contribute"> </a>
 
 ## Contributing
