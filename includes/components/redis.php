@@ -4,22 +4,16 @@ $GLOBALS["redisAvailable"] = true;
 
 try {
     $GLOBALS["redis"] = new Redis();
-} catch (Error $e) {
-    $GLOBALS["redisAvailable"] = false;
-}
-
-try {
-    if ($GLOBALS["redisAvailable"]) {
-        $GLOBALS["redis"]->connect('localhost', 6379);
-    }
+    $GLOBALS["redis"]->connect('localhost', 6379);
+    $GLOBALS["redisAvailable"] = true;
 } catch (Exception $e) {
+    // Handle the exception or log the error
+    error_log("Redis connection failed: " . $e->getMessage());
     $GLOBALS["redisAvailable"] = false;
 }
 
-function ipHit($hashedIP)
-{
+function ipHit($hashedIP) {
     if ($GLOBALS["redisAvailable"] && $GLOBALS["redis"]->ping()) {
-
         $redisKey = "ip-" . substr($hashedIP, 0, 7);
 
         $GLOBALS["redis"]->incr($redisKey);
@@ -32,8 +26,7 @@ function ipHit($hashedIP)
     }
 }
 
-function getTotal()
-{
+function getTotal() {
     if ($GLOBALS["redisAvailable"] && $GLOBALS["redis"]->ping()) {
         return $GLOBALS["redis"]->dbSize();
     } else {
@@ -49,9 +42,7 @@ function getTotal()
  * @param  mixed $expiration (optional)
  * @return void
  */
-function storeRedis($key, $value, $expiration = 60 * 60 * 24 * 7)
-{
-
+function storeRedis($key, $value, $expiration = 60 * 60 * 24 * 7) {
     if ($GLOBALS["redisAvailable"] && $GLOBALS["redis"]->ping()) {
         $redisCached = $GLOBALS["redis"]->get($key);
 
@@ -66,18 +57,16 @@ function storeRedis($key, $value, $expiration = 60 * 60 * 24 * 7)
     }
 }
 
-function getRedis($key)
-{
-
+function getRedis($key) {
     if ($GLOBALS["redisAvailable"] && $GLOBALS["redis"]->ping()) {
         $redisCached = $GLOBALS["redis"]->get($key);
-
         if ($redisCached) {
             return $redisCached;
         } else {
             return false;
         }
     } else {
+        error_log("Redis not available, cannot get " . $key);
         return false;
     }
 }
