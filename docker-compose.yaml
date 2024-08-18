@@ -1,0 +1,51 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: iclip_mysql
+    restart: unless-stopped
+    env_file: ".env"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${USERNAME}
+      MYSQL_PASSWORD: ${PASSWORD}
+    volumes:
+      - ./scripts/db.sql:/docker-entrypoint-initdb.d/db.sql
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - iclip_network
+
+  redis:
+    image: redis:alpine
+    container_name: iclip_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - iclip_network
+
+  phpmyadmin:
+    image: arm64v8/phpmyadmin
+    container_name: iclip_pma
+    restart: unless-stopped
+    env_file: ".env"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      # PMA_ARBITRARY: 1
+      MYSQL_ROOT_PASSWORD: ${PASSWORD}
+      MYSQL_USER: ${PMA_USER}
+      MYSQL_PASSWORD: ${PMA_PASSWORD}
+    ports:
+      - "8080:80"
+    networks:
+      - iclip_network
+
+networks:
+  iclip_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
