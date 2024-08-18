@@ -17,12 +17,6 @@ jobs:
             oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
             oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
             tags: tag:interclip
-        - name: Git pull on the server
-          uses: appleboy/ssh-action@master
-          with:
-            host: ${{ secrets.HOST }}
-            username: ${{ secrets.USERNAME }}
-            script: cd /var/www/interclip && git pull --all && sudo -u www-data composer install && yarn && yarn build
         - name: Deploy via SSH
           run: |
             ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cd /var/www/interclip && git pull --all && sudo -u www-data composer install && yarn && yarn build"
