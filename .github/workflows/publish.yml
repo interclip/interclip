@@ -23,6 +23,10 @@ jobs:
             host: ${{ secrets.HOST }}
             username: ${{ secrets.USERNAME }}
             script: cd /var/www/interclip && git pull --all && sudo -u www-data composer install && yarn && yarn build
+        - name: Deploy via SSH
+          run: |
+            ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cd /var/www/interclip && git pull --all && sudo -u www-data composer install && yarn && yarn build"
+
   purge-cache:
     name: Purge Cloudflare cache
     needs: [deploy-production]
