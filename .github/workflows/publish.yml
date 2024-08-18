@@ -8,30 +8,21 @@ on:
 
 jobs:
   deploy-production:
-    name: Deploy to production
-    runs-on: ubuntu-latest
-    steps:
-      - name: Git pull on the server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
-          script: cd /var/www/html && sudo git pull --all && sudo composer install && yarn && yarn build
-  deploy-staging:
-    name: Deploy to staging
-    runs-on: ubuntu-latest
-    if: false
-    steps:
-      - name: Git pull on the server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
-          script: cd /var/www/staging && sudo git pull --all && sudo composer install && yarn && yarn build
+      name: Deploy to production
+      runs-on: ubuntu-latest
+      steps:
+        - name: Tailscale
+          uses: tailscale/github-action@v2
+          with:
+            oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+            oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+            tags: tag:interclip
+        - name: Git pull on the server
+          uses: appleboy/ssh-action@master
+          with:
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            script: cd /var/www/interclip && git pull --all && sudo -u www-data composer install && yarn && yarn build
   purge-cache:
     name: Purge Cloudflare cache
     needs: [deploy-production]
@@ -67,7 +58,6 @@ jobs:
             https://interclip.app/receive
             https://interclip.app/privacy
             https://interclip.app/about
-            https://interclip.app/desktop
           runs: 3
           budgetPath: ./budget.json # test performance budgets
           uploadArtifacts: true # save results as an action artifacts
