@@ -24,13 +24,10 @@ if (isset($user_code)) {
     $stmt = $conn->prepare('SELECT * FROM userurl WHERE usr = ?');
 
     $stmt->bind_param('s', $user_code);
-
     $stmt->execute();
-
     $result = $stmt->get_result();
 
     // Get the clip from the DB
-
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
         $url = $row['url'];

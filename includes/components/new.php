@@ -16,9 +16,7 @@ function clipExistsForUrl($url)
     $stmt = $conn->prepare('SELECT * FROM userurl WHERE url = ?');
 
     $stmt->bind_param('s', $url);
-
     $stmt->execute();
-
     $result = $stmt->get_result();
 
     // Get the clip from the DB

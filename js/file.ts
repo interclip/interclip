@@ -252,7 +252,7 @@ export async function uploadFile(file: File) {
       if (status >= 400) {
         showError(`Upload failed with HTTP ${status}`);
       } else {
-        showCode(`https://files.interclip.app/${fields.key}`);
+        showCode(`https://files.interclip.app/${encodeURIComponent(fields.key)}`);
       }
     };
 
