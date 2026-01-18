@@ -59,6 +59,4 @@ Receiving a clip is even easier than clipping. Just get out your phone or anothe
 
 ## Domain resolution troubles
 
-From feedback, we have observed that some ISPs block Interclip's traffic over the [interclip.app](https://interclip.app) domain. No idea why, but maybe because of the files hosted by the users? If you encounter such trouble please use the alternate domain, [iclip.fufik.eu](https://iclip.fufik.eu), which can also be accessed with HTTP if you plan to use ultra-old browsers with outdated TLS requirements.
-
-_Note_: I know it's a bad idea to allow the access over HTTP, but if you use this alternate domain it should be a last resort. If you encounter any further issues, shoot me an email - [filip@interclip.app](mailto:filip@interclip.app).
+From feedback, we have observed that some ISPs block Interclip's traffic over the [interclip.app](https://interclip.app) domain. The root cause of the domain block is unclear, but if you encounter resolution issues, please file an issue with relevant details (browser, DNS server).
