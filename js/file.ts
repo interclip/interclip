@@ -446,3 +446,6 @@ if (dropzone) {
   initTabs();
 }
 
+// Warm up the serverless upload endpoint to reduce cold starts
+fetch("https://iclip.vercel.app/api/uploadFile", { method: "HEAD" }).catch(() => {});
+
