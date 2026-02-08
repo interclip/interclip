@@ -1,0 +1,106 @@
+tasks:
+  setup-env:
+    name: Setup environment
+    description: Copy .env file and install system packages for Apache and PHP Redis.
+    command: |
+      cp scripts/.gitpod.env .env
+
+      sudo apt-get update
+      sudo apt-get install -y apache2 libapache2-mod-php php-redis php-mysql php-xml php-mbstring php-curl
+      sudo a2enmod rewrite headers
+    triggeredBy:
+      - postDevcontainerStart
+
+  install-php-deps:
+    name: Install PHP dependencies
+    description: Install Composer dependencies.
+    command: |
+      composer install --no-interaction
+    triggeredBy:
+      - postDevcontainerStart
+    dependsOn:
+      - setup-env
+
+  install-node-deps:
+    name: Install Node dependencies
+    description: Install Node dependencies and build frontend assets.
+    command: |
+      yarn install --frozen-lockfile
+      yarn build
+    triggeredBy:
+      - postDevcontainerStart
+
+  start-databases:
+    name: Start databases
+    description: Start MySQL and Redis containers via docker compose.
+    command: |
+      docker compose up -d mysql redis
+      echo "Waiting for MySQL..."
+      until docker compose exec mysql mysqladmin ping -h localhost -uroot --silent 2>/dev/null; do
+        sleep 2
+      done
+      echo "MySQL is ready."
+    triggeredBy:
+      - postDevcontainerStart
+
+  setup-database:
+    name: Setup database
+    description: Import database schema into MySQL.
+    command: |
+      # The docker-compose volume mount auto-imports db.sql on first start.
+      # This task verifies the database is accessible and tables exist.
+      docker compose exec -T mysql mysql -uroot -h 127.0.0.1 -e "USE iclip; SHOW TABLES;" 2>/dev/null || \
+        docker compose exec -T mysql mysql -uroot -h 127.0.0.1 iclip < scripts/db.sql
+    triggeredBy:
+      - postDevcontainerStart
+    dependsOn:
+      - start-databases
+
+  configure-apache:
+    name: Configure Apache
+    description: Set up Apache config to serve the application on port 8080.
+    command: |
+      # Create an Apache site config pointing to the workspace
+      sudo tee /etc/apache2/sites-available/interclip.conf > /dev/null <<'EOF'
+      Listen 8080
+      <VirtualHost *:8080>
+          DocumentRoot /workspaces/interclip
+          <Directory /workspaces/interclip>
+              AllowOverride All
+              Require all granted
+          </Directory>
+          ErrorLog ${APACHE_LOG_DIR}/interclip-error.log
+          CustomLog ${APACHE_LOG_DIR}/interclip-access.log combined
+      </VirtualHost>
+      EOF
+
+      sudo a2dissite 000-default.conf 2>/dev/null || true
+      sudo a2ensite interclip.conf
+    triggeredBy:
+      - postDevcontainerStart
+    dependsOn:
+      - setup-env
+
+services:
+  apache:
+    name: Apache
+    description: Apache web server serving the PHP application.
+    commands:
+      start: |
+        sudo apachectl -D FOREGROUND
+      ready: |
+        curl -sf http://localhost:8080 > /dev/null || curl -sf -o /dev/null -w '' http://localhost:8080
+
+  sass-watcher:
+    name: Sass Watcher
+    description: Watch and compile SCSS files.
+    commands:
+      start: |
+        yarn compile:styles --watch
+
+  ts-watcher:
+    name: TS Watcher
+    description: Watch and bundle TypeScript/JavaScript files.
+    commands:
+      start: |
+        ./node_modules/.bin/esbuild $(find ./js \( -name '*.ts' -o -name '*.js' \)) --outdir=out --bundle --sourcemap --watch=forever
