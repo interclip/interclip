@@ -97,7 +97,7 @@ SimpleRouter::group(['prefix' => ROOT], function () {
     SimpleRouter::all(
         '/code',
         function ($user_code) {
-            include_once "components/get.php";
+            include_once "includes/components/get.php";
             if (isset($url)) {
                 reDir($url);
             } else {
@@ -105,7 +105,7 @@ SimpleRouter::group(['prefix' => ROOT], function () {
                 include_once "includes/error.php";
             }
         }
-    )->setMatch('/^\/([a-z|0-9|A-Z]){5}\/?$/');
+    )->setMatch('/^\/([a-zA-Z0-9]){5}\/?$/');
 
     /* Internal behavior */
 
