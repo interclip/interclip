@@ -14,9 +14,9 @@
     $raw_user_code = substr(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), 1);
     $user_code = htmlspecialchars($raw_user_code, ENT_QUOTES | ENT_HTML5, 'UTF-8');
     if (strlen($user_code) == 5 && preg_match($clipRegex, $user_code)) {
-        include_once "components/get.php";
+        include_once "includes/components/get.php";
 
-        if (isset($url) && function_exists('redirectTo')) {
+        if (isset($url) && function_exists('reDir')) {
             reDir($url);
         }
     }
