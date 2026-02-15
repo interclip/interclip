@@ -97,6 +97,7 @@ SimpleRouter::group(['prefix' => ROOT], function () {
     SimpleRouter::all(
         '/{user_code}',
         function ($user_code) {
+            include_once "includes/lib/functions.php";
             include_once "includes/components/get.php";
             if (isset($url)) {
                 reDir($url);
