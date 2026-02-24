@@ -258,7 +258,7 @@ if (loggedIn && isAdmin) {
   }
 
   document.addEventListener("keydown", (e) => {
-    if (e.shiftKey && e.code === "KeyB") {
+    if (e.shiftKey && e.key.toLowerCase() === "b") {
       e.preventDefault();
       const displayStatus =
         adminBar!.style.display === "flex" ? "none" : "flex";
@@ -277,8 +277,8 @@ if (loggedIn && isAdmin) {
   });
 } else if (loggedIn && !isAdmin) {
   document.addEventListener("keydown", (e) => {
-    e.preventDefault();
-    if (e.shiftKey && e.code === "KeyB") {
+    if (e.shiftKey && e.key.toLowerCase() === "b") {
+      e.preventDefault();
       alertUser({
         title: "Permission error",
         text: "Yikes! It seems you have to be an admin to view the admin bar. Want to be an admin? Tweet me @filiptronicek",
