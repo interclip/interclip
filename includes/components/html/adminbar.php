@@ -20,7 +20,7 @@ $currBranch = $branches["current"];
 
 ?>
 <?php if (!is_bool($user) && $isStaff) : ?>
-  <div id="adminbar" <?php echo $_ENV['ENVIRONMENT'] === "staging" ? "class='staging'" : "" ?>>
+  <div id="adminbar" title="Press Shift+B to toggle the admin bar" <?php echo $_ENV['ENVIRONMENT'] === "staging" ? "class='staging'" : "" ?>>
     <span title="The total time it took the client to render the DOM and fetch all the necessary resources" id="load">Client: TBD</span>
     <span title="The total time it took the server to process the request">Server: <?php echo $renderTime ?>ms</span>
     <span class="lg" title="The current response status code"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/<?php echo http_response_code() ?>" target="_blank" rel="noreferrer nofollow">HTTP <?php echo http_response_code() ?></a></span>
