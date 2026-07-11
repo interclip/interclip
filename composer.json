@@ -3,22 +3,25 @@
   "description": "A clipboard and file sharing tool",
   "license": "MIT",
   "require-dev": {
-    "pestphp/pest": "^1.8"
+    "pestphp/pest": "^3.8",
+    "squizlabs/php_codesniffer": "^3.13"
   },
   "require": {
-    "io-developer/php-whois": "^4.0",
-    "vlucas/phpdotenv": "^5.3",
-    "auth0/auth0-php": "^8.0",
-    "utopia-php/domains": "^1.1",
-    "sentry/sdk": "^3.1",
-    "pecee/simple-router": "4.3.7.2",
-    "kriswallsmith/buzz": "^1.2",
-    "nyholm/psr7": "^1.4",
-    "squizlabs/php_codesniffer": "*",
-    "aws/aws-sdk-php": "^3.240",
-    "tracy/tracy": "^2.10"
+    "php": "^8.2",
+    "ext-curl": "*",
+    "ext-mysqli": "*",
+    "ext-redis": "*",
+    "vlucas/phpdotenv": "^5.6",
+    "auth0/auth0-php": "^8.19",
+    "guzzlehttp/guzzle": "^7.12.1",
+    "sentry/sdk": "^4.0",
+    "tracy/tracy": "^2.10",
+    "league/uri-interfaces": "^7.8"
   },
   "config": {
+    "platform": {
+      "php": "8.2.0"
+    },
     "allow-plugins": {
       "pestphp/pest-plugin": true
     }
