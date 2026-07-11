@@ -1,0 +1,89 @@
+name: interclip-devcontainer
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    init: true
+    working_dir: /workspaces/interclip
+    volumes:
+      - ..:/workspaces/interclip:cached
+      - node-modules:/workspaces/interclip/node_modules
+    env_file:
+      - path: app.env
+      - path: local.env
+        required: false
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8080:8080"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "curl",
+          "--fail",
+          "--silent",
+          "--output",
+          "/dev/null",
+          "http://localhost:8080/",
+        ]
+      interval: 10s
+      timeout: 3s
+      retries: 12
+      start_period: 120s
+
+  mysql:
+    image: mysql:8.0@sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b
+    command: ["--event-scheduler=ON"]
+    environment:
+      MYSQL_ROOT_PASSWORD: devcontainer-local-root-password
+      MYSQL_DATABASE: iclip
+      MYSQL_USER: interclip
+      MYSQL_PASSWORD: devcontainer-local-app-password
+    volumes:
+      - ../scripts/db.sql:/docker-entrypoint-initdb.d/10-schema.sql:ro
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "MYSQL_PWD=$$MYSQL_ROOT_PASSWORD mysqladmin ping --host=127.0.0.1 --user=root --silent",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+
+  redis:
+    image: redis:7.4-alpine@sha256:6ab0b6e7381779332f97b8ca76193e45b0756f38d4c0dcda72dbb3c32061ab99
+    command:
+      [
+        "redis-server",
+        "--appendonly",
+        "yes",
+        "--requirepass",
+        "devcontainer-local-redis-password",
+      ]
+    environment:
+      REDIS_PASSWORD: devcontainer-local-redis-password
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "REDISCLI_AUTH=$$REDIS_PASSWORD redis-cli -h 127.0.0.1 ping | grep -q PONG",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  mysql-data:
+  node-modules:
+  redis-data:
