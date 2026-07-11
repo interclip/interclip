@@ -1,3 +1,27 @@
+<?php
+include_once 'includes/lib/init.php';
+include_once 'includes/lib/headers.php';
+include_once 'includes/anti-csrf.php';
+
+header('X-Robots-Tag: noindex, nofollow, noarchive');
+validate();
+
+$user_code = isset($_POST['user']) && is_string($_POST['user']) ? trim($_POST['user']) : '';
+$lookupError = '';
+if ($user_code === '') {
+  $lookupError = 'missing';
+  http_response_code(400);
+} elseif (!isValidClipCode($user_code)) {
+  $lookupError = 'invalid';
+  http_response_code(400);
+} else {
+  include_once "includes/components/get.php";
+  if (!isset($url)) {
+    $lookupError = 'missing-clip';
+    http_response_code(404);
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,32 +31,13 @@
   ?>
   <title>Get your link | Interclip</title>
 
-  <link rel="stylesheet" type="text/css" href="../css/get.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/get.css">
 </head>
 
 <body>
 
   <?php
-  include "includes/anti-csrf.php";
-  validate();
   include_once "includes/menu.php";
-
-  if (!empty($_POST['user'])) {
-    $user_code = $_POST['user'];
-    $user_code = htmlspecialchars($user_code);
-
-    include_once "includes/components/get.php";
-  }
-
-  if (!empty($url)) {
-    function get_shorten_url($url)
-    {
-      $headers = get_headers($url, 1);
-      if (isset($headers['Location'])) return $headers['Location'];
-      else return $url;
-    }
-    $realUrl = get_shorten_url($url);
-  }
   ?>
 
   <div id="fullscreen">
@@ -40,22 +45,24 @@
 
       <div class="title">
         <?php if (isset($url)) : ?>
-          <h1><a id="urlLink" href="<?php echo $url; ?>"><?php echo $url; ?></a></h1>
+          <h1>
+            <?php if (isSafeNavigationUri($url)) : ?>
+              <a id="urlLink" href="<?php echo escapeHtml($url); ?>"><?php echo escapeHtml($url); ?></a>
+            <?php else : ?>
+              <span id="urlLink"><?php echo escapeHtml($url); ?></span>
+            <?php endif; ?>
+          </h1>
           <?php
-          echo "<p>... is the <span id='clipType'>URL</span> of the code " . $user_code . "</p>";
+          echo "<p>... is the <span id='clipType'>URL</span> of the code " . escapeHtml($user_code) . "</p>";
           ?>
           <img id="imgShow">
           <div id="output"> </div>
-        <?php elseif (!empty($user_code)) : ?>
-          <?php
-          http_response_code(404);
-          echo "<p>There was no URL found for the code " . $user_code . "</p>";
-          ?>
+        <?php elseif ($lookupError === 'missing-clip') : ?>
+          <p>There was no URL found for the code <?php echo escapeHtml($user_code) ?></p>
+        <?php elseif ($lookupError === 'invalid') : ?>
+          <p>The supplied clip code is invalid.</p>
         <?php else : ?>
-          <?php
-          http_response_code(400);
-          echo "<p>I hate to admin it, but there is no <i>null</i> code, is this a 404? No, because there was nothing to not-be-found. Weird, try again, and fill out the code next time.</p>";
-          ?>
+          <p>No clip code was supplied.</p>
         <?php endif; ?>
       </div>
     </div>

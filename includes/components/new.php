@@ -1,115 +1,139 @@
 <?php
 
-include_once "includes/components/rate.php";
-include_once "includes/components/redis.php";
+include_once __DIR__ . '/rate.php';
+include_once __DIR__ . '/redis.php';
+include_once __DIR__ . '/../lib/security.php';
 
-function clipExistsForUrl($url)
+const CLIP_INSERT_RETRIES = 10;
+const CLIP_CREATE_ERROR = 'Unable to save clip. Please try again later.';
+
+function openClipDatabase(): mysqli
 {
-    $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    $connection = new mysqli(
+        $_ENV['DB_SERVER'],
+        $_ENV['USERNAME'],
+        $_ENV['PASSWORD'],
+        $_ENV['DB_NAME']
+    );
 
-    // Check DB connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+    if ($connection->connect_errno !== 0) {
+        throw new RuntimeException('Clip database connection failed');
     }
 
-    // Prepare and execute SQL query to get clips
-    $stmt = $conn->prepare('SELECT * FROM userurl WHERE url = ?');
+    $connection->set_charset('utf8mb4');
+    $connection->query("SET time_zone = '+00:00'");
 
-    $stmt->bind_param('s', $url);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Get the clip from the DB
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $usr = $row['usr'];
-            $conn->close();
-            return $usr;
-        }
-    }
-
-    $conn->close();
-    return false;
+    return $connection;
 }
 
 /**
- * Creates a new clip in the database
+ * Create a clip with a fresh capability code.
  *
- * @param  mixed $url
- * @return void
+ * @return array{0: string|null, 1: string}
  */
-function createClip($url)
+function createClip($url): array
 {
     noteLimit();
 
-    $err = "";
-
-    // Create connection
-    $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
-
-    $url = htmlspecialchars($url);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+    if (!is_string($url)) {
+        return [null, 'invalid URL specified'];
     }
 
-    /**
-     * Creates a random alpha-numeric ID.
-     *
-     * @param  mixed $len
-     * @return string
-     */
-    function gen_uid($len = 10)
-    {
-        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $len);
+    $normalizedUrl = normalizeClipUrl($url);
+    if ($normalizedUrl === null) {
+        return [null, 'invalid URL specified'];
     }
 
-    $usr = gen_uid(5);
+    $connection = null;
 
-    /* Expiry of clips */
+    try {
+        $connection = openClipDatabase();
+        $createdAt = new DateTimeImmutable('now', new DateTimeZone('UTC'));
+        $createdForDatabase = $createdAt->format('Y-m-d H:i:s.u');
+        $expiration = clipExpirationDateTime($createdAt);
+        $expirationForDatabase = $expiration->format('Y-m-d H:i:s.u');
+        $expiresAt = dateTimeUnixMicroseconds($expiration);
 
-    $startdate = strtotime("Today");
-    $expires = strtotime("+1 month", $startdate);
-    $expiryDate = date("Y-m-d", $expires);
+        for ($attempt = 0; $attempt < CLIP_INSERT_RETRIES; $attempt++) {
+            $code = generateClipCode();
+            $reservation = null;
+            $statement = null;
 
-    $stmt = $conn->prepare('SELECT * FROM userurl WHERE url = ?');
+            try {
+                $connection->begin_transaction();
+                $reservation = $connection->prepare(
+                    'INSERT INTO issued_clip_codes (usr, issued_at) VALUES (?, UTC_TIMESTAMP(6))'
+                );
+                $reservation->bind_param('s', $code);
+                $reservation->execute();
 
-    $stmt->bind_param('s', $url);
-    $stmt->execute();
-    $result = $stmt->get_result();
+                $connection->query(
+                    "UPDATE clip_metrics SET metric_value = metric_value + 1 "
+                    . "WHERE metric_name = 'total_issued'"
+                );
+                if ($connection->affected_rows !== 1) {
+                    throw new RuntimeException('Clip issuance counter is not initialized');
+                }
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $usr = $row['usr'];
-            break;
+                $statement = $connection->prepare(
+                    'INSERT INTO userurl (usr, url, date, expires_at) '
+                    . 'VALUES (?, ?, ?, ?)'
+                );
+                $statement->bind_param(
+                    'ssss',
+                    $code,
+                    $normalizedUrl,
+                    $createdForDatabase,
+                    $expirationForDatabase
+                );
+                $statement->execute();
+                $connection->commit();
+
+                try {
+                    storeClipRedis($code, $normalizedUrl, $expiresAt);
+                } catch (Throwable $exception) {
+                    error_log('Clip cache population failed: ' . $exception->getMessage());
+                }
+
+                return [$code, ''];
+            } catch (mysqli_sql_exception $exception) {
+                try {
+                    $connection->rollback();
+                } catch (Throwable) {
+                    // Preserve the exception that triggered the rollback.
+                }
+
+                if ((int) $exception->getCode() !== 1062) {
+                    throw $exception;
+                }
+            } catch (Throwable $exception) {
+                try {
+                    $connection->rollback();
+                } catch (Throwable) {
+                    // Preserve the exception that triggered the rollback.
+                }
+                throw $exception;
+            } finally {
+                if ($reservation instanceof mysqli_stmt) {
+                    $reservation->close();
+                }
+                if ($statement instanceof mysqli_stmt) {
+                    $statement->close();
+                }
+            }
         }
-    } else {
-        $stmt = $conn->prepare('SELECT * FROM userurl WHERE usr = ?');
 
-        $stmt->bind_param('s', $usr);
-        $stmt->execute();
-        $stmt->store_result();
+        error_log('Clip code collision retry limit reached');
 
-        while ($stmt->num_rows > 0) {
-            $usr = gen_uid(5);
+        return [null, CLIP_CREATE_ERROR];
+    } catch (Throwable $exception) {
+        error_log('Clip creation failed: ' . $exception->getMessage());
 
-            $stmt->bind_param('s', $usr);
-            $stmt->execute();
-            $stmt->store_result();
-        }
-
-        $stmt = $conn->prepare('INSERT INTO userurl (usr, url, date, expires) VALUES (?, ?, NOW(), ?)');
-
-        $stmt->bind_param('sss', $usr, $url, $expiryDate);
-        storeRedis($usr, $url);
-
-        if ($stmt->execute() === FALSE) {
-            $err = "Error inserting clip: <br>" . $conn->error;
+        return [null, CLIP_CREATE_ERROR];
+    } finally {
+        if ($connection instanceof mysqli) {
+            $connection->close();
         }
     }
-
-    //$conn->close();
-    return [$usr, $err];
 }

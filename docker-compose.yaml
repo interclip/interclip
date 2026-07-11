@@ -3,13 +3,14 @@ services:
     image: mysql:8.0
     container_name: iclip_mysql
     restart: unless-stopped
-    env_file: ".env"
+    command: ["--event-scheduler=ON"]
     environment:
-      MYSQL_ROOT_PASSWORD: ${PASSWORD:-}
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in the Compose environment}
+      MYSQL_DATABASE: ${DB_NAME:?Set DB_NAME in the Compose environment}
+      MYSQL_USER: ${USERNAME:?Set USERNAME in the Compose environment}
+      MYSQL_PASSWORD: ${PASSWORD:?Set PASSWORD in the Compose environment}
     volumes:
-      - ./scripts/db.sql:/docker-entrypoint-initdb.d/db.sql
+      - ./scripts/db.sql:/docker-entrypoint-initdb.d/db.sql:ro
       - mysql_data:/var/lib/mysql
     ports:
       - "127.0.0.1:3306:3306"
@@ -20,23 +21,27 @@ services:
     image: redis:alpine
     container_name: iclip_redis
     restart: unless-stopped
+    command:
+      [
+        "redis-server",
+        "--requirepass",
+        "${REDIS_PASSWORD:?Set REDIS_PASSWORD in .env}",
+      ]
     ports:
       - "127.0.0.1:6379:6379"
     networks:
       - iclip_network
 
   phpmyadmin:
-    image: arm64v8/phpmyadmin
+    image: phpmyadmin:5.2
     container_name: iclip_pma
     restart: unless-stopped
-    env_file: ".env"
+    profiles: ["admin"]
     environment:
       PMA_HOST: mysql
       PMA_PORT: 3306
-      # PMA_ARBITRARY: 1
-      MYSQL_ROOT_PASSWORD: ${PASSWORD}
-      MYSQL_USER: ${PMA_USER}
-      MYSQL_PASSWORD: ${PMA_PASSWORD}
+      PMA_USER: ${PMA_USER:?Set PMA_USER in the Compose environment}
+      PMA_PASSWORD: ${PMA_PASSWORD:?Set PMA_PASSWORD in the Compose environment}
     ports:
       - "127.0.0.1:8080:80"
     networks:

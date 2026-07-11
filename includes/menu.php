@@ -3,6 +3,9 @@
   <?php
 
   include_once "lib/functions.php";
+  include_once "anti-csrf.php";
+
+  $menuCsrfToken = store();
 
   $index = 0;
 
@@ -47,21 +50,32 @@
         }
       }
 
+      if (is_array($user) && ($_ENV['AUTH_TYPE'] ?? 'account') === 'account' && !$isStaff) {
+        echo '<li><button type="submit" form="logout-form" class="no-styles">Log out</button></li>';
+      }
+
       ?>
     </ul>
   </nav>
+  <?php if (is_array($user) && ($_ENV['AUTH_TYPE'] ?? 'account') === 'account') : ?>
+    <form method="POST" action="<?php echo ROOT ?>/logout/" id="logout-form" hidden>
+      <input type="hidden" name="token" value="<?php echo escapeHtml(store()) ?>">
+    </form>
+  <?php endif; ?>
   <?php
   include_once "components/html/settings.php";
   ?>
 
 </header>
 
-<script>
-  const loggedIn = <?php echo $user ? "true" : "false" ?>;
-  const isAdmin = <?php echo $isStaff ? "true" : "false" ?>;
-  const version = "<?php echo $release[0] ?>";
-
-  const root = "<?php echo ROOT ?>";
+<script nonce="<?php echo htmlspecialchars(cspNonce(), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
+  const loggedIn = <?php echo json_encode($user !== false) ?>;
+  const isAdmin = <?php echo json_encode($isStaff) ?>;
+  const version = <?php echo json_encode($releaseName ?? '') ?>;
+  const root = <?php echo json_encode(ROOT) ?>;
+  const appUrl = <?php echo json_encode(rtrim((string) ($_ENV['APP_URL'] ?? ''), '/')) ?>;
+  const fileUploadHost = <?php echo json_encode(strtolower((string) ($_ENV['FILES_UPLOAD_HOST'] ?? ''))) ?>;
+  const csrfToken = <?php echo json_encode($menuCsrfToken) ?>;
 </script>
 
 <script src="<?php echo ROOT ?>/out/menu.js"></script>

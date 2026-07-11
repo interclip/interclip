@@ -5,10 +5,10 @@ import { initTabs } from "./lib/tabs";
 const modal = document.getElementById("modal") as HTMLDialogElement;
 const dropzone = document.getElementById("dropzone") as HTMLDivElement | null;
 const storageProvider = document.getElementById(
-  "provider"
+  "provider",
 ) as HTMLSelectElement;
 const cancelUploadButton = document.getElementById(
-  "cancel-upload"
+  "cancel-upload",
 ) as HTMLSpanElement;
 const gistForm = document.getElementById("gist") as HTMLFormElement | null;
 
@@ -31,10 +31,6 @@ if (gistForm) {
   };
 }
 
-function encodeHTML(s: string) {
-  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
-}
-
 const showError = async (message: string) => {
   modal.close();
   await alertUser({
@@ -46,12 +42,13 @@ const showError = async (message: string) => {
 
 declare global {
   const csrfToken: string;
+  const fileUploadHost: string;
   let fileOver: boolean;
 }
 
 const submitClip = (url: string) => {
   const form = document.createElement("form");
-  form.action = "/set";
+  form.action = `${root}/set`;
   form.method = "POST";
   form.style.display = "none";
 
@@ -83,17 +80,15 @@ const registerDomAction = (el: HTMLElement, callback: () => any) => {
 };
 
 function showCode(data) {
-  data = encodeHTML(data);
-
   modal.close();
   submitClip(data);
 }
 
 const progressBar = document.getElementById(
-  "progressBar"
+  "progressBar",
 ) as HTMLProgressElement;
 const fileProgress = document.getElementById(
-  "file-progress"
+  "file-progress",
 ) as HTMLSpanElement;
 const percentages: NodeListOf<HTMLSpanElement> =
   document.querySelectorAll(".percentage-bar");
@@ -124,11 +119,39 @@ const updatePercentage = (percentage = 0) => {
 const setProgressElementsVisibility = (visibility: "visible" | "hidden") => {
   progressBar.style.visibility = visibility;
   percentages.forEach(
-    (percentage) => (percentage.style.visibility = visibility)
+    (percentage) => (percentage.style.visibility = visibility),
   );
 };
 
-let filesToken: string | null = null;
+interface PresignedUpload {
+  url: string;
+  fields: Record<string, string> & { key: string };
+}
+
+const isPresignedUpload = (value: unknown): value is PresignedUpload => {
+  if (typeof value !== "object" || value === null) return false;
+
+  const { url, fields } = value as Partial<PresignedUpload>;
+  if (
+    typeof url !== "string" ||
+    typeof fields !== "object" ||
+    fields === null ||
+    Array.isArray(fields) ||
+    typeof fields.key !== "string" ||
+    !Object.values(fields).every((field) => typeof field === "string")
+  ) {
+    return false;
+  }
+
+  try {
+    const uploadUrl = new URL(url);
+    return (
+      uploadUrl.protocol === "https:" && uploadUrl.hostname === fileUploadHost
+    );
+  } catch {
+    return false;
+  }
+};
 
 export async function uploadFile(file: File) {
   const formData = new FormData();
@@ -163,20 +186,13 @@ export async function uploadFile(file: File) {
       .then((obj) => {
         submitClip(
           `${providerEndpoint}/ipfs/${obj.Hash}?filename=${encodeURIComponent(
-            file.name
-          )}`
+            file.name,
+          )}`,
         );
       });
   } else {
     setProgressElementsVisibility("hidden");
     fileProgress.innerText = "Preparing upload";
-
-    // Get the AWS presigned URL
-    const urlToFetch = new URL("https://iclip.vercel.app");
-    urlToFetch.pathname = "api/uploadFile";
-    urlToFetch.searchParams.set("name", file.name);
-    urlToFetch.searchParams.set("type", file.type);
-    urlToFetch.searchParams.set("size", file.size.toString());
 
     const controller = new AbortController();
     const { signal } = controller;
@@ -189,11 +205,21 @@ export async function uploadFile(file: File) {
       controller.abort();
     };
 
-    if (filesToken) {
-      urlToFetch.searchParams.set("token", filesToken);
-    }
-    const uploadUrlResponse = await fetch(urlToFetch, { signal }).catch((e) => {
-      showError(e);
+    const uploadUrlResponse = await fetch(`${root}/api/file`, {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": csrfToken,
+      },
+      body: JSON.stringify({
+        name: file.name,
+        type: file.type,
+        size: file.size,
+      }),
+      signal,
+    }).catch((e) => {
+      showError(e instanceof Error ? e.message : "Network Error");
     });
 
     if (!uploadUrlResponse) {
@@ -210,15 +236,25 @@ export async function uploadFile(file: File) {
           return await showError((await uploadUrlResponse.json()).result);
         case 500:
           return await showError(
-            "The server failed to initiate the upload. Please try again later"
+            "The server failed to initiate the upload. Please try again later",
           );
         case 503:
           return await showError((await uploadUrlResponse.json()).result);
       }
 
-      await showError(await uploadUrlResponse.text());
+      return await showError(await uploadUrlResponse.text());
     }
-    const { url, fields } = await uploadUrlResponse.json();
+
+    const presignedUpload: unknown = await uploadUrlResponse
+      .json()
+      .catch(() => null);
+    if (!isPresignedUpload(presignedUpload)) {
+      return await showError(
+        "The upload service returned an invalid destination",
+      );
+    }
+
+    const { url, fields } = presignedUpload;
     const formData = new FormData();
 
     Object.entries({ ...fields, file }).forEach(([key, value]) => {
@@ -230,7 +266,7 @@ export async function uploadFile(file: File) {
     uploadRequest.upload.onprogress = (event) => {
       updatePercentage((event.loaded / event.total) * 100);
       fileProgress.innerText = `${formatBytes(event.loaded)} / ${formatBytes(
-        event.total
+        event.total,
       )}`;
     };
     uploadRequest.upload.onloadstart = () => {
@@ -253,7 +289,9 @@ export async function uploadFile(file: File) {
         showError(`Upload failed with HTTP ${status}`);
       } else {
         const [prefix, ...key] = fields.key.split("/");
-        showCode(`https://files.interclip.app/${prefix}/${encodeURIComponent(key.join("/"))}`);
+        showCode(
+          `https://files.interclip.app/${prefix}/${encodeURIComponent(key.join("/"))}`,
+        );
       }
     };
 
@@ -380,7 +418,7 @@ function makeDroppable(element: HTMLElement, callback: any) {
         input.value = "";
         input.click();
       }
-    }
+    };
   }
 }
 
@@ -415,17 +453,11 @@ document.onpaste = (event) => {
   }
 };
 
-const fileTokenElement = document.getElementById("filesToken");
-if (fileTokenElement) {
-  filesToken = fileTokenElement.innerText.trim();
-  fileTokenElement.remove();
-}
-
 (() => {
   if (storageProvider) {
     const preferredDestination = localStorage.getItem("fileServer") || "iclip";
     const selectedOption = [...storageProvider.options].find(
-      (e) => e.value === preferredDestination
+      (e) => e.value === preferredDestination,
     );
 
     if (!selectedOption) {
@@ -445,7 +477,3 @@ updatePercentage();
 if (dropzone) {
   initTabs();
 }
-
-// Warm up the serverless upload endpoint to reduce cold starts
-fetch("https://iclip.vercel.app/api/uploadFile", { method: "HEAD" }).catch(() => {});
-

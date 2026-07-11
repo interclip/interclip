@@ -1,3 +1,13 @@
+<?php
+
+include_once __DIR__ . '/lib/init.php';
+include_once __DIR__ . '/lib/sentry.php';
+include_once __DIR__ . '/lib/headers.php';
+include_once __DIR__ . '/lib/auth.php';
+include_once __DIR__ . '/anti-csrf.php';
+startSecureSession();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,20 +16,6 @@
 
     include_once "header.php";
     include_once "lib/functions.php";
-
-    $clipRegex = "/^[a-zA-Z0-9]{5}$/";
-
-    // Check if requested string was a code
-
-    $raw_user_code = substr(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), 1);
-    $user_code = htmlspecialchars($raw_user_code, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-    if (strlen($user_code) == 5 && preg_match($clipRegex, $user_code)) {
-        include_once "includes/components/get.php";
-
-        if (isset($url) && function_exists('reDir')) {
-            reDir($url);
-        }
-    }
 
     // Determine status code
     $status = isset($statusCode) ? $statusCode : (isset($_SERVER['REDIRECT_STATUS']) ? $_SERVER['REDIRECT_STATUS'] : 404);
@@ -42,7 +38,7 @@
 
     ?>
 
-    <title><?php echo ("$errortitle"); ?></title>
+    <title><?php echo escapeHtml($errorTitle); ?></title>
     <link rel="stylesheet" href="<?php echo ROOT ?>/css/index.css">
     <link rel="stylesheet" href="<?php echo ROOT ?>/css/dark.css" media="(prefers-color-scheme: dark)">
 </head>
@@ -51,7 +47,7 @@
     <?php include "menu.php"; ?>
     <main>
         <?php
-        echo ('<h1 style="font-size: 5rem;margin-top: 30vh;">' . $errortitle . '</h1>');
+        echo ('<h1 style="font-size: 5rem;margin-top: 30vh;">' . escapeHtml($errorTitle) . '</h1>');
         echo ('<p style="font-size: 2rem;">' . $message . '</p>');
         ?>
     </main>

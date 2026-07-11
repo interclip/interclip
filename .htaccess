@@ -1,36 +1,40 @@
-    # Prevent viewing of htaccess file.
-    <Files .htaccess>
-        order allow,deny
-        deny from all
-    </Files>
-    
-    # Hide the .env file
-    <Files .env>
-        order allow,deny
-        deny from all
-    </Files>
-    
-    <Files size.json>
-    	Header set Access-Control-Allow-Origin "*"    
-    </Files>
+    <FilesMatch "^\.">
+        Require all denied
+    </FilesMatch>
     
     AddDefaultCharset UTF-8
     DefaultLanguage en-US
+    LimitRequestBody 65536
 
     DirectoryIndex router.php
 
-    # Hide the .git/ folder
-    RedirectMatch 404 /\.git
-
     # Prevent directory listings
-    Options All -Indexes
+    Options -Indexes -Includes
 
-    # Remove php file extension
     RewriteEngine on
+
+    RewriteCond %{HTTP_HOST} ^www\.interclip\.app(?::[0-9]+)?$ [NC]
+    RewriteRule ^ https://interclip.app%{REQUEST_URI} [R=308,L]
+
+    RewriteCond %{HTTP_HOST} ^interclip\.app(?::[0-9]+)?$ [NC]
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://interclip.app%{REQUEST_URI} [R=308,L]
+
+    # Only the front controller and built/static assets are web-accessible.
+    RewriteRule "(^|/)\.(?!well-known(?:/|$))" - [R=404,L,NC]
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule "!^(?:router\.php|includes/error\.php|includes/GitLab-DAST-Site-Validation-[A-Za-z0-9-]+\.txt|css/.*|img/.*|out/.*|\.well-known/(?:security\.txt|apple-app-site-association)|favicon\.ico|robots\.txt|site\.webmanifest|sitemap\.xml)$" - [R=404,L,NC]
+    RewriteRule "^(?:public|scripts|tests|vendor|node_modules|js|scss)(?:/|$)" - [R=404,L,NC]
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule "^api/" - [R=404,L,NC]
+    RewriteRule "^includes/(?!error\.php$|GitLab-DAST-Site-Validation-[A-Za-z0-9-]+\.txt$)" - [R=404,L,NC]
+    RewriteRule "^(?:composer\.(?:json|lock)|package\.json|yarn\.lock|phpunit\.xml|docker-compose\.ya?ml|apache\.conf|budget\.json|CONTRIBUTING\.md|CODE_OF_CONDUCT\.md)$" - [R=404,L,NC]
+
+    # Route application URLs through the front controller.
     RewriteCond %{SCRIPT_FILENAME} !-f
     RewriteCond %{SCRIPT_FILENAME} !-d
     RewriteCond %{SCRIPT_FILENAME} !-l
-    RewriteRule ^(.*)$ router.php/$1
+    RewriteRule ^ router.php [END,QSA]
 
     # Error handling
     ErrorDocument 400 /includes/error.php
@@ -49,10 +53,15 @@
     ErrorDocument 504 /includes/error.php
 
     <IfModule mod_headers.c>
-        Header set Access-Control-Allow-Origin "*"
+        Header always unset X-Powered-By
+        Header always set X-Content-Type-Options "nosniff"
+        Header always set X-Frame-Options "DENY"
+        Header always set Referrer-Policy "no-referrer"
+        Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+        Header always set X-Permitted-Cross-Domain-Policies "none"
     </IfModule>
 
-    php_value upload_max_filesize 150M
-    php_value post_max_size 150M
-    php_value max_input_time 300
-    php_value max_execution_time 300
+    php_value upload_max_filesize 64K
+    php_value post_max_size 64K
+    php_value max_input_time 15
+    php_value max_execution_time 30

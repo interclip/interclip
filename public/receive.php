@@ -14,7 +14,7 @@
     <a class="skip-link" href="#maincontent">Skip to main</a>
 
     <?php
-    include "includes/anti-csrf.php";
+    require_once "includes/anti-csrf.php";
     store();
     include "includes/menu.php";
     ?>
@@ -24,7 +24,7 @@
                 <form id="inputform" name="form" action="<?php echo ROOT ?>/get" method="POST">
                     <div class="input-wrap">
                         <h2 class="title">Receive a clip</h2>
-                        <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>" />
+                        <input type="hidden" name="token" value="<?= htmlspecialchars(store(), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>" />
                         <input
                             type="text"
                             name="user"
@@ -37,7 +37,7 @@
                             required
                         >
                         <br>
-                        <button type="submit" class="btn">Retrieve</a>
+                        <button type="submit" class="btn">Retrieve</button>
                         <div id="result"></div>
                         <div id="modalpage">
                         </div>

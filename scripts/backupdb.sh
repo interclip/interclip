@@ -1,23 +1,31 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-SCRIPT_DIR=$(dirname "$0")
+set -euo pipefail
+umask 077
 
-# Load environment variables from the .env file
-export $(grep -v '^#' "$SCRIPT_DIR/../.env" | xargs)
-
-# Set variables
 DATE=$(date +\%F_%H-%M)
-BACKUP_DIR="/var/backups/mysql"
-MYSQL_CONTAINER="iclip_mysql"
-MYSQL_USER="${USERNAME}"
-MYSQL_PASSWORD="${PASSWORD}"
-DATABASE="${DB_NAME}"
+BACKUP_DIR="${BACKUP_DIR:-/var/backups/mysql}"
+MYSQL_CONTAINER="${MYSQL_CONTAINER:-iclip_mysql}"
+DATABASE_LABEL="${DATABASE_LABEL:-iclip}"
+
+if [[ ! "$DATABASE_LABEL" =~ ^[A-Za-z0-9_-]+$ ]]; then
+    echo "DATABASE_LABEL contains unsupported characters" >&2
+    exit 1
+fi
 
 # Create backup directory if not exists
-mkdir -p ${BACKUP_DIR}
+install -d -m 700 "$BACKUP_DIR"
 
-# Dump the database into a file
-docker exec ${MYSQL_CONTAINER} /usr/bin/mysqldump -u ${MYSQL_USER} --password=${MYSQL_PASSWORD} ${DATABASE} > ${BACKUP_DIR}/${DATABASE}-${DATE}.sql
+BACKUP_PATH="$BACKUP_DIR/$DATABASE_LABEL-$DATE.sql"
+PARTIAL_PATH=$(mktemp "$BACKUP_DIR/.$DATABASE_LABEL-$DATE.XXXXXX.partial")
+trap 'rm -f "$PARTIAL_PATH"' EXIT
+
+docker exec "$MYSQL_CONTAINER" sh -c \
+    'MYSQL_PWD="$MYSQL_PASSWORD" exec /usr/bin/mysqldump --single-transaction --no-tablespaces --routines --events --triggers --user="$MYSQL_USER" "$MYSQL_DATABASE"' \
+    > "$PARTIAL_PATH"
+chmod 600 "$PARTIAL_PATH"
+mv "$PARTIAL_PATH" "$BACKUP_PATH"
+trap - EXIT
 
 # Remove backups older than 14 days
-find ${BACKUP_DIR} -type f -name "*.sql" -mtime +14 -exec rm {} \;
+find "$BACKUP_DIR" -type f -name "*.sql" -mtime +14 -delete

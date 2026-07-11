@@ -17,6 +17,10 @@
 
 A handy-dandy clipboard sharing tool to share URLs between devices and users.
 
+Clips use intentionally short, shareable five-character codes. Treat those
+codes as public bearer links and do not use Interclip for passwords, tokens, or
+other secrets.
+
 Check it out at [interclip.app](https://interclip.app).
 
 <a name="clients"> </a>
