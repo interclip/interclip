@@ -3,10 +3,16 @@
 /**
  * Open an application database connection with consistent strict settings.
  */
-function openDatabaseConnection(): mysqli
+function openDatabaseConnection(int $connectTimeoutSeconds = 5): mysqli
 {
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    $connection = new mysqli(
+    $connection = mysqli_init();
+    if (!$connection instanceof mysqli) {
+        throw new RuntimeException('Unable to initialize database connection');
+    }
+
+    $connection->options(MYSQLI_OPT_CONNECT_TIMEOUT, max(1, $connectTimeoutSeconds));
+    $connection->real_connect(
         $_ENV['DB_SERVER'] ?? '',
         $_ENV['USERNAME'] ?? '',
         $_ENV['PASSWORD'] ?? '',

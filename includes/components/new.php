@@ -38,25 +38,9 @@ function createClip($url): array
 
         for ($attempt = 0; $attempt < CLIP_INSERT_RETRIES; $attempt++) {
             $code = generateClipCode();
-            $reservation = null;
             $statement = null;
 
             try {
-                $connection->begin_transaction();
-                $reservation = $connection->prepare(
-                    'INSERT INTO issued_clip_codes (usr, issued_at) VALUES (?, UTC_TIMESTAMP(6))'
-                );
-                $reservation->bind_param('s', $code);
-                $reservation->execute();
-
-                $connection->query(
-                    "UPDATE clip_metrics SET metric_value = metric_value + 1 "
-                    . "WHERE metric_name = 'total_issued'"
-                );
-                if ($connection->affected_rows !== 1) {
-                    throw new RuntimeException('Clip issuance counter is not initialized');
-                }
-
                 $statement = $connection->prepare(
                     'INSERT INTO userurl (usr, url, date, expires_at) '
                     . 'VALUES (?, ?, ?, ?)'
@@ -69,7 +53,6 @@ function createClip($url): array
                     $expirationForDatabase
                 );
                 $statement->execute();
-                $connection->commit();
 
                 try {
                     storeClipRedis($code, $normalizedUrl, $expiresAt);
@@ -79,26 +62,10 @@ function createClip($url): array
 
                 return [$code, ''];
             } catch (mysqli_sql_exception $exception) {
-                try {
-                    $connection->rollback();
-                } catch (Throwable) {
-                    // Preserve the exception that triggered the rollback.
-                }
-
                 if ((int) $exception->getCode() !== 1062) {
                     throw $exception;
                 }
-            } catch (Throwable $exception) {
-                try {
-                    $connection->rollback();
-                } catch (Throwable) {
-                    // Preserve the exception that triggered the rollback.
-                }
-                throw $exception;
             } finally {
-                if ($reservation instanceof mysqli_stmt) {
-                    $reservation->close();
-                }
                 if ($statement instanceof mysqli_stmt) {
                     $statement->close();
                 }
