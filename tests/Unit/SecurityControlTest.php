@@ -48,6 +48,20 @@ it('does not reuse bearer codes based on URL equality', function () {
         ->and($clipCreation)->not()->toContain('findActiveClipForUrl');
 });
 
+it('shares strict database connection setup across application paths', function () {
+    $database = file_get_contents(dirname(__DIR__, 2) . '/includes/lib/database.php');
+
+    expect($database)->toContain('MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT')
+        ->and($database)->toContain("set_charset('utf8mb4')")
+        ->and($database)->toContain("SET time_zone = '+00:00'");
+
+    foreach (['components/new.php', 'components/get.php', 'lib/auth.php'] as $path) {
+        $consumer = file_get_contents(dirname(__DIR__, 2) . '/includes/' . $path);
+        expect($consumer)->toContain('openDatabaseConnection()')
+            ->and($consumer)->not()->toContain('new mysqli(');
+    }
+});
+
 it('reserves codes and active destinations in one transaction', function () {
     $clipCreation = file_get_contents(dirname(__DIR__, 2) . '/includes/components/new.php');
 

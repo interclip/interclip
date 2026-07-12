@@ -2,6 +2,7 @@
 
 include_once __DIR__ . '/redis.php';
 include_once __DIR__ . '/rate.php';
+include_once __DIR__ . '/../lib/database.php';
 include_once __DIR__ . '/../lib/security.php';
 
 /**
@@ -26,20 +27,7 @@ function lookupClipUrl(string $code): ?string
     $clipConnection = null;
 
     try {
-        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        $clipConnection = new mysqli(
-            $_ENV['DB_SERVER'],
-            $_ENV['USERNAME'],
-            $_ENV['PASSWORD'],
-            $_ENV['DB_NAME']
-        );
-
-        if ($clipConnection->connect_errno !== 0) {
-            throw new RuntimeException('Clip database connection failed');
-        }
-
-        $clipConnection->set_charset('utf8mb4');
-        $clipConnection->query("SET time_zone = '+00:00'");
+        $clipConnection = openDatabaseConnection();
         $statement = $clipConnection->prepare(
             'SELECT url, expires_at FROM userurl'
             . ' WHERE usr = ? AND expires_at > UTC_TIMESTAMP(6)'
