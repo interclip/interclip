@@ -2,27 +2,34 @@
 
 require_once dirname(__DIR__, 2) . '/includes/lib/security.php';
 
-it('accepts unchanged absolute URIs across schemes and userinfo forms', function () {
+it('accepts absolute URIs across schemes and userinfo forms', function () {
     $uris = [
-        'https://example.com/path?one=two#fragment',
-        'http://127.0.0.1:8080/resource',
-        'HTTPS://example.com/',
-        'https://user:password@example.com/path',
-        'ftp://user:password@example.com/file',
-        'ssh://git@example.com/repository',
-        'mailto:user@example.com',
-        'tel:+123456789',
-        'magnet:?xt=urn:btih:abcdef',
-        'urn:isbn:0451450523',
-        'custom:opaque-value',
-        'file:///tmp/interclip.txt',
-        'javascript:alert(1)',
-        'data:text/plain,hello',
+        'https://example.com/path?one=two#fragment' => 'https://example.com/path?one=two#fragment',
+        'http://127.0.0.1:8080/resource' => 'http://127.0.0.1:8080/resource',
+        'https://user:password@example.com/path' => 'https://user:password@example.com/path',
+        'ftp://user:password@example.com/file' => 'ftp://user:password@example.com/file',
+        'ssh://git@example.com/repository' => 'ssh://git@example.com/repository',
+        'mailto:user@example.com' => 'mailto:user@example.com',
+        'tel:+123456789' => 'tel:+123456789',
+        'magnet:?xt=urn:btih:abcdef' => 'magnet:?xt=urn:btih:abcdef',
+        'urn:isbn:0451450523' => 'urn:isbn:0451450523',
+        'custom:opaque-value' => 'custom:opaque-value',
+        'file:///tmp/interclip.txt' => 'file:///tmp/interclip.txt',
+        'javascript:alert(1)' => 'javascript:alert(1)',
+        'data:text/plain,hello' => 'data:text/plain;charset=us-ascii,hello',
     ];
 
-    foreach ($uris as $uri) {
-        expect(normalizeClipUrl($uri))->toBe($uri);
+    foreach ($uris as $input => $expected) {
+        expect(normalizeClipUrl($input))->toBe($expected);
     }
+});
+
+it('uses League URI canonicalization for recoverable input', function () {
+    expect(normalizeClipUrl('HTTPS://Example.com/has a space'))->toBe('https://example.com/has%20a%20space')
+        ->and(normalizeClipUrl('https://example.com/%ZZ'))->toBe('https://example.com/%25ZZ')
+        ->and(normalizeClipUrl('https://example.com/<script>'))->toBe('https://example.com/%3Cscript%3E')
+        ->and(normalizeClipUrl('foo:bar#x#y'))->toBe('foo:bar#x%23y')
+        ->and(normalizeClipUrl('foo:path[bad]'))->toBe('foo:path%5Bbad%5D');
 });
 
 it('rejects relative or malformed clip URIs', function () {
@@ -31,16 +38,11 @@ it('rejects relative or malformed clip URIs', function () {
         '/relative/path',
         '//example.com/path',
         "https://example.com/path\nInjected: value",
-        'https://example.com/has a space',
-        'https://example.com/%ZZ',
         '1invalid:scheme',
-        'https://example.com/<script>',
         'http://exa[mple.com',
         'https://example.com:abc',
         'http://user@@example.com',
         'http://[not-ip]/',
-        'foo:bar#x#y',
-        'foo:path[bad]',
     ];
 
     foreach ($invalidUris as $uri) {
@@ -64,9 +66,11 @@ it('enforces the clip URL length boundary without truncating', function () {
     $prefix = 'https://example.com/';
     $maximumUrl = $prefix . str_repeat('a', CLIP_URL_MAX_LENGTH - strlen($prefix));
     $oversizedUrl = $maximumUrl . 'a';
+    $expandsPastStorageLimit = 'custom:' . str_repeat(' ', 700);
 
     expect(normalizeClipUrl($maximumUrl))->toBe($maximumUrl)
-        ->and(normalizeClipUrl($oversizedUrl))->toBeNull();
+        ->and(normalizeClipUrl($oversizedUrl))->toBeNull()
+        ->and(normalizeClipUrl($expandsPastStorageLimit))->toBeNull();
 });
 
 it('accepts five-character alphanumeric clip codes only', function () {

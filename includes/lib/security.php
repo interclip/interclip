@@ -1,7 +1,7 @@
 <?php
 
 use League\Uri\Contracts\UriException;
-use League\Uri\UriString;
+use League\Uri\Uri;
 
 const CLIP_URL_MAX_LENGTH = 2048;
 const CLIP_CODE_LENGTH = 5;
@@ -10,54 +10,31 @@ const CLIP_RESERVED_CODES = ['admin', 'about', 'login', 'tests'];
 const CLIP_TTL_SECONDS = 2 * 24 * 60 * 60;
 
 /**
- * Parse an absolute RFC 3986 URI without changing its representation.
- *
- * @return array{scheme: string, user: ?string, pass: ?string, host: ?string, port: ?int, path: string, query: ?string, fragment: ?string}|null
+ * Let League URI validate and canonicalize an absolute URI.
  */
-function parseClipUri(string $uri): ?array
+function validatedClipUri(string $uri): ?Uri
 {
-    if (
-        $uri === ''
-        || strlen($uri) > CLIP_URL_MAX_LENGTH
-        || !UriString::containsRfc3986Chars($uri)
-    ) {
+    if ($uri === '' || strlen($uri) > CLIP_URL_MAX_LENGTH) {
         return null;
     }
 
     try {
-        $parts = UriString::parse($uri);
+        $validated = Uri::new($uri);
     } catch (UriException) {
         return null;
     }
 
-    if (!is_string($parts['scheme']) || $parts['scheme'] === '') {
-        return null;
-    }
-
-    $userinfoPattern = "/\A(?:[A-Za-z0-9._~!\$&'()*+,;=:-]|%[A-Fa-f0-9]{2})*\z/D";
-    $pathPattern = "/\A(?:[A-Za-z0-9._~!\$&'()*+,;=:@\/-]|%[A-Fa-f0-9]{2})*\z/D";
-    $queryOrFragmentPattern = "/\A(?:[A-Za-z0-9._~!\$&'()*+,;=:@\/?-]|%[A-Fa-f0-9]{2})*\z/D";
-
-    if (
-        ($parts['user'] !== null && preg_match($userinfoPattern, $parts['user']) !== 1)
-        || ($parts['pass'] !== null && preg_match($userinfoPattern, $parts['pass']) !== 1)
-        || preg_match($pathPattern, $parts['path']) !== 1
-        || ($parts['query'] !== null && preg_match($queryOrFragmentPattern, $parts['query']) !== 1)
-        || ($parts['fragment'] !== null && preg_match($queryOrFragmentPattern, $parts['fragment']) !== 1)
-    ) {
-        return null;
-    }
-
-    /** @var array{scheme: string, user: ?string, pass: ?string, host: ?string, port: ?int, path: string, query: ?string, fragment: ?string} $parts */
-    return $parts;
+    return $validated->isAbsolute() && strlen($validated->toString()) <= CLIP_URL_MAX_LENGTH
+        ? $validated
+        : null;
 }
 
 /**
- * Validate a clip destination without changing its representation.
+ * Return the library's canonical representation of a valid clip destination.
  */
 function normalizeClipUrl(string $url): ?string
 {
-    return parseClipUri($url) === null ? null : $url;
+    return validatedClipUri($url)?->toString();
 }
 
 /**
@@ -66,15 +43,14 @@ function normalizeClipUrl(string $url): ?string
  */
 function isSafeNavigationUri(string $uri): bool
 {
-    $parts = parseClipUri($uri);
+    $validated = validatedClipUri($uri);
 
-    return $parts !== null
-        && in_array(strtolower($parts['scheme']), ['http', 'https'], true)
-        && is_string($parts['host'])
-        && $parts['host'] !== ''
-        && $parts['user'] === null
-        && $parts['pass'] === null
-        && filter_var($uri, FILTER_VALIDATE_URL) !== false;
+    return $validated !== null
+        && in_array($validated->getScheme(), ['http', 'https'], true)
+        && $validated->getHost() !== null
+        && $validated->getHost() !== ''
+        && $validated->getUsername() === null
+        && $validated->getPassword() === null;
 }
 
 /**
