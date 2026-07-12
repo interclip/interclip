@@ -1,42 +1,50 @@
 name: Deploy Interclip
+permissions:
+  contents: read
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
 on:
-  push:
-    branches:
-      - main
-  release:
-    types: [published]
+  workflow_dispatch:
+    inputs:
+      rollout_ready:
+        description: Confirm backup restore, schema migration, Redis cutover, secrets, trusted proxies, and origin TLS are ready
+        required: true
+        type: boolean
 
 jobs:
   deploy-production:
-      name: Deploy to production
-      runs-on: ubuntu-latest
-      steps:
-        - name: Tailscale
-          uses: tailscale/github-action@v2
-          with:
-            oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
-            oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
-            tags: tag:interclip
-        - name: Deploy via SSH
-          run: |
-            ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cd /var/www/interclip && git pull --all && sudo -u www-data composer install && yarn && yarn build"
+    if: inputs.rollout_ready == true
+    name: Deploy to production
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Tailscale
+        uses: tailscale/github-action@4e4c49acaa9818630ce0bd7a564372c17e33fb4d # v2
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:interclip
+      - name: Deploy via SSH
+        run: |
+          ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cd /var/www/interclip && git pull --ff-only origin main && sudo -u www-data composer install --no-dev --classmap-authoritative --no-interaction --no-scripts && yarn install --frozen-lockfile --production=false && yarn build && rm -rf node_modules"
 
   purge-cache:
     name: Purge Cloudflare cache
     needs: [deploy-production]
-    if: always()
+    if: needs.deploy-production.result == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           fetch-depth: 0
       - name: Setup Deno
-        uses: denolib/setup-deno@v2
+        uses: denoland/setup-deno@22d081ff2d3a40755e97629de92e3bcbfa7cf2ed # v2
         with:
           deno-version: v1.x
       - name: Purge Cloudflare cache
-        run: deno run --allow-net --allow-env --allow-run scripts/cachePurge.ts
+        run: deno run --allow-net=api.cloudflare.com --allow-env=CLOUDFLARE_ZONE_ID,CLOUDFLARE_API_KEY scripts/cachePurge.ts
         env:
           CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE }}
           CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_TOKEN }}
@@ -46,9 +54,9 @@ jobs:
     needs: purge-cache
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: Audit URLs using Lighthouse
-        uses: treosh/lighthouse-ci-action@10.1.0
+        uses: treosh/lighthouse-ci-action@03becbfc543944dd6e7534f7ff768abb8a296826 # 10.1.0
         with:
           urls: |
             https://interclip.app/
@@ -60,4 +68,3 @@ jobs:
           budgetPath: ./budget.json # test performance budgets
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true # upload lighthouse report to the temporary storage
-
