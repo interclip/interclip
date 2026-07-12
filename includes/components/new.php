@@ -2,30 +2,11 @@
 
 include_once __DIR__ . '/rate.php';
 include_once __DIR__ . '/redis.php';
+include_once __DIR__ . '/../lib/database.php';
 include_once __DIR__ . '/../lib/security.php';
 
 const CLIP_INSERT_RETRIES = 10;
 const CLIP_CREATE_ERROR = 'Unable to save clip. Please try again later.';
-
-function openClipDatabase(): mysqli
-{
-    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    $connection = new mysqli(
-        $_ENV['DB_SERVER'],
-        $_ENV['USERNAME'],
-        $_ENV['PASSWORD'],
-        $_ENV['DB_NAME']
-    );
-
-    if ($connection->connect_errno !== 0) {
-        throw new RuntimeException('Clip database connection failed');
-    }
-
-    $connection->set_charset('utf8mb4');
-    $connection->query("SET time_zone = '+00:00'");
-
-    return $connection;
-}
 
 /**
  * Create a clip with a fresh capability code.
@@ -48,7 +29,7 @@ function createClip($url): array
     $connection = null;
 
     try {
-        $connection = openClipDatabase();
+        $connection = openDatabaseConnection();
         $createdAt = new DateTimeImmutable('now', new DateTimeZone('UTC'));
         $createdForDatabase = $createdAt->format('Y-m-d H:i:s.u');
         $expiration = clipExpirationDateTime($createdAt);
