@@ -121,6 +121,15 @@ it('leaves generic URI validation to the RFC-aware server boundary', function ()
         ->and($homepage)->toContain('maxlength="2048"');
 });
 
+it('delegates URI parsing and canonicalization to League URI', function () {
+    $security = file_get_contents(dirname(__DIR__, 2) . '/includes/lib/security.php');
+
+    expect($security)->toContain('Uri::new($uri)')
+        ->and($security)->not()->toContain('$userinfoPattern')
+        ->and($security)->not()->toContain('$pathPattern')
+        ->and($security)->not()->toContain('$queryOrFragmentPattern');
+});
+
 it('keeps shared navigation metadata from overwriting page variables', function () {
     $adminBar = file_get_contents(dirname(__DIR__, 2) . '/includes/components/html/adminbar.php');
     $menu = file_get_contents(dirname(__DIR__, 2) . '/includes/menu.php');
