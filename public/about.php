@@ -1,32 +1,23 @@
 <?php
 
 require_once ROOT_DIR . '/includes/components/redis.php';
+require_once ROOT_DIR . '/includes/lib/database.php';
 
 $release = trim((string) ($_ENV['APP_RELEASE'] ?? ''));
 $count = null;
-$cachedCount = getRedis('clip-count');
+$cachedCount = getRedis('active-clip-count-v1');
 if (is_string($cachedCount) && preg_match('/\A\d+\z/D', $cachedCount) === 1) {
     $count = (int) $cachedCount;
 } else {
     $aboutConnection = null;
     try {
-        $aboutConnection = mysqli_init();
-        if (!$aboutConnection instanceof mysqli) {
-            throw new RuntimeException('Unable to initialize database connection');
-        }
-        $aboutConnection->options(MYSQLI_OPT_CONNECT_TIMEOUT, 2);
-        $aboutConnection->real_connect(
-            $_ENV['DB_SERVER'],
-            $_ENV['USERNAME'],
-            $_ENV['PASSWORD'],
-            $_ENV['DB_NAME']
-        );
+        $aboutConnection = openDatabaseConnection(2);
         $result = $aboutConnection->query(
-            "SELECT metric_value AS clip_count FROM clip_metrics WHERE metric_name = 'total_issued'"
+            'SELECT COUNT(*) AS clip_count FROM userurl WHERE expires_at > UTC_TIMESTAMP(6)'
         );
         $row = $result->fetch_assoc();
         $count = isset($row['clip_count']) ? (int) $row['clip_count'] : 0;
-        storeRedis('clip-count', (string) $count, 300);
+        storeRedis('active-clip-count-v1', (string) $count, 300);
     } catch (Throwable $error) {
         error_log('About page clip count failed: ' . $error->getMessage());
     } finally {
@@ -108,7 +99,7 @@ if (is_string($cachedContributors)) {
                     </a>
                 </li>
                 <li>
-                    Total clips made:
+                    Active clips:
                     <?php echo $count === null ? 'unavailable' : escapeHtml((string) $count); ?>
                 </li>
             </ul>

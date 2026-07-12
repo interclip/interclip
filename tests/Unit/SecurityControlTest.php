@@ -62,15 +62,13 @@ it('shares strict database connection setup across application paths', function 
     }
 });
 
-it('reserves codes and active destinations in one transaction', function () {
+it('retries active code collisions without permanently reserving codes', function () {
     $clipCreation = file_get_contents(dirname(__DIR__, 2) . '/includes/components/new.php');
 
-    expect($clipCreation)->toContain('begin_transaction()')
-        ->and($clipCreation)->toContain('INSERT INTO issued_clip_codes')
-        ->and($clipCreation)->toContain('UPDATE clip_metrics SET metric_value = metric_value + 1')
-        ->and($clipCreation)->toContain('INSERT INTO userurl')
-        ->and($clipCreation)->toContain('commit()')
-        ->and(strpos($clipCreation, 'commit();'))->toBeLessThan(strpos($clipCreation, 'storeClipRedis('));
+    expect($clipCreation)->toContain('INSERT INTO userurl')
+        ->and($clipCreation)->toContain('getCode() !== 1062')
+        ->and($clipCreation)->not()->toContain('issued_clip_codes')
+        ->and($clipCreation)->not()->toContain('clip_metrics');
 });
 
 it('starts browser sessions before rendering route output', function () {
@@ -131,12 +129,12 @@ it('keeps shared navigation metadata from overwriting page variables', function 
         ->and($menu)->toContain('$releaseName');
 });
 
-it('keeps durable clip totals and browser history aligned with the 48-hour lifetime', function () {
+it('keeps active clip totals and browser history aligned with the 48-hour lifetime', function () {
     $aboutPage = file_get_contents(dirname(__DIR__, 2) . '/public/about.php');
     $indexScript = file_get_contents(dirname(__DIR__, 2) . '/js/index.ts');
     $resultScript = file_get_contents(dirname(__DIR__, 2) . '/js/new.ts');
 
-    expect($aboutPage)->toContain('SELECT metric_value AS clip_count FROM clip_metrics')
+    expect($aboutPage)->toContain('COUNT(*) AS clip_count FROM userurl WHERE expires_at > UTC_TIMESTAMP(6)')
         ->and($indexScript)->toContain('2 * 24 * 60 * 60 * 1000')
         ->and($resultScript)->toContain('2 * 24 * 60 * 60 * 1000');
 });

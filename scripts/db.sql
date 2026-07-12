@@ -1,20 +1,6 @@
-/* Permanent reservations prevent an expired capability from being reissued. */
 DROP TABLE IF EXISTS `userurl`;
 DROP TABLE IF EXISTS `issued_clip_codes`;
 DROP TABLE IF EXISTS `clip_metrics`;
-CREATE TABLE `clip_metrics` (
-  `metric_name` varchar(32) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
-  `metric_value` bigint unsigned NOT NULL,
-  PRIMARY KEY (`metric_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-INSERT INTO `clip_metrics` (`metric_name`, `metric_value`) VALUES ('total_issued', 0);
-
-CREATE TABLE `issued_clip_codes` (
-  `usr` char(5) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
-  `issued_at` datetime(6) NOT NULL,
-  PRIMARY KEY (`usr`),
-  CONSTRAINT `issued_clip_codes_format` CHECK (`usr` REGEXP '^[A-Za-z0-9]{5}$' AND LOWER(`usr`) NOT IN ('admin', 'about', 'login', 'tests'))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /* Active clip destinations */
 CREATE TABLE `userurl` (
@@ -26,8 +12,7 @@ CREATE TABLE `userurl` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `userurl_usr_unique` (`usr`),
   KEY `userurl_expires_at` (`expires_at`),
-  CONSTRAINT `userurl_usr_format` CHECK (`usr` REGEXP '^[A-Za-z0-9]{5}$' AND LOWER(`usr`) NOT IN ('admin', 'about', 'login', 'tests')),
-  CONSTRAINT `userurl_issued_code` FOREIGN KEY (`usr`) REFERENCES `issued_clip_codes` (`usr`)
+  CONSTRAINT `userurl_usr_format` CHECK (`usr` REGEXP '^[A-Za-z0-9]{5}$' AND LOWER(`usr`) NOT IN ('admin', 'about', 'login', 'tests'))
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /* Accounts table */

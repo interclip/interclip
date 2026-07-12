@@ -56,29 +56,6 @@ ALTER TABLE `userurl`
   ADD KEY `userurl_expires_at` (`expires_at`),
   ADD CONSTRAINT `userurl_usr_format` CHECK (`usr` REGEXP '^[A-Za-z0-9]{5}$' AND LOWER(`usr`) NOT IN ('admin', 'about', 'login', 'tests'));
 
-CREATE TABLE `issued_clip_codes` (
-  `usr` char(5) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
-  `issued_at` datetime(6) NOT NULL,
-  PRIMARY KEY (`usr`),
-  CONSTRAINT `issued_clip_codes_format` CHECK (`usr` REGEXP '^[A-Za-z0-9]{5}$' AND LOWER(`usr`) NOT IN ('admin', 'about', 'login', 'tests'))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO `issued_clip_codes` (`usr`, `issued_at`)
-SELECT `usr`, UTC_TIMESTAMP(6) FROM `userurl`;
-
-CREATE TABLE `clip_metrics` (
-  `metric_name` varchar(32) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
-  `metric_value` bigint unsigned NOT NULL,
-  PRIMARY KEY (`metric_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO `clip_metrics` (`metric_name`, `metric_value`)
-SELECT 'total_issued', COUNT(*) FROM `issued_clip_codes`;
-
-ALTER TABLE `userurl`
-  ADD CONSTRAINT `userurl_issued_code`
-  FOREIGN KEY (`usr`) REFERENCES `issued_clip_codes` (`usr`);
-
 ALTER TABLE `accounts`
   ADD COLUMN `subject` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL AFTER `id`,
   MODIFY `email` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
