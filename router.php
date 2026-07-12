@@ -163,7 +163,8 @@ if (isValidClipCode($clipCode)) {
     $user_code = $clipCode;
     require_once ROOT_DIR . '/includes/lib/functions.php';
     require ROOT_DIR . '/includes/components/get.php';
-    if (isset($url)) {
+    $url = lookupClipUrl($user_code);
+    if ($url !== null) {
         reDir($url);
     }
 

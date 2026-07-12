@@ -1,6 +1,7 @@
 <?php
 
 require_once dirname(__DIR__, 2) . '/includes/components/new.php';
+require_once dirname(__DIR__, 2) . '/includes/components/get.php';
 
 it('rejects a malformed URI before opening the database', function () {
     $previousAvailability = $GLOBALS['redisAvailable'];
@@ -20,12 +21,8 @@ it('does not treat arbitrary cache keys as clip codes', function () {
 
     try {
         $GLOBALS['redisAvailable'] = false;
-        $user_code = 'contributors';
-        $url = 'https://should-be-unset.example';
 
-        include dirname(__DIR__, 2) . '/includes/components/get.php';
-
-        expect(isset($url))->toBeFalse();
+        expect(lookupClipUrl('contributors'))->toBeNull();
     } finally {
         $GLOBALS['redisAvailable'] = $previousAvailability;
     }
