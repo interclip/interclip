@@ -45,7 +45,6 @@ cleanup() {
     for clip_code in "${created_codes[@]:-}"; do
         if [[ -n "${clip_code}" ]]; then
             mysql_query "DELETE FROM userurl WHERE usr = '${clip_code}'" >/dev/null 2>&1
-            mysql_query "DELETE FROM issued_clip_codes WHERE usr = '${clip_code}'; SET @deleted_reservations = ROW_COUNT(); UPDATE clip_metrics SET metric_value = GREATEST(metric_value - @deleted_reservations, 0) WHERE metric_name = 'total_issued'" >/dev/null 2>&1
             redis_command DEL "${REDIS_KEY_PREFIX}:clip:${clip_code}" >/dev/null 2>&1
         fi
     done
@@ -80,8 +79,8 @@ smoke_rate_keys=(
 redis_command DEL "${smoke_rate_keys[@]}" >/dev/null
 
 bash .devcontainer/post-start.sh >/dev/null
-initial_clip_total="$(mysql_query "SELECT metric_value FROM clip_metrics WHERE metric_name = 'total_issued'")"
-[[ "${initial_clip_total}" =~ ^[0-9]+$ ]] || fail "the durable clip counter is not initialized"
+initial_active_total="$(mysql_query "SELECT COUNT(*) FROM userurl WHERE expires_at > UTC_TIMESTAMP(6)")"
+[[ "${initial_active_total}" =~ ^[0-9]+$ ]] || fail "the active clip count is unavailable"
 
 for asset in / /out/index.js /css/index.css; do
     curl --fail --silent --show-error --output /dev/null "${base_url}${asset}" \
@@ -115,11 +114,9 @@ stored_url="$(mysql_query "SELECT url FROM userurl WHERE usr = '${api_code}' AND
 [[ "${stored_url}" == "${api_url}" ]] || fail "the created clip was not stored in MySQL"
 expiry_microseconds="$(mysql_query "SELECT TIMESTAMPDIFF(MICROSECOND, CAST(date AS DATETIME(6)), expires_at) FROM userurl WHERE usr = '${api_code}' LIMIT 1")"
 [[ "${expiry_microseconds}" == "172800000000" ]] || fail "the database expiry was not exactly 48 hours after creation"
-reserved_code="$(mysql_query "SELECT usr FROM issued_clip_codes WHERE usr = '${api_code}' LIMIT 1")"
-[[ "${reserved_code}" == "${api_code}" ]] || fail "the created capability code was not permanently reserved"
-clip_total_after_create="$(mysql_query "SELECT metric_value FROM clip_metrics WHERE metric_name = 'total_issued'")"
-[[ "${clip_total_after_create}" -eq "$((initial_clip_total + 1))" ]] \
-    || fail "clip creation did not increment the durable issuance counter"
+active_total_after_create="$(mysql_query "SELECT COUNT(*) FROM userurl WHERE expires_at > UTC_TIMESTAMP(6)")"
+[[ "${active_total_after_create}" -eq "$((initial_active_total + 1))" ]] \
+    || fail "clip creation did not increment the active clip count"
 
 redis_key="${REDIS_KEY_PREFIX}:clip:${api_code}"
 cached_clip="$(redis_command GET "${redis_key}")"
@@ -255,9 +252,11 @@ fi
 
 mysql_query "DELETE FROM userurl WHERE usr = '${inert_code}'" >/dev/null
 redis_command DEL "${REDIS_KEY_PREFIX}:clip:${inert_code}" >/dev/null
-surviving_reservation="$(mysql_query "SELECT usr FROM issued_clip_codes WHERE usr = '${inert_code}' LIMIT 1")"
-[[ "${surviving_reservation}" == "${inert_code}" ]] \
-    || fail "deleting an expired destination also deleted its permanent code reservation"
+reuse_url="${base_url}/about/?dev-smoke-reuse=${nonce}"
+mysql_query "INSERT INTO userurl (usr, url, date, expires_at) VALUES ('${inert_code}', '${reuse_url}', UTC_TIMESTAMP(6), UTC_TIMESTAMP(6) + INTERVAL 48 HOUR)" >/dev/null
+reused_url="$(mysql_query "SELECT url FROM userurl WHERE usr = '${inert_code}' LIMIT 1")"
+[[ "${reused_url}" == "${reuse_url}" ]] \
+    || fail "a released clip code could not be reused"
 
 auth_summary="external auth skipped"
 if [[ "${AUTH_TYPE}" == "mock" ]]; then

@@ -26,7 +26,7 @@ bash scripts/dev-smoke.sh
 
 The smoke test creates and cleans up clips through both the JSON API and the
 CSRF-protected browser forms. It also verifies MySQL fallback, Redis cache
-repopulation, exact 48-hour expiry, permanent short-code reservations, safe
+repopulation, exact 48-hour expiry, reusable short codes, safe
 handling of non-navigable URIs, direct redirects, mock account provisioning,
 and visitor access control.
 
