@@ -6,7 +6,9 @@ include_once __DIR__ . '/../lib/security.php';
 
 unset($url);
 
-noteLookupLimit();
+// Five-character public codes are enumerable, so reject excessive guesses
+// before checking either the clip cache or database.
+enforceClipLookupRateLimit();
 
 if (isset($user_code) && is_string($user_code) && ($lookupCode = normalizeClipCode($user_code)) !== null) {
     $cachedUrl = getClipRedis($lookupCode);
