@@ -66,7 +66,7 @@ function noteLimit(): bool
     );
 }
 
-function noteLookupLimit(): bool
+function enforceClipLookupRateLimit(): bool
 {
     return enforceRateLimit(
         'clip-read',
