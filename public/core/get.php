@@ -8,6 +8,7 @@ validate();
 
 $user_code = isset($_POST['user']) && is_string($_POST['user']) ? trim($_POST['user']) : '';
 $lookupError = '';
+$url = null;
 if ($user_code === '') {
   $lookupError = 'missing';
   http_response_code(400);
@@ -16,7 +17,8 @@ if ($user_code === '') {
   http_response_code(400);
 } else {
   include_once "includes/components/get.php";
-  if (!isset($url)) {
+  $url = lookupClipUrl($user_code);
+  if ($url === null) {
     $lookupError = 'missing-clip';
     http_response_code(404);
   }
@@ -44,7 +46,7 @@ if ($user_code === '') {
     <div class="fullscreen-content" id="resultSec">
 
       <div class="title">
-        <?php if (isset($url)) : ?>
+        <?php if ($url !== null) : ?>
           <h1>
             <?php if (isSafeNavigationUri($url)) : ?>
               <a id="urlLink" href="<?php echo escapeHtml($url); ?>"><?php echo escapeHtml($url); ?></a>

@@ -26,8 +26,9 @@ if ($user_code === null || !isValidClipCode($user_code)) {
 }
 
 include_once 'includes/components/get.php';
+$url = lookupClipUrl($user_code);
 
-if (isset($url)) {
+if ($url !== null) {
     getApiResponse(200, 'success', $url);
 }
 
