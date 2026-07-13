@@ -107,6 +107,7 @@ it('keeps public controllers and dependency metadata outside direct HTTP access'
         ->and($accessRules)->toContain('css/.*|img/.*|out/.*')
         ->and($accessRules)->toContain('composer\\.(?:json|lock)')
         ->and($accessRules)->toContain('RewriteRule ^ router.php [END,QSA]')
+        ->and($accessRules)->toContain('RewriteCond %{HTTP:X-Forwarded-Proto} !^https$ [NC]')
         ->and($accessRules)->not()->toContain('Header set Access-Control-Allow-Origin');
 });
 
