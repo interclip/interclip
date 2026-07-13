@@ -1,6 +1,14 @@
 import { a11yClick, alertUser } from "./menu";
 import { formatBytes } from "./lib/utils";
 import { initTabs } from "./lib/tabs";
+import {
+  catchall,
+  object,
+  pipe,
+  refine,
+  string,
+  url as urlSchema,
+} from "zod/mini";
 
 const modal = document.getElementById("modal") as HTMLDialogElement;
 const dropzone = document.getElementById("dropzone") as HTMLDivElement | null;
@@ -123,35 +131,21 @@ const setProgressElementsVisibility = (visibility: "visible" | "hidden") => {
   );
 };
 
-interface PresignedUpload {
-  url: string;
-  fields: Record<string, string> & { key: string };
-}
-
-const isPresignedUpload = (value: unknown): value is PresignedUpload => {
-  if (typeof value !== "object" || value === null) return false;
-
-  const { url, fields } = value as Partial<PresignedUpload>;
-  if (
-    typeof url !== "string" ||
-    typeof fields !== "object" ||
-    fields === null ||
-    Array.isArray(fields) ||
-    typeof fields.key !== "string" ||
-    !Object.values(fields).every((field) => typeof field === "string")
-  ) {
-    return false;
-  }
-
-  try {
-    const uploadUrl = new URL(url);
-    return (
-      uploadUrl.protocol === "https:" && uploadUrl.hostname === fileUploadHost
-    );
-  } catch {
-    return false;
-  }
-};
+const presignedUploadSchema = object({
+  url: pipe(
+    urlSchema(),
+    string().check(
+      refine((url) => {
+        const uploadUrl = new URL(url);
+        return (
+          uploadUrl.protocol === "https:" &&
+          uploadUrl.hostname === fileUploadHost
+        );
+      }),
+    ),
+  ),
+  fields: catchall(object({ key: string() }), string()),
+});
 
 export async function uploadFile(file: File) {
   const formData = new FormData();
@@ -245,16 +239,16 @@ export async function uploadFile(file: File) {
       return await showError(await uploadUrlResponse.text());
     }
 
-    const presignedUpload: unknown = await uploadUrlResponse
-      .json()
-      .catch(() => null);
-    if (!isPresignedUpload(presignedUpload)) {
+    const presignedUpload = presignedUploadSchema.safeParse(
+      await uploadUrlResponse.json().catch(() => null),
+    );
+    if (!presignedUpload.success) {
       return await showError(
         "The upload service returned an invalid destination",
       );
     }
 
-    const { url, fields } = presignedUpload;
+    const { url, fields } = presignedUpload.data;
     const formData = new FormData();
 
     Object.entries({ ...fields, file }).forEach(([key, value]) => {

@@ -40,7 +40,6 @@ declare global {
   const root: string;
   const appUrl: string;
   const version: string;
-  const csrfToken: string;
 }
 
 const adminBar = isAdmin ? document.getElementById("adminbar") : null;
@@ -219,41 +218,6 @@ if (!window["shownConsoleNotice"]) {
 }
 
 if (loggedIn && isAdmin) {
-  const isStaging = adminBar!.classList.contains("staging");
-
-  if (isStaging) {
-    document
-      .getElementById("branch-select")!
-      .addEventListener("change", (e: any) => {
-        const targetBranch = e.target.value.replace(/\s/g, "");
-        if (targetBranch !== "-") {
-          fetch(`${root}/staging/change-branch`, {
-            method: "POST",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              "X-CSRF-Token": csrfToken,
-            },
-            body: JSON.stringify({ branch: targetBranch }),
-          })
-            .then((res) => res.json())
-            .then((response) => {
-              if (response.status !== "success") {
-                throw new Error(response.result || "Branch switch failed");
-              }
-              location.reload();
-            })
-            .catch((err) => {
-              alertUser({
-                title: "Something's went wrong",
-                text: err.toString(),
-                icon: "error",
-              });
-            });
-        }
-      });
-  }
-
   const userGreeting = document.getElementById("user-greet");
   const logoutButton = document.getElementById("logout-button");
 

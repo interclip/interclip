@@ -28,32 +28,6 @@ if (!function_exists('str_starts_with')) {
 }
 
 /**
- * Gets all the local git branches and returns an arrray of them.
- *
- * @return array
- */
-function getBranches()
-{
-    exec("git branch", $gitOutput);
-
-    $branches = [
-        "all" => [],
-        "current" => ''
-    ];
-
-    foreach ($gitOutput as $branchString) {
-        if (str_starts_with($branchString, "*")) {
-            $current = substr($branchString, 2);
-            $branches["current"] = $current;
-        } else {
-            $currentBranchClean = str_replace("remotes/", "", $branchString);
-            array_push($branches["all"], $currentBranchClean);
-        }
-    }
-    return $branches;
-}
-
-/**
  * Redirects the user to a specified URL
  *
  * @param mixed $url

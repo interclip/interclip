@@ -1,7 +1,6 @@
 <?php
 
 require_once ROOT_DIR . "/includes/lib/auth.php";
-require_once ROOT_DIR . "/includes/anti-csrf.php";
 require_once ROOT_DIR . "/includes/lib/security.php";
 require_once ROOT_DIR . "/includes/lib/functions.php";
 
@@ -17,14 +16,6 @@ if (preg_match('/\A[0-9a-f]{7,40}\z/i', $hash) !== 1) {
 }
 $hashShort = $hash === '' ? '' : substr($hash, 0, 7);
 $currBranch = trim((string) ($_ENV['APP_BRANCH'] ?? 'main')) ?: 'main';
-$branches = ['all' => [], 'current' => $currBranch];
-
-if ($showAdminBar && ($_ENV['ENVIRONMENT'] ?? 'production') === 'staging') {
-  $branches = getBranches();
-  if (($branches['current'] ?? '') !== '') {
-    $currBranch = $branches['current'];
-  }
-}
 
 ?>
 <?php if ($showAdminBar) : ?>
@@ -32,18 +23,6 @@ if ($showAdminBar && ($_ENV['ENVIRONMENT'] ?? 'production') === 'staging') {
     <span title="The total time it took the client to render the DOM and fetch all the necessary resources" id="load">Client: TBD</span>
     <span title="The total time it took the server to process the request">Server: <?php echo $renderTime ?>ms</span>
     <span class="lg" title="The current response status code"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/<?php echo http_response_code() ?>" target="_blank" rel="noreferrer nofollow">HTTP <?php echo http_response_code() ?></a></span>
-    <?php if ($_ENV['ENVIRONMENT'] === "staging") : ?>
-      <span>Current branch:
-        <select id="branch-select">
-          <?php
-          echo "<option value='-'>" . escapeHtml($currBranch) . "</option>";
-          foreach ($branches["all"] as $branch) {
-            echo '<option value="' . escapeHtml($branch) . '">' . escapeHtml($branch) . '</option>';
-          }
-          ?>
-        </select>
-      </span>
-    <?php endif; ?>
     <span>
       <a title="View branch on GitHub" href="https://github.com/interclip/interclip/tree/<?php echo escapeHtml(rawurlencode($currBranch)) ?>">
         <?php echo escapeHtml($currBranch) ?>
