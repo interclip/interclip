@@ -151,13 +151,15 @@ it('keeps shared navigation metadata from overwriting page variables', function 
         ->and($menu)->toContain('$releaseName');
 });
 
-it('keeps active clip totals and browser history aligned with the 48-hour lifetime', function () {
+it('keeps the historical clip total and browser history lifetime semantics', function () {
     $aboutPage = file_get_contents(dirname(__DIR__, 2) . '/public/about.php');
     $indexScript = file_get_contents(dirname(__DIR__, 2) . '/js/index.ts');
     $resultScript = file_get_contents(dirname(__DIR__, 2) . '/js/new.ts');
     $recentClips = file_get_contents(dirname(__DIR__, 2) . '/js/lib/recentClips.ts');
 
-    expect($aboutPage)->toContain('COUNT(*) AS clip_count FROM userurl WHERE expires_at > UTC_TIMESTAMP(6)')
+    expect($aboutPage)->toContain('SELECT COALESCE(MAX(id), 0) AS clip_count FROM userurl')
+        ->and($aboutPage)->toContain("getRedis('total-clip-count-v1')")
+        ->and($aboutPage)->toContain('Total clips made:')
         ->and($indexScript)->toContain('from "./lib/recentClips"')
         ->and($resultScript)->toContain('from "./lib/recentClips"')
         ->and($recentClips)->toContain('2 * 24 * 60 * 60 * 1000');
