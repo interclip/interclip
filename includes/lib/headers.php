@@ -19,7 +19,6 @@ $filesUploadHost = strtolower((string) ($_ENV['FILES_UPLOAD_HOST'] ?? ''));
 if (
     filter_var($_ENV['FILE_UPLOAD_ENABLED'] ?? false, FILTER_VALIDATE_BOOLEAN)
     && filter_var($filesUploadHost, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME) !== false
-    && str_ends_with($filesUploadHost, '.amazonaws.com')
 ) {
     $connectSources[] = 'https://' . $filesUploadHost;
 }

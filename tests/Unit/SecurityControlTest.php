@@ -170,3 +170,18 @@ it('does not load infrastructure root credentials into the application environme
     expect($sampleEnvironment)->not()->toContain('MYSQL_ROOT_PASSWORD')
         ->and($initialization)->toContain('->allowList($appEnvironmentKeys)');
 });
+
+it('supports anonymous presigning while pinning the upload destination', function () {
+    $fileApi = file_get_contents(dirname(__DIR__, 2) . '/public/api/file.php');
+    $initialization = file_get_contents(dirname(__DIR__, 2) . '/includes/lib/init.php');
+    $headers = file_get_contents(dirname(__DIR__, 2) . '/includes/lib/headers.php');
+    $menu = file_get_contents(dirname(__DIR__, 2) . '/includes/menu.php');
+
+    expect($fileApi)->toContain("if (\$filesApiToken !== '')")
+        ->and($fileApi)->toContain("\$upstreamHeaders[] = 'Authorization: Bearer ' . \$filesApiToken")
+        ->and($fileApi)->toContain('hash_equals($allowedUploadHost, $uploadHost)')
+        ->and($initialization)->toContain("\$filesApiToken !== ''")
+        ->and($headers)->toContain("\$connectSources[] = 'https://' . \$filesUploadHost")
+        ->and($menu)->not()->toContain('FILES_API_TOKEN')
+        ->and($fileApi)->not()->toContain("str_ends_with(\$allowedUploadHost, '.amazonaws.com')");
+});

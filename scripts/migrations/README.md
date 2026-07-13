@@ -35,4 +35,4 @@ Apply migrations during a maintenance window; application and Redis configuratio
 
 7. Redeploy or retire the out-of-band Cloudflare Workers. Verify the former clip API returns the canonical `307` redirect and the facts endpoint returns `410`; an older KV-backed deployment remains vulnerable even after the PHP release changes.
 
-8. Keep file uploads disabled until the external presigner rejects unauthenticated calls, uses a rotated server-only credential, and is constrained to the configured S3 host and policy.
+8. Before enabling file uploads, confirm that anonymous presigning is intended, verify that the upload policy has the expected size and lifetime constraints, and pin the exact S3-compatible host with `FILES_UPLOAD_HOST`. Configure `FILES_API_TOKEN` only when the presigner requires Bearer authentication.
