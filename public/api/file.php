@@ -23,12 +23,11 @@ if (!filter_var($_ENV['FILE_UPLOAD_ENABLED'] ?? false, FILTER_VALIDATE_BOOLEAN))
     uploadApiResponse(503, ['status' => 'error', 'result' => 'file uploads are disabled']);
 }
 
-$filesApiToken = (string) ($_ENV['FILES_API_TOKEN'] ?? '');
+$filesApiToken = trim((string) ($_ENV['FILES_API_TOKEN'] ?? ''));
 $allowedUploadHost = strtolower((string) ($_ENV['FILES_UPLOAD_HOST'] ?? ''));
 if (
-    strlen($filesApiToken) < 32
+    ($filesApiToken !== '' && strlen($filesApiToken) < 32)
     || filter_var($allowedUploadHost, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME) === false
-    || !str_ends_with($allowedUploadHost, '.amazonaws.com')
 ) {
     error_log('File upload integration is not securely configured.');
     uploadApiResponse(503, ['status' => 'error', 'result' => 'file uploads are unavailable']);
@@ -69,16 +68,17 @@ $query = [
 
 $upstreamBody = '';
 $upstreamTooLarge = false;
+$upstreamHeaders = ['Accept: application/json'];
+if ($filesApiToken !== '') {
+    $upstreamHeaders[] = 'Authorization: Bearer ' . $filesApiToken;
+}
 $curl = curl_init('https://iclip.vercel.app/api/uploadFile?' . http_build_query($query, '', '&', PHP_QUERY_RFC3986));
 curl_setopt_array($curl, [
     CURLOPT_FOLLOWLOCATION => false,
     CURLOPT_CONNECTTIMEOUT => 5,
     CURLOPT_TIMEOUT => 15,
     CURLOPT_PROTOCOLS => CURLPROTO_HTTPS,
-    CURLOPT_HTTPHEADER => [
-        'Accept: application/json',
-        'Authorization: Bearer ' . $filesApiToken,
-    ],
+    CURLOPT_HTTPHEADER => $upstreamHeaders,
     CURLOPT_WRITEFUNCTION => static function ($handle, string $chunk) use (&$upstreamBody, &$upstreamTooLarge): int {
         if (strlen($upstreamBody) + strlen($chunk) > 131072) {
             $upstreamTooLarge = true;
