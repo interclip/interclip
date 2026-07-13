@@ -1,10 +1,52 @@
+<?php
+
+require_once ROOT_DIR . '/includes/components/redis.php';
+require_once ROOT_DIR . '/includes/lib/database.php';
+
+$release = trim((string) ($_ENV['APP_RELEASE'] ?? ''));
+$count = null;
+$cachedCount = getRedis('active-clip-count-v1');
+if (is_string($cachedCount) && preg_match('/\A\d+\z/D', $cachedCount) === 1) {
+    $count = (int) $cachedCount;
+} else {
+    $aboutConnection = null;
+    try {
+        $aboutConnection = openDatabaseConnection(2);
+        $result = $aboutConnection->query(
+            'SELECT COUNT(*) AS clip_count FROM userurl WHERE expires_at > UTC_TIMESTAMP(6)'
+        );
+        $row = $result->fetch_assoc();
+        $count = isset($row['clip_count']) ? (int) $row['clip_count'] : 0;
+        storeRedis('active-clip-count-v1', (string) $count, 300);
+    } catch (Throwable $error) {
+        error_log('About page clip count failed: ' . $error->getMessage());
+    } finally {
+        if ($aboutConnection instanceof mysqli) {
+            $aboutConnection->close();
+        }
+    }
+}
+
+$contributors = [];
+$cachedContributors = getRedis('contributors');
+if (is_string($cachedContributors)) {
+    $decodedContributors = json_decode($cachedContributors, true);
+    if (is_array($decodedContributors)) {
+        foreach (array_slice($decodedContributors, 0, 100) as $contributor) {
+            if (is_string($contributor) && preg_match('/\A[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})\z/D', $contributor) === 1) {
+                $contributors[] = $contributor;
+            }
+        }
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <?php
     include_once "includes/header.php";
-    include_once "includes/components/redis.php";
     ?>
     <title>About | Interclip</title>
 
@@ -15,67 +57,6 @@
     <a class="skip-link" href="#maincontent">Skip to main</a>
     <?php
     include "includes/menu.php";
-    include_once "includes/components/rate.php";
-
-    noteLimit();
-
-    exec('git describe --abbrev=0 --tags', $release);
-
-    $conn = new mysqli($_ENV['DB_SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DB_NAME']);
-
-    $sqlquery = "SELECT id FROM userurl ORDER BY ID DESC LIMIT 1";
-    $result = $conn->query($sqlquery);
-
-    $count = 0;
-    while ($row = $result->fetch_assoc()) {
-        $count = $row['id'];
-        break;
-    }
-
-    if (!function_exists('str_contains')) {
-        function str_contains($haystack, $needle)
-        {
-            return $needle !== '' && mb_strpos($haystack, $needle) !== false;
-        }
-    }
-
-    function url_get_contents($Url)
-    {
-        if (!function_exists('curl_init')) {
-            die('CURL is not installed!');
-        }
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $Url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Brave Chrome/93.0.4577.58 Safari/537.36',
-        ));
-        $output = curl_exec($ch);
-        curl_close($ch);
-        return $output;
-    }
-
-    try {
-        if (!getRedis("contributors")) {
-            $contributorsResponse = url_get_contents("https://api.github.com/repos/interclip/interclip/contributors", false);
-            $contributorsJSON = json_decode($contributorsResponse, true);
-
-            // Get the login of every contributor
-            $contributors = array();
-            foreach ($contributorsJSON as $contributor) {
-                // Don't push if the contributor is a bot
-                if ($contributor['type'] !== "Bot" && !str_contains(strtolower($contributor['login']), "bot")) {
-                    array_push($contributors, $contributor['login']);
-                }
-            }
-
-            // Cache the contributors
-            storeRedis("contributors", json_encode($contributors), 60 * 60 * 24);
-        } else {
-            $contributors = json_decode(getRedis("contributors"));
-        }
-    } catch (Error $e) {
-    }
     ?>
     <main id="maincontent">
         <h1>About Interclip</h1>
@@ -112,31 +93,33 @@
             </h2>
             <ul class="facts">
                 <li>
-                    Latest release: <?php echo $release[0]; ?>
-                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/interclip/interclip/releases/tag/<?php echo $release[0]; ?>">
+                    Latest release: <?php echo escapeHtml($release !== '' ? $release : 'unknown'); ?>
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/interclip/interclip/releases/tag/<?php echo escapeHtml(rawurlencode($release)); ?>">
                         (changelog)
                     </a>
                 </li>
                 <li>
-                    Total clips made:
-                    <?php echo $count; ?>
+                    Active clips:
+                    <?php echo $count === null ? 'unavailable' : escapeHtml((string) $count); ?>
                 </li>
             </ul>
         </section>
     </main>
 
+    <?php if ($contributors !== []) : ?>
     <footer class="madeBy">
         <p> made with ❤️ by &nbsp;</p>
         <div class="avatar-stack">
             <?php foreach ($contributors as $contributor) : ?>
-                <a href="https://github.com/<?php echo $contributor; ?>" target="_blank" rel="noopener noreferrer">
-                    <img src="https://images.weserv.nl/?url=https://github.com/<?php echo $contributor; ?>.png&w=30&output=webp" class="avatar" alt="<?php echo $contributor; ?>">
+                <a href="https://github.com/<?php echo escapeHtml(rawurlencode((string) $contributor)); ?>" target="_blank" rel="noopener noreferrer">
+                    <img src="https://images.weserv.nl/?url=https://github.com/<?php echo escapeHtml(rawurlencode((string) $contributor)); ?>.png&amp;w=30&amp;output=webp" class="avatar" alt="<?php echo escapeHtml($contributor); ?>">
                 </a>
             <?php endforeach; ?>
         </div>
         </div>
 
     </footer>
+    <?php endif; ?>
 
 
 </body>

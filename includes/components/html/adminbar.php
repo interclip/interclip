@@ -1,57 +1,66 @@
 <?php
 
-require ROOT_DIR . "/includes/lib/auth.php";
+require_once ROOT_DIR . "/includes/lib/auth.php";
+require_once ROOT_DIR . "/includes/anti-csrf.php";
+require_once ROOT_DIR . "/includes/lib/security.php";
+require_once ROOT_DIR . "/includes/lib/functions.php";
 
-exec('git describe --abbrev=0 --tags', $release);
-if ($user !== false) {
-  if ($isStaff) {
-    exec('git rev-parse --verify HEAD', $output);
-    $hash = $output[0];
-    $hashShort = substr($hash, 0, 7);
-    $commit = "https://github.com/interclip/interclip/commit/" . $hash;
+$releaseName = trim((string) ($_ENV['APP_RELEASE'] ?? ''));
+$showAdminBar = is_array($user) && $isStaff;
+
+$renderTimeMicro = microtime(true) - ($_SERVER['REQUEST_TIME_FLOAT'] ?? microtime(true));
+$renderTime = number_format($renderTimeMicro * 1000, 2);
+
+$hash = trim((string) ($_ENV['APP_COMMIT'] ?? ''));
+if (preg_match('/\A[0-9a-f]{7,40}\z/i', $hash) !== 1) {
+  $hash = '';
+}
+$hashShort = $hash === '' ? '' : substr($hash, 0, 7);
+$currBranch = trim((string) ($_ENV['APP_BRANCH'] ?? 'main')) ?: 'main';
+$branches = ['all' => [], 'current' => $currBranch];
+
+if ($showAdminBar && ($_ENV['ENVIRONMENT'] ?? 'production') === 'staging') {
+  $branches = getBranches();
+  if (($branches['current'] ?? '') !== '') {
+    $currBranch = $branches['current'];
   }
 }
 
-$renderTimeMicro = microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'];
-$renderTime = number_format($renderTimeMicro * 1000, 2);
-
-$branches = getBranches();
-$currBranch = $branches["current"];
-
 ?>
-<?php if (!is_bool($user) && $isStaff) : ?>
+<?php if ($showAdminBar) : ?>
   <div id="adminbar" title="Press Shift+B to toggle the admin bar" <?php echo $_ENV['ENVIRONMENT'] === "staging" ? "class='staging'" : "" ?>>
     <span title="The total time it took the client to render the DOM and fetch all the necessary resources" id="load">Client: TBD</span>
     <span title="The total time it took the server to process the request">Server: <?php echo $renderTime ?>ms</span>
     <span class="lg" title="The current response status code"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/<?php echo http_response_code() ?>" target="_blank" rel="noreferrer nofollow">HTTP <?php echo http_response_code() ?></a></span>
     <?php if ($_ENV['ENVIRONMENT'] === "staging") : ?>
-      <?php $branches = getBranches(); ?>
       <span>Current branch:
         <select id="branch-select">
           <?php
-          echo "<option value='-'>$currBranch</option>";
+          echo "<option value='-'>" . escapeHtml($currBranch) . "</option>";
           foreach ($branches["all"] as $branch) {
-            echo "<option value='$branch'>$branch</option>";
+            echo '<option value="' . escapeHtml($branch) . '">' . escapeHtml($branch) . '</option>';
           }
           ?>
         </select>
       </span>
     <?php endif; ?>
     <span>
-      <a title="View branch on GitHub" href="https://github.com/interclip/interclip/tree/<?php echo $currBranch ?>">
-        <?php echo $currBranch ?>
+      <a title="View branch on GitHub" href="https://github.com/interclip/interclip/tree/<?php echo escapeHtml(rawurlencode($currBranch)) ?>">
+        <?php echo escapeHtml($currBranch) ?>
       </a>
-      @
-      <a title="View commit on GitHub" href="https://github.com/interclip/interclip/commit/<?php echo $hash ?>">
-        <?php echo $hashShort ?>
-      </a>
+      <?php if ($hash !== '') : ?>
+        @
+        <a title="View commit on GitHub" href="https://github.com/interclip/interclip/commit/<?php echo escapeHtml($hash) ?>">
+          <?php echo escapeHtml($hashShort) ?>
+        </a>
+      <?php endif; ?>
     </span>
     <span class="lg">PHP <?php echo phpversion(); ?></span>
     <span class="lg">Memory: <?php echo formatBytes(memory_get_usage()) ?></span>
     <span class="ending lg" tabindex="0" id="user-greet">
-      Hi, <?php echo $user["name"] ?? $user["nickname"]  ?>
+      Hi, <?php echo escapeHtml($user["name"] ?? $user["nickname"] ?? 'there') ?>
       <?php if ($_ENV["AUTH_TYPE"] !== "mock") : ?>
-        <a class="subitem" id="logout-button" href="<?php echo ROOT ?>/logout">Log out</a>
+        <button type="submit" form="logout-form" class="subitem" id="logout-button">Log out</button>
       <?php endif; ?>
     </span>
   </div>

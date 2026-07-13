@@ -1,5 +1,7 @@
 import { formatBytes } from "./lib/utils.js";
 
+declare const root: string;
+
 const filesSpan = document.getElementById("files");
 const filesSizeSpan = document.getElementById("filesize");
 
@@ -15,14 +17,14 @@ const updateFileStats = async () => {
 
   // Retrieve data from the Interclip file API
   if (!localStorage.getItem("file_stat")) {
-    fetch("https://interclip.app/includes/size.json")
+    fetch(`${root}/api/admin/file-stats`, { credentials: "same-origin" })
       .then((res) => res.json())
       .then((res: FileSizeResponse) => {
         filesSpan.innerText = `${res.count}`;
         filesSizeSpan.innerText = `${formatBytes(res.bytes)}`;
         filesSizeSpan.setAttribute(
           "title",
-          `Average file size: ${formatBytes(res.bytes / res.count)}`
+          `Average file size: ${formatBytes(res.bytes / res.count)}`,
         );
 
         const cache = {
@@ -39,7 +41,7 @@ const updateFileStats = async () => {
     filesSizeSpan.innerText = `${formatBytes(fileStat.bytes)}`;
     filesSizeSpan.setAttribute(
       "title",
-      `Average file size: ${formatBytes(fileStat.bytes / fileStat.count)}`
+      `Average file size: ${formatBytes(fileStat.bytes / fileStat.count)}`,
     );
   }
 };

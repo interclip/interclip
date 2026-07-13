@@ -1,42 +1,45 @@
 <?php
 
-header('Content-Type: application/json');
+include_once 'includes/lib/init.php';
+include_once 'includes/components/new.php';
+
+header('Content-Type: application/json; charset=UTF-8');
 header('Access-Control-Allow-Origin: *');
+header('X-Robots-Tag: noindex, nofollow, noarchive');
 
-function writeDb($url)
+function setApiResponse(int $status, string $responseStatus, string $result): never
 {
-  include_once "includes/lib/init.php";
-  include_once "includes/components/new.php";
-
-  $createArray = createClip($url);
-  $usr = $createArray[0];
-  $err = $createArray[1];
-
-  if (!empty($url)) {
-    if ($err === "") {
-      if (isset($usr) && $usr != null) {
-        echo json_encode(['status' => 'success', 'result' => $usr]);
-      } else {
-        http_response_code(400);
-        echo json_encode(['status' => 'error', 'result' => 'invalid URL specified']);
-      }
-    } else {
-      http_response_code(400);
-      echo json_encode(['status' => 'error', 'result' => $err]);
-    }
-  } else {
-    http_response_code(404);
-    echo json_encode(['status' => 'error', 'result' => 'no URL provided']);
-    die();
-  }
+    http_response_code($status);
+    echo json_encode(['status' => $responseStatus, 'result' => $result], JSON_UNESCAPED_SLASHES);
+    exit;
 }
 
-if (isset($_GET['url'])) {
-  writeDb($_GET['url']);
-} else if (isset($_POST['url'])) {
-  writeDb($_POST['url']);
-} else {
-  http_response_code(404);
-  echo json_encode(['status' => 'error', 'result' => 'no URL provided']);
-  die();
+if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'OPTIONS') {
+    header('Access-Control-Allow-Headers: Content-Type');
+    header('Access-Control-Allow-Methods: POST, OPTIONS');
+    http_response_code(204);
+    exit;
 }
+
+if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST') {
+    header('Allow: POST');
+    setApiResponse(405, 'error', 'method not allowed');
+}
+
+$url = isset($_POST['url']) && is_string($_POST['url']) ? $_POST['url'] : null;
+if ($url === null && str_contains(strtolower($_SERVER['CONTENT_TYPE'] ?? ''), 'application/json')) {
+    $body = json_decode(file_get_contents('php://input'), true);
+    $url = is_array($body) && isset($body['url']) && is_string($body['url']) ? $body['url'] : null;
+}
+
+if ($url === null || $url === '') {
+    setApiResponse(400, 'error', 'no URL provided');
+}
+
+[$code, $error] = createClip($url);
+if ($error !== '' || $code === null) {
+    $status = $error === '' || $error === 'invalid URL specified' ? 400 : 503;
+    setApiResponse($status, 'error', $error === '' ? 'invalid URL specified' : $error);
+}
+
+setApiResponse(200, 'success', $code);

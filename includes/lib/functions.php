@@ -1,5 +1,7 @@
 <?php
 
+include_once __DIR__ . '/security.php';
+
 /**
  * Formats a value in bytes to its appropriate prefix
  *
@@ -59,8 +61,20 @@ function getBranches()
  */
 function reDir($url)
 {
-    header("Location: " . $url . "");
-    die();
+    if (!is_string($url) || normalizeClipUrl($url) === null) {
+        http_response_code(400);
+        exit('Invalid redirect destination.');
+    }
+
+    header('X-Robots-Tag: noindex, nofollow, noarchive');
+    if (!isSafeNavigationUri($url)) {
+        header('Content-Type: text/plain; charset=UTF-8');
+        echo $url;
+        exit;
+    }
+
+    header('Location: ' . $url, true, 302);
+    exit;
 }
 
 /**
@@ -70,8 +84,10 @@ function reDir($url)
  */
 function getOS()
 {
-
-    global $user_agent;
+    $userAgent = $GLOBALS['user_agent'] ?? $_SERVER['HTTP_USER_AGENT'] ?? '';
+    if (!is_string($userAgent)) {
+        $userAgent = '';
+    }
 
     $os_platform = "Unknown OS Platform";
 
@@ -102,7 +118,7 @@ function getOS()
     );
 
     foreach ($os_array as $regex => $value)
-        if (preg_match($regex, $user_agent))
+        if (preg_match($regex, $userAgent))
             $os_platform = $value;
 
     return $os_platform;
@@ -115,11 +131,14 @@ function getOS()
  */
 function getOSInformation()
 {
-    if (false == function_exists("shell_exec") || false == is_readable("/etc/os-release")) {
+    if (false == is_readable("/etc/os-release")) {
         return null;
     }
 
-    $osInfo = shell_exec('cat /etc/os-release');
+    $osInfo = file_get_contents('/etc/os-release');
+    if (!is_string($osInfo)) {
+        return null;
+    }
     $listIds = preg_match_all('/.*=/', $osInfo, $matchListIds);
     $listIds    = $matchListIds[0];
 

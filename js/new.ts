@@ -14,14 +14,14 @@ const copyCode = async () => {
     title: "Yay!",
     text: "Copied to clipboard",
   });
-}
+};
 
 copyButton.onkeydown = (e) => {
   if (a11yClick(e)) {
     e.preventDefault();
     copyCode();
   }
-}
+};
 
 copyButton.onclick = async () => {
   copyCode();
@@ -29,7 +29,6 @@ copyButton.onclick = async () => {
 
 declare global {
   const code: string;
-  const url: string;
 }
 
 const update = async (scheme: string | null) => {
@@ -45,7 +44,7 @@ const update = async (scheme: string | null) => {
   const qrCodeContainer = document.getElementById("qrcode")!;
 
   qrCodeContainer.innerHTML = "";
-  await QRCode.toCanvas(qrCodeContainer, `https://interclip.app/${code}`, {
+  await QRCode.toCanvas(qrCodeContainer, `${appUrl}${root}/${code}`, {
     errorCorrectionLevel: "M",
     color: {
       dark: scheme === "light" ? "#157EFB" : "#151515",
@@ -72,23 +71,74 @@ themeSwitchToggle.addEventListener("change", () => {
   update(themeSwitchToggle.value);
 });
 
-const initialValue = localStorage.getItem("recentClips");
+const RECENT_CLIPS_KEY = "recentClips";
+const RECENT_CLIP_TTL_MS = 2 * 24 * 60 * 60 * 1000;
+const MAX_RECENT_CLIPS = 6;
 
-if (initialValue) {
-  const recentlyMadeArray = JSON.parse(initialValue);
-  if (!recentlyMadeArray.includes(url)) {
-    recentlyMadeArray.push(url);
-  }
-  if (recentlyMadeArray.length > 6) {
-    const reversedRecents = recentlyMadeArray.reverse();
-    reversedRecents.pop();
-    localStorage.setItem(
-      "recentClips",
-      JSON.stringify(reversedRecents.reverse())
-    );
-  } else {
-    localStorage.setItem("recentClips", JSON.stringify(recentlyMadeArray));
-  }
-} else {
-  localStorage.setItem("recentClips", JSON.stringify([url]));
+interface RecentClip {
+  code: string;
+  expiresAt: number;
 }
+
+const isClipCode = (value: unknown): value is string =>
+  typeof value === "string" && /^[A-Za-z0-9]{5}$/.test(value);
+
+const getRecentlyMadeClipEntries = (): RecentClip[] => {
+  try {
+    localStorage.removeItem(RECENT_CLIPS_KEY);
+  } catch {
+    // Storage can be unavailable in privacy-restricted browser contexts.
+  }
+
+  try {
+    const initialValue = sessionStorage.getItem(RECENT_CLIPS_KEY);
+    if (!initialValue) return [];
+
+    const parsedValue: unknown = JSON.parse(initialValue);
+    if (!Array.isArray(parsedValue)) return [];
+
+    const now = Date.now();
+    const seenCodes = new Set<string>();
+    return parsedValue
+      .filter(
+        (entry): entry is RecentClip =>
+          typeof entry === "object" &&
+          entry !== null &&
+          isClipCode((entry as RecentClip).code) &&
+          typeof (entry as RecentClip).expiresAt === "number" &&
+          (entry as RecentClip).expiresAt > now &&
+          (entry as RecentClip).expiresAt <= now + RECENT_CLIP_TTL_MS,
+      )
+      .filter((entry) => {
+        if (seenCodes.has(entry.code)) return false;
+        seenCodes.add(entry.code);
+        return true;
+      })
+      .slice(0, MAX_RECENT_CLIPS);
+  } catch {
+    return [];
+  }
+};
+
+const rememberClip = (clipCode: string) => {
+  if (!isClipCode(clipCode)) return;
+
+  const recentClips = getRecentlyMadeClipEntries().filter(
+    (entry) => entry.code !== clipCode,
+  );
+  recentClips.unshift({
+    code: clipCode,
+    expiresAt: Date.now() + RECENT_CLIP_TTL_MS,
+  });
+
+  try {
+    sessionStorage.setItem(
+      RECENT_CLIPS_KEY,
+      JSON.stringify(recentClips.slice(0, MAX_RECENT_CLIPS)),
+    );
+  } catch {
+    // History is optional when session storage is unavailable.
+  }
+};
+
+rememberClip(code);

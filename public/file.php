@@ -14,20 +14,14 @@
 <body>
     <a class="skip-link" href="#maincontent">Skip to main</a>
     <?php
-    include "includes/anti-csrf.php";
+    require_once "includes/anti-csrf.php";
     store();
     include("includes/menu.php");
     ?>
     <main id="maincontent">
         <?php
-        $fileUpload = true;
+        $fileUpload = filter_var($_ENV['FILE_UPLOAD_ENABLED'] ?? false, FILTER_VALIDATE_BOOLEAN);
         ?>
-
-        <?php if ($isStaff && $_ENV["FILES_TOKEN"]) : ?>
-            <span style="display: none" id="filesToken">
-                <?php echo $_ENV["FILES_TOKEN"] ?>
-            </span>
-        <?php endif; ?>
 
         <?php if ($fileUpload) : ?>
             <span id="content"> </span>
@@ -92,9 +86,6 @@
                 </dialog>
             </div>
 
-            <script>
-                const csrfToken = "<?= $_SESSION['token'] ?>";
-            </script>
             <script src="<?php echo ROOT ?>/out/file.js"></script>
         <?php else : ?>
             <span id="content"> </span>

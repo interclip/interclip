@@ -1,138 +1,174 @@
 <?php
 
-include_once "includes/lib/init.php";
-include_once "includes/lib/sentry.php";
+require_once __DIR__ . '/includes/lib/init.php';
+require_once ROOT_DIR . '/includes/lib/sentry.php';
+require_once ROOT_DIR . '/includes/lib/headers.php';
+require_once ROOT_DIR . '/includes/lib/auth.php';
+require_once ROOT_DIR . '/includes/anti-csrf.php';
 
-use Pecee\SimpleRouter\SimpleRouter;
+$contentLength = filter_var($_SERVER['CONTENT_LENGTH'] ?? null, FILTER_VALIDATE_INT);
+if ($contentLength !== false && $contentLength !== null && $contentLength > 65536) {
+    http_response_code(413);
+    header('Content-Type: text/plain; charset=UTF-8');
+    exit('Request body too large.');
+}
 
-/* Dynamic pages */
+function startBrowserSession(): void
+{
+    startSecureSession();
+}
 
-SimpleRouter::group(['prefix' => ROOT], function () {
+function renderRouteError(int $status): never
+{
+    global $auth0, $conn, $isStaff, $user;
 
-    SimpleRouter::all(
-        '/',
-        function () {
-            include_once "public/index.php";
-            return "";
-        }
-    );
+    http_response_code($status);
+    $statusCode = $status;
+    startBrowserSession();
+    require ROOT_DIR . '/includes/error.php';
+    exit;
+}
 
-    SimpleRouter::get('/receive/', function () {
-        include_once "public/receive.php";
-        return "";
-    });
+/** @param string[] $allowedMethods */
+function rejectHtmlMethod(array $allowedMethods): never
+{
+    header('Allow: ' . implode(', ', $allowedMethods));
+    renderRouteError(405);
+}
 
-    SimpleRouter::get('/file/', function () {
-        include_once "public/file.php";
-        return "";
-    });
+/** @param string[] $allowedMethods */
+function rejectApiMethod(array $allowedMethods): never
+{
+    http_response_code(405);
+    header('Allow: ' . implode(', ', $allowedMethods));
+    header('Content-Type: application/json; charset=UTF-8');
+    echo json_encode(['status' => 'error', 'result' => 'method not allowed'], JSON_UNESCAPED_SLASHES);
+    exit;
+}
 
-    SimpleRouter::form('/upload/', function () {
-        include_once "public/upload/index.php";
-        return "";
-    });
+$requestMethod = strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? 'GET'));
+$effectiveMethod = $requestMethod === 'HEAD' ? 'GET' : $requestMethod;
+$requestPath = parse_url((string) ($_SERVER['REQUEST_URI'] ?? '/'), PHP_URL_PATH);
 
-    SimpleRouter::get('/admin/', function () {
-        include_once "public/admin.php";
-        return "";
-    });
+if (!is_string($requestPath) || $requestPath === '' || preg_match('/[\x00-\x1f\x7f]/', $requestPath) === 1) {
+    renderRouteError(400);
+}
 
-    /* Clip manipulation */
-
-    SimpleRouter::form('/get', function () {
-        include_once "public/core/get.php";
-        return "";
-    });
-
-    SimpleRouter::form('/set', function () {
-        include_once "public/core/set.php";
-        return "";
-    });
-
-    /* Static pages */
-
-    SimpleRouter::get('/desktop/', function () {
-        include_once "public/desktop.php";
-        return "";
-    });
-
-    SimpleRouter::get('/about/', function () {
-        include_once "public/about.php";
-        return "";
-    });
-
-    /* Auth */
-    SimpleRouter::get('/login/', function () {
-        include_once "public/login.php";
-        return "";
-    });
-
-    SimpleRouter::get('/logout/', function () {
-        include_once "public/logout.php";
-        return "";
-    });
-
-    SimpleRouter::get('/privacy/', function () {
-        include_once "public/privacy.php";
-        return "";
-    });
-
-    /* API */
-    SimpleRouter::match(['get', 'post'], '/api/set', function () {
-        include_once "public/api/set.php";
-        return "";
-    });
-
-    SimpleRouter::match(['get', 'post'], '/api/get', function () {
-        include_once "public/api/get.php";
-        return "";
-    });
-
-    SimpleRouter::match(['get', 'post'], '/api/file', function () {
-        include_once "public/api/file.php";
-        return "";
-    });
-
-    // Match clip codes
-    SimpleRouter::all(
-        '/{user_code}',
-        function ($user_code) {
-            include_once "includes/lib/functions.php";
-            include_once "includes/components/get.php";
-            if (isset($url)) {
-                reDir($url);
-            } else {
-                $statusCode = 404;
-                include_once "includes/error.php";
-            }
-        }
-    )->where(['user_code' => '[a-zA-Z0-9]{5}']);
-
-    /* Internal behavior */
-
-    SimpleRouter::get('/staging/change-branch', function () {
-        include_once "public/change-branch.php";
-    });
-});
-
-use Pecee\Http\Request;
-
-SimpleRouter::error(function (Request $request, \Exception $exception) {
-    include_once "includes/lib/functions.php";
-
-    $currURL = $request->getUrl();
-    $unRootedURL = str_replace(ROOT, "", $currURL);
-    $user_code = str_replace("/", "", $unRootedURL);
-
-    include_once "includes/components/get.php";
-
-    if (isset($url)) {
-        header("Location: $url");
+if (ROOT !== '') {
+    if ($requestPath === ROOT) {
+        $requestPath = '/';
+    } elseif (str_starts_with($requestPath, ROOT . '/')) {
+        $requestPath = substr($requestPath, strlen(ROOT));
     } else {
-        $statusCode = $exception->getCode();
-        http_response_code($statusCode);
-        include_once "includes/error.php";
+        renderRouteError(404);
     }
-});
-// Start the routing
-SimpleRouter::start();
+}
+
+$routePath = $requestPath === '/' ? '/' : rtrim($requestPath, '/');
+
+$browserRoutes = [
+    '/' => 'public/index.php',
+    '/receive' => 'public/receive.php',
+    '/file' => 'public/file.php',
+    '/admin' => 'public/admin.php',
+    '/about' => 'public/about.php',
+    '/privacy' => 'public/privacy.php',
+];
+
+if (isset($browserRoutes[$routePath])) {
+    if ($effectiveMethod !== 'GET') {
+        rejectHtmlMethod(['GET', 'HEAD']);
+    }
+
+    startBrowserSession();
+    require ROOT_DIR . '/' . $browserRoutes[$routePath];
+    exit;
+}
+
+if ($routePath === '/desktop') {
+    if ($effectiveMethod !== 'GET') {
+        rejectHtmlMethod(['GET', 'HEAD']);
+    }
+    require ROOT_DIR . '/public/desktop.php';
+    exit;
+}
+
+if ($routePath === '/login') {
+    if ($effectiveMethod !== 'GET') {
+        rejectHtmlMethod(['GET', 'HEAD']);
+    }
+    require ROOT_DIR . '/public/login.php';
+    exit;
+}
+
+if ($routePath === '/logout') {
+    if ($requestMethod !== 'POST') {
+        rejectHtmlMethod(['POST']);
+    }
+    require ROOT_DIR . '/public/logout.php';
+    exit;
+}
+
+if ($routePath === '/get' || $routePath === '/set') {
+    if ($requestMethod !== 'POST') {
+        rejectHtmlMethod(['POST']);
+    }
+    require ROOT_DIR . ($routePath === '/get' ? '/public/core/get.php' : '/public/core/set.php');
+    exit;
+}
+
+if ($routePath === '/api/set') {
+    if (!in_array($requestMethod, ['GET', 'POST', 'OPTIONS'], true)) {
+        rejectApiMethod(['POST', 'OPTIONS']);
+    }
+    require ROOT_DIR . '/public/api/set.php';
+    exit;
+}
+
+if ($routePath === '/api/get') {
+    if (!in_array($requestMethod, ['GET', 'POST'], true)) {
+        rejectApiMethod(['GET', 'POST']);
+    }
+    require ROOT_DIR . '/public/api/get.php';
+    exit;
+}
+
+if ($routePath === '/api/file') {
+    if ($requestMethod !== 'POST') {
+        rejectApiMethod(['POST']);
+    }
+    require ROOT_DIR . '/public/api/file.php';
+    exit;
+}
+
+if ($routePath === '/api/admin/file-stats') {
+    if ($effectiveMethod !== 'GET') {
+        rejectApiMethod(['GET', 'HEAD']);
+    }
+    require ROOT_DIR . '/public/api/admin-file-stats.php';
+    exit;
+}
+
+if ($routePath === '/staging/change-branch') {
+    require ROOT_DIR . '/public/change-branch.php';
+    exit;
+}
+
+$clipCode = trim($routePath, '/');
+if (isValidClipCode($clipCode)) {
+    if ($effectiveMethod !== 'GET') {
+        rejectHtmlMethod(['GET', 'HEAD']);
+    }
+
+    $user_code = $clipCode;
+    require_once ROOT_DIR . '/includes/lib/functions.php';
+    require ROOT_DIR . '/includes/components/get.php';
+    $url = lookupClipUrl($user_code);
+    if ($url !== null) {
+        reDir($url);
+    }
+
+    renderRouteError(404);
+}
+
+renderRouteError(404);

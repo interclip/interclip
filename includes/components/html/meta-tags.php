@@ -29,9 +29,6 @@
 <link rel="stylesheet" href="<?php echo ROOT ?>/css/menu.css">
 <link rel="stylesheet" href="<?php echo ROOT ?>/css/dark.css" media="(prefers-color-scheme: dark)">
 
-<!-- External JS libraries -->
-<script type="module" src="https://cdn.skypack.dev/pin/dark-mode-toggle@v0.8.0-8sz7Rv9Ou4431j6B2ucG/mode=imports,min/optimized/dark-mode-toggle.js"></script>
-
 <!-- Meta tags -->
 <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
 <meta charset="utf-8">

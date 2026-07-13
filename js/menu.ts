@@ -13,12 +13,12 @@ const removeBtn = document.getElementById("removeData")!;
 
 // Get the <span> element that closes the modal
 const closeSettingsModalButton = document.getElementsByClassName(
-  "closeBtn"
+  "closeBtn",
 )[0] as HTMLSpanElement;
 
 // Get the toggle checkbox
 const colorSchemePreference = document.getElementById(
-  "slct"
+  "slct",
 ) as HTMLInputElement;
 const toggle = document.querySelector("#hashanimation") as HTMLInputElement;
 const betaToggle = document.querySelector("#betafeatures") as HTMLInputElement;
@@ -31,14 +31,16 @@ const userAgent = navigator.userAgent.toLowerCase();
 
 const isTablet =
   /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(
-    userAgent
+    userAgent,
   );
 
 declare global {
   const isAdmin: boolean;
   const loggedIn: boolean;
   const root: string;
+  const appUrl: string;
   const version: string;
+  const csrfToken: string;
 }
 
 const adminBar = isAdmin ? document.getElementById("adminbar") : null;
@@ -52,7 +54,7 @@ if (isAdmin) {
 
 const isPhone = !isTablet
   ? "ontouchstart" in document.documentElement &&
-  /mobi/i.test(navigator.userAgent)
+    /mobi/i.test(navigator.userAgent)
   : false;
 
 function showPaintTimings() {
@@ -81,7 +83,7 @@ function showPaintTimings() {
 
 export const alertUser = async (
   opts: SweetAlertOptions<any, any>,
-  reload = false
+  reload = false,
 ) => {
   await sweetAlert.fire(opts);
   if (reload) {
@@ -101,19 +103,19 @@ export function a11yClick(event: KeyboardEvent) {
 
 const closeSettingsModal = () => {
   settingsModal.classList.remove("settings-shown");
-}
+};
 
 const showSettingsModal = () => {
   settingsModal.classList.add("settings-shown");
-}
+};
 
 btn.onclick = () => {
   showSettingsModal();
-  document.onkeydown = e => {
+  document.onkeydown = (e) => {
     if (e.code === "Escape") {
       closeSettingsModal();
     }
-  }
+  };
 };
 
 btn.onkeydown = (evt) => {
@@ -165,8 +167,9 @@ betaToggle.addEventListener("change", () => {
 
 /* Initialization */
 
-systemOpt.innerText = systemOpt.innerText += ` ${isTablet ? "📱" : isPhone ? "📱" : "💻"
-  }`;
+systemOpt.innerText = systemOpt.innerText += ` ${
+  isTablet ? "📱" : isPhone ? "📱" : "💻"
+}`;
 
 const updateOptions = () => {
   colorSchemePreference.value =
@@ -191,7 +194,7 @@ const updateMenu = () => {
   for (const li of document.querySelectorAll("#menu li")) {
     if (li?.children[0]?.children[0]?.classList.contains("beta")) {
       (li as HTMLDataListElement).style.display = localStorage.getItem(
-        "hideBetaMenu"
+        "hideBetaMenu",
       )
         ? "none"
         : "block";
@@ -210,7 +213,7 @@ if (!window["shownConsoleNotice"]) {
       █   █ █ █   █ █   █ █   █▄▄▄█   █  █ █    █▄▄█       █   █   █    
       █▄▄▄█▄█  █▄▄█ █▄▄▄█ █▄▄▄▄▄▄▄█▄▄▄█  █▄█▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄▄▄█▄▄▄█    %c ${version}`,
     "color:#FF9800",
-    "color:green;font-weight:bold"
+    "color:green;font-weight:bold",
   );
   window["shownConsoleNotice"] = true;
 }
@@ -224,9 +227,20 @@ if (loggedIn && isAdmin) {
       .addEventListener("change", (e: any) => {
         const targetBranch = e.target.value.replace(/\s/g, "");
         if (targetBranch !== "-") {
-          fetch(`${root}/staging/change-branch?branch=${targetBranch}`)
+          fetch(`${root}/staging/change-branch`, {
+            method: "POST",
+            credentials: "same-origin",
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRF-Token": csrfToken,
+            },
+            body: JSON.stringify({ branch: targetBranch }),
+          })
             .then((res) => res.json())
-            .then(() => {
+            .then((response) => {
+              if (response.status !== "success") {
+                throw new Error(response.result || "Branch switch failed");
+              }
               location.reload();
             })
             .catch((err) => {
@@ -291,6 +305,7 @@ if (loggedIn && isAdmin) {
 removeBtn.onclick = () => {
   const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   localStorage.clear();
+  sessionStorage.clear();
   updateOptions();
   darkModeToggle.mode = isDark ? "dark" : "light";
 
@@ -308,4 +323,3 @@ window.addEventListener("load", () => {
   showPaintTimings();
   updateOptions(); // Rerender the option values
 });
-
