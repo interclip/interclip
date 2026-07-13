@@ -187,3 +187,28 @@ it('supports anonymous presigning while pinning the upload destination', functio
         ->and($menu)->not()->toContain('FILES_API_TOKEN')
         ->and($fileApi)->not()->toContain("str_ends_with(\$allowedUploadHost, '.amazonaws.com')");
 });
+
+it('keeps application scripts out of Cloudflare Rocket Loader', function () {
+    $scriptFiles = [
+        'includes/menu.php',
+        'public/admin.php',
+        'public/core/get.php',
+        'public/core/set.php',
+        'public/file.php',
+        'public/index.php',
+        'public/receive.php',
+    ];
+
+    foreach ($scriptFiles as $scriptFile) {
+        $contents = file_get_contents(dirname(__DIR__, 2) . '/' . $scriptFile);
+        preg_match_all('/<script\\b[^>]*>/i', $contents, $scriptTags);
+
+        expect($scriptTags[0])->not()->toBeEmpty();
+        foreach ($scriptTags[0] as $scriptTag) {
+            expect($scriptTag)->toContain('data-cfasync="false"');
+            if (str_contains($scriptTag, ' src=')) {
+                expect(strpos($scriptTag, 'data-cfasync="false"'))->toBeLessThan(strpos($scriptTag, ' src='));
+            }
+        }
+    }
+});
