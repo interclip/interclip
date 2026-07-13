@@ -5,7 +5,7 @@ require_once ROOT_DIR . '/includes/lib/database.php';
 
 $release = trim((string) ($_ENV['APP_RELEASE'] ?? ''));
 $count = null;
-$cachedCount = getRedis('active-clip-count-v1');
+$cachedCount = getRedis('total-clip-count-v1');
 if (is_string($cachedCount) && preg_match('/\A\d+\z/D', $cachedCount) === 1) {
     $count = (int) $cachedCount;
 } else {
@@ -13,11 +13,11 @@ if (is_string($cachedCount) && preg_match('/\A\d+\z/D', $cachedCount) === 1) {
     try {
         $aboutConnection = openDatabaseConnection(2);
         $result = $aboutConnection->query(
-            'SELECT COUNT(*) AS clip_count FROM userurl WHERE expires_at > UTC_TIMESTAMP(6)'
+            'SELECT COALESCE(MAX(id), 0) AS clip_count FROM userurl'
         );
         $row = $result->fetch_assoc();
         $count = isset($row['clip_count']) ? (int) $row['clip_count'] : 0;
-        storeRedis('active-clip-count-v1', (string) $count, 300);
+        storeRedis('total-clip-count-v1', (string) $count, 300);
     } catch (Throwable $error) {
         error_log('About page clip count failed: ' . $error->getMessage());
     } finally {
@@ -99,7 +99,7 @@ if (is_string($cachedContributors)) {
                     </a>
                 </li>
                 <li>
-                    Active clips:
+                    Total clips made:
                     <?php echo $count === null ? 'unavailable' : escapeHtml((string) $count); ?>
                 </li>
             </ul>
