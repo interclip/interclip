@@ -110,6 +110,19 @@ it('keeps public controllers and dependency metadata outside direct HTTP access'
         ->and($accessRules)->not()->toContain('Header set Access-Control-Allow-Origin');
 });
 
+it('does not expose repository checkout controls through the web app', function () {
+    $router = file_get_contents(dirname(__DIR__, 2) . '/router.php');
+    $adminBar = file_get_contents(dirname(__DIR__, 2) . '/includes/components/html/adminbar.php');
+    $menu = file_get_contents(dirname(__DIR__, 2) . '/js/menu.ts');
+    $functions = file_get_contents(dirname(__DIR__, 2) . '/includes/lib/functions.php');
+
+    expect($router)->not()->toContain('/staging/change-branch')
+        ->and($adminBar)->not()->toContain('branch-select')
+        ->and($menu)->not()->toContain('change-branch')
+        ->and($functions)->not()->toContain('getBranches')
+        ->and(file_exists(dirname(__DIR__, 2) . '/public/change-branch.php'))->toBeFalse();
+});
+
 it('leaves generic URI validation to the RFC-aware server boundary', function () {
     $indexScript = file_get_contents(dirname(__DIR__, 2) . '/js/index.ts');
     $utilities = file_get_contents(dirname(__DIR__, 2) . '/js/lib/utils.ts');
@@ -142,10 +155,12 @@ it('keeps active clip totals and browser history aligned with the 48-hour lifeti
     $aboutPage = file_get_contents(dirname(__DIR__, 2) . '/public/about.php');
     $indexScript = file_get_contents(dirname(__DIR__, 2) . '/js/index.ts');
     $resultScript = file_get_contents(dirname(__DIR__, 2) . '/js/new.ts');
+    $recentClips = file_get_contents(dirname(__DIR__, 2) . '/js/lib/recentClips.ts');
 
     expect($aboutPage)->toContain('COUNT(*) AS clip_count FROM userurl WHERE expires_at > UTC_TIMESTAMP(6)')
-        ->and($indexScript)->toContain('2 * 24 * 60 * 60 * 1000')
-        ->and($resultScript)->toContain('2 * 24 * 60 * 60 * 1000');
+        ->and($indexScript)->toContain('from "./lib/recentClips"')
+        ->and($resultScript)->toContain('from "./lib/recentClips"')
+        ->and($recentClips)->toContain('2 * 24 * 60 * 60 * 1000');
 });
 
 it('does not load infrastructure root credentials into the application environment', function () {

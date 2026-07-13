@@ -16,5 +16,8 @@
     "qrcode": "^1.5.4",
     "sass": "^1.101.0",
     "sweetalert2": "^11.26.25"
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
   }
 }
