@@ -27,3 +27,12 @@ it('does not treat arbitrary cache keys as clip codes', function () {
         $GLOBALS['redisAvailable'] = $previousAvailability;
     }
 });
+
+it('derives bounded distinct database locks from normalized URIs', function () {
+    $firstLock = clipUriLockName('https://example.com/path');
+    $secondLock = clipUriLockName('https://example.com/Path');
+
+    expect($firstLock)->toStartWith('interclip:clip:')
+        ->and(strlen($firstLock))->toBeLessThanOrEqual(64)
+        ->and($secondLock)->not()->toBe($firstLock);
+});

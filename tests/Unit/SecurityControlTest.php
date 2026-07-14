@@ -41,11 +41,16 @@ it('performs direct clip lookup only in the front controller', function () {
         ->and($errorPage)->not()->toContain('includes/components/get.php');
 });
 
-it('does not reuse bearer codes based on URL equality', function () {
+it('reuses an active clip code for the same normalized URI', function () {
     $clipCreation = file_get_contents(dirname(__DIR__, 2) . '/includes/components/new.php');
 
-    expect($clipCreation)->not()->toContain('WHERE url = ?')
-        ->and($clipCreation)->not()->toContain('findActiveClipForUrl');
+    expect($clipCreation)->toContain('findActiveClipForUrl')
+        ->and($clipCreation)->toContain('WHERE BINARY url = BINARY ? AND expires_at > UTC_TIMESTAMP(6)')
+        ->and($clipCreation)->toContain('SELECT GET_LOCK(?, ?) AS acquired')
+        ->and(strpos($clipCreation, 'acquireClipUriLock($connection, $normalizedUrl)'))
+        ->toBeLessThan(strpos($clipCreation, '$existingClip = findActiveClipForUrl'))
+        ->and(strpos($clipCreation, '$existingClip = findActiveClipForUrl'))
+        ->toBeLessThan(strpos($clipCreation, 'INSERT INTO userurl'));
 });
 
 it('shares strict database connection setup across application paths', function () {
