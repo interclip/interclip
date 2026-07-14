@@ -72,10 +72,10 @@
         <div class="output"></div>
         </div>
     </main>
-    <script nonce="<?php echo htmlspecialchars(cspNonce(), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
+    <script data-cfasync="false" nonce="<?php echo htmlspecialchars(cspNonce(), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
         const isMobile = <?php echo json_encode((bool) isMobile()) ?>;
     </script>
-    <script src="<?php echo ROOT ?>/out/index.js" defer> </script>
+    <script data-cfasync="false" src="<?php echo ROOT ?>/out/index.js" defer> </script>
 </body>
 
 </html>

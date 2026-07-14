@@ -86,7 +86,7 @@
                 </dialog>
             </div>
 
-            <script src="<?php echo ROOT ?>/out/file.js"></script>
+            <script data-cfasync="false" src="<?php echo ROOT ?>/out/file.js"></script>
         <?php else : ?>
             <span id="content"> </span>
             <div class="title">

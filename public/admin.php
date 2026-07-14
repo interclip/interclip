@@ -136,6 +136,6 @@ if ($isStaff) {
 <?php endif; ?>
 </main>
 </body>
-<script src="<?php echo ROOT; ?>/out/admin.js"></script>
+<script data-cfasync="false" src="<?php echo ROOT; ?>/out/admin.js"></script>
 
 </html>

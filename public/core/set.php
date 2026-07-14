@@ -62,10 +62,10 @@ if ($url === null) {
               </span>
             </div>
             <canvas id="qrcode"></canvas>
-            <script nonce="<?php echo escapeHtml(cspNonce()) ?>">
+            <script data-cfasync="false" nonce="<?php echo escapeHtml(cspNonce()) ?>">
               const code = <?php echo json_encode($usr, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>;
             </script>
-            <script src="<?php echo ROOT ?>/out/new.js"></script>
+            <script data-cfasync="false" src="<?php echo ROOT ?>/out/new.js"></script>
           <?php else : ?>
             <p><span id="url" class="url"><?php echo escapeHtml($url) ?></span><br></p>
             <h1 class="mono"><?php echo escapeHtml($err) ?></h1>

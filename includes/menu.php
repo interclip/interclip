@@ -68,7 +68,7 @@
 
 </header>
 
-<script nonce="<?php echo htmlspecialchars(cspNonce(), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
+<script data-cfasync="false" nonce="<?php echo htmlspecialchars(cspNonce(), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
   const loggedIn = <?php echo json_encode($user !== false) ?>;
   const isAdmin = <?php echo json_encode($isStaff) ?>;
   const version = <?php echo json_encode($releaseName ?? '') ?>;
@@ -78,4 +78,4 @@
   const csrfToken = <?php echo json_encode($menuCsrfToken) ?>;
 </script>
 
-<script src="<?php echo ROOT ?>/out/menu.js"></script>
+<script data-cfasync="false" src="<?php echo ROOT ?>/out/menu.js"></script>
