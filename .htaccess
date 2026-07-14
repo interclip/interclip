@@ -18,6 +18,7 @@
 
     RewriteCond %{HTTP_HOST} ^interclip\.app(?::[0-9]+)?$ [NC]
     RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !^https$ [NC]
     RewriteRule ^ https://interclip.app%{REQUEST_URI} [R=308,L]
 
     # Only the front controller and built/static assets are web-accessible.
