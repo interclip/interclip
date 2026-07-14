@@ -82,6 +82,17 @@ it('accepts longer legacy destinations only at the storage boundary', function (
         ->and(normalizeStoredClipUrl($tooLarge))->toBeNull();
 });
 
+it('returns malformed legacy destinations as inert stored text', function () {
+    $relativeValue = '/legacy/relative-value';
+    $malformedValue = 'http://[legacy-value';
+
+    expect(resolveStoredClipDestination($relativeValue))->toBe($relativeValue)
+        ->and(resolveStoredClipDestination($malformedValue))->toBe($malformedValue)
+        ->and(isSafeNavigationUri($relativeValue))->toBeFalse()
+        ->and(isSafeNavigationUri($malformedValue))->toBeFalse()
+        ->and(resolveStoredClipDestination(''))->toBeNull();
+});
+
 it('accepts five-character alphanumeric clip codes only', function () {
     expect(isValidClipCode('aB123'))->toBeTrue()
         ->and(normalizeClipCode('aB123'))->toBe('ab123')

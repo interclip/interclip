@@ -50,7 +50,7 @@ function lookupClipUrl(string $code): ?string
             return null;
         }
 
-        $normalizedUrl = normalizeStoredClipUrl($row['url']);
+        $normalizedUrl = resolveStoredClipDestination($row['url']);
         $expiresAt = is_string($row['expires_at'])
             ? clipExpiryMicroseconds($row['expires_at'])
             : null;

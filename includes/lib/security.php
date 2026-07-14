@@ -47,6 +47,18 @@ function normalizeStoredClipUrl(string $url): ?string
 }
 
 /**
+ * Return a bounded stored destination, keeping malformed legacy values inert.
+ */
+function resolveStoredClipDestination(string $value): ?string
+{
+    if ($value === '' || strlen($value) > CLIP_STORED_URL_MAX_LENGTH) {
+        return null;
+    }
+
+    return normalizeStoredClipUrl($value) ?? $value;
+}
+
+/**
  * Executable URI schemes are valid clipboard contents but must not become
  * active links or redirects from the Interclip origin.
  */
