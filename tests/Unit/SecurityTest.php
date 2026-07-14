@@ -73,6 +73,15 @@ it('enforces the clip URL length boundary without truncating', function () {
         ->and(normalizeClipUrl($expandsPastStorageLimit))->toBeNull();
 });
 
+it('accepts longer legacy destinations only at the storage boundary', function () {
+    $legacyUrl = 'custom:' . str_repeat('a', CLIP_URL_MAX_LENGTH);
+    $tooLarge = 'custom:' . str_repeat('a', CLIP_STORED_URL_MAX_LENGTH);
+
+    expect(normalizeClipUrl($legacyUrl))->toBeNull()
+        ->and(normalizeStoredClipUrl($legacyUrl))->toBe($legacyUrl)
+        ->and(normalizeStoredClipUrl($tooLarge))->toBeNull();
+});
+
 it('accepts five-character alphanumeric clip codes only', function () {
     expect(isValidClipCode('aB123'))->toBeTrue()
         ->and(normalizeClipCode('aB123'))->toBe('ab123')

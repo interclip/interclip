@@ -43,9 +43,17 @@ it('performs direct clip lookup only in the front controller', function () {
 
 it('reuses an active clip code for the same normalized URI', function () {
     $clipCreation = file_get_contents(dirname(__DIR__, 2) . '/includes/components/new.php');
+    $clipLookup = file_get_contents(dirname(__DIR__, 2) . '/includes/components/get.php');
 
     expect($clipCreation)->toContain('findActiveClipForUrl')
-        ->and($clipCreation)->toContain('WHERE BINARY url = BINARY ? AND expires_at > UTC_TIMESTAMP(6)')
+        ->and($clipCreation)->toContain(
+            'AND (expires_at IS NULL OR expires_at > UTC_TIMESTAMP(6))'
+        )
+        ->and($clipLookup)->toContain(
+            'AND (expires_at IS NULL OR expires_at > UTC_TIMESTAMP(6))'
+        )
+        ->and($clipCreation)->toContain('if ($expiresAt === null)')
+        ->and($clipLookup)->toContain('if ($expiresAt !== null)')
         ->and($clipCreation)->toContain('SELECT GET_LOCK(?, ?) AS acquired')
         ->and(strpos($clipCreation, 'acquireClipUriLock($connection, $normalizedUrl)'))
         ->toBeLessThan(strpos($clipCreation, '$existingClip = findActiveClipForUrl'))

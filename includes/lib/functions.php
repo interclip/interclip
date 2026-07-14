@@ -35,7 +35,7 @@ if (!function_exists('str_starts_with')) {
  */
 function reDir($url)
 {
-    if (!is_string($url) || normalizeClipUrl($url) === null) {
+    if (!is_string($url) || normalizeStoredClipUrl($url) === null) {
         http_response_code(400);
         exit('Invalid redirect destination.');
     }

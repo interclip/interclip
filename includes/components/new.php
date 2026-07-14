@@ -72,13 +72,14 @@ function releaseClipUriLock(mysqli $connection, string $lockName): void
  *
  * @param mysqli $connection Open application database connection.
  * @param string $normalizedUrl Canonical absolute URI.
- * @return array{0: string, 1: int}|null
+ * @return array{0: string, 1: int|null}|null
  */
 function findActiveClipForUrl(mysqli $connection, string $normalizedUrl): ?array
 {
     $statement = $connection->prepare(
         'SELECT usr, expires_at FROM userurl '
-        . 'WHERE BINARY url = BINARY ? AND expires_at > UTC_TIMESTAMP(6) '
+        . 'WHERE BINARY url = BINARY ? '
+        . 'AND (expires_at IS NULL OR expires_at > UTC_TIMESTAMP(6)) '
         . 'ORDER BY id ASC LIMIT 1'
     );
     try {
@@ -96,11 +97,19 @@ function findActiveClipForUrl(mysqli $connection, string $normalizedUrl): ?array
     $code = isset($row['usr']) && is_string($row['usr'])
         ? normalizeClipCode($row['usr'])
         : null;
-    $expiresAt = isset($row['expires_at']) && is_string($row['expires_at'])
+    if (!array_key_exists('expires_at', $row)) {
+        return null;
+    }
+
+    $expiresAt = is_string($row['expires_at'])
         ? clipExpiryMicroseconds($row['expires_at'])
         : null;
 
-    return $code !== null && $expiresAt !== null ? [$code, $expiresAt] : null;
+    if ($row['expires_at'] !== null && $expiresAt === null) {
+        return null;
+    }
+
+    return $code !== null ? [$code, $expiresAt] : null;
 }
 
 /**
@@ -108,11 +117,15 @@ function findActiveClipForUrl(mysqli $connection, string $normalizedUrl): ?array
  *
  * @param string $code Five-character clip code.
  * @param string $normalizedUrl Canonical absolute URI.
- * @param int $expiresAt Exact expiration instant in Unix microseconds.
+ * @param int|null $expiresAt Exact expiration instant in Unix microseconds.
  * @return void
  */
-function cacheClipDestination(string $code, string $normalizedUrl, int $expiresAt): void
+function cacheClipDestination(string $code, string $normalizedUrl, ?int $expiresAt): void
 {
+    if ($expiresAt === null) {
+        return;
+    }
+
     try {
         storeClipRedis($code, $normalizedUrl, $expiresAt);
     } catch (Throwable $exception) {
