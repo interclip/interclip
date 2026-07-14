@@ -10,8 +10,17 @@ Apply migrations during a maintenance window; application and Redis configuratio
    mysql --database="$DB_NAME" < scripts/migrations/2026-07-11-security-hardening.sql
    ```
 
-   The migration caps legacy destination lifetimes at 48 hours from the
-   migration, while preserving any earlier existing expiry.
+   The migration caps expiring legacy destination lifetimes at 48 hours from
+   the migration, while preserving any earlier existing expiry. A legacy
+   `NULL` expiry remains `NULL` and represents a permanent clip.
+
+   Databases that already ran the original hardening migration must then apply
+   `2026-07-14-preserve-permanent-clips.sql` before restoring any permanent
+   rows from the pre-migration backup:
+
+   ```sh
+   mysql --database="$DB_NAME" < scripts/migrations/2026-07-14-preserve-permanent-clips.sql
+   ```
 
 4. List staff rows and assign each legitimate account its verified Auth0 `sub` by primary key. Never infer staff identity from email alone.
 
@@ -25,7 +34,9 @@ Apply migrations during a maintenance window; application and Redis configuratio
 
    The final query must return no legitimate staff accounts before application activation. Remove the old mock row only after confirming it is not a real account.
 
-5. Verify MySQL's event scheduler is enabled so expired destinations are deleted:
+5. Verify MySQL's event scheduler is enabled so expired destinations are
+   deleted. The cleanup event excludes permanent clips whose `expires_at` is
+   `NULL`:
 
    ```sql
    SHOW VARIABLES LIKE 'event_scheduler';
