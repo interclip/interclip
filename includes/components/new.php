@@ -113,6 +113,63 @@ function findActiveClipForUrl(mysqli $connection, string $normalizedUrl): ?array
 }
 
 /**
+ * Renew the oldest matching expired clip that is still awaiting cleanup.
+ *
+ * @param mysqli $connection Open application database connection.
+ * @param string $normalizedUrl Canonical absolute URI.
+ * @param string $createdAt UTC DATETIME(6) creation instant.
+ * @param string $expiresAt UTC DATETIME(6) expiration instant.
+ * @return string|null Renewed five-character clip code.
+ */
+function renewExpiredClipForUrl(
+    mysqli $connection,
+    string $normalizedUrl,
+    string $createdAt,
+    string $expiresAt
+): ?string {
+    $selectStatement = $connection->prepare(
+        'SELECT usr FROM userurl '
+        . 'WHERE BINARY url = BINARY ? '
+        . 'AND expires_at IS NOT NULL AND expires_at <= UTC_TIMESTAMP(6) '
+        . 'ORDER BY id ASC LIMIT 1'
+    );
+    try {
+        $selectStatement->bind_param('s', $normalizedUrl);
+        $selectStatement->execute();
+        $row = $selectStatement->get_result()->fetch_assoc();
+    } finally {
+        $selectStatement->close();
+    }
+
+    $code = is_array($row) && isset($row['usr']) && is_string($row['usr'])
+        ? normalizeClipCode($row['usr'])
+        : null;
+    if ($code === null) {
+        return null;
+    }
+
+    $updateStatement = $connection->prepare(
+        'UPDATE userurl SET date = ?, expires_at = ? '
+        . 'WHERE usr = ? AND BINARY url = BINARY ? '
+        . 'AND expires_at IS NOT NULL AND expires_at <= UTC_TIMESTAMP(6)'
+    );
+    try {
+        $updateStatement->bind_param(
+            'ssss',
+            $createdAt,
+            $expiresAt,
+            $code,
+            $normalizedUrl
+        );
+        $updateStatement->execute();
+
+        return $updateStatement->affected_rows === 1 ? $code : null;
+    } finally {
+        $updateStatement->close();
+    }
+}
+
+/**
  * Populate the optional Redis clip cache without failing the database write.
  *
  * @param string $code Five-character clip code.
@@ -134,7 +191,7 @@ function cacheClipDestination(string $code, string $normalizedUrl, ?int $expires
 }
 
 /**
- * Reuse an active clip for the same normalized URI or create a fresh code.
+ * Reuse or renew a clip for the same normalized URI before creating a code.
  *
  * @return array{0: string|null, 1: string}
  */
@@ -171,6 +228,18 @@ function createClip($url): array
         $expiration = clipExpirationDateTime($createdAt);
         $expirationForDatabase = $expiration->format('Y-m-d H:i:s.u');
         $expiresAt = dateTimeUnixMicroseconds($expiration);
+
+        $renewedCode = renewExpiredClipForUrl(
+            $connection,
+            $normalizedUrl,
+            $createdForDatabase,
+            $expirationForDatabase
+        );
+        if ($renewedCode !== null) {
+            cacheClipDestination($renewedCode, $normalizedUrl, $expiresAt);
+
+            return [$renewedCode, ''];
+        }
 
         for ($attempt = 0; $attempt < CLIP_INSERT_RETRIES; $attempt++) {
             $code = generateClipCode();

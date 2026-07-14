@@ -61,6 +61,18 @@ it('reuses an active clip code for the same normalized URI', function () {
         ->toBeLessThan(strpos($clipCreation, 'INSERT INTO userurl'));
 });
 
+it('renews a matching expired clip before allocating a new code', function () {
+    $clipCreation = file_get_contents(dirname(__DIR__, 2) . '/includes/components/new.php');
+
+    expect($clipCreation)->toContain('renewExpiredClipForUrl')
+        ->and($clipCreation)->toContain(
+            'AND expires_at IS NOT NULL AND expires_at <= UTC_TIMESTAMP(6)'
+        )
+        ->and($clipCreation)->toContain('$updateStatement->affected_rows === 1')
+        ->and(strpos($clipCreation, '$renewedCode = renewExpiredClipForUrl'))
+        ->toBeLessThan(strpos($clipCreation, 'INSERT INTO userurl'));
+});
+
 it('shares strict database connection setup across application paths', function () {
     $database = file_get_contents(dirname(__DIR__, 2) . '/includes/lib/database.php');
 
