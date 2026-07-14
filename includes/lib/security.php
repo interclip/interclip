@@ -4,6 +4,7 @@ use League\Uri\Contracts\UriException;
 use League\Uri\Uri;
 
 const CLIP_URL_MAX_LENGTH = 2048;
+const CLIP_STORED_URL_MAX_LENGTH = 65_535;
 const CLIP_CODE_LENGTH = 5;
 const CLIP_CODE_ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyz';
 const CLIP_RESERVED_CODES = ['admin', 'about', 'login', 'tests'];
@@ -12,9 +13,9 @@ const CLIP_TTL_SECONDS = 2 * 24 * 60 * 60;
 /**
  * Let League URI validate and canonicalize an absolute URI.
  */
-function validatedClipUri(string $uri): ?Uri
+function validatedClipUri(string $uri, int $maximumLength = CLIP_URL_MAX_LENGTH): ?Uri
 {
-    if ($uri === '' || strlen($uri) > CLIP_URL_MAX_LENGTH) {
+    if ($uri === '' || strlen($uri) > $maximumLength) {
         return null;
     }
 
@@ -24,7 +25,7 @@ function validatedClipUri(string $uri): ?Uri
         return null;
     }
 
-    return $validated->isAbsolute() && strlen($validated->toString()) <= CLIP_URL_MAX_LENGTH
+    return $validated->isAbsolute() && strlen($validated->toString()) <= $maximumLength
         ? $validated
         : null;
 }
@@ -35,6 +36,26 @@ function validatedClipUri(string $uri): ?Uri
 function normalizeClipUrl(string $url): ?string
 {
     return validatedClipUri($url)?->toString();
+}
+
+/**
+ * Validate stored legacy destinations without expanding the public input limit.
+ */
+function normalizeStoredClipUrl(string $url): ?string
+{
+    return validatedClipUri($url, CLIP_STORED_URL_MAX_LENGTH)?->toString();
+}
+
+/**
+ * Return a bounded stored destination, keeping malformed legacy values inert.
+ */
+function resolveStoredClipDestination(string $value): ?string
+{
+    if ($value === '' || strlen($value) > CLIP_STORED_URL_MAX_LENGTH) {
+        return null;
+    }
+
+    return normalizeStoredClipUrl($value) ?? $value;
 }
 
 /**

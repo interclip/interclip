@@ -22,14 +22,6 @@ BEGIN
       SET MESSAGE_TEXT = 'Duplicate clip codes must be resolved before migration';
   END IF;
 
-  IF EXISTS (
-    SELECT 1
-    FROM `userurl`
-    WHERE `expires` IS NULL OR OCTET_LENGTH(`url`) > 2048
-  ) THEN
-    SIGNAL SQLSTATE '45000'
-      SET MESSAGE_TEXT = 'Missing expirations or oversized URLs must be resolved before migration';
-  END IF;
 END//
 DELIMITER ;
 
@@ -42,15 +34,18 @@ ALTER TABLE `userurl`
   ADD COLUMN `expires_at` datetime(6) NULL AFTER `expires`;
 
 UPDATE `userurl`
-SET `expires_at` = LEAST(
-  CAST(CONCAT(`expires`, ' 23:59:59.999999') AS DATETIME(6)),
-  UTC_TIMESTAMP(6) + INTERVAL 48 HOUR
-);
+SET `expires_at` = CASE
+  WHEN `expires` IS NULL THEN NULL
+  ELSE LEAST(
+    CAST(CONCAT(`expires`, ' 23:59:59.999999') AS DATETIME(6)),
+    UTC_TIMESTAMP(6) + INTERVAL 48 HOUR
+  )
+END;
 
 ALTER TABLE `userurl`
   MODIFY `usr` char(5) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
-  MODIFY `url` varchar(2048) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  MODIFY `expires_at` datetime(6) NOT NULL,
+  MODIFY `url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  MODIFY `expires_at` datetime(6) NULL,
   DROP COLUMN `expires`,
   ADD UNIQUE KEY `userurl_usr_unique` (`usr`),
   ADD KEY `userurl_expires_at` (`expires_at`),
@@ -68,4 +63,5 @@ DROP EVENT IF EXISTS `clean_expired`;
 CREATE EVENT `clean_expired`
   ON SCHEDULE EVERY 1 HOUR
   ON COMPLETION PRESERVE ENABLE
-  DO DELETE FROM `userurl` WHERE `expires_at` <= UTC_TIMESTAMP(6);
+  DO DELETE FROM `userurl`
+    WHERE `expires_at` IS NOT NULL AND `expires_at` <= UTC_TIMESTAMP(6);
