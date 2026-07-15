@@ -149,11 +149,6 @@ if ($routePath === '/api/admin/file-stats') {
     exit;
 }
 
-if ($routePath === '/staging/change-branch') {
-    require ROOT_DIR . '/public/change-branch.php';
-    exit;
-}
-
 $clipCode = trim($routePath, '/');
 if (isValidClipCode($clipCode)) {
     if ($effectiveMethod !== 'GET') {

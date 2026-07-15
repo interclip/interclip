@@ -5,7 +5,10 @@ it('enforces unique case-insensitive clip codes in the schema', function () {
 
     expect($schema)->toContain('`usr` char(5) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL')
         ->and($schema)->toContain('UNIQUE KEY `userurl_usr_unique` (`usr`)')
-        ->and($schema)->toContain('`expires_at` datetime(6) NOT NULL')
+        ->and($schema)->toContain(
+            '`url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL'
+        )
+        ->and($schema)->toContain('`expires_at` datetime(6) DEFAULT NULL')
         ->and($schema)->toContain('CHECK (`usr` REGEXP \'^[A-Za-z0-9]{5}$\'')
         ->and($schema)->toContain("LOWER(`usr`) NOT IN ('admin', 'about', 'login', 'tests')");
 });
@@ -15,7 +18,9 @@ it('returns expired short codes to the reusable pool', function () {
 
     expect($schema)->not()->toContain('CREATE TABLE `issued_clip_codes`')
         ->and($schema)->not()->toContain('FOREIGN KEY (`usr`) REFERENCES `issued_clip_codes` (`usr`)')
-        ->and($schema)->toContain('DELETE FROM userurl WHERE expires_at <= UTC_TIMESTAMP(6)');
+        ->and($schema)->toContain(
+            'DELETE FROM userurl WHERE expires_at IS NOT NULL AND expires_at <= UTC_TIMESTAMP(6)'
+        );
 });
 
 it('does not maintain a separate lifetime issuance metric', function () {
@@ -54,8 +59,24 @@ it('ships a preflighted migration for existing databases', function () {
         ->and($migration)->toContain('Invalid clip codes must be resolved before migration')
         ->and($migration)->not()->toContain('CREATE TABLE `issued_clip_codes`')
         ->and($migration)->toContain('UTC_TIMESTAMP(6) + INTERVAL 48 HOUR')
+        ->and($migration)->toContain('WHEN `expires` IS NULL THEN NULL')
+        ->and($migration)->toContain('MODIFY `expires_at` datetime(6) NULL')
         ->and($migration)->toContain('DROP COLUMN `expires`')
         ->and($migration)->toContain('ALTER TABLE `accounts`')
         ->and($migration)->toContain('ADD COLUMN `subject`')
         ->and($migration)->not()->toContain('DELETE FROM `accounts`');
+});
+
+it('ships a migration that preserves permanent clips', function () {
+    $migration = file_get_contents(
+        dirname(__DIR__, 2) . '/scripts/migrations/2026-07-14-preserve-permanent-clips.sql'
+    );
+
+    expect($migration)->toContain('MODIFY `expires_at` datetime(6) NULL')
+        ->and($migration)->toContain(
+            'MODIFY `url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL'
+        )
+        ->and($migration)->toContain(
+            'WHERE `expires_at` IS NOT NULL AND `expires_at` <= UTC_TIMESTAMP(6)'
+        );
 });

@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </form>
-                <script type="text/javascript" src="<?php echo ROOT ?>/out/receive.js"></script>
+                <script data-cfasync="false" type="text/javascript" src="<?php echo ROOT ?>/out/receive.js"></script>
             </div>
         </div>
     </main>

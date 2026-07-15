@@ -6,9 +6,9 @@ DROP TABLE IF EXISTS `clip_metrics`;
 CREATE TABLE `userurl` (
   `id` int NOT NULL AUTO_INCREMENT,
   `usr` char(5) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
-  `url` varchar(2048) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `date` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `expires_at` datetime(6) NOT NULL,
+  `expires_at` datetime(6) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `userurl_usr_unique` (`usr`),
   KEY `userurl_expires_at` (`expires_at`),
@@ -29,4 +29,4 @@ CREATE TABLE `accounts` (
 ### Setting up MySQL cron jobs
 /* Delete expired clips (runs every hour) */
 DROP EVENT IF EXISTS `clean_expired`;
-CREATE EVENT `clean_expired` ON SCHEDULE EVERY 1 HOUR ON COMPLETION PRESERVE ENABLE DO DELETE FROM userurl WHERE expires_at <= UTC_TIMESTAMP(6);
+CREATE EVENT `clean_expired` ON SCHEDULE EVERY 1 HOUR ON COMPLETION PRESERVE ENABLE DO DELETE FROM userurl WHERE expires_at IS NOT NULL AND expires_at <= UTC_TIMESTAMP(6);

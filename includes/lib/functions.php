@@ -28,32 +28,6 @@ if (!function_exists('str_starts_with')) {
 }
 
 /**
- * Gets all the local git branches and returns an arrray of them.
- *
- * @return array
- */
-function getBranches()
-{
-    exec("git branch", $gitOutput);
-
-    $branches = [
-        "all" => [],
-        "current" => ''
-    ];
-
-    foreach ($gitOutput as $branchString) {
-        if (str_starts_with($branchString, "*")) {
-            $current = substr($branchString, 2);
-            $branches["current"] = $current;
-        } else {
-            $currentBranchClean = str_replace("remotes/", "", $branchString);
-            array_push($branches["all"], $currentBranchClean);
-        }
-    }
-    return $branches;
-}
-
-/**
  * Redirects the user to a specified URL
  *
  * @param mixed $url
@@ -61,19 +35,20 @@ function getBranches()
  */
 function reDir($url)
 {
-    if (!is_string($url) || normalizeClipUrl($url) === null) {
+    $destination = is_string($url) ? resolveStoredClipDestination($url) : null;
+    if ($destination === null) {
         http_response_code(400);
         exit('Invalid redirect destination.');
     }
 
     header('X-Robots-Tag: noindex, nofollow, noarchive');
-    if (!isSafeNavigationUri($url)) {
+    if (!isSafeNavigationUri($destination)) {
         header('Content-Type: text/plain; charset=UTF-8');
-        echo $url;
+        echo $destination;
         exit;
     }
 
-    header('Location: ' . $url, true, 302);
+    header('Location: ' . $destination, true, 302);
     exit;
 }
 

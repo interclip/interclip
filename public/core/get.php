@@ -69,7 +69,7 @@ if ($user_code === '') {
       </div>
     </div>
   </div>
-  <script src="<?php echo ROOT ?>/out/get.js"></script>
+  <script data-cfasync="false" src="<?php echo ROOT ?>/out/get.js"></script>
 </body>
 
 </html>

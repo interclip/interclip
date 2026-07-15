@@ -147,16 +147,16 @@ if ($environment !== 'development') {
     }
 
     if (filter_var($_ENV['FILE_UPLOAD_ENABLED'] ?? false, FILTER_VALIDATE_BOOLEAN)) {
-        $filesApiToken = (string) ($_ENV['FILES_API_TOKEN'] ?? '');
+        $filesApiToken = trim((string) ($_ENV['FILES_API_TOKEN'] ?? ''));
         $filesUploadHost = strtolower((string) ($_ENV['FILES_UPLOAD_HOST'] ?? ''));
-        if (strlen($filesApiToken) < 32 || str_starts_with($filesApiToken, 'replace-with-')) {
+        if (
+            $filesApiToken !== ''
+            && (strlen($filesApiToken) < 32 || str_starts_with($filesApiToken, 'replace-with-'))
+        ) {
             throw new RuntimeException('FILES_API_TOKEN must be a strong server-only credential.');
         }
-        if (
-            filter_var($filesUploadHost, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME) === false
-            || !str_ends_with($filesUploadHost, '.amazonaws.com')
-        ) {
-            throw new RuntimeException('FILES_UPLOAD_HOST must pin the expected Amazon S3 upload host.');
+        if (filter_var($filesUploadHost, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME) === false) {
+            throw new RuntimeException('FILES_UPLOAD_HOST must pin the expected S3-compatible upload host.');
         }
     }
 }

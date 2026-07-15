@@ -41,11 +41,36 @@ it('performs direct clip lookup only in the front controller', function () {
         ->and($errorPage)->not()->toContain('includes/components/get.php');
 });
 
-it('does not reuse bearer codes based on URL equality', function () {
+it('reuses an active clip code for the same normalized URI', function () {
+    $clipCreation = file_get_contents(dirname(__DIR__, 2) . '/includes/components/new.php');
+    $clipLookup = file_get_contents(dirname(__DIR__, 2) . '/includes/components/get.php');
+
+    expect($clipCreation)->toContain('findActiveClipForUrl')
+        ->and($clipCreation)->toContain(
+            'AND (expires_at IS NULL OR expires_at > UTC_TIMESTAMP(6))'
+        )
+        ->and($clipLookup)->toContain(
+            'AND (expires_at IS NULL OR expires_at > UTC_TIMESTAMP(6))'
+        )
+        ->and($clipCreation)->toContain('if ($expiresAt === null)')
+        ->and($clipLookup)->toContain('if ($expiresAt !== null)')
+        ->and($clipCreation)->toContain('SELECT GET_LOCK(?, ?) AS acquired')
+        ->and(strpos($clipCreation, 'acquireClipUriLock($connection, $normalizedUrl)'))
+        ->toBeLessThan(strpos($clipCreation, '$existingClip = findActiveClipForUrl'))
+        ->and(strpos($clipCreation, '$existingClip = findActiveClipForUrl'))
+        ->toBeLessThan(strpos($clipCreation, 'INSERT INTO userurl'));
+});
+
+it('renews a matching expired clip before allocating a new code', function () {
     $clipCreation = file_get_contents(dirname(__DIR__, 2) . '/includes/components/new.php');
 
-    expect($clipCreation)->not()->toContain('WHERE url = ?')
-        ->and($clipCreation)->not()->toContain('findActiveClipForUrl');
+    expect($clipCreation)->toContain('renewExpiredClipForUrl')
+        ->and($clipCreation)->toContain(
+            'AND expires_at IS NOT NULL AND expires_at <= UTC_TIMESTAMP(6)'
+        )
+        ->and($clipCreation)->toContain('$updateStatement->affected_rows === 1')
+        ->and(strpos($clipCreation, '$renewedCode = renewExpiredClipForUrl'))
+        ->toBeLessThan(strpos($clipCreation, 'INSERT INTO userurl'));
 });
 
 it('shares strict database connection setup across application paths', function () {
@@ -107,7 +132,21 @@ it('keeps public controllers and dependency metadata outside direct HTTP access'
         ->and($accessRules)->toContain('css/.*|img/.*|out/.*')
         ->and($accessRules)->toContain('composer\\.(?:json|lock)')
         ->and($accessRules)->toContain('RewriteRule ^ router.php [END,QSA]')
+        ->and($accessRules)->toContain('RewriteCond %{HTTP:X-Forwarded-Proto} !^https$ [NC]')
         ->and($accessRules)->not()->toContain('Header set Access-Control-Allow-Origin');
+});
+
+it('does not expose repository checkout controls through the web app', function () {
+    $router = file_get_contents(dirname(__DIR__, 2) . '/router.php');
+    $adminBar = file_get_contents(dirname(__DIR__, 2) . '/includes/components/html/adminbar.php');
+    $menu = file_get_contents(dirname(__DIR__, 2) . '/js/menu.ts');
+    $functions = file_get_contents(dirname(__DIR__, 2) . '/includes/lib/functions.php');
+
+    expect($router)->not()->toContain('/staging/change-branch')
+        ->and($adminBar)->not()->toContain('branch-select')
+        ->and($menu)->not()->toContain('change-branch')
+        ->and($functions)->not()->toContain('getBranches')
+        ->and(file_exists(dirname(__DIR__, 2) . '/public/change-branch.php'))->toBeFalse();
 });
 
 it('leaves generic URI validation to the RFC-aware server boundary', function () {
@@ -138,14 +177,18 @@ it('keeps shared navigation metadata from overwriting page variables', function 
         ->and($menu)->toContain('$releaseName');
 });
 
-it('keeps active clip totals and browser history aligned with the 48-hour lifetime', function () {
+it('keeps the historical clip total and browser history lifetime semantics', function () {
     $aboutPage = file_get_contents(dirname(__DIR__, 2) . '/public/about.php');
     $indexScript = file_get_contents(dirname(__DIR__, 2) . '/js/index.ts');
     $resultScript = file_get_contents(dirname(__DIR__, 2) . '/js/new.ts');
+    $recentClips = file_get_contents(dirname(__DIR__, 2) . '/js/lib/recentClips.ts');
 
-    expect($aboutPage)->toContain('COUNT(*) AS clip_count FROM userurl WHERE expires_at > UTC_TIMESTAMP(6)')
-        ->and($indexScript)->toContain('2 * 24 * 60 * 60 * 1000')
-        ->and($resultScript)->toContain('2 * 24 * 60 * 60 * 1000');
+    expect($aboutPage)->toContain('SELECT COALESCE(MAX(id), 0) AS clip_count FROM userurl')
+        ->and($aboutPage)->toContain("getRedis('total-clip-count-v1')")
+        ->and($aboutPage)->toContain('Total clips made:')
+        ->and($indexScript)->toContain('from "./lib/recentClips"')
+        ->and($resultScript)->toContain('from "./lib/recentClips"')
+        ->and($recentClips)->toContain('2 * 24 * 60 * 60 * 1000');
 });
 
 it('does not load infrastructure root credentials into the application environment', function () {
@@ -154,4 +197,44 @@ it('does not load infrastructure root credentials into the application environme
 
     expect($sampleEnvironment)->not()->toContain('MYSQL_ROOT_PASSWORD')
         ->and($initialization)->toContain('->allowList($appEnvironmentKeys)');
+});
+
+it('supports anonymous presigning while pinning the upload destination', function () {
+    $fileApi = file_get_contents(dirname(__DIR__, 2) . '/public/api/file.php');
+    $initialization = file_get_contents(dirname(__DIR__, 2) . '/includes/lib/init.php');
+    $headers = file_get_contents(dirname(__DIR__, 2) . '/includes/lib/headers.php');
+    $menu = file_get_contents(dirname(__DIR__, 2) . '/includes/menu.php');
+
+    expect($fileApi)->toContain("if (\$filesApiToken !== '')")
+        ->and($fileApi)->toContain("\$upstreamHeaders[] = 'Authorization: Bearer ' . \$filesApiToken")
+        ->and($fileApi)->toContain('hash_equals($allowedUploadHost, $uploadHost)')
+        ->and($initialization)->toContain("\$filesApiToken !== ''")
+        ->and($headers)->toContain("\$connectSources[] = 'https://' . \$filesUploadHost")
+        ->and($menu)->not()->toContain('FILES_API_TOKEN')
+        ->and($fileApi)->not()->toContain("str_ends_with(\$allowedUploadHost, '.amazonaws.com')");
+});
+
+it('keeps application scripts out of Cloudflare Rocket Loader', function () {
+    $scriptFiles = [
+        'includes/menu.php',
+        'public/admin.php',
+        'public/core/get.php',
+        'public/core/set.php',
+        'public/file.php',
+        'public/index.php',
+        'public/receive.php',
+    ];
+
+    foreach ($scriptFiles as $scriptFile) {
+        $contents = file_get_contents(dirname(__DIR__, 2) . '/' . $scriptFile);
+        preg_match_all('/<script\\b[^>]*>/i', $contents, $scriptTags);
+
+        expect($scriptTags[0])->not()->toBeEmpty();
+        foreach ($scriptTags[0] as $scriptTag) {
+            expect($scriptTag)->toContain('data-cfasync="false"');
+            if (str_contains($scriptTag, ' src=')) {
+                expect(strpos($scriptTag, 'data-cfasync="false"'))->toBeLessThan(strpos($scriptTag, ' src='));
+            }
+        }
+    }
 });

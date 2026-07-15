@@ -30,7 +30,8 @@ function lookupClipUrl(string $code): ?string
         $clipConnection = openDatabaseConnection();
         $statement = $clipConnection->prepare(
             'SELECT url, expires_at FROM userurl'
-            . ' WHERE usr = ? AND expires_at > UTC_TIMESTAMP(6)'
+            . ' WHERE usr = ?'
+            . ' AND (expires_at IS NULL OR expires_at > UTC_TIMESTAMP(6))'
             . ' ORDER BY id ASC LIMIT 1'
         );
         $statement->bind_param('s', $lookupCode);
@@ -41,20 +42,28 @@ function lookupClipUrl(string $code): ?string
 
         if (
             !is_array($row)
-            || !isset($row['url'], $row['expires_at'])
+            || !isset($row['url'])
+            || !array_key_exists('expires_at', $row)
             || !is_string($row['url'])
-            || !is_string($row['expires_at'])
+            || (!is_string($row['expires_at']) && $row['expires_at'] !== null)
         ) {
             return null;
         }
 
-        $normalizedUrl = normalizeClipUrl($row['url']);
-        $expiresAt = clipExpiryMicroseconds($row['expires_at']);
-        if ($normalizedUrl === null || $expiresAt === null) {
+        $normalizedUrl = resolveStoredClipDestination($row['url']);
+        $expiresAt = is_string($row['expires_at'])
+            ? clipExpiryMicroseconds($row['expires_at'])
+            : null;
+        if (
+            $normalizedUrl === null
+            || (is_string($row['expires_at']) && $expiresAt === null)
+        ) {
             return null;
         }
 
-        storeClipRedis($lookupCode, $normalizedUrl, $expiresAt);
+        if ($expiresAt !== null) {
+            storeClipRedis($lookupCode, $normalizedUrl, $expiresAt);
+        }
 
         return $normalizedUrl;
     } catch (Throwable $exception) {
