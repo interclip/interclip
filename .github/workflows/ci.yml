@@ -3,7 +3,9 @@ on:
   push:
   pull_request:
     branches: [main]
-    types: [opened]
+
+permissions:
+  contents: read
 
 jobs:
   ci:
@@ -12,30 +14,34 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest, macos-latest]
-        php-versions: ["8.1"]
+        php-versions: ["8.2", "8.4"]
 
     name: 📦 php ${{ matrix.php-versions }} 🖥️ ${{ matrix.operating-system }}
 
     steps:
       - name: 🛒 Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
       - name: 🐘 Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@b604ade2a87db23f8871b7182e69ec5e75effb45 # v2
         with:
           php-version: ${{ matrix.php-versions }}
+          extensions: curl, mysqli, redis
           tools: composer:v2
 
       - name: 🏯 Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 16
+          node-version: 22
 
       - name: ✅ Validate Composer files
         run: composer validate
 
+      - name: 🔐 Audit PHP dependencies
+        run: composer audit --locked
+
       - name: 📂 Cache Composer packages
-        uses: actions/cache@v3
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
@@ -45,10 +51,46 @@ jobs:
       - name: 🎹 Install Dependencies
         run: |
           composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
-          yarn
+          yarn --frozen-lockfile
+
+      - name: 🔐 Audit JavaScript dependencies
+        run: yarn audit
 
       - name: 🏗️ Build
         run: yarn build
 
       - name: 🧪 Run tests
         run: ./vendor/bin/pest
+
+      - name: 🚦 Smoke-test router bootstrap
+        run: php -l router.php
+
+  devcontainer:
+    name: 🧰 Dev container
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: 🛒 Checkout repo
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: 🏗️ Build and start the container stack
+        run: docker compose --file .devcontainer/compose.yaml up --detach --build
+
+      - name: 🔐 Prepare the bind mount for the non-root lifecycle
+        run: >-
+          docker compose --file .devcontainer/compose.yaml exec -T app
+          chown -R vscode:vscode /workspaces/interclip
+
+      - name: 🧪 Bootstrap and smoke-test the running app
+        run: >-
+          docker compose --file .devcontainer/compose.yaml exec -T --user vscode app
+          bash .devcontainer/post-create.sh
+
+      - name: 📋 Show container logs after a failure
+        if: failure()
+        run: docker compose --file .devcontainer/compose.yaml logs --no-color
+
+      - name: 🧹 Stop the container stack
+        if: always()
+        run: docker compose --file .devcontainer/compose.yaml down --volumes

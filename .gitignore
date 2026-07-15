@@ -1,6 +1,7 @@
 # Development
 desktop.ini
 css/
+/.devcontainer/local.env
 
 upload.py
 diff.txt

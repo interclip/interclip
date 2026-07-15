@@ -1,33 +1,26 @@
 {
   "name": "Interclip",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
-  "features": {
-    "ghcr.io/devcontainers/features/php": {
-      "version": "8.2",
-      "installComposer": true
-    },
-    "ghcr.io/devcontainers/features/node": {},
-    "ghcr.io/devcontainers/features/docker-in-docker": {}
-  },
-  "forwardPorts": [8080, 3306, 6379],
+  "dockerComposeFile": "compose.yaml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/interclip",
+  "shutdownAction": "stopCompose",
+  "overrideCommand": false,
+  "remoteUser": "vscode",
+  "updateRemoteUserUID": true,
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "postStartCommand": "bash .devcontainer/post-start.sh",
+  "forwardPorts": [8080],
   "portsAttributes": {
     "8080": {
-      "label": "App",
-      "onAutoForward": "notify"
-    },
-    "3306": {
-      "label": "MySQL",
-      "onAutoForward": "ignore"
-    },
-    "6379": {
-      "label": "Redis",
-      "onAutoForward": "ignore"
+      "label": "Interclip",
+      "onAutoForward": "openPreview"
     }
   },
   "customizations": {
     "vscode": {
       "extensions": [
-        "bmewburn.vscode-intelephense-client"
+        "bmewburn.vscode-intelephense-client",
+        "dbaeumer.vscode-eslint"
       ]
     }
   }

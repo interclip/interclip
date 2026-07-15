@@ -3,36 +3,32 @@ image:
 ports:
   - port: 8080
     onOpen: open-browser
-    visibility: public
+    visibility: private
     name: App
   - port: 3306
     onOpen: ignore
+    visibility: private
     name: MySQL Database
   - port: 6379
     onOpen: ignore
+    visibility: private
     name: Redis
 
 tasks:
   - name: App
-    command: >
-      curl https://rclone.org/install.sh | sudo bash; 
-
-      sudo apt remove composer -y;
-      php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');";
-      sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer;
-      php -r "unlink('composer-setup.php');"
-
-      composer install;
-
-      bash scripts/secrets.sh;
-      gp ports await 3306 &&
-      mysql -e "CREATE DATABASE iclip;";
-      mysql < scripts/db.sql;
-
-      sudo echo extension=redis.so >> /etc/php/7.4/apache2/php.ini;
-      gp ports await 8080;
-      apachectl restart;
-      redis-server;
+    command: |
+      composer install --no-interaction
+      bash scripts/secrets.sh
+      set -a
+      source scripts/.gitpod.env
+      set +a
+      gp ports await 3306
+      mysql -e "CREATE DATABASE IF NOT EXISTS iclip;"
+      mysql -e "CREATE USER IF NOT EXISTS 'interclip'@'localhost' IDENTIFIED BY 'gitpod-local-app-password'; GRANT ALL ON iclip.* TO 'interclip'@'localhost';"
+      mysql iclip < scripts/db.sql
+      gp ports await 8080
+      apachectl restart
+      redis-server --requirepass "$REDIS_PASSWORD"
   - name: Apache
     openMode: split-right
     command: >
