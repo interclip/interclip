@@ -3,21 +3,18 @@
 include_once __DIR__ . '/init.php';
 include_once __DIR__ . '/database.php';
 
-use Auth0\SDK\Auth0;
-
-$auth0 = null;
+$oidc = null;
 $conn = null;
 $isStaff = false;
 $user = false;
-$hasAuth0Credentials = false;
 
 $authType = $_ENV['AUTH_TYPE'] ?? 'account';
+$usesOidc = $authType === 'account';
 $environment = $_ENV['ENVIRONMENT'] ?? 'production';
 
 if ($authType === 'account') {
     $appUrl = rtrim($_ENV['APP_URL'] ?? '', '/');
     $appUrlParts = parse_url($appUrl);
-    $cookieSecret = $_ENV['AUTH0_COOKIE_SECRET'] ?? '';
 
     if (
         $appUrl === ''
@@ -37,33 +34,15 @@ if ($authType === 'account') {
         throw new RuntimeException('APP_URL must use HTTPS outside development.');
     }
 
-    if (strlen($cookieSecret) < 32 || str_starts_with($cookieSecret, 'replace-with-')) {
-        throw new RuntimeException('AUTH0_COOKIE_SECRET must contain at least 32 bytes.');
-    }
-
     $rootPath = ROOT === '' ? '' : '/' . trim(ROOT, '/');
     $redirectUri = $appUrl . $rootPath . '/login';
 
-    $auth0 = new Auth0([
-        'domain' => $_ENV['AUTH0_DOMAIN'] ?? '',
-        'clientId' => $_ENV['AUTH0_CLIENT_ID'] ?? '',
-        'clientSecret' => $_ENV['AUTH0_CLIENT_SECRET'] ?? '',
-        'redirectUri' => $redirectUri,
-        'cookieSecret' => $cookieSecret,
-        'cookieExpires' => 0,
-        'cookieSecure' => strtolower($appUrlParts['scheme']) === 'https',
-        'cookieSameSite' => 'Lax',
-    ]);
-
-    if ($auth0->getCredentials() !== null) {
-        $hasAuth0Credentials = true;
-        $candidate = $auth0->getUser();
-        if (is_array($candidate)) {
-            $user = $candidate;
-        } else {
-            $auth0->clear();
-            $hasAuth0Credentials = false;
-        }
+    require_once __DIR__ . '/oidc.php';
+    startSecureSession();
+    $oidc = createOidcClient($redirectUri);
+    $user = oidcSessionUser($_SESSION, $_ENV['OIDC_ISSUER'], $_ENV['OIDC_CLIENT_ID'], time());
+    if ($user === false) {
+        unset($_SESSION['oidc_identity']);
     }
 } elseif ($authType === 'mock') {
     if ($environment !== 'development') {
@@ -81,55 +60,34 @@ if ($authType === 'account') {
 }
 
 if ($user !== false) {
-    $subject = isset($user['sub']) && is_string($user['sub']) ? trim($user['sub']) : '';
+    $subject = isset($user['sub']) && is_string($user['sub']) ? $user['sub'] : '';
     $email = isset($user['email']) && is_string($user['email']) ? trim($user['email']) : '';
-    $emailVerified = $authType === 'mock' || ($user['email_verified'] ?? false) === true;
-
-    if ($subject === '' || !$emailVerified || filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-        error_log('Authenticated identity was missing a stable subject or verified email address.');
-        if ($hasAuth0Credentials && $auth0 instanceof Auth0) {
-            $auth0->clear();
+    // Email is profile data; permissions belong to the immutable subject.
+    if ($subject === '' || filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+        error_log('Authenticated identity was missing a stable subject or valid email address.');
+        if ($usesOidc) {
+            unset($_SESSION['oidc_identity']);
         }
         $user = false;
     } else {
         try {
             $conn = openDatabaseConnection();
 
-            $stmt = $conn->prepare(
-                'SELECT id, subject, role FROM accounts '
-                . 'WHERE subject = ? OR (subject IS NULL AND email = ?) '
-                . 'ORDER BY subject IS NOT NULL DESC LIMIT 1'
-            );
-            $stmt->bind_param('ss', $subject, $email);
+            if ($usesOidc) {
+                $subject = oidcAccountSubject($_ENV['OIDC_ISSUER'], $subject);
+            }
+
+            $stmt = $conn->prepare('SELECT id, role FROM accounts WHERE subject = ? LIMIT 1');
+            $stmt->bind_param('s', $subject);
             $stmt->execute();
             $result = $stmt->get_result();
             $account = $result->fetch_assoc();
 
             if ($account !== null) {
-                if ($account['subject'] === null) {
-                    if (hash_equals('staff', (string) $account['role'])) {
-                        error_log('Refusing to automatically claim a legacy staff account without a preassigned subject.');
-                    } else {
-                        $claim = $conn->prepare('UPDATE accounts SET subject = ?, email = ? WHERE id = ? AND subject IS NULL');
-                        $accountId = (int) $account['id'];
-                        $claim->bind_param('ssi', $subject, $email, $accountId);
-                        $claim->execute();
-
-                        if ($claim->affected_rows === 1) {
-                            $claimedAccount = $conn->prepare('SELECT role FROM accounts WHERE subject = ? LIMIT 1');
-                            $claimedAccount->bind_param('s', $subject);
-                            $claimedAccount->execute();
-                            $claimedRole = $claimedAccount->get_result()->fetch_assoc();
-                            $isStaff = is_array($claimedRole)
-                                && hash_equals('staff', (string) ($claimedRole['role'] ?? ''));
-                        }
-                    }
-                } elseif ($email !== '') {
-                    $update = $conn->prepare('UPDATE accounts SET email = ? WHERE subject = ?');
-                    $update->bind_param('ss', $email, $subject);
-                    $update->execute();
-                    $isStaff = hash_equals('staff', (string) $account['role']);
-                }
+                $update = $conn->prepare('UPDATE accounts SET email = ? WHERE subject = ?');
+                $update->bind_param('ss', $email, $subject);
+                $update->execute();
+                $isStaff = hash_equals('staff', (string) $account['role']);
             } else {
                 $role = 'visitor';
                 $insert = $conn->prepare('INSERT INTO accounts (subject, email, role) VALUES (?, ?, ?)');

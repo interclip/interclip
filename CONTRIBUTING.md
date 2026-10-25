@@ -31,18 +31,39 @@ docker compose -f compose.local.yaml exec -T app vendor/bin/pest
 docker compose -f compose.local.yaml down
 ```
 
-The current login implementation still uses Auth0 when `AUTH_TYPE=account`.
-The local callback URL is `http://localhost:8081/login` (adjust for a custom
-port); an OIDC client integration is needed before using authentik.
+### Authentik / OpenID Connect
 
-## The quick and easy way - [Gitpod](https://www.gitpod.io/)
+Create a separate authentik application/provider for local development:
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/interclip/interclip)
+- Confidential OAuth2/OIDC client, with the authorization-code grant only.
+- Strict authorization redirect: `http://localhost:8081/login` (adjust for a custom port).
+- Scopes: `openid`, `profile`, `email`; include claims in the ID token.
+- Select an RSA signing key (RS256), stable UUID subjects, and a provider-specific issuer.
+- Bind access to the intended test users and use an explicit-consent authorization flow.
+
+In `.env`, set `AUTH_TYPE=account`, `OIDC_CLIENT_ID`, `OIDC_CLIENT_SECRET`, and the exact `OIDC_ISSUER` from discovery,
+including its trailing slash. Recreate the app with `docker compose -f compose.local.yaml up -d app`, then visit
+`http://localhost:8081/login`.
+
+OIDC requires HTTPS discovery/endpoints, S256 PKCE, and signed ID tokens. Browser
+login attempts expire after 10 minutes. The local session expires when the ID
+token does, capped at one hour; tokens are not stored in browser cookies.
+Logout clears only the Interclip session, preserving the shared authentik login.
+
+OIDC accounts are keyed by `oidc|` plus SHA-256 of the PHP JSON encoding of
+`[issuer, sub]` (see `oidcAccountSubject()` in `includes/lib/oidc.php`). Email is
+profile data, not an account-linking key: an unverified email cannot claim an
+existing account or staff role. New SSO identities are visitors. After verifying
+the person and their issuer/subject, an administrator can explicitly migrate the
+existing account's subject by primary key. Never grant staff based on an email
+match or SSO group claims. Existing accounts must be explicitly migrated to their OIDC subjects.
+
+To return to local mock login, set `AUTH_TYPE=mock` and recreate the app.
 
 ## Prerequisites
 
 - Apache server (needed for the .htaccess redirections)
-- PHP 7.4+
+- PHP 8.2+
 - MySQL database server
 - Composer v2 or newer
 - Git
@@ -74,7 +95,7 @@ cp .env.sample .env
    - DB credentials, like the server, username, and password of your MySQL database
    - The environment, like staging, development, or production
    - The cryptographic salt used for hashing IP addresses
-   - Auth0 credentials (optional)
+   - OIDC issuer and client credentials (required for account login)
    - Sentry credentials (optional)
    - Rclone config
 

@@ -56,7 +56,7 @@ ALTER TABLE `accounts`
   MODIFY `email` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   ADD UNIQUE KEY `accounts_subject_unique` (`subject`);
 
--- Assign each legitimate staff row its verified Auth0 `sub` before activating
+-- Assign each legitimate staff row its verified OIDC account subject before activating
 -- the application. Staff rows without a subject intentionally fail closed.
 
 DROP EVENT IF EXISTS `clean_expired`;

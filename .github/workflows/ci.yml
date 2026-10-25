@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest, macos-latest]
-        php-versions: ["8.1"]
+        php-versions: ["8.2", "8.5"]
 
     name: 📦 php ${{ matrix.php-versions }} 🖥️ ${{ matrix.operating-system }}
 
@@ -24,12 +24,13 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
+          extensions: curl, mysqli, redis
           tools: composer:v2
 
       - name: 🏯 Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 22
 
       - name: ✅ Validate Composer files
         run: composer validate
@@ -38,9 +39,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-php-${{ matrix.php-versions }}-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
-            ${{ runner.os }}-php-
+            ${{ runner.os }}-php-${{ matrix.php-versions }}-
 
       - name: 🎹 Install Dependencies
         run: |

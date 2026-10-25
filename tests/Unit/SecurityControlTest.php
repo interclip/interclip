@@ -108,10 +108,8 @@ it('does not derive authentication callbacks from the request host', function ()
     $auth = file_get_contents(dirname(__DIR__, 2) . '/includes/lib/auth.php');
 
     expect($auth)->not()->toContain('HTTP_HOST')
-        ->and($auth)->not()->toContain("'cookieDomain'")
-        ->and($auth)->toContain("'cookieSecure'")
-        ->and($auth)->toContain("'cookieExpires' => 0")
-        ->and($auth)->toContain('AUTH0_COOKIE_SECRET')
+        ->and($auth)->toContain("\$_ENV['APP_URL']")
+        ->and($auth)->toContain('APP_URL must use HTTPS outside development.')
         ->and($auth)->toContain('subject = ?');
 });
 
