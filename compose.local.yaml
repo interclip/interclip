@@ -1,0 +1,57 @@
+name: interclip-dev
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: scripts/docker/Dockerfile
+      target: app
+    ports:
+      - "127.0.0.1:${INTERCLIP_PORT:-8081}:80"
+    env_file: .env
+    environment:
+      ENVIRONMENT: development
+      PROTOCOL: http
+      APP_URL: http://localhost:${INTERCLIP_PORT:-8081}
+      DB_SERVER: mysql
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  mysql:
+    build:
+      context: .
+      dockerfile: scripts/docker/Dockerfile
+      target: database
+    command: ["--event-scheduler=ON"]
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: ${DB_NAME:-iclip}
+      MYSQL_USER: ${USERNAME:-interclip}
+      MYSQL_PASSWORD: ${PASSWORD:?Set PASSWORD in .env}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=\"$$MYSQL_PASSWORD\" mysql -h 127.0.0.1 -u \"$$MYSQL_USER\" \"$$MYSQL_DATABASE\" -e 'SELECT 1' >/dev/null"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  redis:
+    image: redis:7-alpine
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?Set REDIS_PASSWORD in .env}
+    command: ["sh", "-c", "exec redis-server --requirepass \"$$REDIS_PASSWORD\""]
+    healthcheck:
+      test: ["CMD-SHELL", "REDISCLI_AUTH=\"$$REDIS_PASSWORD\" redis-cli ping | grep -q PONG"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql_data:

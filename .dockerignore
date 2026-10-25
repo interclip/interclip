@@ -1,0 +1,15 @@
+.git
+.codex
+.agents
+.aws
+.DS_Store
+.env
+.env.*
+!.env.sample
+vendor
+node_modules
+out
+css
+.phpunit.result.cache
+dump.rdb
+public/upload/uploads
