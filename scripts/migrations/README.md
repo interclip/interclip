@@ -22,17 +22,33 @@ Apply migrations during a maintenance window; application and Redis configuratio
    mysql --database="$DB_NAME" < scripts/migrations/2026-07-14-preserve-permanent-clips.sql
    ```
 
-4. List staff rows and assign each legitimate account its verified Auth0 `sub` by primary key. Never infer staff identity from email alone.
+4. Configure `AUTH_TYPE=account`, `OIDC_ISSUER`, `OIDC_CLIENT_ID`, and
+   `OIDC_CLIENT_SECRET`. Verify each staff member's identity and immutable OIDC
+   `sub`, then calculate the account key using the exact discovery issuer:
+
+   ```sh
+   php -r 'require "vendor/autoload.php"; require "includes/lib/oidc.php"; echo oidcAccountSubject($argv[1], $argv[2]), PHP_EOL;' 'https://auth.example.com/application/o/interclip/' 'verified-user-uuid'
+   ```
+
+   List staff rows and assign the calculated key to the intended account by
+   primary key. Never infer staff identity from email alone. Replace the example
+   ID and key below; set `@previous_subject` to the row's current subject (or
+   `NULL` for a legacy row) so an unexpected identity change fails closed.
 
    ```sql
    SELECT id, email, role, subject FROM accounts WHERE role = 'staff';
+   SET @previous_subject = NULL;
    UPDATE accounts
-   SET subject = 'auth0|verified-subject-here'
-   WHERE id = 123 AND role = 'staff' AND subject IS NULL;
-   SELECT id, email FROM accounts WHERE role = 'staff' AND subject IS NULL;
+   SET subject = 'oidc|replace-with-calculated-sha256'
+   WHERE id = 123 AND role = 'staff' AND subject <=> @previous_subject;
+   SELECT ROW_COUNT() AS migrated_accounts;
+   SELECT id, email, subject FROM accounts WHERE role = 'staff';
    ```
 
-   The final query must return no legitimate staff accounts before application activation. Remove the old mock row only after confirming it is not a real account.
+   Verify exactly one row changed and every intended staff account has the
+   correct OIDC subject before activation. Resolve any existing visitor row for
+   the same OIDC subject before migrating; the unique constraint will reject
+   duplicates. Remove the old mock row only after confirming it is not a real account.
 
 5. Verify MySQL's event scheduler is enabled so expired destinations are
    deleted. The cleanup event excludes permanent clips whose `expires_at` is

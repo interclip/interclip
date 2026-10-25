@@ -50,7 +50,7 @@
         }
       }
 
-      if (is_array($user) && ($_ENV['AUTH_TYPE'] ?? 'account') === 'account' && !$isStaff) {
+      if (is_array($user) && ($_ENV['AUTH_TYPE'] ?? 'account') === 'account') {
         echo '<li><button type="submit" form="logout-form" class="no-styles">Log out</button></li>';
       }
 

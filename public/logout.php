@@ -8,15 +8,8 @@ header('X-Robots-Tag: noindex, nofollow, noarchive');
 
 validate();
 
-if ($_ENV['AUTH_TYPE'] === "account") {
-    $session = $auth0->getCredentials();
-    if ($session !== null) {
-        $returnUri = rtrim((string) $_ENV['APP_URL'], '/') . (ROOT === '' ? '' : ROOT) . '/';
-        $logoutUrl = $auth0->logout($returnUri);
-    }
-}
-
+// End this application's session, preserving the shared SSO session.
 destroySecureSession();
 header('Clear-Site-Data: "storage"');
-header('Location: ' . ($logoutUrl ?? ROOT . '/'), true, 302);
+header('Location: ' . (ROOT . '/'), true, 302);
 exit;

@@ -20,7 +20,7 @@ function startBrowserSession(): void
 
 function renderRouteError(int $status): never
 {
-    global $auth0, $conn, $isStaff, $user;
+    global $conn, $isStaff, $user;
 
     http_response_code($status);
     $statusCode = $status;
