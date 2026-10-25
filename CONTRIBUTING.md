@@ -2,6 +2,39 @@
 
 Hi, thanks for considering contributing to Interclip! Here's a guide on how to get you set up.
 
+## Local development with Docker Compose
+
+Start Docker or Colima (`colima start`), and make sure the Docker CLI and Compose
+are available in your shell. Copy `.env.sample` to `.env` if you do not already
+have one. Set `PASSWORD`, `REDIS_PASSWORD`, and `IP_HASH_KEY` to separate random
+values (for example, generate each with `openssl rand -hex 32`). Keep
+`AUTH_TYPE=mock` for initial development.
+
+```sh
+docker compose -f compose.local.yaml up -d --build
+```
+
+Open <http://localhost:8081>. This local stack builds Apache/PHP 8.5 and frontend
+assets, initializes a separate MySQL volume, and starts Redis. Only the web port
+is exposed, on the loopback interface. Set `INTERCLIP_PORT` to choose another
+port. The existing `docker-compose.yaml` remains a database-only setup.
+
+Source files are copied into the image; rerun the build command after edits.
+After changing `.env`, rerun `up -d` to recreate the app with the new settings.
+The default mock identity is a visitor. Staff privileges must be assigned
+explicitly to its `mock|local-development` subject in the local database.
+
+```sh
+# Run the PHP tests inside the app image.
+docker compose -f compose.local.yaml exec -T app vendor/bin/pest
+# Stop this stack, preserving its database.
+docker compose -f compose.local.yaml down
+```
+
+The current login implementation still uses Auth0 when `AUTH_TYPE=account`.
+The local callback URL is `http://localhost:8081/login` (adjust for a custom
+port); an OIDC client integration is needed before using authentik.
+
 ## The quick and easy way - [Gitpod](https://www.gitpod.io/)
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/interclip/interclip)
